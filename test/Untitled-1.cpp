@@ -15,8 +15,13 @@ struct Y {
 };
 
 int main() {
-  // 1
-  std::cout << (1.0 == kspc::approx(1.0)) << std::endl;
+  // true
+  std::cout << std::boolalpha << (1.0 != kspc::approx(1.0 + 2e-6)) << std::endl;
+  std::cout << (1.0 == kspc::approx(1.0 + 2e-7)) << std::endl;
+  std::cout << (1.0 != kspc::approx(1.0 + 0.20, 0.1, 0.01)) << std::endl;
+  std::cout << (1.0 == kspc::approx(1.0 + 0.02, 0.1, 0.01)) << std::endl;
+  std::cout << (1.0 != kspc::approx(1.0 + 2.0, 0.1, 1.0)) << std::endl;
+  std::cout << (1.0 == kspc::approx(1.0 + 0.2, 0.1, 1.0)) << std::endl;
   // 14
   std::cout << kspc::innerp(std::vector{1, 2, 3}, std::vector{1, 2, 3}) << std::endl;
   // 5

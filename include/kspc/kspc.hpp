@@ -129,62 +129,95 @@ namespace kspc {
 
   inline constexpr double eps = eps_v<double>;
 
-  template <typename T>
+  template <typename T,
+            std::enable_if_t<std::is_convertible_v<T, double>, std::nullptr_t> = nullptr>
   struct approx {
   private:
-    const T val_;
-    const double margin_;
+    const T& value_;
+    const double margin_ = eps;
+
+    constexpr double calclate_margin(const T& value, const double epsrel, const double epsabs) {
+      using std::isinf, std::abs, std::max; // for ADL
+      return max(max(epsabs, 0.0), abs(isinf(value) ? 0.0 : value) * max(epsrel, 0.0));
+    }
 
   public:
-    constexpr explicit approx(const T& val, double margin = eps) noexcept
-      : val_(val), margin_(margin) {}
-    constexpr explicit approx(T&& val, double margin = eps) noexcept
-      : val_(std::move(val)), margin_(margin) {}
+    constexpr explicit approx(const T& value, const double epsrel = eps,
+                              const double epsabs = 0.0) noexcept
+      : value_(value), margin_(calclate_margin(value_, epsrel, epsabs)) {}
+    constexpr explicit approx(T&& value, const double epsrel = eps,
+                              const double epsabs = 0.0) noexcept
+      : value_(std::move(value)), margin_(calclate_margin(value_, epsrel, epsabs)) {}
 
+    // Performs equivalent check of std::abs(x - y.value_) <= y.margin_
+    // But without the subtraction to allow for infinity in comparison
     template <typename U>
-    friend constexpr bool operator==(const U& x, const approx& y) noexcept {
-      // Performs equivalent check of std::fabs(x - y.val_) <= margin_
-      // But without the subtraction to allow for INFINITY in comparison
-      return (x + y.margin_ >= y.val_) && (y.val_ + y.margin_ >= x);
+    friend inline constexpr bool
+    operator<(const U& x, const approx& y) noexcept(noexcept(x + y.margin_ < y.value_)) {
+      return x + y.margin_ < y.value_;
     }
     template <typename U>
-    friend constexpr bool operator<(const U& x, const approx& y) noexcept {
-      return !(x == y) && (x < y.val_);
+    friend inline constexpr bool
+    operator>(const U& x, const approx& y) noexcept(noexcept(x > y.value_ + y.margin_)) {
+      return x > y.value_ + y.margin_;
     }
     // boilerplate
     template <typename U>
-    constexpr friend bool operator!=(const U& x, const approx& y) noexcept(noexcept(x == y)) {
-      return !(x == y);
+    friend inline constexpr bool //
+    operator<=(const U& x, const approx& y) noexcept(noexcept(!(x > y))) {
+      return !(x > y);
     }
     template <typename U>
-    constexpr friend bool operator>(const U& x, const approx& y) noexcept(noexcept(y < x)) {
-      return y < x;
-    }
-    template <typename U>
-    constexpr friend bool operator<=(const U& x, const approx& y) noexcept(noexcept(y < x)) {
-      return !(y < x);
-    }
-    template <typename U>
-    constexpr friend bool operator>=(const U& x, const approx& y) noexcept(noexcept(x < y)) {
+    friend inline constexpr bool //
+    operator>=(const U& x, const approx& y) noexcept(noexcept(!(x < y))) {
       return !(x < y);
+    }
+    template <typename U>
+    friend inline constexpr bool
+    operator!=(const U& x, const approx& y) noexcept(noexcept((x < y) || (x > y))) {
+      return x < y || x > y;
+    }
+    template <typename U>
+    friend inline constexpr bool //
+    operator==(const U& x, const approx& y) noexcept(noexcept(!(x != y))) {
+      return !(x != y);
     }
   }; // struct approx
 
-  struct approx_eq {
-    const double margin_ = eps;
+  template <typename T>
+  approx(T, const double = eps, const double = 0.0) -> approx<T>;
 
-    constexpr approx_eq() {}
-    constexpr explicit approx_eq(const double margin) : margin_(margin) {}
+  // function object for approximate comparison
 
-    template <typename T, typename U>
-    constexpr bool operator()(const T& t, const U& u) const {
-      return t == approx(u, margin_);
-    }
-  }; // struct approx_eq
+#define KSPC_DEFINE_APPROXIMATE_COMPARISON(Name, Op)                                               \
+  struct Name {                                                                                    \
+  private:                                                                                         \
+    const double epsrel_ = eps;                                                                    \
+    const double epsabs_ = 0.0;                                                                    \
+                                                                                                   \
+  public:                                                                                          \
+    constexpr explicit Name(const double epsrel, const double epsabs = 0.0)                        \
+      : epsrel_(epsrel), epsabs_(epsabs) {}                                                        \
+                                                                                                   \
+    template <typename T, typename U>                                                              \
+    constexpr bool operator()(const T& x, const U& y) const                                        \
+      noexcept(noexcept(x Op approx(y, epsrel_, epsabs_))) {                                       \
+      return x Op approx(y, epsrel_, epsabs_);                                                     \
+    }                                                                                              \
+  };
+
+  KSPC_DEFINE_APPROXIMATE_COMPARISON(approx_eq, ==)
+  KSPC_DEFINE_APPROXIMATE_COMPARISON(approx_ne, !=)
+  KSPC_DEFINE_APPROXIMATE_COMPARISON(approx_lt, <)
+  KSPC_DEFINE_APPROXIMATE_COMPARISON(approx_gt, >)
+  KSPC_DEFINE_APPROXIMATE_COMPARISON(approx_le, <=)
+  KSPC_DEFINE_APPROXIMATE_COMPARISON(approx_ge, >=)
+
+#undef KSPC_DEFINE_APPROXIMATE_COMPARISON
 
   // TODO: matrix (fixed)
 
-  // ndmatrix
+  // TODO: ndmatrix
 
   template <typename T>
   struct ndmatrix {
@@ -238,6 +271,7 @@ namespace kspc {
     }
   }; // struct ndmatrix
 
+  // TODO: mel
   template <typename T>
   auto mel(const ndmatrix<T>& op, const std::vector<std::vector<T>>& v) {
     const std::size_t n = std::min(op.dim(), std::size(v));
