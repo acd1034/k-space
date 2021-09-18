@@ -18,13 +18,14 @@ namespace kspc {
   inline constexpr bool is_complex_v = is_complex<T>::value;
 
   /// conj
-  template <typename T, std::enable_if_t<is_complex_v<T>, std::nullptr_t> = nullptr>
+  template <typename T, std::enable_if_t<is_complex_v<remove_cvref_t<T>>, std::nullptr_t> = nullptr>
   inline constexpr auto conj(T&& x) noexcept(noexcept(std::conj(std::forward<T>(x))))
     -> decltype((std::conj(std::forward<T>(x)))) {
     return std::conj(std::forward<T>(x));
   }
 
-  template <typename T, std::enable_if_t<!is_complex_v<T>, std::nullptr_t> = nullptr>
+  template <typename T,
+            std::enable_if_t<!is_complex_v<remove_cvref_t<T>>, std::nullptr_t> = nullptr>
   inline constexpr T&& conj(T&& x) noexcept(noexcept(std::forward<T>(x))) {
     return std::forward<T>(x);
   }
