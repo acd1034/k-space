@@ -63,6 +63,7 @@ namespace kspc {
               typename BOp = std::plus<>,
               typename P = identity,
               typename U = std::decay_t<sum_result_t<I, T, BOp, P>>>
+    constexpr
     std::enable_if_t<std::conjunction_v<
       is_sentinel_for<S, I>,
       is_input_iterator<I>,
@@ -82,7 +83,7 @@ namespace kspc {
             typename P = identity,
             typename BOp = std::plus<>,
             std::enable_if_t<is_range_v<R>, std::nullptr_t> = nullptr>
-  auto sum(R&& r, P proj = {}, BOp bop = {}) {
+  constexpr auto sum(R&& r, P proj = {}, BOp bop = {}) {
     using std::begin, std::end, std::empty; // for ADL
     assert(!empty(r));
     auto first = begin(r);
@@ -133,6 +134,7 @@ namespace kspc {
               typename BOp1 = std::plus<>, typename BOp2 = std::multiplies<>,
               typename P1   = conj_fn,     typename P2   = identity,
               typename U = std::decay_t<innerp_result_t<I1, I2, T, BOp1, BOp2, P1, P2>>>
+    constexpr
     std::enable_if_t<std::conjunction_v<
       is_sentinel_for<S1, I1>,
       is_sentinel_for<S2, I2>,
@@ -165,9 +167,9 @@ namespace kspc {
               is_range<R1>,
               is_range<R2>,
               std::negation<is_range<P1>>>, std::nullptr_t> = nullptr>
-  auto innerp(R1&& r1, R2&& r2,
-              P1 proj1  = {}, P2 proj2  = {},
-              BOp1 bop1 = {}, BOp2 bop2 = {}) {
+  constexpr auto innerp(R1&& r1, R2&& r2,
+                        P1 proj1  = {}, P2 proj2  = {},
+                        BOp1 bop1 = {}, BOp2 bop2 = {}) {
     using std::begin, std::end, std::empty; // for ADL
     assert(!empty(r1) && !empty(r2));
 
@@ -243,6 +245,7 @@ namespace kspc {
               typename P2 = identity,
               typename P3 = identity,
               typename U = std::decay_t<innerp2_result_t<I1, I2, I3, T, BOp1, BOp2, BOp3, P1, P2, P3>>>
+    constexpr
     std::enable_if_t<std::conjunction_v<
       is_sentinel_for<S1, I1>,
       is_sentinel_for<S2, I2>,
@@ -299,13 +302,13 @@ namespace kspc {
               is_range<R2>,
               is_range<R3>,
               std::is_default_constructible<T>>, std::nullptr_t> = nullptr>
-  auto innerp(R1&& r1, R2&& r2, R3&& r3,
-              P1 proj1 = {},
-              P2 proj2 = {},
-              P3 proj3 = {},
-              BOp1 bop1 = {},
-              BOp2 bop2 = {},
-              BOp3 bop3 = {}) {
+  constexpr auto innerp(R1&& r1, R2&& r2, R3&& r3,
+                        P1 proj1 = {},
+                        P2 proj2 = {},
+                        P3 proj3 = {},
+                        BOp1 bop1 = {},
+                        BOp2 bop2 = {},
+                        BOp3 bop3 = {}) {
     using std::begin, std::end; // for ADL
     return detail::innerp2(
              begin(r1), end(r1), begin(r2), end(r2), begin(r3), end(r3),
