@@ -70,7 +70,7 @@ namespace kspc {
   template <template <typename...> typename Op, typename... Args>
   struct is_detected : detail::is_detected_impl<void, Op, Args...> {};
 
-  /// is_detected_v
+  /// helper variable template for `is_detected`
   template <template <typename...> typename Op, typename... Args>
   inline constexpr bool is_detected_v = is_detected<Op, Args...>::value;
 
@@ -129,7 +129,7 @@ namespace kspc {
   template <class T, class = void>
   struct incrementable_traits : detail::incrementable_traits_impl<T> {};
 
-  /// partial specialization of incrementable_traits
+  /// partial specialization of `incrementable_traits`
   template <class T>
   struct incrementable_traits<T*>
     : std::conditional_t<
@@ -137,13 +137,13 @@ namespace kspc {
         detail::with_difference_type<std::ptrdiff_t>,
         detail::nil> {};
 
-  /// partial specialization of incrementable_traits
+  /// partial specialization of `incrementable_traits`
   template <class T>
   struct incrementable_traits<T, std::void_t<typename T::difference_type>> {
     using difference_type = typename T::difference_type;
   };
 
-  /// partial specialization of incrementable_traits
+  /// partial specialization of `incrementable_traits`
   template <class T>
   struct incrementable_traits<const T> : incrementable_traits<T> {};
 
@@ -163,31 +163,31 @@ namespace kspc {
   template <class T, class = void>
   struct indirectly_readable_traits : detail::indirectly_readable_traits_impl<T> {};
 
-  /// partial specialization of indirectly_readable_traits
+  /// partial specialization of `indirectly_readable_traits`
   template <class T>
   struct indirectly_readable_traits<T*> {
     using value_type = std::remove_cv_t<T>;
   };
 
-  /// partial specialization of indirectly_readable_traits
+  /// partial specialization of `indirectly_readable_traits`
   template <class T>
   struct indirectly_readable_traits<T[]> {
     using value_type = std::remove_cv_t<T>;
   };
 
-  /// partial specialization of indirectly_readable_traits
+  /// partial specialization of `indirectly_readable_traits`
   template <class T, std::size_t N>
   struct indirectly_readable_traits<T[N]> {
     using value_type = std::remove_cv_t<T>;
   };
 
-  /// partial specialization of indirectly_readable_traits
+  /// partial specialization of `indirectly_readable_traits`
   template <class T>
   struct indirectly_readable_traits<T, std::void_t<typename T::value_type>> {
     using value_type = std::remove_cv_t<typename T::value_type>;
   };
 
-  /// partial specialization of indirectly_readable_traits
+  /// partial specialization of `indirectly_readable_traits`
   template <class T>
   struct indirectly_readable_traits<const T> : indirectly_readable_traits<T> {};
 
@@ -252,7 +252,7 @@ namespace kspc {
         detail::is_post_incrementable<I>   // not required to be equality-preserving
         > {};
 
-  /// is_weakly_incrementable_v
+  /// helper variable template for `is_weakly_incrementable`
   template <typename I>
   inline constexpr bool is_weakly_incrementable_v = is_weakly_incrementable<I>::value;
 
@@ -264,7 +264,7 @@ namespace kspc {
         is_weakly_incrementable<I>
         > {};
 
-  /// is_input_or_output_iterator_v
+  /// helper variable template for `is_input_or_output_iterator`
   template <typename I>
   inline constexpr bool is_input_or_output_iterator_v = is_input_or_output_iterator<I>::value;
 
@@ -276,7 +276,7 @@ namespace kspc {
         detail::is_dereferenceable<const remove_cvref_t<T>>
         > {};
 
-  /// is_indirectly_readable_v
+  /// helper variable template for `is_indirectly_readable`
   template <typename T>
   inline constexpr bool is_indirectly_readable_v = is_indirectly_readable<T>::value;
 
@@ -288,7 +288,7 @@ namespace kspc {
         is_indirectly_readable<I>
         > {};
 
-  /// is_input_iterator_v
+  /// helper variable template for `is_input_iterator`
   template <typename I>
   inline constexpr bool is_input_iterator_v = is_input_iterator<I>::value;
 
@@ -317,7 +317,7 @@ namespace kspc {
         detail::is_weakly_equality_comparable_with<S, I>
         > {};
 
-  /// is_sentinel_for_v
+  /// helper variable template for `is_sentinel_for`
   template <typename S, typename I>
   inline constexpr bool is_sentinel_for_v = is_sentinel_for<S, I>::value;
 
@@ -342,7 +342,7 @@ namespace kspc {
         is_detected<detail2::end_t, R&>
         > {};
 
-  /// is_range_v
+  /// helper variable template for `is_range`
   template <typename R>
   inline constexpr bool is_range_v = is_range<R>::value;
   // clang-format on

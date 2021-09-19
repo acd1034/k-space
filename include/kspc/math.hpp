@@ -41,11 +41,11 @@ namespace kspc {
   template <typename T>
   struct is_complex : std::false_type {};
 
-  /// partial specialization of is_complex
+  /// partial specialization of `is_complex`
   template <typename T>
   struct is_complex<std::complex<T>> : std::true_type {};
 
-  /// is_complex_v
+  /// helper variable template for `is_complex`
   template <typename T>
   inline constexpr bool is_complex_v = is_complex<T>::value;
 
