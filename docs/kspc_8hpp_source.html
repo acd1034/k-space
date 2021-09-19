@@ -469,7 +469,7 @@ $(function() {
 <div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;    <span class="comment">// [x] dim</span></div>
 <div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;    <span class="comment">// [x] operator()(const size_type j, const size_type k)</span></div>
 <div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;    <span class="comment">// [x] at(const size_type j, const size_type k)</span></div>
-<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;    <span class="comment">// [x] is_hermite</span></div>
+<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;    <span class="comment">// [x] is_hermitian</span></div>
 <div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160; </div>
 <div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;    constexpr size_type dim() <span class="keyword">const</span> noexcept {</div>
 <div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;      <span class="keywordflow">return</span> N;</div>
@@ -496,7 +496,7 @@ $(function() {
 <div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;    }</div>
 <div class="line"><a name="l00433"></a><span class="lineno">  433</span>&#160; </div>
 <div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Proj1 = conj_fn, <span class="keyword">typename</span> Proj2 = <span class="keywordtype">id</span>entity, <span class="keyword">typename</span> Comp = approx_eq&gt;</div>
-<div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160;    constexpr <span class="keywordtype">bool</span> is_hermite(Proj1 proj1 = {}, Proj2 proj2 = {}, Comp comp = {}) <span class="keyword">const</span> {</div>
+<div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160;    constexpr <span class="keywordtype">bool</span> is_hermitian(Proj1 proj1 = {}, Proj2 proj2 = {}, Comp comp = {}) <span class="keyword">const</span> {</div>
 <div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160;      <span class="keywordflow">for</span> (size_type j = 0; j &lt; dim(); ++j) {</div>
 <div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;        <span class="keywordflow">for</span> (size_type k = j; k &lt; dim(); ++k) {</div>
 <div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;          <span class="comment">// clang-format off</span></div>
@@ -575,7 +575,7 @@ $(function() {
 <div class="line"><a name="l00513"></a><span class="lineno">  513</span>&#160;    <span class="comment">// [x] dim</span></div>
 <div class="line"><a name="l00514"></a><span class="lineno">  514</span>&#160;    <span class="comment">// [x] operator()(const size_type j, const size_type k)</span></div>
 <div class="line"><a name="l00515"></a><span class="lineno">  515</span>&#160;    <span class="comment">// [x] at(const size_type j, const size_type k)</span></div>
-<div class="line"><a name="l00516"></a><span class="lineno">  516</span>&#160;    <span class="comment">// [x] is_hermite</span></div>
+<div class="line"><a name="l00516"></a><span class="lineno">  516</span>&#160;    <span class="comment">// [x] is_hermitian</span></div>
 <div class="line"><a name="l00517"></a><span class="lineno">  517</span>&#160;    <span class="comment">// [x] reshape</span></div>
 <div class="line"><a name="l00518"></a><span class="lineno">  518</span>&#160; </div>
 <div class="line"><a name="l00519"></a><span class="lineno">  519</span>&#160;    constexpr size_type dim() <span class="keyword">const</span> noexcept {</div>
@@ -603,7 +603,7 @@ $(function() {
 <div class="line"><a name="l00541"></a><span class="lineno">  541</span>&#160;    }</div>
 <div class="line"><a name="l00542"></a><span class="lineno">  542</span>&#160; </div>
 <div class="line"><a name="l00543"></a><span class="lineno">  543</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Proj1 = conj_fn, <span class="keyword">typename</span> Proj2 = <span class="keywordtype">id</span>entity, <span class="keyword">typename</span> Comp = approx_eq&gt;</div>
-<div class="line"><a name="l00544"></a><span class="lineno">  544</span>&#160;    constexpr <span class="keywordtype">bool</span> is_hermite(Proj1 proj1 = {}, Proj2 proj2 = {}, Comp comp = {}) <span class="keyword">const</span> {</div>
+<div class="line"><a name="l00544"></a><span class="lineno">  544</span>&#160;    constexpr <span class="keywordtype">bool</span> is_hermitian(Proj1 proj1 = {}, Proj2 proj2 = {}, Comp comp = {}) <span class="keyword">const</span> {</div>
 <div class="line"><a name="l00545"></a><span class="lineno">  545</span>&#160;      <span class="keywordflow">for</span> (size_type j = 0; j &lt; dim(); ++j) {</div>
 <div class="line"><a name="l00546"></a><span class="lineno">  546</span>&#160;        <span class="keywordflow">for</span> (size_type k = j; k &lt; dim(); ++k) {</div>
 <div class="line"><a name="l00547"></a><span class="lineno">  547</span>&#160;          <span class="comment">// clang-format off</span></div>
