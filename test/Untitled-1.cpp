@@ -1,6 +1,6 @@
 #include <iostream>
 #include <memory>
-#include <kspc/draft.hpp>
+// #include <kspc/draft.hpp>
 #include <kspc/kspc.hpp>
 
 struct X {
@@ -15,25 +15,30 @@ struct Y {
 };
 
 int main() {
-  // true
   std::cout << std::boolalpha << (1.0 != kspc::approx(1.0 + 2e-6)) << std::endl;
   std::cout << (1.0 == kspc::approx(1.0 + 2e-7)) << std::endl;
   std::cout << (1.0 != kspc::approx(1.0 + 0.20, 0.1, 0.01)) << std::endl;
   std::cout << (1.0 == kspc::approx(1.0 + 0.02, 0.1, 0.01)) << std::endl;
   std::cout << (1.0 != kspc::approx(1.0 + 2.0, 0.1, 1.0)) << std::endl;
   std::cout << (1.0 == kspc::approx(1.0 + 0.2, 0.1, 1.0)) << std::endl;
-  // 14
-  std::cout << kspc::innerp(std::vector{1, 2, 3}, std::vector{1, 2, 3}) << std::endl;
-  // 5
-  std::cout << kspc::innerp(std::vector{1, 2}, std::vector{1, 0, 0, 1}, std::vector{1, 2})
-            << std::endl;
-  // 4
-  std::cout << kspc::innerp(std::vector{1, 2}, std::vector{0, 1, 1, 0}, std::vector{1, 2})
-            << std::endl;
-  // 6
-  std::cout << kspc::sum(std::vector{1, 2, 3}) << std::endl;
-  // 12
-  std::cout << kspc::sum(std::vector{1, 2, 3}, [](const auto& x) { return 2 * x; }) << std::endl;
+
+  // 14, 5, 4, 5, 4, 6, 12
+  // clang-format off
+  std::cout <<
+  kspc::innerp(std::vector{1, 2, 3}, std::vector{1, 2, 3}) << std::endl;
+  std::cout <<
+  kspc::innerp(std::vector{1, 2}, kspc::matrix{1, 0, 0, 1}, std::vector{1, 2}) << std::endl;
+  std::cout <<
+  kspc::innerp(std::vector{1, 2}, kspc::matrix{0, 1, 1, 0}, std::vector{1, 2}) << std::endl;
+  std::cout <<
+  kspc::innerp(std::vector{1, 2}, kspc::ndmatrix{1, 0, 0, 1}, std::vector{1, 2}) << std::endl;
+  std::cout <<
+  kspc::innerp(std::vector{1, 2}, kspc::ndmatrix{0, 1, 1, 0}, std::vector{1, 2}) << std::endl;
+  std::cout <<
+  kspc::sum(std::vector{1, 2, 3}) << std::endl;
+  std::cout <<
+  kspc::sum(std::vector{1, 2, 3}, [](const auto& x) { return 2 * x; }) << std::endl;
+  // clang-format on
 
   // clang-format off
   static_assert(std::is_same_v<
@@ -51,7 +56,7 @@ int main() {
   static_assert(std::is_same_v<
     kspc::incrementable_traits<X>::difference_type,
     std::ptrdiff_t>);
-  // error
+  // error expected
   // static_assert(std::is_same_v<
   //   kspc::incrementable_traits<void*>::difference_type,
   //   std::ptrdiff_t>);

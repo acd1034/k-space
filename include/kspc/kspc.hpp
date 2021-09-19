@@ -216,62 +216,349 @@ namespace kspc {
 
 #undef KSPC_DEFINE_APPROXIMATE_COMPARISON
 
-  // TODO: matrix (fixed)
+  // matrix:
+  // [ ] matrix_base
+  // [ ] matrix
+  // [ ] ndmatrix
 
-  // TODO: ndmatrix
+  namespace detail2 {
+    /// matrix_base
+    // clang-format off
+    template <typename Derived,
+              std::enable_if_t<std::conjunction_v<
+                std::is_class<Derived>,
+                std::is_same<Derived, std::remove_cv_t<Derived>>>, std::nullptr_t> = nullptr>
+    // clang-format on
+    struct matrix_base {
+    private:
+      constexpr Derived& derived() noexcept {
+        return static_cast<Derived&>(*this);
+      }
 
-  template <typename T>
-  struct ndmatrix {
+      constexpr const Derived& derived() const noexcept {
+        return static_cast<const Derived&>(*this);
+      }
+
+      template <typename Derived2, bool B = true, typename T = std::nullptr_t>
+      using enable_if_derived = std::enable_if_t<std::is_same_v<Derived2, Derived> && B, T>;
+
+      template <typename Derived2>
+      using size_type_impl = std::make_unsigned_t<range_difference_t<Derived2>>;
+
+    public:
+      constexpr auto cbegin() const noexcept(noexcept(begin(derived()))) {
+        return begin(derived());
+      }
+
+      constexpr auto cend() const noexcept(noexcept(end(derived()))) {
+        return end(derived());
+      }
+
+      constexpr auto rbegin() //
+        noexcept(noexcept(std::make_reverse_iterator(end(derived())))) {
+        return std::make_reverse_iterator(end(derived()));
+      }
+
+      constexpr auto rbegin() const noexcept(noexcept(std::make_reverse_iterator(end(derived())))) {
+        return std::make_reverse_iterator(end(derived()));
+      }
+
+      constexpr auto rend() //
+        noexcept(noexcept(std::make_reverse_iterator(begin(derived())))) {
+        return std::make_reverse_iterator(begin(derived()));
+      }
+
+      constexpr auto rend() const noexcept(noexcept(std::make_reverse_iterator(begin(derived())))) {
+        return std::make_reverse_iterator(begin(derived()));
+      }
+
+      constexpr auto crbegin() const noexcept(noexcept(rbegin())) {
+        return rbegin();
+      }
+
+      constexpr auto crend() const noexcept(noexcept(rend())) {
+        return rend();
+      }
+
+      [[nodiscard]] constexpr bool empty() //
+        noexcept(noexcept(begin(derived()) == end(derived()))) {
+        return begin(derived()) == end(derived());
+      }
+
+      [[nodiscard]] constexpr bool empty() const
+        noexcept(noexcept(begin(derived()) == end(derived()))) {
+        return begin(derived()) == end(derived());
+      }
+
+      constexpr auto size() noexcept(noexcept(make_unsigned_v(end(derived()) - begin(derived())))) {
+        return make_unsigned_v(end(derived()) - begin(derived()));
+      }
+
+      constexpr auto size() const
+        noexcept(noexcept(make_unsigned_v(end(derived()) - begin(derived())))) {
+        return make_unsigned_v(end(derived()) - begin(derived()));
+      }
+
+      constexpr decltype(auto) front() noexcept(noexcept(*begin(derived()))) {
+        assert(!empty());
+        return *begin(derived());
+      }
+
+      constexpr decltype(auto) front() const noexcept(noexcept(*begin(derived()))) {
+        assert(!empty());
+        return *begin(derived());
+      }
+
+      constexpr decltype(auto) back() noexcept(noexcept(*(std::prev(end(derived()))))) {
+        assert(!empty());
+        return *std::prev(end(derived()));
+      }
+
+      constexpr decltype(auto) back() const noexcept(noexcept(*(std::prev(end(derived()))))) {
+        assert(!empty());
+        return *std::prev(end(derived()));
+      }
+
+      template <typename Derived2 = Derived, enable_if_derived<Derived2> = nullptr>
+      constexpr decltype(auto) operator[](const size_type_impl<Derived2> j) //
+        noexcept(noexcept(begin(derived())[j])) {
+        return begin(derived())[j];
+      }
+
+      template <typename Derived2 = Derived, enable_if_derived<Derived2> = nullptr>
+      constexpr decltype(auto) operator[](const size_type_impl<Derived2> j) const
+        noexcept(noexcept(begin(derived())[j])) {
+        return begin(derived())[j];
+      }
+
+      template <typename Derived2 = Derived, enable_if_derived<Derived2> = nullptr>
+      constexpr decltype(auto) at(const size_type_impl<Derived2> j) {
+        if (j >= size()) throw std::out_of_range("matrix_base::at");
+        return (*this)[j];
+      }
+
+      template <typename Derived2 = Derived, enable_if_derived<Derived2> = nullptr>
+      constexpr decltype(auto) at(const size_type_impl<Derived2> j) const {
+        if (j >= size()) throw std::out_of_range("matrix_base::at");
+        return (*this)[j];
+      }
+
+      constexpr auto data() noexcept(noexcept(std::addressof(*begin(derived())))) {
+        return std::addressof(*begin(derived()));
+      }
+
+      constexpr auto data() const noexcept(noexcept(std::addressof(*begin(derived())))) {
+        return std::addressof(*begin(derived()));
+      }
+    }; // struct matrix_base
+  }    // namespace detail2
+
+  /// fixed-size matrix
+  template <typename T, std::size_t N>
+  struct matrix : detail2::matrix_base<matrix<T, N>> {
   private:
-    std::size_t dim_ = 0;
-    std::vector<T> instance_{};
+    using base = detail2::matrix_base<matrix>;
+    std::array<T, N * N> instance_{};
 
   public:
-    ndmatrix() = default;
-    explicit ndmatrix(std::size_t n) : dim_(n), instance_(n * n) {}
-    ndmatrix(std::size_t n, const T& value) : dim_(n), instance_(n * n, value) {}
-    explicit ndmatrix(std::initializer_list<T> l)
-      : dim_(std::size_t(std::sqrt(std::size(l)))), instance_(std::size(l)) {
-      std::copy(std::begin(l), std::end(l), std::begin(instance_));
-    }
-    auto begin() & noexcept(noexcept(instance_.begin())) -> decltype((instance_.begin())) {
+    using iterator = iterator_t<std::array<T, N * N>>;
+    using const_iterator = iterator_t<const std::array<T, N * N>>;
+    using difference_type = iter_difference_t<iterator>;
+    using size_type = std::make_unsigned_t<difference_type>;
+    using reference = iter_reference_t<iterator>;
+    using const_reference = iter_reference_t<const_iterator>;
+    using value_type = iter_value_t<iterator>;
+
+    template <typename... U>
+    constexpr explicit matrix(const T& init, U&&... args)
+      : instance_{init, std::forward<decltype(args)>(args)...} {}
+
+    template <typename... U>
+    constexpr explicit matrix(T&& init, U&&... args)
+      : instance_{std::move(init), std::forward<decltype(args)>(args)...} {}
+
+    constexpr auto begin() noexcept(noexcept(instance_.begin())) {
       return instance_.begin();
     }
-    auto begin() const& noexcept(noexcept(instance_.begin())) -> decltype((instance_.begin())) {
+
+    constexpr auto begin() const noexcept(noexcept(instance_.begin())) {
       return instance_.begin();
     }
-    auto end() & noexcept(noexcept(instance_.end())) -> decltype((instance_.end())) {
-      return instance_.end();
-    }
-    auto end() const& noexcept(noexcept(instance_.end())) -> decltype((instance_.end())) {
+
+    constexpr auto end() noexcept(noexcept(instance_.end())) {
       return instance_.end();
     }
 
-    std::size_t dim() const {
-      return dim_;
+    constexpr auto end() const noexcept(noexcept(instance_.end())) {
+      return instance_.end();
     }
-    auto operator()(std::size_t i, std::size_t j) & noexcept(noexcept(instance_[i * dim() + j]))
-      -> decltype((instance_[i * dim() + j])) {
-      return instance_[i * dim() + j];
+
+    constexpr void swap(matrix& other) noexcept(noexcept(instance_.swap(other.instance_))) {
+      instance_.swap(other.instance_);
     }
-    auto operator()(std::size_t i,
-                    std::size_t j) const& noexcept(noexcept(instance_[i * dim() + j]))
-      -> decltype((instance_[i * dim() + j])) {
-      return instance_[i * dim() + j];
+
+    // member function:
+    // [x] dim
+    // [x] operator()(const size_type j, const size_type k)
+    // [x] at(const size_type j, const size_type k)
+    // [x] is_hermite
+
+    constexpr size_type dim() const noexcept {
+      return N;
     }
-    template <typename Comp = approx_eq, typename Proj1 = conj_fn, typename Proj2 = identity>
-    bool is_hermite(Comp comp = {}, Proj1 proj1 = {}, Proj2 proj2 = {}) {
-      for (std::size_t i = 0; i < dim(); ++i) {
-        for (std::size_t j = i; j < dim(); ++j) {
-          if (!std::invoke(comp, std::invoke(proj1, (*this)(i, j)),
-                           std::invoke(proj2, (*this)(j, i))))
+
+    constexpr decltype(auto) operator()(const size_type j, const size_type k) //
+      noexcept(noexcept(base::operator[](j* dim() + k))) {
+      return base::operator[](j* dim() + k);
+    }
+
+    constexpr decltype(auto) operator()(const size_type j, const size_type k) const
+      noexcept(noexcept(base::operator[](j* dim() + k))) {
+      return base::operator[](j* dim() + k);
+    }
+
+    constexpr decltype(auto) at(const size_type j, const size_type k) {
+      if (j >= dim() || k >= dim()) throw std::out_of_range("matrix::at");
+      return (*this)(j, k);
+    }
+
+    constexpr decltype(auto) at(const size_type j, const size_type k) const {
+      if (j >= dim() || k >= dim()) throw std::out_of_range("matrix::at");
+      return (*this)(j, k);
+    }
+
+    template <typename Proj1 = conj_fn, typename Proj2 = identity, typename Comp = approx_eq>
+    constexpr bool is_hermite(Proj1 proj1 = {}, Proj2 proj2 = {}, Comp comp = {}) const {
+      for (size_type j = 0; j < dim(); ++j) {
+        for (size_type k = j; k < dim(); ++k) {
+          // clang-format off
+          if (!std::invoke(
+                 comp,
+                 std::invoke(proj1, (*this)(j, k)),
+                 std::invoke(proj2, (*this)(k, j))))
             return false;
+          // clang-format on
         }
       }
       return true;
     }
+  }; // struct matrix
+
+  template <typename T, typename... U>
+  matrix(T, U...) -> matrix<T, 1 + sizeof...(U)>;
+
+  /// variadic-size matrix
+  template <typename T>
+  struct ndmatrix : detail2::matrix_base<ndmatrix<T>> {
+    using iterator = iterator_t<std::vector<T>>;
+    using const_iterator = iterator_t<const std::vector<T>>;
+    using difference_type = iter_difference_t<iterator>;
+    using size_type = std::make_unsigned_t<difference_type>;
+    using reference = iter_reference_t<iterator>;
+    using const_reference = iter_reference_t<const_iterator>;
+    using value_type = iter_value_t<iterator>;
+
+  private:
+    using base = detail2::matrix_base<ndmatrix>;
+    size_type dim_ = 0;
+    std::vector<T> instance_{};
+
+  public:
+    constexpr explicit ndmatrix(size_type n) : dim_(n), instance_(n * n) {}
+
+    constexpr explicit ndmatrix(size_type n, const T& init) : dim_(n), instance_(n * n, init) {}
+
+    // clang-format off
+    template <typename I, typename S,
+              std::enable_if_t<
+                std::conjunction_v<is_sentinel_for<S, I>, is_input_iterator<I>>, std::nullptr_t> = nullptr>
+    // clang-format on
+    constexpr ndmatrix(I first, S last)
+      : dim_(static_cast<size_type>(std::sqrt(std::distance(first, last)))),
+        instance_(dim_ * dim_) {
+      std::copy_n(first, instance_.size(), instance_.begin());
+    }
+
+    constexpr ndmatrix(std::initializer_list<T> l) : ndmatrix(std::begin(l), std::end(l)) {}
+
+    constexpr auto begin() noexcept(noexcept(instance_.begin())) {
+      return instance_.begin();
+    }
+
+    constexpr auto begin() const noexcept(noexcept(instance_.begin())) {
+      return instance_.begin();
+    }
+
+    constexpr auto end() noexcept(noexcept(instance_.end())) {
+      return instance_.end();
+    }
+
+    constexpr auto end() const noexcept(noexcept(instance_.end())) {
+      return instance_.end();
+    }
+
+    constexpr void swap(ndmatrix& other) //
+      noexcept(std::is_nothrow_swappable_v<size_type>&& noexcept(instance_.swap(other.instance_))) {
+      using std::swap; // for ADL
+      swap(dim_, other.dim_);
+      instance_.swap(other.instance_);
+    }
+
+    // member function:
+    // [x] dim
+    // [x] operator()(const size_type j, const size_type k)
+    // [x] at(const size_type j, const size_type k)
+    // [x] is_hermite
+    // [x] reshape
+
+    constexpr size_type dim() const noexcept {
+      return dim_;
+    }
+
+    constexpr decltype(auto) operator()(const size_type j, const size_type k) //
+      noexcept(noexcept(base::operator[](j* dim() + k))) {
+      return base::operator[](j* dim() + k);
+    }
+
+    constexpr decltype(auto) operator()(const size_type j, const size_type k) const
+      noexcept(noexcept(base::operator[](j* dim() + k))) {
+      return base::operator[](j* dim() + k);
+    }
+
+    constexpr decltype(auto) at(const size_type j, const size_type k) {
+      if (j >= dim() || k >= dim()) throw std::out_of_range("ndmatrix::at");
+      return (*this)(j, k);
+    }
+
+    constexpr decltype(auto) at(const size_type j, const size_type k) const {
+      if (j >= dim() || k >= dim()) throw std::out_of_range("ndmatrix::at");
+      return (*this)(j, k);
+    }
+
+    template <typename Proj1 = conj_fn, typename Proj2 = identity, typename Comp = approx_eq>
+    constexpr bool is_hermite(Proj1 proj1 = {}, Proj2 proj2 = {}, Comp comp = {}) const {
+      for (size_type j = 0; j < dim(); ++j) {
+        for (size_type k = j; k < dim(); ++k) {
+          // clang-format off
+          if (!std::invoke(
+                 comp,
+                 std::invoke(proj1, (*this)(j, k)),
+                 std::invoke(proj2, (*this)(k, j))))
+            return false;
+          // clang-format on
+        }
+      }
+      return true;
+    }
+
+    constexpr void reshape(const size_type n) noexcept(noexcept(instance_.resize())) {
+      dim_ = n;
+      instance_.resize(n * n);
+    }
   }; // struct ndmatrix
 
+  template <typename I, typename S>
+  ndmatrix(I, S) -> ndmatrix<iter_value_t<I>>;
   // TODO: mel
   template <typename T>
   auto mel(const ndmatrix<T>& op, const std::vector<std::vector<T>>& v) {
@@ -398,7 +685,7 @@ namespace kspc {
     return x * x * x;
   }
 
-  // k-space numerical calculation
+  // numerical calculation in k-space
 
   template <typename K, typename B,
             std::enable_if_t<is_range_v<K> && is_range_v<B>, std::nullptr_t> = nullptr>
