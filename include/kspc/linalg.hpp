@@ -1,4 +1,4 @@
-/// @file linarg.hpp
+/// @file linalg.hpp
 #pragma once
 #include <array>
 #include <complex>
