@@ -405,7 +405,7 @@ namespace kspc {
     // [x] dim
     // [x] operator()(const size_type j, const size_type k)
     // [x] at(const size_type j, const size_type k)
-    // [x] is_hermite
+    // [x] is_hermitian
 
     constexpr size_type dim() const noexcept {
       return N;
@@ -432,7 +432,7 @@ namespace kspc {
     }
 
     template <typename Proj1 = conj_fn, typename Proj2 = identity, typename Comp = approx_eq>
-    constexpr bool is_hermite(Proj1 proj1 = {}, Proj2 proj2 = {}, Comp comp = {}) const {
+    constexpr bool is_hermitian(Proj1 proj1 = {}, Proj2 proj2 = {}, Comp comp = {}) const {
       for (size_type j = 0; j < dim(); ++j) {
         for (size_type k = j; k < dim(); ++k) {
           // clang-format off
@@ -513,7 +513,7 @@ namespace kspc {
     // [x] dim
     // [x] operator()(const size_type j, const size_type k)
     // [x] at(const size_type j, const size_type k)
-    // [x] is_hermite
+    // [x] is_hermitian
     // [x] reshape
 
     constexpr size_type dim() const noexcept {
@@ -541,7 +541,7 @@ namespace kspc {
     }
 
     template <typename Proj1 = conj_fn, typename Proj2 = identity, typename Comp = approx_eq>
-    constexpr bool is_hermite(Proj1 proj1 = {}, Proj2 proj2 = {}, Comp comp = {}) const {
+    constexpr bool is_hermitian(Proj1 proj1 = {}, Proj2 proj2 = {}, Comp comp = {}) const {
       for (size_type j = 0; j < dim(); ++j) {
         for (size_type k = j; k < dim(); ++k) {
           // clang-format off
