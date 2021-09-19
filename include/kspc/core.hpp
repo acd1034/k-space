@@ -238,8 +238,8 @@ namespace kspc {
     : std::conjunction<
         // is_movable<I>,
         is_detected<iter_difference_t, I>, // -> is-signed-integer-like
-        detail::is_pre_incrementable<I>, // -> std::same_as<I&>, not required to be equality-preserving
-        detail::is_post_incrementable<I> // not required to be equality-preserving
+        detail::is_pre_incrementable<I>,   // -> std::same_as<I&>, not required to be equality-preserving
+        detail::is_post_incrementable<I>   // not required to be equality-preserving
         > {};
 
   /// is_weakly_incrementable_v
@@ -356,7 +356,7 @@ namespace kspc {
 
   namespace detail2 {
     /// iterator_t
-    template <typename R, std::enable_if_t<is_range_v<R>, std::nullptr_t> = nullptr>
+    template <typename R>
     using iterator_t = decltype(begin(std::declval<R&>()));
 
     /// sentinel_t
