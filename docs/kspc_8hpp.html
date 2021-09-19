@@ -170,17 +170,20 @@ template&lt;typename T , std::enable_if_t&lt; std::is_arithmetic_v&lt; T &gt;, s
 template&lt;typename T , std::enable_if_t&lt; std::is_arithmetic_v&lt; T &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
 <tr class="memitem:a6be6485f1fe2e3ac131851e0a42aa3b4"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::operator/</b> (const std::vector&lt; T &gt; &amp;x, T val)</td></tr>
 <tr class="separator:a6be6485f1fe2e3ac131851e0a42aa3b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7542a6b450267008da1604caa180138d"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a7542a6b450267008da1604caa180138d"><td class="memTemplParams" colspan="2"><a id="a7542a6b450267008da1604caa180138d"></a>
+template&lt;typename T &gt; </td></tr>
 <tr class="memitem:a7542a6b450267008da1604caa180138d"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="kspc_8hpp.html#a7542a6b450267008da1604caa180138d">kspc::approx</a> (T, const double=eps, const double=0.0) -&gt; approx&lt; T &gt;</td></tr>
-<tr class="memdesc:a7542a6b450267008da1604caa180138d"><td class="mdescLeft">&#160;</td><td class="mdescRight">deduction guide for  <a href="kspc_8hpp.html#a7542a6b450267008da1604caa180138d">More...</a><br /></td></tr>
+<tr class="memdesc:a7542a6b450267008da1604caa180138d"><td class="mdescLeft">&#160;</td><td class="mdescRight">deduction guide for approx <br /></td></tr>
 <tr class="separator:a7542a6b450267008da1604caa180138d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a668025080c9e57ce51d3d8e61e0e6ca5"><td class="memTemplParams" colspan="2">template&lt;typename T , typename... U&gt; </td></tr>
+<tr class="memitem:a668025080c9e57ce51d3d8e61e0e6ca5"><td class="memTemplParams" colspan="2"><a id="a668025080c9e57ce51d3d8e61e0e6ca5"></a>
+template&lt;typename T , typename... U&gt; </td></tr>
 <tr class="memitem:a668025080c9e57ce51d3d8e61e0e6ca5"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="kspc_8hpp.html#a668025080c9e57ce51d3d8e61e0e6ca5">kspc::matrix</a> (T, U...) -&gt; matrix&lt; T, 1+sizeof...(U)&gt;</td></tr>
-<tr class="memdesc:a668025080c9e57ce51d3d8e61e0e6ca5"><td class="mdescLeft">&#160;</td><td class="mdescRight">deduction guide for  <a href="kspc_8hpp.html#a668025080c9e57ce51d3d8e61e0e6ca5">More...</a><br /></td></tr>
+<tr class="memdesc:a668025080c9e57ce51d3d8e61e0e6ca5"><td class="mdescLeft">&#160;</td><td class="mdescRight">deduction guide for matrix <br /></td></tr>
 <tr class="separator:a668025080c9e57ce51d3d8e61e0e6ca5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a105b89bafa2fbdff348dbbd9ec0c7239"><td class="memTemplParams" colspan="2">template&lt;typename I , typename S &gt; </td></tr>
+<tr class="memitem:a105b89bafa2fbdff348dbbd9ec0c7239"><td class="memTemplParams" colspan="2"><a id="a105b89bafa2fbdff348dbbd9ec0c7239"></a>
+template&lt;typename I , typename S &gt; </td></tr>
 <tr class="memitem:a105b89bafa2fbdff348dbbd9ec0c7239"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="kspc_8hpp.html#a105b89bafa2fbdff348dbbd9ec0c7239">kspc::ndmatrix</a> (I, S) -&gt; ndmatrix&lt; iter_value_t&lt; I &gt;&gt;</td></tr>
-<tr class="memdesc:a105b89bafa2fbdff348dbbd9ec0c7239"><td class="mdescLeft">&#160;</td><td class="mdescRight">deduction guide for  <a href="kspc_8hpp.html#a105b89bafa2fbdff348dbbd9ec0c7239">More...</a><br /></td></tr>
+<tr class="memdesc:a105b89bafa2fbdff348dbbd9ec0c7239"><td class="mdescLeft">&#160;</td><td class="mdescRight">deduction guide for ndmatrix <br /></td></tr>
 <tr class="separator:a105b89bafa2fbdff348dbbd9ec0c7239"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a62d3c5a14a7b342f4485439b1965d2f7"><td class="memTemplParams" colspan="2"><a id="a62d3c5a14a7b342f4485439b1965d2f7"></a>
 template&lt;typename T &gt; </td></tr>
@@ -401,114 +404,8 @@ constexpr double&#160;</td><td class="memItemRight" valign="bottom"><a class="el
 <div class="line">    }                                                                                              \</div>
 <div class="line">  };</div>
 <div class="ttc" id="akspc_8hpp_html_a0e12b80d3cd73fbf5bc3458306b7e17a"><div class="ttname"><a href="kspc_8hpp.html#a0e12b80d3cd73fbf5bc3458306b7e17a">kspc::eps</a></div><div class="ttdeci">constexpr double eps</div><div class="ttdoc">alias for eps_v&lt;double&gt;</div><div class="ttdef"><b>Definition:</b> kspc.hpp:132</div></div>
-<div class="ttc" id="akspc_8hpp_html_a7542a6b450267008da1604caa180138d"><div class="ttname"><a href="kspc_8hpp.html#a7542a6b450267008da1604caa180138d">kspc::approx</a></div><div class="ttdeci">approx(T, const double=eps, const double=0.0) -&gt; approx&lt; T &gt;</div><div class="ttdoc">deduction guide for</div></div>
+<div class="ttc" id="akspc_8hpp_html_a7542a6b450267008da1604caa180138d"><div class="ttname"><a href="kspc_8hpp.html#a7542a6b450267008da1604caa180138d">kspc::approx</a></div><div class="ttdeci">approx(T, const double=eps, const double=0.0) -&gt; approx&lt; T &gt;</div><div class="ttdoc">deduction guide for approx</div></div>
 </div><!-- fragment -->
-</div>
-</div>
-<h2 class="groupheader">Function Documentation</h2>
-<a id="a7542a6b450267008da1604caa180138d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7542a6b450267008da1604caa180138d">&#9670;&nbsp;</a></span>approx()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="structkspc_1_1approx.html">kspc::approx</a> </td>
-          <td>(</td>
-          <td class="paramtype">T&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const double&#160;</td>
-          <td class="paramname"> = <code>eps</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const double&#160;</td>
-          <td class="paramname"> = <code>0.0</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td> -&gt;  <a class="el" href="structkspc_1_1approx.html">approx</a>&lt; T &gt;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>deduction guide for </p>
-<dl class="section see"><dt>See also</dt><dd>approx </dd></dl>
-
-</div>
-</div>
-<a id="a668025080c9e57ce51d3d8e61e0e6ca5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a668025080c9e57ce51d3d8e61e0e6ca5">&#9670;&nbsp;</a></span>matrix()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T , typename... U&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="structkspc_1_1matrix.html">kspc::matrix</a> </td>
-          <td>(</td>
-          <td class="paramtype">T&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">U...&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td> -&gt;  <a class="el" href="structkspc_1_1matrix.html">matrix</a>&lt; T, 1+sizeof...(U)&gt;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>deduction guide for </p>
-<dl class="section see"><dt>See also</dt><dd>matrix </dd></dl>
-
-</div>
-</div>
-<a id="a105b89bafa2fbdff348dbbd9ec0c7239"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a105b89bafa2fbdff348dbbd9ec0c7239">&#9670;&nbsp;</a></span>ndmatrix()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename I , typename S &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="structkspc_1_1ndmatrix.html">kspc::ndmatrix</a> </td>
-          <td>(</td>
-          <td class="paramtype">I&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">S&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td> -&gt;  <a class="el" href="structkspc_1_1ndmatrix.html">ndmatrix</a>&lt; <a class="el" href="core_8hpp.html#af352495531dca3b36f1f7c06c2dfe8dd">iter_value_t</a>&lt; I &gt;&gt;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>deduction guide for </p>
-<dl class="section see"><dt>See also</dt><dd>ndmatrix </dd></dl>
-
 </div>
 </div>
 </div><!-- contents -->
