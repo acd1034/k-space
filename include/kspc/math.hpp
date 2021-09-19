@@ -15,7 +15,7 @@ namespace kspc {
     return static_cast<U>(x);
   }
 
-  /// @overload
+  /// another variation of @sa make_signed_v
   template <typename T, std::enable_if_t<!std::is_unsigned_v<T>, std::nullptr_t> = nullptr>
   inline constexpr T&& make_signed_v(T&& x) noexcept(noexcept(std::forward<T>(x))) {
     return std::forward<T>(x);
@@ -29,7 +29,7 @@ namespace kspc {
     return static_cast<std::make_unsigned_t<T>>(x);
   }
 
-  /// @overload
+  /// another variation of @sa make_unsigned_v
   template <typename T, std::enable_if_t<!std::is_signed_v<T>, std::nullptr_t> = nullptr>
   inline constexpr T&& make_unsigned_v(T&& x) noexcept(noexcept(std::forward<T>(x))) {
     return std::forward<T>(x);
@@ -56,7 +56,7 @@ namespace kspc {
     return std::conj(std::forward<T>(x));
   }
 
-  /// @overload
+  /// another variation of @sa conj
   template <typename T,
             std::enable_if_t<!is_complex_v<remove_cvref_t<T>>, std::nullptr_t> = nullptr>
   inline constexpr T&& conj(T&& x) noexcept(noexcept(std::forward<T>(x))) {
@@ -112,8 +112,8 @@ namespace kspc {
   } // namespace detail
 
   /// `sum`
-  /// almost same as `std::accumulate` but does not require initial value
-  /// NOTE: the order of the arguments `P`, `BOp` is different from range-v3
+  /// almost same as `std::accumulate` but does not require initial value.
+  /// NOTE: the order of the arguments `P`, `BOp` is different from range-v3.
   template <typename R,
             typename P = identity,
             typename BOp = std::plus<>,
@@ -194,8 +194,8 @@ namespace kspc {
   } // namespace detail
 
   /// `innerp`
-  /// almost same as `std::inner_product` but does not require initial value
-  /// NOTE: the order of the arguments `PN`, `BOpN` is different from range-v3
+  /// almost same as `std::inner_product` but does not require initial value.
+  /// NOTE: the order of the arguments `PN`, `BOpN` is different from range-v3.
   template <typename R1,
             typename R2,
             typename P1   = conj_fn,     typename P2   = identity,
@@ -323,7 +323,7 @@ namespace kspc {
   } // namespace detail
 
   /// `innerp` with matrix
-  /// WORKAROUND: difficulty in omitting the initial value
+  /// WORKAROUND: difficulty in omitting the initial value.
   template <typename R1, typename R2, typename R3,
             typename P1 = conj_fn,
             typename P2 = identity,

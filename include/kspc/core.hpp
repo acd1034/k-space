@@ -192,12 +192,12 @@ namespace kspc {
   struct indirectly_readable_traits<const T> : indirectly_readable_traits<T> {};
 
   /// `iter_difference_t`
-  /// NOTE: specialization of `std::iterator_traits` is NOT supported
+  /// NOTE: specialization of `std::iterator_traits` is NOT supported.
   template <typename I>
   using iter_difference_t = typename incrementable_traits<remove_cvref_t<I>>::difference_type;
 
   /// `iter_value_t`
-  /// NOTE: specialization of `std::iterator_traits` is NOT supported
+  /// NOTE: specialization of `std::iterator_traits` is NOT supported.
   template <typename I>
   using iter_value_t = typename indirectly_readable_traits<remove_cvref_t<I>>::value_type;
 
@@ -394,7 +394,7 @@ namespace kspc {
     return static_cast<T>(c.size());
   }
 
-  /// @overload
+  /// another variation of @sa ssize
   template <typename T, std::size_t N>
   constexpr std::ptrdiff_t ssize(const T (&)[N]) noexcept {
     return N;

@@ -131,6 +131,7 @@ namespace kspc {
   /// alias for `eps_v<double>`
   inline constexpr double eps = eps_v<double>;
 
+  /// `approx`
   template <typename T,
             std::enable_if_t<std::is_convertible_v<T, double>, std::nullptr_t> = nullptr>
   struct approx {
@@ -187,7 +188,7 @@ namespace kspc {
     }
   }; // struct approx
 
-  /// deduction guide for approx
+  /// deduction guide for @sa approx
   template <typename T>
   approx(T, const double = eps, const double = 0.0) -> approx<T>;
 
@@ -447,7 +448,7 @@ namespace kspc {
     }
   }; // struct matrix
 
-  /// deduction guide for matrix
+  /// deduction guide for @sa matrix
   template <typename T, typename... U>
   matrix(T, U...) -> matrix<T, 1 + sizeof...(U)>;
 
@@ -561,7 +562,7 @@ namespace kspc {
     }
   }; // struct ndmatrix
 
-  /// deduction guide for ndmatrix
+  /// deduction guide for @sa ndmatrix
   template <typename I, typename S>
   ndmatrix(I, S) -> ndmatrix<iter_value_t<I>>;
 
