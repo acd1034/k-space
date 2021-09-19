@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['operator_3c_3c_195',['operator&lt;&lt;',['../core_8hpp.html#a83c2d04b913119071a5ea80a7b6941fa',1,'kspc::io']]]
+  ['n_196',['n',['../kspc_8hpp.html#a9313698259e9dbc171d080eaee480217',1,'kspc']]],
+  ['ndmatrix_197',['ndmatrix',['../kspc_8hpp.html#a105b89bafa2fbdff348dbbd9ec0c7239',1,'kspc']]]
 ];

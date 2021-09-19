@@ -55,7 +55,7 @@ var searchData=
   ['is_5fweakly_5fincrementable_72',['is_weakly_incrementable',['../structkspc_1_1is__weakly__incrementable.html',1,'kspc']]],
   ['is_5fweakly_5fincrementable_5fv_73',['is_weakly_incrementable_v',['../core_8hpp.html#a0620895011a326ad05bb28cf22d56672',1,'kspc']]],
   ['iter_5fdifference_5ft_74',['iter_difference_t',['../core_8hpp.html#a26e0e38429a46fcfc1095852e65a1ce9',1,'kspc']]],
-  ['iter_5freference_5ft_75',['iter_reference_t',['../core_8hpp.html#aff2e769b5d1c40ab280c027b0414f1d7',1,'kspc']]],
+  ['iter_5freference_5ft_75',['iter_reference_t',['../core_8hpp.html#a7cb2ffb8dd2a5e23587da31cbad10338',1,'kspc']]],
   ['iter_5fvalue_5ft_76',['iter_value_t',['../core_8hpp.html#af352495531dca3b36f1f7c06c2dfe8dd',1,'kspc']]],
-  ['iterator_5ft_77',['iterator_t',['../core_8hpp.html#a136f9c42777e69ebb7333fd405518987',1,'kspc::detail2']]]
+  ['iterator_5ft_77',['iterator_t',['../core_8hpp.html#a2a3e6847414fd6fc2bcbff76d5a1c8d3',1,'kspc']]]
 ];

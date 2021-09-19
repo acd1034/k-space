@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['sentinel_5ft_109',['sentinel_t',['../core_8hpp.html#abf872ed0bf2df71f03da39d602ad1375',1,'kspc::detail2']]],
+  ['sentinel_5ft_109',['sentinel_t',['../core_8hpp.html#ae29fd7f20b3ab18a4e71e55b6c9958b7',1,'kspc']]],
   ['sqrt2_110',['sqrt2',['../kspc_8hpp.html#a40b92fd047ea0344da972a415e2fc57d',1,'kspc']]],
   ['sqrt2_5fv_111',['sqrt2_v',['../kspc_8hpp.html#a91599209edcccbc4c93977a0579ecc1e',1,'kspc']]],
   ['sqrt3_112',['sqrt3',['../kspc_8hpp.html#a9f5eb29f175060f10338ee159422c987',1,'kspc']]],
