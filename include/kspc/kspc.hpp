@@ -124,9 +124,11 @@ namespace kspc {
 
   // approximate comparison
 
+  /// default epsilon
   template <typename T>
   inline constexpr T eps_v = std::enable_if_t<std::is_arithmetic_v<T>, T>(1e-6);
 
+  /// alias for `eps_v<double>`
   inline constexpr double eps = eps_v<double>;
 
   template <typename T,

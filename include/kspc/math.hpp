@@ -221,8 +221,7 @@ namespace kspc {
              std::move(proj1), std::move(proj2));
   }
 
-  // innerp2
-  // ([1] BOp2 ([2] BOp3 [3])) BOp1 ...
+  // innerp2: ([1] BOp2 ([2] BOp3 [3])) BOp1 ...
 
   namespace detail {
     template <typename I1, typename I2, typename I3,
