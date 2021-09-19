@@ -82,13 +82,13 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkspc_1_1is__complex.html">kspc::is_complex&lt; T &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>is_complex</code>  <a href="structkspc_1_1is__complex.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">is_complex  <a href="structkspc_1_1is__complex.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkspc_1_1is__complex_3_01std_1_1complex_3_01_t_01_4_01_4.html">kspc::is_complex&lt; std::complex&lt; T &gt; &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>is_complex</code>  <a href="structkspc_1_1is__complex_3_01std_1_1complex_3_01_t_01_4_01_4.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">partial specialization of <a class="el" href="structkspc_1_1is__complex.html" title="is_complex">is_complex</a>  <a href="structkspc_1_1is__complex_3_01std_1_1complex_3_01_t_01_4_01_4.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkspc_1_1conj__fn.html">kspc::conj_fn</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code><a class="el" href="structkspc_1_1conj__fn.html" title="conj_fn">conj_fn</a></code>  <a href="structkspc_1_1conj__fn.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">conj_fn  <a href="structkspc_1_1conj__fn.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkspc_1_1detail_1_1sum__result.html">kspc::detail::sum_result&lt; I, T, BOp, P &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -129,32 +129,32 @@ Functions</h2></td></tr>
 <tr class="memitem:a09d760d9c47c778498c3e521373cbc12"><td class="memTemplParams" colspan="2"><a id="a09d760d9c47c778498c3e521373cbc12"></a>
 template&lt;typename T , std::enable_if_t&lt; std::is_unsigned_v&lt; T &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
 <tr class="memitem:a09d760d9c47c778498c3e521373cbc12"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="math_8hpp.html#a09d760d9c47c778498c3e521373cbc12">kspc::make_signed_v</a> (const T &amp;x) noexcept(noexcept(static_cast&lt; std::make_signed_t&lt; T &gt;&gt;(x)))</td></tr>
-<tr class="memdesc:a09d760d9c47c778498c3e521373cbc12"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>make_signed_v</code> <br /></td></tr>
+<tr class="memdesc:a09d760d9c47c778498c3e521373cbc12"><td class="mdescLeft">&#160;</td><td class="mdescRight">make_signed_v <br /></td></tr>
 <tr class="separator:a09d760d9c47c778498c3e521373cbc12"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a50e89aa824d65865fd209cf75f4d082f"><td class="memTemplParams" colspan="2"><a id="a50e89aa824d65865fd209cf75f4d082f"></a>
 template&lt;typename T , std::enable_if_t&lt;!std::is_unsigned_v&lt; T &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
 <tr class="memitem:a50e89aa824d65865fd209cf75f4d082f"><td class="memTemplItemLeft" align="right" valign="top">constexpr T &amp;&amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="math_8hpp.html#a50e89aa824d65865fd209cf75f4d082f">kspc::make_signed_v</a> (T &amp;&amp;x) noexcept(noexcept(std::forward&lt; T &gt;(x)))</td></tr>
-<tr class="memdesc:a50e89aa824d65865fd209cf75f4d082f"><td class="mdescLeft">&#160;</td><td class="mdescRight">another variation of make_signed_v <br /></td></tr>
+<tr class="memdesc:a50e89aa824d65865fd209cf75f4d082f"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. <br /></td></tr>
 <tr class="separator:a50e89aa824d65865fd209cf75f4d082f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8f5dc460d06df63e1f97b43136442278"><td class="memTemplParams" colspan="2"><a id="a8f5dc460d06df63e1f97b43136442278"></a>
 template&lt;typename T , std::enable_if_t&lt; std::is_signed_v&lt; T &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
 <tr class="memitem:a8f5dc460d06df63e1f97b43136442278"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="math_8hpp.html#a8f5dc460d06df63e1f97b43136442278">kspc::make_unsigned_v</a> (const T &amp;x) noexcept(noexcept(static_cast&lt; std::make_unsigned_t&lt; T &gt;&gt;(x)))</td></tr>
-<tr class="memdesc:a8f5dc460d06df63e1f97b43136442278"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>make_unsigned_v</code> <br /></td></tr>
+<tr class="memdesc:a8f5dc460d06df63e1f97b43136442278"><td class="mdescLeft">&#160;</td><td class="mdescRight">make_unsigned_v <br /></td></tr>
 <tr class="separator:a8f5dc460d06df63e1f97b43136442278"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4f440561437f86c59c9db0bca5137017"><td class="memTemplParams" colspan="2"><a id="a4f440561437f86c59c9db0bca5137017"></a>
 template&lt;typename T , std::enable_if_t&lt;!std::is_signed_v&lt; T &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
 <tr class="memitem:a4f440561437f86c59c9db0bca5137017"><td class="memTemplItemLeft" align="right" valign="top">constexpr T &amp;&amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="math_8hpp.html#a4f440561437f86c59c9db0bca5137017">kspc::make_unsigned_v</a> (T &amp;&amp;x) noexcept(noexcept(std::forward&lt; T &gt;(x)))</td></tr>
-<tr class="memdesc:a4f440561437f86c59c9db0bca5137017"><td class="mdescLeft">&#160;</td><td class="mdescRight">another variation of make_unsigned_v <br /></td></tr>
+<tr class="memdesc:a4f440561437f86c59c9db0bca5137017"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. <br /></td></tr>
 <tr class="separator:a4f440561437f86c59c9db0bca5137017"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a56a141f0e16ab48c8efdf7b46f7f9da1"><td class="memTemplParams" colspan="2"><a id="a56a141f0e16ab48c8efdf7b46f7f9da1"></a>
 template&lt;typename T , std::enable_if_t&lt; is_complex_v&lt; remove_cvref_t&lt; T &gt;&gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
 <tr class="memitem:a56a141f0e16ab48c8efdf7b46f7f9da1"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="math_8hpp.html#a56a141f0e16ab48c8efdf7b46f7f9da1">kspc::conj</a> (T &amp;&amp;x) noexcept(noexcept(std::conj(std::forward&lt; T &gt;(x)))) -&gt; decltype((std::conj(std::forward&lt; T &gt;(x))))</td></tr>
-<tr class="memdesc:a56a141f0e16ab48c8efdf7b46f7f9da1"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>conj</code> <br /></td></tr>
+<tr class="memdesc:a56a141f0e16ab48c8efdf7b46f7f9da1"><td class="mdescLeft">&#160;</td><td class="mdescRight">conj <br /></td></tr>
 <tr class="separator:a56a141f0e16ab48c8efdf7b46f7f9da1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a766d69b7ded08fd04c9d8f1a553be545"><td class="memTemplParams" colspan="2"><a id="a766d69b7ded08fd04c9d8f1a553be545"></a>
 template&lt;typename T , std::enable_if_t&lt;!is_complex_v&lt; remove_cvref_t&lt; T &gt;&gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
 <tr class="memitem:a766d69b7ded08fd04c9d8f1a553be545"><td class="memTemplItemLeft" align="right" valign="top">constexpr T &amp;&amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="math_8hpp.html#a766d69b7ded08fd04c9d8f1a553be545">kspc::conj</a> (T &amp;&amp;x) noexcept(noexcept(std::forward&lt; T &gt;(x)))</td></tr>
-<tr class="memdesc:a766d69b7ded08fd04c9d8f1a553be545"><td class="mdescLeft">&#160;</td><td class="mdescRight">another variation of conj <br /></td></tr>
+<tr class="memdesc:a766d69b7ded08fd04c9d8f1a553be545"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. <br /></td></tr>
 <tr class="separator:a766d69b7ded08fd04c9d8f1a553be545"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad4a4dcdcb1c46418927ae01dd48ed1c5"><td class="memTemplParams" colspan="2"><a id="ad4a4dcdcb1c46418927ae01dd48ed1c5"></a>
 template&lt;typename I , typename S , typename T , typename BOp  = std::plus&lt;&gt;, typename P  = identity, typename U  = std::decay_t&lt;sum_result_t&lt;I, T, BOp, P&gt;&gt;&gt; </td></tr>
@@ -183,7 +183,7 @@ Variables</h2></td></tr>
 <tr class="memitem:a689b2a2abfa8dabacc5f91bab321529e"><td class="memTemplParams" colspan="2"><a id="a689b2a2abfa8dabacc5f91bab321529e"></a>
 template&lt;typename T &gt; </td></tr>
 <tr class="memitem:a689b2a2abfa8dabacc5f91bab321529e"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="math_8hpp.html#a689b2a2abfa8dabacc5f91bab321529e">kspc::is_complex_v</a> = is_complex&lt;T&gt;::value</td></tr>
-<tr class="memdesc:a689b2a2abfa8dabacc5f91bab321529e"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>is_complex_v</code> <br /></td></tr>
+<tr class="memdesc:a689b2a2abfa8dabacc5f91bab321529e"><td class="mdescLeft">&#160;</td><td class="mdescRight">is_complex_v <br /></td></tr>
 <tr class="separator:a689b2a2abfa8dabacc5f91bab321529e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
@@ -246,7 +246,7 @@ template&lt;typename R1 , typename R2 , typename P1  = conj_fn, typename P2  = i
   </tr>
 </table>
 </div><div class="memdoc">
-<p><code>innerp</code> almost same as <code>std::inner_product</code> but does not require initial value. NOTE: the order of the arguments <code>PN</code>, <code>BOpN</code> is different from range-v3. </p>
+<p>innerp almost same as <code>std::inner_product</code> but does not require initial value. NOTE: the order of the arguments <code>PN</code>, <code>BOpN</code> is different from range-v3. </p>
 
 </div>
 </div>
@@ -372,7 +372,7 @@ template&lt;typename R , typename P  = identity, typename BOp  = std::plus&lt;&g
   </tr>
 </table>
 </div><div class="memdoc">
-<p><code>sum</code> almost same as <code>std::accumulate</code> but does not require initial value. NOTE: the order of the arguments <code>P</code>, <code>BOp</code> is different from range-v3. </p>
+<p>sum almost same as <code>std::accumulate</code> but does not require initial value. NOTE: the order of the arguments <code>P</code>, <code>BOp</code> is different from range-v3. </p>
 
 </div>
 </div>

@@ -87,11 +87,11 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkspc_1_1_approx.html">kspc::Approx&lt; T, &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code><a class="el" href="structkspc_1_1_approx.html" title="Approx">Approx</a></code>  <a href="structkspc_1_1_approx.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkspc_1_1approx.html">kspc::approx&lt; T, &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">approx  <a href="structkspc_1_1approx.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkspc_1_1detail2_1_1matrix__base.html">kspc::detail2::matrix_base&lt; Derived, &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structkspc_1_1detail2_1_1matrix__base.html" title="matrix_base">matrix_base</a>  <a href="structkspc_1_1detail2_1_1matrix__base.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">matrix_base  <a href="structkspc_1_1detail2_1_1matrix__base.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkspc_1_1matrix.html">kspc::matrix&lt; T, N &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">fixed-size matrix  <a href="structkspc_1_1matrix.html#details">More...</a><br /></td></tr>
@@ -170,20 +170,20 @@ template&lt;typename T , std::enable_if_t&lt; std::is_arithmetic_v&lt; T &gt;, s
 template&lt;typename T , std::enable_if_t&lt; std::is_arithmetic_v&lt; T &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
 <tr class="memitem:a6be6485f1fe2e3ac131851e0a42aa3b4"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::operator/</b> (const std::vector&lt; T &gt; &amp;x, T val)</td></tr>
 <tr class="separator:a6be6485f1fe2e3ac131851e0a42aa3b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae4b808dc99898d7cdb2fccc94977d4fc"><td class="memTemplParams" colspan="2"><a id="ae4b808dc99898d7cdb2fccc94977d4fc"></a>
+<tr class="memitem:a7542a6b450267008da1604caa180138d"><td class="memTemplParams" colspan="2"><a id="a7542a6b450267008da1604caa180138d"></a>
 template&lt;typename T &gt; </td></tr>
-<tr class="memitem:ae4b808dc99898d7cdb2fccc94977d4fc"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="kspc_8hpp.html#ae4b808dc99898d7cdb2fccc94977d4fc">kspc::Approx</a> (T, const double=eps, const double=0.0) -&gt; Approx&lt; T &gt;</td></tr>
-<tr class="memdesc:ae4b808dc99898d7cdb2fccc94977d4fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">deduction guide for <a class="el" href="structkspc_1_1_approx.html" title="Approx">Approx</a> <br /></td></tr>
-<tr class="separator:ae4b808dc99898d7cdb2fccc94977d4fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7542a6b450267008da1604caa180138d"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="kspc_8hpp.html#a7542a6b450267008da1604caa180138d">kspc::approx</a> (T, const double=eps, const double=0.0) -&gt; approx&lt; T &gt;</td></tr>
+<tr class="memdesc:a7542a6b450267008da1604caa180138d"><td class="mdescLeft">&#160;</td><td class="mdescRight">deduction guide for <a class="el" href="structkspc_1_1approx.html">approx </a> <br /></td></tr>
+<tr class="separator:a7542a6b450267008da1604caa180138d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a668025080c9e57ce51d3d8e61e0e6ca5"><td class="memTemplParams" colspan="2"><a id="a668025080c9e57ce51d3d8e61e0e6ca5"></a>
 template&lt;typename T , typename... U&gt; </td></tr>
 <tr class="memitem:a668025080c9e57ce51d3d8e61e0e6ca5"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="kspc_8hpp.html#a668025080c9e57ce51d3d8e61e0e6ca5">kspc::matrix</a> (T, U...) -&gt; matrix&lt; T, 1+sizeof...(U)&gt;</td></tr>
-<tr class="memdesc:a668025080c9e57ce51d3d8e61e0e6ca5"><td class="mdescLeft">&#160;</td><td class="mdescRight">deduction guide for matrix <br /></td></tr>
+<tr class="memdesc:a668025080c9e57ce51d3d8e61e0e6ca5"><td class="mdescLeft">&#160;</td><td class="mdescRight">deduction guide for <a class="el" href="structkspc_1_1matrix.html">matrix </a> <br /></td></tr>
 <tr class="separator:a668025080c9e57ce51d3d8e61e0e6ca5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a105b89bafa2fbdff348dbbd9ec0c7239"><td class="memTemplParams" colspan="2"><a id="a105b89bafa2fbdff348dbbd9ec0c7239"></a>
 template&lt;typename I , typename S &gt; </td></tr>
 <tr class="memitem:a105b89bafa2fbdff348dbbd9ec0c7239"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="kspc_8hpp.html#a105b89bafa2fbdff348dbbd9ec0c7239">kspc::ndmatrix</a> (I, S) -&gt; ndmatrix&lt; iter_value_t&lt; I &gt;&gt;</td></tr>
-<tr class="memdesc:a105b89bafa2fbdff348dbbd9ec0c7239"><td class="mdescLeft">&#160;</td><td class="mdescRight">deduction guide for ndmatrix <br /></td></tr>
+<tr class="memdesc:a105b89bafa2fbdff348dbbd9ec0c7239"><td class="mdescLeft">&#160;</td><td class="mdescRight">deduction guide for <a class="el" href="structkspc_1_1ndmatrix.html">ndmatrix </a> <br /></td></tr>
 <tr class="separator:a105b89bafa2fbdff348dbbd9ec0c7239"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a62d3c5a14a7b342f4485439b1965d2f7"><td class="memTemplParams" colspan="2"><a id="a62d3c5a14a7b342f4485439b1965d2f7"></a>
 template&lt;typename T &gt; </td></tr>
@@ -212,17 +212,17 @@ template&lt;typename T &gt; </td></tr>
 <tr class="memitem:a8d7add5d5bac48379ae68d9286e3adf5"><td class="memTemplParams" colspan="2"><a id="a8d7add5d5bac48379ae68d9286e3adf5"></a>
 template&lt;typename T , typename U &gt; </td></tr>
 <tr class="memitem:a8d7add5d5bac48379ae68d9286e3adf5"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="kspc_8hpp.html#a8d7add5d5bac48379ae68d9286e3adf5">kspc::lerp</a> (const T &amp;a, const T &amp;b, const U &amp;t) noexcept(noexcept(a+t *(b - a))) -&gt; decltype((a+t *(b - a)))</td></tr>
-<tr class="memdesc:a8d7add5d5bac48379ae68d9286e3adf5"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>lerp</code> (C++20) <br /></td></tr>
+<tr class="memdesc:a8d7add5d5bac48379ae68d9286e3adf5"><td class="mdescLeft">&#160;</td><td class="mdescRight">lerp (C++20) <br /></td></tr>
 <tr class="separator:a8d7add5d5bac48379ae68d9286e3adf5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae1dfc6d5f51e029a8fed888fe42a7eb1"><td class="memTemplParams" colspan="2"><a id="ae1dfc6d5f51e029a8fed888fe42a7eb1"></a>
 template&lt;typename T &gt; </td></tr>
 <tr class="memitem:ae1dfc6d5f51e029a8fed888fe42a7eb1"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="kspc_8hpp.html#ae1dfc6d5f51e029a8fed888fe42a7eb1">kspc::squared</a> (const T &amp;x) noexcept(noexcept(x *x)) -&gt; decltype((x *x))</td></tr>
-<tr class="memdesc:ae1dfc6d5f51e029a8fed888fe42a7eb1"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>squared</code> <br /></td></tr>
+<tr class="memdesc:ae1dfc6d5f51e029a8fed888fe42a7eb1"><td class="mdescLeft">&#160;</td><td class="mdescRight">squared <br /></td></tr>
 <tr class="separator:ae1dfc6d5f51e029a8fed888fe42a7eb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3dd53fb3360a70f54b7ed6691e1d8804"><td class="memTemplParams" colspan="2"><a id="a3dd53fb3360a70f54b7ed6691e1d8804"></a>
 template&lt;typename T &gt; </td></tr>
 <tr class="memitem:a3dd53fb3360a70f54b7ed6691e1d8804"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="kspc_8hpp.html#a3dd53fb3360a70f54b7ed6691e1d8804">kspc::cubed</a> (const T &amp;x) noexcept(noexcept(x *x *x)) -&gt; decltype((x *x *x))</td></tr>
-<tr class="memdesc:a3dd53fb3360a70f54b7ed6691e1d8804"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>cubed</code> <br /></td></tr>
+<tr class="memdesc:a3dd53fb3360a70f54b7ed6691e1d8804"><td class="mdescLeft">&#160;</td><td class="mdescRight">cubed <br /></td></tr>
 <tr class="separator:a3dd53fb3360a70f54b7ed6691e1d8804"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8ee299167025f64055db5800d1b1a3cb"><td class="memTemplParams" colspan="2"><a id="a8ee299167025f64055db5800d1b1a3cb"></a>
 template&lt;typename K , typename B , std::enable_if_t&lt; is_range_v&lt; K &gt; &amp;&amp;is_range_v&lt; B &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
@@ -399,12 +399,12 @@ constexpr double&#160;</td><td class="memItemRight" valign="bottom"><a class="el
 <div class="line">                                                                                                   \</div>
 <div class="line">    template &lt;typename T, typename U&gt;                                                              \</div>
 <div class="line">    constexpr <span class="keywordtype">bool</span> operator()(<span class="keyword">const</span> T&amp; x, <span class="keyword">const</span> U&amp; y) const                                        \</div>
-<div class="line">      noexcept(noexcept(x Op <a class="code" href="kspc_8hpp.html#ae4b808dc99898d7cdb2fccc94977d4fc">Approx</a>(y, epsrel_, epsabs_))) {                                       \</div>
-<div class="line">      return x Op <a class="code" href="kspc_8hpp.html#ae4b808dc99898d7cdb2fccc94977d4fc">Approx</a>(y, epsrel_, epsabs_);                                                     \</div>
+<div class="line">      noexcept(noexcept(x Op <a class="code" href="kspc_8hpp.html#a7542a6b450267008da1604caa180138d">approx</a>(y, epsrel_, epsabs_))) {                                       \</div>
+<div class="line">      return x Op <a class="code" href="kspc_8hpp.html#a7542a6b450267008da1604caa180138d">approx</a>(y, epsrel_, epsabs_);                                                     \</div>
 <div class="line">    }                                                                                              \</div>
 <div class="line">  };</div>
 <div class="ttc" id="akspc_8hpp_html_a0e12b80d3cd73fbf5bc3458306b7e17a"><div class="ttname"><a href="kspc_8hpp.html#a0e12b80d3cd73fbf5bc3458306b7e17a">kspc::eps</a></div><div class="ttdeci">constexpr double eps</div><div class="ttdoc">alias for eps_v&lt;double&gt;</div><div class="ttdef"><b>Definition:</b> kspc.hpp:132</div></div>
-<div class="ttc" id="akspc_8hpp_html_ae4b808dc99898d7cdb2fccc94977d4fc"><div class="ttname"><a href="kspc_8hpp.html#ae4b808dc99898d7cdb2fccc94977d4fc">kspc::Approx</a></div><div class="ttdeci">Approx(T, const double=eps, const double=0.0) -&gt; Approx&lt; T &gt;</div><div class="ttdoc">deduction guide for Approx</div></div>
+<div class="ttc" id="akspc_8hpp_html_a7542a6b450267008da1604caa180138d"><div class="ttname"><a href="kspc_8hpp.html#a7542a6b450267008da1604caa180138d">kspc::approx</a></div><div class="ttdeci">approx(T, const double=eps, const double=0.0) -&gt; approx&lt; T &gt;</div><div class="ttdoc">deduction guide for approx</div></div>
 </div><!-- fragment -->
 </div>
 </div>
