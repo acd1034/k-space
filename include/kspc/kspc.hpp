@@ -133,10 +133,11 @@ namespace kspc {
             std::enable_if_t<std::is_convertible_v<T, double>, std::nullptr_t> = nullptr>
   struct approx {
   private:
-    const T& value_;
+    const T value_;
     const double margin_ = eps;
 
-    constexpr double calclate_margin(const T& value, const double epsrel, const double epsabs) {
+    constexpr double calclate_margin(const T& value, const double epsrel,
+                                     const double epsabs) const noexcept {
       using std::isinf, std::abs, std::max; // for ADL
       return max(max(epsabs, 0.0), abs(isinf(value) ? 0.0 : value) * max(epsrel, 0.0));
     }
