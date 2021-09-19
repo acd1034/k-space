@@ -34,7 +34,7 @@ namespace kspc {
     using type = std::remove_cv_t<std::remove_reference_t<T>>;
   };
 
-  /// remove_cvref_t
+  /// remove_cvref_t (C++20)
   template <typename T>
   using remove_cvref_t = typename remove_cvref<T>::type;
 
@@ -44,7 +44,7 @@ namespace kspc {
     using type = T;
   };
 
-  /// type_identity_t
+  /// type_identity_t (C++20)
   template <class T>
   using type_identity_t = typename type_identity<T>::type;
 
@@ -73,6 +73,8 @@ namespace kspc {
   /// is_detected_v
   template <template <typename...> typename Op, typename... Args>
   inline constexpr bool is_detected_v = is_detected<Op, Args...>::value;
+
+  // alias templates for return types of operators
 
   namespace detail {
     template <class T, class U>
@@ -380,8 +382,6 @@ namespace kspc {
 
   // range access
 
-  // stream insertion for range
-
   /// ssize
   template <typename C>
   constexpr auto ssize(const C& c)
@@ -395,6 +395,8 @@ namespace kspc {
   constexpr std::ptrdiff_t ssize(const T (&)[N]) noexcept {
     return N;
   }
+
+  // stream insertion for range
 
   inline namespace os {
     /// stream insertion for range

@@ -11,7 +11,7 @@
 namespace kspc {
   // arithmetic operator for `std::array`, `std::vector`
 
-  inline namespace op {
+  inline namespace arithmetic_ops {
     // array
     template <typename T, std::size_t N,
               std::enable_if_t<std::is_arithmetic_v<T>, std::nullptr_t> = nullptr>
@@ -120,7 +120,7 @@ namespace kspc {
       for (std::size_t i = 0; i < n; ++i) ret[i] = x[i] / val;
       return ret;
     }
-  } // namespace op
+  } // namespace arithmetic_ops
 
   // approximate comparison
 
@@ -217,9 +217,9 @@ namespace kspc {
 #undef KSPC_DEFINE_APPROXIMATE_COMPARISON
 
   // matrix:
-  // [ ] matrix_base
-  // [ ] matrix
-  // [ ] ndmatrix
+  // [x] matrix_base
+  // [x] matrix
+  // [x] ndmatrix
 
   namespace detail2 {
     /// matrix_base
@@ -559,6 +559,7 @@ namespace kspc {
 
   template <typename I, typename S>
   ndmatrix(I, S) -> ndmatrix<iter_value_t<I>>;
+
   // TODO: mel
   template <typename T>
   auto mel(const ndmatrix<T>& op, const std::vector<std::vector<T>>& v) {

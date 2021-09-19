@@ -6,6 +6,7 @@
 namespace kspc {
   // conversion between signed integer and unsigned integer
 
+  /// make_signed_v
   template <typename T, std::enable_if_t<std::is_unsigned_v<T>, std::nullptr_t> = nullptr>
   inline constexpr auto
   make_signed_v(const T& x) noexcept(noexcept(static_cast<std::make_signed_t<T>>(x))) {
@@ -14,11 +15,13 @@ namespace kspc {
     return static_cast<U>(x);
   }
 
+  /// @overload
   template <typename T, std::enable_if_t<!std::is_unsigned_v<T>, std::nullptr_t> = nullptr>
   inline constexpr T&& make_signed_v(T&& x) noexcept(noexcept(std::forward<T>(x))) {
     return std::forward<T>(x);
   }
 
+  /// make_unsigned_v
   template <typename T, std::enable_if_t<std::is_signed_v<T>, std::nullptr_t> = nullptr>
   inline constexpr auto
   make_unsigned_v(const T& x) noexcept(noexcept(static_cast<std::make_unsigned_t<T>>(x))) {
@@ -26,6 +29,7 @@ namespace kspc {
     return static_cast<std::make_unsigned_t<T>>(x);
   }
 
+  /// @overload
   template <typename T, std::enable_if_t<!std::is_signed_v<T>, std::nullptr_t> = nullptr>
   inline constexpr T&& make_unsigned_v(T&& x) noexcept(noexcept(std::forward<T>(x))) {
     return std::forward<T>(x);
@@ -51,12 +55,14 @@ namespace kspc {
     return std::conj(std::forward<T>(x));
   }
 
+  /// @overload
   template <typename T,
             std::enable_if_t<!is_complex_v<remove_cvref_t<T>>, std::nullptr_t> = nullptr>
   inline constexpr T&& conj(T&& x) noexcept(noexcept(std::forward<T>(x))) {
     return std::forward<T>(x);
   }
 
+  /// conj_fn
   struct conj_fn {
     template <typename T>
     constexpr auto operator()(T&& t) const noexcept(noexcept(kspc::conj(std::forward<T>(t))))
@@ -186,6 +192,7 @@ namespace kspc {
   } // namespace detail
 
   /// almost same as `std::inner_product` but does not require initial value
+  /// NOTE: the order of the arguments `PN`, `BOpN` is different from range-v3
   template <typename R1,
             typename R2,
             typename P1   = conj_fn,     typename P2   = identity,
@@ -214,8 +221,10 @@ namespace kspc {
              std::move(proj1), std::move(proj2));
   }
 
+  // innerp2
+  // ([1] BOp2 ([2] BOp3 [3])) BOp1 ...
+
   namespace detail {
-    // ([1] BOp2 ([2] BOp3 [3])) BOp1 ...
     template <typename I1, typename I2, typename I3,
               typename BOp2 = std::multiplies<>,
               typename BOp3 = std::multiplies<>,
