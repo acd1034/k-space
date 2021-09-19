@@ -201,7 +201,7 @@ $(function() {
 <div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160; </div>
 <div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T,</div>
 <div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;            std::enable_if_t&lt;std::is_convertible_v&lt;T, double&gt;, std::nullptr_t&gt; = <span class="keyword">nullptr</span>&gt;</div>
-<div class="line"><a name="l00137"></a><span class="lineno"><a class="line" href="structkspc_1_1approx.html">  137</a></span>&#160;  <span class="keyword">struct </span><a class="code" href="structkspc_1_1approx.html">approx</a> {</div>
+<div class="line"><a name="l00137"></a><span class="lineno"><a class="line" href="structkspc_1_1_approx.html">  137</a></span>&#160;  <span class="keyword">struct </span><a class="code" href="structkspc_1_1_approx.html">Approx</a> {</div>
 <div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;  <span class="keyword">private</span>:</div>
 <div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    <span class="keyword">const</span> T value_;</div>
 <div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">double</span> margin_ = <a class="code" href="kspc_8hpp.html#a0e12b80d3cd73fbf5bc3458306b7e17a">eps</a>;</div>
@@ -213,10 +213,10 @@ $(function() {
 <div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    }</div>
 <div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160; </div>
 <div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;  <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    constexpr <span class="keyword">explicit</span> <a class="code" href="structkspc_1_1approx.html">approx</a>(<span class="keyword">const</span> T&amp; value, <span class="keyword">const</span> <span class="keywordtype">double</span> epsrel = <a class="code" href="kspc_8hpp.html#a0e12b80d3cd73fbf5bc3458306b7e17a">eps</a>,</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    constexpr <span class="keyword">explicit</span> <a class="code" href="structkspc_1_1_approx.html">Approx</a>(<span class="keyword">const</span> T&amp; value, <span class="keyword">const</span> <span class="keywordtype">double</span> epsrel = <a class="code" href="kspc_8hpp.html#a0e12b80d3cd73fbf5bc3458306b7e17a">eps</a>,</div>
 <div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;                              <span class="keyword">const</span> <span class="keywordtype">double</span> epsabs = 0.0) noexcept</div>
 <div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;      : value_(value), margin_(calclate_margin(value_, epsrel, epsabs)) {}</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;    constexpr <span class="keyword">explicit</span> <a class="code" href="structkspc_1_1approx.html">approx</a>(T&amp;&amp; value, <span class="keyword">const</span> <span class="keywordtype">double</span> epsrel = <a class="code" href="kspc_8hpp.html#a0e12b80d3cd73fbf5bc3458306b7e17a">eps</a>,</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;    constexpr <span class="keyword">explicit</span> <a class="code" href="structkspc_1_1_approx.html">Approx</a>(T&amp;&amp; value, <span class="keyword">const</span> <span class="keywordtype">double</span> epsrel = <a class="code" href="kspc_8hpp.html#a0e12b80d3cd73fbf5bc3458306b7e17a">eps</a>,</div>
 <div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;                              <span class="keyword">const</span> <span class="keywordtype">double</span> epsabs = 0.0) noexcept</div>
 <div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;      : value_(std::move(value)), margin_(calclate_margin(value_, epsrel, epsabs)) {}</div>
 <div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160; </div>
@@ -224,39 +224,39 @@ $(function() {
 <div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;    <span class="comment">// But without the subtraction to allow for infinity in comparison</span></div>
 <div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> U&gt;</div>
 <div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    <span class="keyword">friend</span> <span class="keyword">inline</span> constexpr <span class="keywordtype">bool</span></div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;    operator&lt;(<span class="keyword">const</span> U&amp; x, <span class="keyword">const</span> <a class="code" href="structkspc_1_1approx.html">approx</a>&amp; y) noexcept(noexcept(x + y.margin_ &lt; y.value_)) {</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;    operator&lt;(<span class="keyword">const</span> U&amp; x, <span class="keyword">const</span> <a class="code" href="structkspc_1_1_approx.html">Approx</a>&amp; y) noexcept(noexcept(x + y.margin_ &lt; y.value_)) {</div>
 <div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;      <span class="keywordflow">return</span> x + y.margin_ &lt; y.value_;</div>
 <div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;    }</div>
 <div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> U&gt;</div>
 <div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;    <span class="keyword">friend</span> <span class="keyword">inline</span> constexpr <span class="keywordtype">bool</span></div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    operator&gt;(<span class="keyword">const</span> U&amp; x, <span class="keyword">const</span> <a class="code" href="structkspc_1_1approx.html">approx</a>&amp; y) noexcept(noexcept(x &gt; y.value_ + y.margin_)) {</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    operator&gt;(<span class="keyword">const</span> U&amp; x, <span class="keyword">const</span> <a class="code" href="structkspc_1_1_approx.html">Approx</a>&amp; y) noexcept(noexcept(x &gt; y.value_ + y.margin_)) {</div>
 <div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;      <span class="keywordflow">return</span> x &gt; y.value_ + y.margin_;</div>
 <div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    }</div>
 <div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;    <span class="comment">// boilerplate</span></div>
 <div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> U&gt;</div>
 <div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;    <span class="keyword">friend</span> <span class="keyword">inline</span> constexpr <span class="keywordtype">bool</span> <span class="comment">//</span></div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;    operator&lt;=(<span class="keyword">const</span> U&amp; x, <span class="keyword">const</span> <a class="code" href="structkspc_1_1approx.html">approx</a>&amp; y) noexcept(noexcept(!(x &gt; y))) {</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;    operator&lt;=(<span class="keyword">const</span> U&amp; x, <span class="keyword">const</span> <a class="code" href="structkspc_1_1_approx.html">Approx</a>&amp; y) noexcept(noexcept(!(x &gt; y))) {</div>
 <div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;      <span class="keywordflow">return</span> !(x &gt; y);</div>
 <div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;    }</div>
 <div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> U&gt;</div>
 <div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;    <span class="keyword">friend</span> <span class="keyword">inline</span> constexpr <span class="keywordtype">bool</span> <span class="comment">//</span></div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;    operator&gt;=(<span class="keyword">const</span> U&amp; x, <span class="keyword">const</span> <a class="code" href="structkspc_1_1approx.html">approx</a>&amp; y) noexcept(noexcept(!(x &lt; y))) {</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;    operator&gt;=(<span class="keyword">const</span> U&amp; x, <span class="keyword">const</span> <a class="code" href="structkspc_1_1_approx.html">Approx</a>&amp; y) noexcept(noexcept(!(x &lt; y))) {</div>
 <div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;      <span class="keywordflow">return</span> !(x &lt; y);</div>
 <div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;    }</div>
 <div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> U&gt;</div>
 <div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;    <span class="keyword">friend</span> <span class="keyword">inline</span> constexpr <span class="keywordtype">bool</span></div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;    operator!=(<span class="keyword">const</span> U&amp; x, <span class="keyword">const</span> <a class="code" href="structkspc_1_1approx.html">approx</a>&amp; y) noexcept(noexcept((x &lt; y) || (x &gt; y))) {</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;    operator!=(<span class="keyword">const</span> U&amp; x, <span class="keyword">const</span> <a class="code" href="structkspc_1_1_approx.html">Approx</a>&amp; y) noexcept(noexcept((x &lt; y) || (x &gt; y))) {</div>
 <div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;      <span class="keywordflow">return</span> x &lt; y || x &gt; y;</div>
 <div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;    }</div>
 <div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> U&gt;</div>
 <div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;    <span class="keyword">friend</span> <span class="keyword">inline</span> constexpr <span class="keywordtype">bool</span> <span class="comment">//</span></div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;    operator==(<span class="keyword">const</span> U&amp; x, <span class="keyword">const</span> <a class="code" href="structkspc_1_1approx.html">approx</a>&amp; y) noexcept(noexcept(!(x != y))) {</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;    operator==(<span class="keyword">const</span> U&amp; x, <span class="keyword">const</span> <a class="code" href="structkspc_1_1_approx.html">Approx</a>&amp; y) noexcept(noexcept(!(x != y))) {</div>
 <div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;      <span class="keywordflow">return</span> !(x != y);</div>
 <div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;    }</div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;  }; <span class="comment">// struct approx</span></div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;  }; <span class="comment">// struct Approx</span></div>
 <div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160; </div>
 <div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a name="l00193"></a><span class="lineno"><a class="line" href="kspc_8hpp.html#a7542a6b450267008da1604caa180138d">  193</a></span>&#160;  <a class="code" href="structkspc_1_1approx.html">approx</a>(T, <span class="keyword">const</span> <span class="keywordtype">double</span> = eps, <span class="keyword">const</span> <span class="keywordtype">double</span> = 0.0) -&gt; <a class="code" href="structkspc_1_1approx.html">approx&lt;T&gt;</a>;</div>
+<div class="line"><a name="l00193"></a><span class="lineno"><a class="line" href="kspc_8hpp.html#ae4b808dc99898d7cdb2fccc94977d4fc">  193</a></span>&#160;  <a class="code" href="structkspc_1_1_approx.html">Approx</a>(T, <span class="keyword">const</span> <span class="keywordtype">double</span> = eps, <span class="keyword">const</span> <span class="keywordtype">double</span> = 0.0) -&gt; <a class="code" href="structkspc_1_1_approx.html">Approx&lt;T&gt;</a>;</div>
 <div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160; </div>
 <div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;  <span class="comment">// function object for approximate comparison</span></div>
 <div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160; </div>
@@ -272,8 +272,8 @@ $(function() {
 <div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;<span class="preprocessor">                                                                                                   \</span></div>
 <div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;<span class="preprocessor">    template &lt;typename T, typename U&gt;                                                              \</span></div>
 <div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;<span class="preprocessor">    constexpr bool operator()(const T&amp; x, const U&amp; y) const                                        \</span></div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;<span class="preprocessor">      noexcept(noexcept(x Op approx(y, epsrel_, epsabs_))) {                                       \</span></div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;<span class="preprocessor">      return x Op approx(y, epsrel_, epsabs_);                                                     \</span></div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;<span class="preprocessor">      noexcept(noexcept(x Op Approx(y, epsrel_, epsabs_))) {                                       \</span></div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;<span class="preprocessor">      return x Op Approx(y, epsrel_, epsabs_);                                                     \</span></div>
 <div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;<span class="preprocessor">    }                                                                                              \</span></div>
 <div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;<span class="preprocessor">  };</span></div>
 <div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160; </div>
@@ -777,7 +777,7 @@ $(function() {
 <div class="ttc" id="akspc_8hpp_html_af4e3e696f52b21176de64e875554c386"><div class="ttname"><a href="kspc_8hpp.html#af4e3e696f52b21176de64e875554c386">kspc::pi</a></div><div class="ttdeci">constexpr double pi</div><div class="ttdoc">alias for pi_v&lt;double&gt;</div><div class="ttdef"><b>Definition:</b> kspc.hpp:630</div></div>
 <div class="ttc" id="amath_8hpp_html"><div class="ttname"><a href="math_8hpp.html">math.hpp</a></div></div>
 <div class="ttc" id="amath_8hpp_html_a8f5dc460d06df63e1f97b43136442278"><div class="ttname"><a href="math_8hpp.html#a8f5dc460d06df63e1f97b43136442278">kspc::make_unsigned_v</a></div><div class="ttdeci">constexpr auto make_unsigned_v(const T &amp;x) noexcept(noexcept(static_cast&lt; std::make_unsigned_t&lt; T &gt;&gt;(x)))</div><div class="ttdoc">make_unsigned_v</div><div class="ttdef"><b>Definition:</b> math.hpp:27</div></div>
-<div class="ttc" id="astructkspc_1_1approx_html"><div class="ttname"><a href="structkspc_1_1approx.html">kspc::approx</a></div><div class="ttdoc">approx</div><div class="ttdef"><b>Definition:</b> kspc.hpp:137</div></div>
+<div class="ttc" id="astructkspc_1_1_approx_html"><div class="ttname"><a href="structkspc_1_1_approx.html">kspc::Approx</a></div><div class="ttdoc">Approx</div><div class="ttdef"><b>Definition:</b> kspc.hpp:137</div></div>
 <div class="ttc" id="astructkspc_1_1detail2_1_1matrix__base_html"><div class="ttname"><a href="structkspc_1_1detail2_1_1matrix__base.html">kspc::detail2::matrix_base</a></div><div class="ttdoc">matrix_base</div><div class="ttdef"><b>Definition:</b> kspc.hpp:236</div></div>
 <div class="ttc" id="astructkspc_1_1is__input__iterator_html"><div class="ttname"><a href="structkspc_1_1is__input__iterator.html">kspc::is_input_iterator</a></div><div class="ttdoc">is_input_iterator</div><div class="ttdef"><b>Definition:</b> core.hpp:289</div></div>
 <div class="ttc" id="astructkspc_1_1matrix_html"><div class="ttname"><a href="structkspc_1_1matrix.html">kspc::matrix</a></div><div class="ttdoc">fixed-size matrix</div><div class="ttdef"><b>Definition:</b> kspc.hpp:362</div></div>
