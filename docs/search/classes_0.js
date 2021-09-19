@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['approx_124',['approx',['../structkspc_1_1approx.html',1,'kspc']]]
+  ['approx_125',['approx',['../structkspc_1_1approx.html',1,'kspc']]]
 ];

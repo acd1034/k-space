@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>k-space: File List</title>
+<title>k-space: include/kspc/linalg.hpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -45,7 +45,6 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
-</div><!-- top -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -60,22 +59,36 @@ $(function() {
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_919b91d53b27d7e6df05f777d27efdcc.html">kspc</a></li>  </ul>
+</div>
+</div><!-- top -->
 <div class="header">
+  <div class="summary">
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">File List</div>  </div>
+<div class="title">linalg.hpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock">Here is a list of all documented files with brief descriptions:</div><div class="directory">
-<div class="levels">[detail level <span onclick="javascript:toggleLevel(1);">1</span><span onclick="javascript:toggleLevel(2);">2</span><span onclick="javascript:toggleLevel(3);">3</span>]</div><table class="directory">
-<tr id="row_0_" class="even"><td class="entry"><span style="width:0px;display:inline-block;">&#160;</span><span id="arr_0_" class="arrow" onclick="toggleFolder('0_')">&#9660;</span><span id="img_0_" class="iconfopen" onclick="toggleFolder('0_')">&#160;</span><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html" target="_self">include</a></td><td class="desc"></td></tr>
-<tr id="row_0_0_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span id="arr_0_0_" class="arrow" onclick="toggleFolder('0_0_')">&#9660;</span><span id="img_0_0_" class="iconfopen" onclick="toggleFolder('0_0_')">&#160;</span><a class="el" href="dir_919b91d53b27d7e6df05f777d27efdcc.html" target="_self">kspc</a></td><td class="desc"></td></tr>
-<tr id="row_0_0_0_" class="even"><td class="entry"><span style="width:48px;display:inline-block;">&#160;</span><a href="core_8hpp_source.html"><span class="icondoc"></span></a><a class="el" href="core_8hpp.html" target="_self">core.hpp</a></td><td class="desc"></td></tr>
-<tr id="row_0_0_1_"><td class="entry"><span style="width:48px;display:inline-block;">&#160;</span><a href="integration_8hpp_source.html"><span class="icondoc"></span></a><a class="el" href="integration_8hpp.html" target="_self">integration.hpp</a></td><td class="desc"></td></tr>
-<tr id="row_0_0_2_" class="even"><td class="entry"><span style="width:48px;display:inline-block;">&#160;</span><a href="kspc_8hpp_source.html"><span class="icondoc"></span></a><a class="el" href="kspc_8hpp.html" target="_self">kspc.hpp</a></td><td class="desc"></td></tr>
-<tr id="row_0_0_3_"><td class="entry"><span style="width:48px;display:inline-block;">&#160;</span><a href="linalg_8hpp_source.html"><span class="icondoc"></span></a><a class="el" href="linalg_8hpp.html" target="_self">linalg.hpp</a></td><td class="desc"></td></tr>
-<tr id="row_0_0_4_" class="even"><td class="entry"><span style="width:48px;display:inline-block;">&#160;</span><a href="math_8hpp_source.html"><span class="icondoc"></span></a><a class="el" href="math_8hpp.html" target="_self">math.hpp</a></td><td class="desc"></td></tr>
+<div class="textblock"><code>#include &lt;array&gt;</code><br />
+<code>#include &lt;complex&gt;</code><br />
+<code>#include &lt;vector&gt;</code><br />
+<code>#include &lt;gsl/gsl_integration.h&gt;</code><br />
+<code>#include &lt;<a class="el" href="core_8hpp_source.html">kspc/core.hpp</a>&gt;</code><br />
+</div>
+<p><a href="linalg_8hpp_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:af175b16f6189df25198482b78c7be43c"><td class="memItemLeft" align="right" valign="top"><a id="af175b16f6189df25198482b78c7be43c"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>kspc::lapack::zheev_</b> (const char &amp;JOBZ, const char &amp;UPLO, const int &amp;N, std::complex&lt; double &gt; *A, const int &amp;LDA, double *W, std::complex&lt; double &gt; *WORK, const int &amp;LWORK, double *RWORK, int &amp;INFO, int JOBZlen, int UPLOlen)</td></tr>
+<tr class="separator:af175b16f6189df25198482b78c7be43c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a2f15f8e3608834b5da7fc2b2c72348"><td class="memTemplParams" colspan="2"><a id="a8a2f15f8e3608834b5da7fc2b2c72348"></a>
+template&lt;std::size_t N, typename T &gt; </td></tr>
+<tr class="memitem:a8a2f15f8e3608834b5da7fc2b2c72348"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::zheev</b> (const ndmatrix&lt; std::complex&lt; T &gt;&gt; &amp;H)</td></tr>
+<tr class="separator:a8a2f15f8e3608834b5da7fc2b2c72348"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-</div><!-- directory -->
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
