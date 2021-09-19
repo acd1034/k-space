@@ -280,10 +280,9 @@ template&lt;typename C &gt; </td></tr>
 <tr class="memitem:a30abd6b695e4c604df0024cdefd7a248"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="core_8hpp.html#a30abd6b695e4c604df0024cdefd7a248">kspc::ssize</a> (const C &amp;c) -&gt; std::common_type_t&lt; std::ptrdiff_t, std::make_signed_t&lt; decltype(c.size())&gt;&gt;</td></tr>
 <tr class="memdesc:a30abd6b695e4c604df0024cdefd7a248"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>ssize</code> <br /></td></tr>
 <tr class="separator:a30abd6b695e4c604df0024cdefd7a248"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a21135f7043428d75632d3c977e8e02e6"><td class="memTemplParams" colspan="2"><a id="a21135f7043428d75632d3c977e8e02e6"></a>
-template&lt;typename T , std::size_t N&gt; </td></tr>
+<tr class="memitem:a21135f7043428d75632d3c977e8e02e6"><td class="memTemplParams" colspan="2">template&lt;typename T , std::size_t N&gt; </td></tr>
 <tr class="memitem:a21135f7043428d75632d3c977e8e02e6"><td class="memTemplItemLeft" align="right" valign="top">constexpr std::ptrdiff_t&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="core_8hpp.html#a21135f7043428d75632d3c977e8e02e6">kspc::ssize</a> (const T(&amp;)[N]) noexcept</td></tr>
-<tr class="memdesc:a21135f7043428d75632d3c977e8e02e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. <br /></td></tr>
+<tr class="memdesc:a21135f7043428d75632d3c977e8e02e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">another variation of  <a href="core_8hpp.html#a21135f7043428d75632d3c977e8e02e6">More...</a><br /></td></tr>
 <tr class="separator:a21135f7043428d75632d3c977e8e02e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a83c2d04b913119071a5ea80a7b6941fa"><td class="memTemplParams" colspan="2"><a id="a83c2d04b913119071a5ea80a7b6941fa"></a>
 template&lt;typename CharT , typename Traits , typename R , std::enable_if_t&lt; is_range_v&lt; R &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
@@ -364,7 +363,7 @@ template&lt;typename I &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p><code>iter_difference_t</code> NOTE: specialization of <code>std::iterator_traits</code> is NOT supported </p>
+<p><code>iter_difference_t</code> NOTE: specialization of <code>std::iterator_traits</code> is NOT supported. </p>
 
 </div>
 </div>
@@ -381,7 +380,39 @@ template&lt;typename I &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p><code>iter_value_t</code> NOTE: specialization of <code>std::iterator_traits</code> is NOT supported </p>
+<p><code>iter_value_t</code> NOTE: specialization of <code>std::iterator_traits</code> is NOT supported. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="a21135f7043428d75632d3c977e8e02e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a21135f7043428d75632d3c977e8e02e6">&#9670;&nbsp;</a></span>ssize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , std::size_t N&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr std::ptrdiff_t kspc::ssize </td>
+          <td>(</td>
+          <td class="paramtype">const &#160;</td>
+          <td class="paramname"><em>T</em>(&amp;)[N]</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>another variation of </p>
+<dl class="section see"><dt>See also</dt><dd>ssize </dd></dl>
 
 </div>
 </div>
