@@ -1,4 +1,4 @@
-/// @file kspc.hpp
+/// @file integration.hpp
 #pragma once
 #include <vector>
 #include <gsl/gsl_integration.h>

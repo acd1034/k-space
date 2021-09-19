@@ -1,4 +1,4 @@
-/// @file kspc.hpp
+/// @file linarg.hpp
 #pragma once
 #include <array>
 #include <complex>
