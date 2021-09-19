@@ -6,7 +6,7 @@
 namespace kspc {
   // conversion between signed integer and unsigned integer
 
-  /// `make_signed_v`
+  /// make_signed_v
   template <typename T, std::enable_if_t<std::is_unsigned_v<T>, std::nullptr_t> = nullptr>
   inline constexpr auto
   make_signed_v(const T& x) noexcept(noexcept(static_cast<std::make_signed_t<T>>(x))) {
@@ -15,13 +15,13 @@ namespace kspc {
     return static_cast<U>(x);
   }
 
-  /// another variation of make_signed_v
+  /// @overload
   template <typename T, std::enable_if_t<!std::is_unsigned_v<T>, std::nullptr_t> = nullptr>
   inline constexpr T&& make_signed_v(T&& x) noexcept(noexcept(std::forward<T>(x))) {
     return std::forward<T>(x);
   }
 
-  /// `make_unsigned_v`
+  /// make_unsigned_v
   template <typename T, std::enable_if_t<std::is_signed_v<T>, std::nullptr_t> = nullptr>
   inline constexpr auto
   make_unsigned_v(const T& x) noexcept(noexcept(static_cast<std::make_unsigned_t<T>>(x))) {
@@ -29,7 +29,7 @@ namespace kspc {
     return static_cast<std::make_unsigned_t<T>>(x);
   }
 
-  /// another variation of make_unsigned_v
+  /// @overload
   template <typename T, std::enable_if_t<!std::is_signed_v<T>, std::nullptr_t> = nullptr>
   inline constexpr T&& make_unsigned_v(T&& x) noexcept(noexcept(std::forward<T>(x))) {
     return std::forward<T>(x);
@@ -37,33 +37,33 @@ namespace kspc {
 
   // seemless use of floating-point and complex
 
-  /// `%is_complex`
+  /// %is_complex
   template <typename T>
   struct is_complex : std::false_type {};
 
-  /// `%is_complex`
+  /// partial specialization of is_complex
   template <typename T>
   struct is_complex<std::complex<T>> : std::true_type {};
 
-  /// `is_complex_v`
+  /// is_complex_v
   template <typename T>
   inline constexpr bool is_complex_v = is_complex<T>::value;
 
-  /// `conj`
+  /// conj
   template <typename T, std::enable_if_t<is_complex_v<remove_cvref_t<T>>, std::nullptr_t> = nullptr>
   inline constexpr auto conj(T&& x) noexcept(noexcept(std::conj(std::forward<T>(x))))
     -> decltype((std::conj(std::forward<T>(x)))) {
     return std::conj(std::forward<T>(x));
   }
 
-  /// another variation of conj
+  /// @overload
   template <typename T,
             std::enable_if_t<!is_complex_v<remove_cvref_t<T>>, std::nullptr_t> = nullptr>
   inline constexpr T&& conj(T&& x) noexcept(noexcept(std::forward<T>(x))) {
     return std::forward<T>(x);
   }
 
-  /// `conj_fn`
+  /// %conj_fn
   struct conj_fn {
     template <typename T>
     constexpr auto operator()(T&& t) const noexcept(noexcept(kspc::conj(std::forward<T>(t))))
@@ -111,7 +111,7 @@ namespace kspc {
     }
   } // namespace detail
 
-  /// `sum`
+  /// sum
   /// almost same as `std::accumulate` but does not require initial value.
   /// NOTE: the order of the arguments `P`, `BOp` is different from range-v3.
   template <typename R,
@@ -193,7 +193,7 @@ namespace kspc {
     }
   } // namespace detail
 
-  /// `innerp`
+  /// innerp
   /// almost same as `std::inner_product` but does not require initial value.
   /// NOTE: the order of the arguments `PN`, `BOpN` is different from range-v3.
   template <typename R1,

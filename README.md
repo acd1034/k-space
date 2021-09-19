@@ -15,6 +15,6 @@ The code will work on the following compilers:
 - Apple clang (version 11.0.0 or later)
 
 ## Library Dependencies
-- `<kspc/kspc.hpp>` → depends on no external library
+- `<kspc/core.hpp>`, `<kspc/math.hpp>`, `<kspc/kspc.hpp>` → depend on no external library
 - `<kspc/integration.hpp>` → `GSL`
 - `<kspc/linalg.hpp>` → `BLAS`, `LAPACK`

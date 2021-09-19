@@ -131,10 +131,10 @@ namespace kspc {
   /// alias for `eps_v<double>`
   inline constexpr double eps = eps_v<double>;
 
-  /// `Approx`
+  /// %approx
   template <typename T,
             std::enable_if_t<std::is_convertible_v<T, double>, std::nullptr_t> = nullptr>
-  struct Approx {
+  struct approx {
   private:
     const T value_;
     const double margin_ = eps;
@@ -146,10 +146,10 @@ namespace kspc {
     }
 
   public:
-    constexpr explicit Approx(const T& value, const double epsrel = eps,
+    constexpr explicit approx(const T& value, const double epsrel = eps,
                               const double epsabs = 0.0) noexcept
       : value_(value), margin_(calclate_margin(value_, epsrel, epsabs)) {}
-    constexpr explicit Approx(T&& value, const double epsrel = eps,
+    constexpr explicit approx(T&& value, const double epsrel = eps,
                               const double epsabs = 0.0) noexcept
       : value_(std::move(value)), margin_(calclate_margin(value_, epsrel, epsabs)) {}
 
@@ -157,40 +157,40 @@ namespace kspc {
     // But without the subtraction to allow for infinity in comparison
     template <typename U>
     friend inline constexpr bool
-    operator<(const U& x, const Approx& y) noexcept(noexcept(x + y.margin_ < y.value_)) {
+    operator<(const U& x, const approx& y) noexcept(noexcept(x + y.margin_ < y.value_)) {
       return x + y.margin_ < y.value_;
     }
     template <typename U>
     friend inline constexpr bool
-    operator>(const U& x, const Approx& y) noexcept(noexcept(x > y.value_ + y.margin_)) {
+    operator>(const U& x, const approx& y) noexcept(noexcept(x > y.value_ + y.margin_)) {
       return x > y.value_ + y.margin_;
     }
     // boilerplate
     template <typename U>
     friend inline constexpr bool //
-    operator<=(const U& x, const Approx& y) noexcept(noexcept(!(x > y))) {
+    operator<=(const U& x, const approx& y) noexcept(noexcept(!(x > y))) {
       return !(x > y);
     }
     template <typename U>
     friend inline constexpr bool //
-    operator>=(const U& x, const Approx& y) noexcept(noexcept(!(x < y))) {
+    operator>=(const U& x, const approx& y) noexcept(noexcept(!(x < y))) {
       return !(x < y);
     }
     template <typename U>
     friend inline constexpr bool
-    operator!=(const U& x, const Approx& y) noexcept(noexcept((x < y) || (x > y))) {
+    operator!=(const U& x, const approx& y) noexcept(noexcept((x < y) || (x > y))) {
       return x < y || x > y;
     }
     template <typename U>
     friend inline constexpr bool //
-    operator==(const U& x, const Approx& y) noexcept(noexcept(!(x != y))) {
+    operator==(const U& x, const approx& y) noexcept(noexcept(!(x != y))) {
       return !(x != y);
     }
-  }; // struct Approx
+  }; // struct approx
 
-  /// deduction guide for Approx
+  /// deduction guide for @link approx approx @endlink
   template <typename T>
-  Approx(T, const double = eps, const double = 0.0) -> Approx<T>;
+  approx(T, const double = eps, const double = 0.0) -> approx<T>;
 
   // function object for approximate comparison
 
@@ -206,8 +206,8 @@ namespace kspc {
                                                                                                    \
     template <typename T, typename U>                                                              \
     constexpr bool operator()(const T& x, const U& y) const                                        \
-      noexcept(noexcept(x Op Approx(y, epsrel_, epsabs_))) {                                       \
-      return x Op Approx(y, epsrel_, epsabs_);                                                     \
+      noexcept(noexcept(x Op approx(y, epsrel_, epsabs_))) {                                       \
+      return x Op approx(y, epsrel_, epsabs_);                                                     \
     }                                                                                              \
   };
 
@@ -226,7 +226,7 @@ namespace kspc {
   // [x] ndmatrix
 
   namespace detail2 {
-    /// matrix_base
+    /// %matrix_base
     // clang-format off
     template <typename Derived,
               std::enable_if_t<std::conjunction_v<
@@ -448,7 +448,7 @@ namespace kspc {
     }
   }; // struct matrix
 
-  /// deduction guide for matrix
+  /// deduction guide for @link matrix matrix @endlink
   template <typename T, typename... U>
   matrix(T, U...) -> matrix<T, 1 + sizeof...(U)>;
 
@@ -562,7 +562,7 @@ namespace kspc {
     }
   }; // struct ndmatrix
 
-  /// deduction guide for ndmatrix
+  /// deduction guide for @link ndmatrix ndmatrix @endlink
   template <typename I, typename S>
   ndmatrix(I, S) -> ndmatrix<iter_value_t<I>>;
 
@@ -668,7 +668,7 @@ namespace kspc {
     return -beta * std::pow(2.0 * std::sinh(0.5 * beta * (E - mu)), -2);
   }
 
-  /// `lerp` (C++20)
+  /// lerp (C++20)
   template <typename T, typename U>
   inline constexpr auto lerp(const T& a, const T& b, const U& t) noexcept(noexcept(a + t * (b - a)))
     -> decltype((a + t * (b - a))) {
@@ -680,13 +680,13 @@ namespace kspc {
     return a + t * (b - a);
   }
 
-  /// `squared`
+  /// squared
   template <typename T>
   inline constexpr auto squared(const T& x) noexcept(noexcept(x* x)) -> decltype((x * x)) {
     return x * x;
   }
 
-  /// `cubed`
+  /// cubed
   template <typename T>
   inline constexpr auto cubed(const T& x) noexcept(noexcept(x* x* x)) -> decltype((x * x * x)) {
     return x * x * x;
