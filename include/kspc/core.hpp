@@ -12,43 +12,43 @@
 #include <iterator> // begin, end
 
 namespace kspc {
-  /// false_v
+  /// `false_v`
   template <typename...>
   inline constexpr bool false_v = false;
 
-  /// builtin_array_noextent
+  /// `builtin_array_noextent`
   template <typename T>
   using builtin_array_noextent = T[];
 
-  /// builtin_array
+  /// `builtin_array`
   template <typename T, std::size_t N>
   using builtin_array = T[N];
 
-  /// builtin_function
+  /// `builtin_function`
   template <typename T, typename... Args>
   using builtin_function = T(Args...);
 
-  /// remove_cvref (C++20)
+  /// `remove_cvref` (C++20)
   template <typename T>
   struct remove_cvref {
     using type = std::remove_cv_t<std::remove_reference_t<T>>;
   };
 
-  /// remove_cvref_t (C++20)
+  /// `remove_cvref_t` (C++20)
   template <typename T>
   using remove_cvref_t = typename remove_cvref<T>::type;
 
-  /// type_identity (C++20)
+  /// `type_identity` (C++20)
   template <typename T>
   struct type_identity {
     using type = T;
   };
 
-  /// type_identity_t (C++20)
+  /// `type_identity_t` (C++20)
   template <class T>
   using type_identity_t = typename type_identity<T>::type;
 
-  /// identity (C++20)
+  /// `identity` (C++20)
   struct identity {
     template <typename T>
     constexpr T&& operator()(T&& t) const noexcept(noexcept(std::forward<T>(t))) {
@@ -66,11 +66,11 @@ namespace kspc {
     struct is_detected_impl<std::void_t<Op<Args...>>, Op, Args...> : std::true_type {};
   } // namespace detail
 
-  /// is_detected
+  /// `is_detected`
   template <template <typename...> typename Op, typename... Args>
   struct is_detected : detail::is_detected_impl<void, Op, Args...> {};
 
-  /// is_detected_v
+  /// `is_detected_v`
   template <template <typename...> typename Op, typename... Args>
   inline constexpr bool is_detected_v = is_detected<Op, Args...>::value;
 
@@ -125,7 +125,7 @@ namespace kspc {
     };
   } // namespace detail
 
-  /// incrementable_traits
+  /// `incrementable_traits`
   template <class T, class = void>
   struct incrementable_traits : detail::incrementable_traits_impl<T> {};
 
@@ -137,7 +137,7 @@ namespace kspc {
         detail::with_difference_type<std::ptrdiff_t>,
         detail::nil> {};
 
-  /// partial specialization for types with difference_type
+  /// partial specialization for types with `difference_type`
   template <class T>
   struct incrementable_traits<T, std::void_t<typename T::difference_type>> {
     using difference_type = typename T::difference_type;
@@ -159,7 +159,7 @@ namespace kspc {
     };
   } // namespace detail
 
-  /// indirectly_readable_traits
+  /// `indirectly_readable_traits`
   template <class T, class = void>
   struct indirectly_readable_traits : detail::indirectly_readable_traits_impl<T> {};
 
@@ -181,7 +181,7 @@ namespace kspc {
     using value_type = std::remove_cv_t<T>;
   };
 
-  /// partial specialization for types with value_type
+  /// partial specialization for types with `value_type`
   template <class T>
   struct indirectly_readable_traits<T, std::void_t<typename T::value_type>> {
     using value_type = std::remove_cv_t<typename T::value_type>;
@@ -191,12 +191,12 @@ namespace kspc {
   template <class T>
   struct indirectly_readable_traits<const T> : indirectly_readable_traits<T> {};
 
-  /// iter_difference_t
+  /// `iter_difference_t`
   /// NOTE: specialization of `std::iterator_traits` is NOT supported
   template <typename I>
   using iter_difference_t = typename incrementable_traits<remove_cvref_t<I>>::difference_type;
 
-  /// iter_value_t
+  /// `iter_value_t`
   /// NOTE: specialization of `std::iterator_traits` is NOT supported
   template <typename I>
   using iter_value_t = typename indirectly_readable_traits<remove_cvref_t<I>>::value_type;
@@ -242,7 +242,7 @@ namespace kspc {
     inline constexpr bool is_post_incrementable_v = is_post_incrementable<T>::value;
   } // namespace detail
 
-  /// is_weakly_incrementable
+  /// `is_weakly_incrementable`
   template <typename I>
   struct is_weakly_incrementable
     : std::conjunction<
@@ -252,11 +252,11 @@ namespace kspc {
         detail::is_post_incrementable<I>   // not required to be equality-preserving
         > {};
 
-  /// is_weakly_incrementable_v
+  /// `is_weakly_incrementable_v`
   template <typename I>
   inline constexpr bool is_weakly_incrementable_v = is_weakly_incrementable<I>::value;
 
-  /// is_input_or_output_iterator
+  /// `is_input_or_output_iterator`
   template <typename I>
   struct is_input_or_output_iterator
     : std::conjunction<
@@ -264,11 +264,11 @@ namespace kspc {
         is_weakly_incrementable<I>
         > {};
 
-  /// is_input_or_output_iterator_v
+  /// `is_input_or_output_iterator_v`
   template <typename I>
   inline constexpr bool is_input_or_output_iterator_v = is_input_or_output_iterator<I>::value;
 
-  /// is_indirectly_readable
+  /// `is_indirectly_readable`
   template <typename T>
   struct is_indirectly_readable
     : std::conjunction<
@@ -276,11 +276,11 @@ namespace kspc {
         detail::is_dereferenceable<const remove_cvref_t<T>>
         > {};
 
-  /// is_indirectly_readable_v
+  /// `is_indirectly_readable_v`
   template <typename T>
   inline constexpr bool is_indirectly_readable_v = is_indirectly_readable<T>::value;
 
-  /// is_input_iterator
+  /// `is_input_iterator`
   template <typename I>
   struct is_input_iterator
     : std::conjunction<
@@ -288,7 +288,7 @@ namespace kspc {
         is_indirectly_readable<I>
         > {};
 
-  /// is_input_iterator_v
+  /// `is_input_iterator_v`
   template <typename I>
   inline constexpr bool is_input_iterator_v = is_input_iterator<I>::value;
 
@@ -308,7 +308,7 @@ namespace kspc {
     inline constexpr bool is_weakly_equality_comparable_with_v = is_weakly_equality_comparable_with<T, U>::value;
   } // namespace detail
 
-  /// is_sentinel_for
+  /// `is_sentinel_for`
   template <typename S, typename I>
   struct is_sentinel_for
     : std::conjunction<
@@ -317,7 +317,7 @@ namespace kspc {
         detail::is_weakly_equality_comparable_with<S, I>
         > {};
 
-  /// is_sentinel_for_v
+  /// `is_sentinel_for_v`
   template <typename S, typename I>
   inline constexpr bool is_sentinel_for_v = is_sentinel_for<S, I>::value;
 
@@ -334,7 +334,7 @@ namespace kspc {
     using end_t = decltype(end(std::declval<T>()));
   } // namespace detail2
 
-  /// is_range
+  /// `is_range`
   template <typename R>
   struct is_range
     : std::conjunction<
@@ -342,7 +342,7 @@ namespace kspc {
         is_detected<detail2::end_t, R&>
         > {};
 
-  /// is_range_v
+  /// `is_range_v`
   template <typename R>
   inline constexpr bool is_range_v = is_range<R>::value;
   // clang-format on
@@ -352,9 +352,9 @@ namespace kspc {
   // [ ] iter_rvalue_reference_t (need `iter_move`)
   // [ ] iter_common_reference_t (need `common_reference_t`)
 
-  /// iter_reference_t
+  /// `iter_reference_t`
   template <typename I, std::enable_if_t<detail::is_dereferenceable_v<I>, std::nullptr_t> = nullptr>
-  using iter_reference_t = decltype(*std::declval<I&>());
+  using iter_reference_t = detail::dereference_t<I&>;
 
   // range associated types:
   // [x] iterator_t
@@ -364,33 +364,29 @@ namespace kspc {
   // [x] range_reference_t (alias)
   // [ ] range_rvalue_reference_t (need `iter_rvalue_reference_t`)
 
-  namespace detail2 {
-    /// iterator_t
-    template <typename R>
-    using iterator_t = decltype(begin(std::declval<R&>()));
+  /// `iterator_t`
+  template <typename R>
+  using iterator_t = detail2::begin_t<R&>;
 
-    /// sentinel_t
-    template <typename R, std::enable_if_t<is_range_v<R>, std::nullptr_t> = nullptr>
-    using sentinel_t = decltype(end(std::declval<R&>()));
-  } // namespace detail2
+  /// `sentinel_t`
+  template <typename R, std::enable_if_t<is_range_v<R>, std::nullptr_t> = nullptr>
+  using sentinel_t = detail2::end_t<R&>;
 
-  using detail2::iterator_t, detail2::sentinel_t;
-
-  /// range_difference_t
+  /// `range_difference_t`
   template <typename R, std::enable_if_t<is_range_v<R>, std::nullptr_t> = nullptr>
   using range_difference_t = iter_difference_t<iterator_t<R>>;
 
-  /// range_value_t
+  /// `range_value_t`
   template <typename R, std::enable_if_t<is_range_v<R>, std::nullptr_t> = nullptr>
   using range_value_t = iter_value_t<iterator_t<R>>;
 
-  /// range_reference_t
+  /// `range_reference_t`
   template <typename R, std::enable_if_t<is_range_v<R>, std::nullptr_t> = nullptr>
   using range_reference_t = iter_reference_t<iterator_t<R>>;
 
   // range access
 
-  /// ssize
+  /// `ssize`
   template <typename C>
   constexpr auto ssize(const C& c)
     -> std::common_type_t<std::ptrdiff_t, std::make_signed_t<decltype(c.size())>> {

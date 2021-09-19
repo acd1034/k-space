@@ -187,6 +187,7 @@ namespace kspc {
     }
   }; // struct approx
 
+  /// deduction guide for approx
   template <typename T>
   approx(T, const double = eps, const double = 0.0) -> approx<T>;
 
@@ -446,6 +447,7 @@ namespace kspc {
     }
   }; // struct matrix
 
+  /// deduction guide for matrix
   template <typename T, typename... U>
   matrix(T, U...) -> matrix<T, 1 + sizeof...(U)>;
 
@@ -559,6 +561,7 @@ namespace kspc {
     }
   }; // struct ndmatrix
 
+  /// deduction guide for ndmatrix
   template <typename I, typename S>
   ndmatrix(I, S) -> ndmatrix<iter_value_t<I>>;
 
@@ -664,7 +667,7 @@ namespace kspc {
     return -beta * std::pow(2.0 * std::sinh(0.5 * beta * (E - mu)), -2);
   }
 
-  /// lerp (C++20)
+  /// `lerp` (C++20)
   template <typename T, typename U>
   inline constexpr auto lerp(const T& a, const T& b, const U& t) noexcept(noexcept(a + t * (b - a)))
     -> decltype((a + t * (b - a))) {
@@ -676,13 +679,13 @@ namespace kspc {
     return a + t * (b - a);
   }
 
-  /// squared
+  /// `squared`
   template <typename T>
   inline constexpr auto squared(const T& x) noexcept(noexcept(x* x)) -> decltype((x * x)) {
     return x * x;
   }
 
-  /// cubed
+  /// `cubed`
   template <typename T>
   inline constexpr auto cubed(const T& x) noexcept(noexcept(x* x* x)) -> decltype((x * x * x)) {
     return x * x * x;
@@ -697,7 +700,7 @@ namespace kspc {
   }
 
   template <typename Bs, std::enable_if_t<is_range_v<Bs>, std::nullptr_t> = nullptr>
-  constexpr auto make_in_BZ(const Bs& bs) {
+  inline constexpr auto make_in_BZ(const Bs& bs) {
     return [&bs](const auto& k) {
       using std::begin, std::end; // for ADL
       return std::all_of(begin(bs), end(bs), [&k](const auto& b) { return in_BZ(k, b); });
