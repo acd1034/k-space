@@ -378,7 +378,23 @@ namespace kspc {
   template <typename R, std::enable_if_t<is_range_v<R>, std::nullptr_t> = nullptr>
   using range_reference_t = iter_reference_t<iterator_t<R>>;
 
+  // range access
+
   // stream insertion for range
+
+  /// ssize
+  template <typename C>
+  constexpr auto ssize(const C& c)
+    -> std::common_type_t<std::ptrdiff_t, std::make_signed_t<decltype(c.size())>> {
+    using T = std::common_type_t<std::ptrdiff_t, std::make_signed_t<decltype(c.size())>>;
+    return static_cast<T>(c.size());
+  }
+
+  /// @overload
+  template <typename T, std::size_t N>
+  constexpr std::ptrdiff_t ssize(const T (&)[N]) noexcept {
+    return N;
+  }
 
   inline namespace os {
     /// stream insertion for range
