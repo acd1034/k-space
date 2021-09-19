@@ -15,7 +15,7 @@ namespace kspc {
     return static_cast<U>(x);
   }
 
-  /// another variation of @sa make_signed_v
+  /// another variation of make_signed_v
   template <typename T, std::enable_if_t<!std::is_unsigned_v<T>, std::nullptr_t> = nullptr>
   inline constexpr T&& make_signed_v(T&& x) noexcept(noexcept(std::forward<T>(x))) {
     return std::forward<T>(x);
@@ -29,7 +29,7 @@ namespace kspc {
     return static_cast<std::make_unsigned_t<T>>(x);
   }
 
-  /// another variation of @sa make_unsigned_v
+  /// another variation of make_unsigned_v
   template <typename T, std::enable_if_t<!std::is_signed_v<T>, std::nullptr_t> = nullptr>
   inline constexpr T&& make_unsigned_v(T&& x) noexcept(noexcept(std::forward<T>(x))) {
     return std::forward<T>(x);
@@ -56,7 +56,7 @@ namespace kspc {
     return std::conj(std::forward<T>(x));
   }
 
-  /// another variation of @sa conj
+  /// another variation of conj
   template <typename T,
             std::enable_if_t<!is_complex_v<remove_cvref_t<T>>, std::nullptr_t> = nullptr>
   inline constexpr T&& conj(T&& x) noexcept(noexcept(std::forward<T>(x))) {

@@ -188,7 +188,7 @@ namespace kspc {
     }
   }; // struct approx
 
-  /// deduction guide for @sa approx
+  /// deduction guide for approx
   template <typename T>
   approx(T, const double = eps, const double = 0.0) -> approx<T>;
 
@@ -448,7 +448,7 @@ namespace kspc {
     }
   }; // struct matrix
 
-  /// deduction guide for @sa matrix
+  /// deduction guide for matrix
   template <typename T, typename... U>
   matrix(T, U...) -> matrix<T, 1 + sizeof...(U)>;
 
@@ -562,7 +562,7 @@ namespace kspc {
     }
   }; // struct ndmatrix
 
-  /// deduction guide for @sa ndmatrix
+  /// deduction guide for ndmatrix
   template <typename I, typename S>
   ndmatrix(I, S) -> ndmatrix<iter_value_t<I>>;
 

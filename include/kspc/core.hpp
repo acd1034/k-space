@@ -394,7 +394,7 @@ namespace kspc {
     return static_cast<T>(c.size());
   }
 
-  /// another variation of @sa ssize
+  /// another variation of ssize
   template <typename T, std::size_t N>
   constexpr std::ptrdiff_t ssize(const T (&)[N]) noexcept {
     return N;
