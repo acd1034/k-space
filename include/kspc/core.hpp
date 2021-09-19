@@ -129,6 +129,7 @@ namespace kspc {
   template <class T, class = void>
   struct incrementable_traits : detail::incrementable_traits_impl<T> {};
 
+  /// partial specialization for pointer
   template <class T>
   struct incrementable_traits<T*>
     : std::conditional_t<
@@ -136,11 +137,13 @@ namespace kspc {
         detail::with_difference_type<std::ptrdiff_t>,
         detail::nil> {};
 
+  /// partial specialization for types with difference_type
   template <class T>
   struct incrementable_traits<T, std::void_t<typename T::difference_type>> {
     using difference_type = typename T::difference_type;
   };
 
+  /// partial specialization for const
   template <class T>
   struct incrementable_traits<const T> : incrementable_traits<T> {};
 
@@ -160,26 +163,31 @@ namespace kspc {
   template <class T, class = void>
   struct indirectly_readable_traits : detail::indirectly_readable_traits_impl<T> {};
 
+  /// partial specialization for pointer
   template <class T>
   struct indirectly_readable_traits<T*> {
     using value_type = std::remove_cv_t<T>;
   };
 
+  /// partial specialization for built-in array without extent
   template <class T>
   struct indirectly_readable_traits<T[]> {
     using value_type = std::remove_cv_t<T>;
   };
 
+  /// partial specialization for built-in array
   template <class T, std::size_t N>
   struct indirectly_readable_traits<T[N]> {
     using value_type = std::remove_cv_t<T>;
   };
 
+  /// partial specialization for types with value_type
   template <class T>
   struct indirectly_readable_traits<T, std::void_t<typename T::value_type>> {
     using value_type = std::remove_cv_t<typename T::value_type>;
   };
 
+  /// partial specialization for const
   template <class T>
   struct indirectly_readable_traits<const T> : indirectly_readable_traits<T> {};
 
@@ -396,9 +404,9 @@ namespace kspc {
     return N;
   }
 
-  // stream insertion for range
+  // stream insertion
 
-  inline namespace os {
+  inline namespace io {
     /// stream insertion for range
     template <typename CharT, typename Traits, typename R,
               std::enable_if_t<is_range_v<R>, std::nullptr_t> = nullptr>
@@ -407,5 +415,5 @@ namespace kspc {
       for (const auto& x : r) os << std::exchange(dlm, " ") << x;
       return os;
     }
-  } // namespace os
+  } // namespace io
 } // namespace kspc
