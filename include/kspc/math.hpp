@@ -37,11 +37,11 @@ namespace kspc {
 
   // seemless use of floating-point and complex
 
-  /// `is_complex`
+  /// `%is_complex`
   template <typename T>
   struct is_complex : std::false_type {};
 
-  /// `is_complex`
+  /// `%is_complex`
   template <typename T>
   struct is_complex<std::complex<T>> : std::true_type {};
 

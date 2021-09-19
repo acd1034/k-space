@@ -131,10 +131,10 @@ namespace kspc {
   /// alias for `eps_v<double>`
   inline constexpr double eps = eps_v<double>;
 
-  /// `approx`
+  /// `Approx`
   template <typename T,
             std::enable_if_t<std::is_convertible_v<T, double>, std::nullptr_t> = nullptr>
-  struct approx {
+  struct Approx {
   private:
     const T value_;
     const double margin_ = eps;
@@ -146,10 +146,10 @@ namespace kspc {
     }
 
   public:
-    constexpr explicit approx(const T& value, const double epsrel = eps,
+    constexpr explicit Approx(const T& value, const double epsrel = eps,
                               const double epsabs = 0.0) noexcept
       : value_(value), margin_(calclate_margin(value_, epsrel, epsabs)) {}
-    constexpr explicit approx(T&& value, const double epsrel = eps,
+    constexpr explicit Approx(T&& value, const double epsrel = eps,
                               const double epsabs = 0.0) noexcept
       : value_(std::move(value)), margin_(calclate_margin(value_, epsrel, epsabs)) {}
 
@@ -157,40 +157,40 @@ namespace kspc {
     // But without the subtraction to allow for infinity in comparison
     template <typename U>
     friend inline constexpr bool
-    operator<(const U& x, const approx& y) noexcept(noexcept(x + y.margin_ < y.value_)) {
+    operator<(const U& x, const Approx& y) noexcept(noexcept(x + y.margin_ < y.value_)) {
       return x + y.margin_ < y.value_;
     }
     template <typename U>
     friend inline constexpr bool
-    operator>(const U& x, const approx& y) noexcept(noexcept(x > y.value_ + y.margin_)) {
+    operator>(const U& x, const Approx& y) noexcept(noexcept(x > y.value_ + y.margin_)) {
       return x > y.value_ + y.margin_;
     }
     // boilerplate
     template <typename U>
     friend inline constexpr bool //
-    operator<=(const U& x, const approx& y) noexcept(noexcept(!(x > y))) {
+    operator<=(const U& x, const Approx& y) noexcept(noexcept(!(x > y))) {
       return !(x > y);
     }
     template <typename U>
     friend inline constexpr bool //
-    operator>=(const U& x, const approx& y) noexcept(noexcept(!(x < y))) {
+    operator>=(const U& x, const Approx& y) noexcept(noexcept(!(x < y))) {
       return !(x < y);
     }
     template <typename U>
     friend inline constexpr bool
-    operator!=(const U& x, const approx& y) noexcept(noexcept((x < y) || (x > y))) {
+    operator!=(const U& x, const Approx& y) noexcept(noexcept((x < y) || (x > y))) {
       return x < y || x > y;
     }
     template <typename U>
     friend inline constexpr bool //
-    operator==(const U& x, const approx& y) noexcept(noexcept(!(x != y))) {
+    operator==(const U& x, const Approx& y) noexcept(noexcept(!(x != y))) {
       return !(x != y);
     }
-  }; // struct approx
+  }; // struct Approx
 
-  /// deduction guide for approx
+  /// deduction guide for Approx
   template <typename T>
-  approx(T, const double = eps, const double = 0.0) -> approx<T>;
+  Approx(T, const double = eps, const double = 0.0) -> Approx<T>;
 
   // function object for approximate comparison
 
@@ -206,8 +206,8 @@ namespace kspc {
                                                                                                    \
     template <typename T, typename U>                                                              \
     constexpr bool operator()(const T& x, const U& y) const                                        \
-      noexcept(noexcept(x Op approx(y, epsrel_, epsabs_))) {                                       \
-      return x Op approx(y, epsrel_, epsabs_);                                                     \
+      noexcept(noexcept(x Op Approx(y, epsrel_, epsabs_))) {                                       \
+      return x Op Approx(y, epsrel_, epsabs_);                                                     \
     }                                                                                              \
   };
 
