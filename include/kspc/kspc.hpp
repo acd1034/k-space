@@ -456,10 +456,6 @@ namespace kspc {
   template <typename T, typename... U>
   matrix(T, U...) -> matrix<T, meta_isqrt_v<1 + sizeof...(U)>>;
 
-  /// partial specialization of `is_fixed_size_matrix_v`
-  template <typename T, std::size_t N>
-  inline constexpr bool is_fixed_size_matrix_v<matrix<T, N>> = true;
-
   /// partial specialization of `fixed_size_matrix_dim`
   template <typename T, std::size_t N>
   struct fixed_size_matrix_dim<matrix<T, N>> : std::integral_constant<std::size_t, N> {};
@@ -491,7 +487,7 @@ namespace kspc {
                 std::conjunction_v<is_sentinel_for<S, I>, is_input_iterator<I>>, std::nullptr_t> = nullptr>
     // clang-format on
     constexpr ndmatrix(I first, S last)
-      : dim_(static_cast<size_type>(std::sqrt(std::distance(first, last)))),
+      : dim_(static_cast<size_type>(detail::isqrt(std::distance(first, last)))),
         instance_(dim_ * dim_) {
       std::copy_n(first, instance_.size(), instance_.begin());
     }

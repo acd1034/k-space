@@ -74,18 +74,6 @@ namespace kspc {
 
   // fixed-size matrix optimization
 
-  /// is_fixed_size_matrix_v
-  template <typename>
-  inline constexpr bool is_fixed_size_matrix_v = false;
-
-  /// partial specialization of `is_fixed_size_matrix_v`
-  template <typename T, std::size_t N>
-  inline constexpr bool is_fixed_size_matrix_v<T[N]> = true;
-
-  /// partial specialization of `is_fixed_size_matrix_v`
-  template <typename T, std::size_t N>
-  inline constexpr bool is_fixed_size_matrix_v<std::array<T, N>> = true;
-
   namespace detail {
     inline constexpr std::size_t isqrt(const std::size_t N) {
       std::size_t l = 0, r = N;
@@ -123,6 +111,19 @@ namespace kspc {
   /// helper variable template for `fixed_size_matrix_dim`
   template <typename T>
   inline constexpr std::size_t fixed_size_matrix_dim_v = fixed_size_matrix_dim<T>::value;
+
+  /// %is_fixed_size_matrix
+  template <typename T, typename = void>
+  struct is_fixed_size_matrix : std::false_type {};
+
+  /// partial specialization of `is_fixed_size_matrix`
+  template <typename T>
+  struct is_fixed_size_matrix<T, std::void_t<decltype(fixed_size_matrix_dim<T>::value)>>
+    : std::true_type {};
+
+  /// helper variable template for `is_fixed_size_matrix`
+  template <typename T>
+  inline constexpr bool is_fixed_size_matrix_v = is_fixed_size_matrix<T>::value;
 
   // sum
 
