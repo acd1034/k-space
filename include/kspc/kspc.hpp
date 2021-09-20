@@ -337,13 +337,15 @@ namespace kspc {
 
       template <typename Derived2 = Derived, enable_if_derived<Derived2> = nullptr>
       constexpr decltype(auto) at(const size_type_impl<Derived2> j) {
-        if (j >= size()) throw std::out_of_range("matrix_base::at");
+        if (j >= size())
+          throw std::out_of_range("matrix_base::at");
         return (*this)[j];
       }
 
       template <typename Derived2 = Derived, enable_if_derived<Derived2> = nullptr>
       constexpr decltype(auto) at(const size_type_impl<Derived2> j) const {
-        if (j >= size()) throw std::out_of_range("matrix_base::at");
+        if (j >= size())
+          throw std::out_of_range("matrix_base::at");
         return (*this)[j];
       }
 
@@ -422,12 +424,14 @@ namespace kspc {
     }
 
     constexpr decltype(auto) at(const size_type j, const size_type k) {
-      if (j >= dim() || k >= dim()) throw std::out_of_range("matrix::at");
+      if (j >= dim() || k >= dim())
+        throw std::out_of_range("matrix::at");
       return (*this)(j, k);
     }
 
     constexpr decltype(auto) at(const size_type j, const size_type k) const {
-      if (j >= dim() || k >= dim()) throw std::out_of_range("matrix::at");
+      if (j >= dim() || k >= dim())
+        throw std::out_of_range("matrix::at");
       return (*this)(j, k);
     }
 
@@ -450,11 +454,15 @@ namespace kspc {
 
   /// deduction guide for @link matrix matrix @endlink
   template <typename T, typename... U>
-  matrix(T, U...) -> matrix<T, 1 + sizeof...(U)>;
+  matrix(T, U...) -> matrix<T, meta_isqrt_v<1 + sizeof...(U)>>;
 
   /// partial specialization of `is_fixed_size_matrix_v`
   template <typename T, std::size_t N>
   inline constexpr bool is_fixed_size_matrix_v<matrix<T, N>> = true;
+
+  /// partial specialization of `fixed_size_matrix_dim`
+  template <typename T, std::size_t N>
+  struct fixed_size_matrix_dim<matrix<T, N>> : std::integral_constant<std::size_t, N> {};
 
   /// variadic-size matrix
   template <typename T>
@@ -535,12 +543,14 @@ namespace kspc {
     }
 
     constexpr decltype(auto) at(const size_type j, const size_type k) {
-      if (j >= dim() || k >= dim()) throw std::out_of_range("ndmatrix::at");
+      if (j >= dim() || k >= dim())
+        throw std::out_of_range("ndmatrix::at");
       return (*this)(j, k);
     }
 
     constexpr decltype(auto) at(const size_type j, const size_type k) const {
-      if (j >= dim() || k >= dim()) throw std::out_of_range("ndmatrix::at");
+      if (j >= dim() || k >= dim())
+        throw std::out_of_range("ndmatrix::at");
       return (*this)(j, k);
     }
 
@@ -571,13 +581,23 @@ namespace kspc {
   ndmatrix(I, S) -> ndmatrix<iter_value_t<I>>;
 
   // TODO: mel
-  template <typename T>
-  auto mel(const ndmatrix<T>& op, const std::vector<std::vector<T>>& v) {
-    const std::size_t n = std::min(op.dim(), std::size(v));
+  // clang-format off
+  template <typename M, typename R,
+  std::enable_if_t<std::conjunction_v<
+    is_range<M>,
+    is_range<R>,
+    is_range<range_reference_t<R>>>, std::nullptr_t> = nullptr>
+  // clang-format on
+  auto mel(const M& op, const R& r) {
+    using std::size;
+    const std::size_t n = std::size(r);
+    assert(size(op) == n * n);
+
+    using T = std::common_type_t<range_value_t<M>, range_value_t<range_reference_t<R>>>;
     ndmatrix<T> ret(n);
     for (std::size_t i = 0; i < n; ++i) {
       for (std::size_t j = 0; j < n; ++j) {
-        ret(i, j) = innerp(v[i], op, v[j]);
+        ret(i, j) = innerp(r[i], op, r[j]);
       }
     }
     return ret;
