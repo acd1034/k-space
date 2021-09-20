@@ -1,6 +1,6 @@
 #include <iostream>
 #include <memory>
-// #include <kspc/draft.hpp>
+#include <kspc/draft.hpp>
 #include <kspc/kspc.hpp>
 
 struct X {
@@ -15,12 +15,17 @@ struct Y {
 };
 
 int main() {
+  [[maybe_unused]] kspc::matrix a{1, 2, 3, 4};
   std::cout << std::boolalpha << (1.0 != kspc::approx(1.0 + 2e-6)) << std::endl;
   std::cout << (1.0 == kspc::approx(1.0 + 2e-7)) << std::endl;
   std::cout << (1.0 != kspc::approx(1.0 + 0.20, 0.1, 0.01)) << std::endl;
   std::cout << (1.0 == kspc::approx(1.0 + 0.02, 0.1, 0.01)) << std::endl;
   std::cout << (1.0 != kspc::approx(1.0 + 2.0, 0.1, 1.0)) << std::endl;
   std::cout << (1.0 == kspc::approx(1.0 + 0.2, 0.1, 1.0)) << std::endl;
+
+  std::cout << kspc::is_fixed_size_matrix_v<std::array<int, 3>> << std::endl;
+  std::cout << kspc::is_fixed_size_matrix_v<kspc::matrix<int, 3>> << std::endl;
+  std::cout << !kspc::is_fixed_size_matrix_v<std::vector<int>> << std::endl;
 
   // 14, 5, 4, 5, 4, 6, 12
   // clang-format off
