@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['with_5fdifference_5ftype_124',['with_difference_type',['../structkspc_1_1detail_1_1with__difference__type.html',1,'kspc::detail']]]
+  ['with_5fdifference_5ftype_134',['with_difference_type',['../structkspc_1_1detail_1_1with__difference__type.html',1,'kspc::detail']]]
 ];

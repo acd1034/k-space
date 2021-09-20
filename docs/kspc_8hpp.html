@@ -96,6 +96,9 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkspc_1_1matrix.html">kspc::matrix&lt; T, N &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">fixed-size matrix  <a href="structkspc_1_1matrix.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkspc_1_1fixed__size__matrix__dim_3_01matrix_3_01_t_00_01_n_01_4_01_4.html">kspc::fixed_size_matrix_dim&lt; matrix&lt; T, N &gt; &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">partial specialization of <code><a class="el" href="structkspc_1_1fixed__size__matrix__dim.html" title="fixed_size_matrix_dim">fixed_size_matrix_dim</a></code>  <a href="structkspc_1_1fixed__size__matrix__dim_3_01matrix_3_01_t_00_01_n_01_4_01_4.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkspc_1_1ndmatrix.html">kspc::ndmatrix&lt; T &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">variadic-size matrix  <a href="structkspc_1_1ndmatrix.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -175,20 +178,20 @@ template&lt;typename T &gt; </td></tr>
 <tr class="memitem:a7542a6b450267008da1604caa180138d"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="kspc_8hpp.html#a7542a6b450267008da1604caa180138d">kspc::approx</a> (T, const double=eps, const double=0.0) -&gt; approx&lt; T &gt;</td></tr>
 <tr class="memdesc:a7542a6b450267008da1604caa180138d"><td class="mdescLeft">&#160;</td><td class="mdescRight">deduction guide for <a class="el" href="structkspc_1_1approx.html">approx </a> <br /></td></tr>
 <tr class="separator:a7542a6b450267008da1604caa180138d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a668025080c9e57ce51d3d8e61e0e6ca5"><td class="memTemplParams" colspan="2"><a id="a668025080c9e57ce51d3d8e61e0e6ca5"></a>
+<tr class="memitem:a93c8ae36cdc18214ac6cc783dc846084"><td class="memTemplParams" colspan="2"><a id="a93c8ae36cdc18214ac6cc783dc846084"></a>
 template&lt;typename T , typename... U&gt; </td></tr>
-<tr class="memitem:a668025080c9e57ce51d3d8e61e0e6ca5"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="kspc_8hpp.html#a668025080c9e57ce51d3d8e61e0e6ca5">kspc::matrix</a> (T, U...) -&gt; matrix&lt; T, 1+sizeof...(U)&gt;</td></tr>
-<tr class="memdesc:a668025080c9e57ce51d3d8e61e0e6ca5"><td class="mdescLeft">&#160;</td><td class="mdescRight">deduction guide for <a class="el" href="structkspc_1_1matrix.html">matrix </a> <br /></td></tr>
-<tr class="separator:a668025080c9e57ce51d3d8e61e0e6ca5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a93c8ae36cdc18214ac6cc783dc846084"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="kspc_8hpp.html#a93c8ae36cdc18214ac6cc783dc846084">kspc::matrix</a> (T, U...) -&gt; matrix&lt; T, meta_isqrt_v&lt; 1+sizeof...(U)&gt;&gt;</td></tr>
+<tr class="memdesc:a93c8ae36cdc18214ac6cc783dc846084"><td class="mdescLeft">&#160;</td><td class="mdescRight">deduction guide for <a class="el" href="structkspc_1_1matrix.html">matrix </a> <br /></td></tr>
+<tr class="separator:a93c8ae36cdc18214ac6cc783dc846084"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a105b89bafa2fbdff348dbbd9ec0c7239"><td class="memTemplParams" colspan="2"><a id="a105b89bafa2fbdff348dbbd9ec0c7239"></a>
 template&lt;typename I , typename S &gt; </td></tr>
 <tr class="memitem:a105b89bafa2fbdff348dbbd9ec0c7239"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="kspc_8hpp.html#a105b89bafa2fbdff348dbbd9ec0c7239">kspc::ndmatrix</a> (I, S) -&gt; ndmatrix&lt; iter_value_t&lt; I &gt;&gt;</td></tr>
 <tr class="memdesc:a105b89bafa2fbdff348dbbd9ec0c7239"><td class="mdescLeft">&#160;</td><td class="mdescRight">deduction guide for <a class="el" href="structkspc_1_1ndmatrix.html">ndmatrix </a> <br /></td></tr>
 <tr class="separator:a105b89bafa2fbdff348dbbd9ec0c7239"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a62d3c5a14a7b342f4485439b1965d2f7"><td class="memTemplParams" colspan="2"><a id="a62d3c5a14a7b342f4485439b1965d2f7"></a>
-template&lt;typename T &gt; </td></tr>
-<tr class="memitem:a62d3c5a14a7b342f4485439b1965d2f7"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::mel</b> (const ndmatrix&lt; T &gt; &amp;op, const std::vector&lt; std::vector&lt; T &gt;&gt; &amp;v)</td></tr>
-<tr class="separator:a62d3c5a14a7b342f4485439b1965d2f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c86dda5a31f5df84772d04cd80a38b1"><td class="memTemplParams" colspan="2"><a id="a8c86dda5a31f5df84772d04cd80a38b1"></a>
+template&lt;typename M , typename R , std::enable_if_t&lt; std::conjunction_v&lt; is_range&lt; M &gt;, is_range&lt; R &gt;, is_range&lt; range_reference_t&lt; R &gt;&gt;&gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
+<tr class="memitem:a8c86dda5a31f5df84772d04cd80a38b1"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::mel</b> (const M &amp;op, const R &amp;r)</td></tr>
+<tr class="separator:a8c86dda5a31f5df84772d04cd80a38b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa47ab34f10bc8cf63c637f12fbf29ac6"><td class="memTemplParams" colspan="2"><a id="aa47ab34f10bc8cf63c637f12fbf29ac6"></a>
 template&lt;typename T &gt; </td></tr>
 <tr class="memitem:aa47ab34f10bc8cf63c637f12fbf29ac6"><td class="memTemplItemLeft" align="right" valign="top">detail::enable_if_floating&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="kspc_8hpp.html#aa47ab34f10bc8cf63c637f12fbf29ac6">kspc::f</a> (const T E, const T beta, const T mu)</td></tr>
