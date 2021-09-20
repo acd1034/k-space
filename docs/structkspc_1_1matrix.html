@@ -114,14 +114,14 @@ using&#160;</td><td class="memItemRight" valign="bottom"><b>value_type</b> = <a 
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a9c5cb91a18457e246858178150f816f2"><td class="memTemplParams" colspan="2"><a id="a9c5cb91a18457e246858178150f816f2"></a>
-template&lt;typename... U&gt; </td></tr>
-<tr class="memitem:a9c5cb91a18457e246858178150f816f2"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><b>matrix</b> (const T &amp;init, U &amp;&amp;... args)</td></tr>
-<tr class="separator:a9c5cb91a18457e246858178150f816f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a71a5bb6e42d64b5d590dc486080c76cb"><td class="memTemplParams" colspan="2"><a id="a71a5bb6e42d64b5d590dc486080c76cb"></a>
-template&lt;typename... U&gt; </td></tr>
-<tr class="memitem:a71a5bb6e42d64b5d590dc486080c76cb"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><b>matrix</b> (T &amp;&amp;init, U &amp;&amp;... args)</td></tr>
-<tr class="separator:a71a5bb6e42d64b5d590dc486080c76cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a8670e516738163c5497a3467b1f44c"><td class="memTemplParams" colspan="2"><a id="a5a8670e516738163c5497a3467b1f44c"></a>
+template&lt;typename... U, std::enable_if_t&lt; 1UL+sizeof...(U)==N *N, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
+<tr class="memitem:a5a8670e516738163c5497a3467b1f44c"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><b>matrix</b> (const T &amp;init, U &amp;&amp;... args)</td></tr>
+<tr class="separator:a5a8670e516738163c5497a3467b1f44c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9851a36515766c738b9839a80c851508"><td class="memTemplParams" colspan="2"><a id="a9851a36515766c738b9839a80c851508"></a>
+template&lt;typename... U, std::enable_if_t&lt; 1UL+sizeof...(U)==N *N, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
+<tr class="memitem:a9851a36515766c738b9839a80c851508"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><b>matrix</b> (T &amp;&amp;init, U &amp;&amp;... args)</td></tr>
+<tr class="separator:a9851a36515766c738b9839a80c851508"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9e05a0af68d7355a6d496dfc6a80f37b"><td class="memItemLeft" align="right" valign="top"><a id="a9e05a0af68d7355a6d496dfc6a80f37b"></a>
 constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><b>begin</b> () noexcept(noexcept(instance_.begin()))</td></tr>
 <tr class="separator:a9e05a0af68d7355a6d496dfc6a80f37b"><td class="memSeparator" colspan="2">&#160;</td></tr>

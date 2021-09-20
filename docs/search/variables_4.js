@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['meta_5fisqrt_5fv_248',['meta_isqrt_v',['../math_8hpp.html#a7eefbb4e7e6040268471da6cb24b1a00',1,'kspc']]]
+  ['pi_245',['pi',['../kspc_8hpp.html#af4e3e696f52b21176de64e875554c386',1,'kspc']]],
+  ['pi_5fv_246',['pi_v',['../kspc_8hpp.html#ac064953c48dff58b031b5dd55370722a',1,'kspc']]]
 ];
