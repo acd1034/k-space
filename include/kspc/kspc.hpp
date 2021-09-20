@@ -375,11 +375,13 @@ namespace kspc {
     using const_reference = iter_reference_t<const_iterator>;
     using value_type = iter_value_t<iterator>;
 
-    template <typename... U>
+    template <typename... U,
+              std::enable_if_t<1UL + sizeof...(U) == N * N, std::nullptr_t> = nullptr>
     constexpr explicit matrix(const T& init, U&&... args)
       : instance_{init, std::forward<decltype(args)>(args)...} {}
 
-    template <typename... U>
+    template <typename... U,
+              std::enable_if_t<1UL + sizeof...(U) == N * N, std::nullptr_t> = nullptr>
     constexpr explicit matrix(T&& init, U&&... args)
       : instance_{std::move(init), std::forward<decltype(args)>(args)...} {}
 
@@ -454,7 +456,7 @@ namespace kspc {
 
   /// deduction guide for @link matrix matrix @endlink
   template <typename T, typename... U>
-  matrix(T, U...) -> matrix<T, meta_isqrt_v<1 + sizeof...(U)>>;
+  matrix(T, U...) -> matrix<T, isqrt(1UL + sizeof...(U))>;
 
   /// partial specialization of `fixed_size_matrix_dim`
   template <typename T, std::size_t N>
@@ -487,8 +489,7 @@ namespace kspc {
                 std::conjunction_v<is_sentinel_for<S, I>, is_input_iterator<I>>, std::nullptr_t> = nullptr>
     // clang-format on
     constexpr ndmatrix(I first, S last)
-      : dim_(static_cast<size_type>(detail::isqrt(std::distance(first, last)))),
-        instance_(dim_ * dim_) {
+      : dim_(isqrt(static_cast<size_type>(std::distance(first, last)))), instance_(dim_ * dim_) {
       std::copy_n(first, instance_.size(), instance_.begin());
     }
 

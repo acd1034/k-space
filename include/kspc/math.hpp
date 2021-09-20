@@ -74,27 +74,17 @@ namespace kspc {
 
   // fixed-size matrix optimization
 
-  namespace detail {
-    inline constexpr std::size_t isqrt(const std::size_t N) {
-      std::size_t l = 0, r = N;
-      while (r - l > 1) {
-        const std::size_t mid = l + (r - l) / 2;
-        if (mid * mid <= N)
-          l = mid;
-        else
-          r = mid;
-      }
-      return l;
+  inline constexpr std::size_t isqrt(const std::size_t N) {
+    std::size_t l = 0, r = N;
+    while (r - l > 1) {
+      const std::size_t mid = l + (r - l) / 2;
+      if (mid * mid <= N)
+        l = mid;
+      else
+        r = mid;
     }
-  } // namespace detail
-
-  /// %meta_isqrt
-  template <std::size_t N>
-  struct meta_isqrt : std::integral_constant<std::size_t, detail::isqrt(N)> {};
-
-  /// helper variable template for `meta_isqrt`
-  template <std::size_t N>
-  inline constexpr std::size_t meta_isqrt_v = meta_isqrt<N>::value;
+    return l;
+  }
 
   /// %fixed_size_matrix_dim
   template <typename>
@@ -102,11 +92,11 @@ namespace kspc {
 
   /// partial specialization of `fixed_size_matrix_dim`
   template <typename T, std::size_t N>
-  struct fixed_size_matrix_dim<T[N]> : meta_isqrt<N> {};
+  struct fixed_size_matrix_dim<T[N]> : std::integral_constant<std::size_t, isqrt(N)> {};
 
   /// partial specialization of `fixed_size_matrix_dim`
   template <typename T, std::size_t N>
-  struct fixed_size_matrix_dim<std::array<T, N>> : meta_isqrt<N> {};
+  struct fixed_size_matrix_dim<std::array<T, N>> : std::integral_constant<std::size_t, isqrt(N)> {};
 
   /// helper variable template for `fixed_size_matrix_dim`
   template <typename T>
@@ -122,6 +112,7 @@ namespace kspc {
     : std::true_type {};
 
   /// helper variable template for `is_fixed_size_matrix`
+  /// To make this true, partially/fully specialize `fixed_size_matrix_dim`.
   template <typename T>
   inline constexpr bool is_fixed_size_matrix_v = is_fixed_size_matrix<T>::value;
 
