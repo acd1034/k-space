@@ -15,7 +15,10 @@ struct Y {
 };
 
 int main() {
-  [[maybe_unused]] kspc::matrix a{1, 2, 3, 4};
+  using namespace kspc::io;
+  std::cout << kspc::mel(kspc::matrix{1, 0, 0, 1}, std::array{std::array{1, 1}, std::array{1, -1}})
+            << std::endl;
+
   std::cout << std::boolalpha << (1.0 != kspc::approx(1.0 + 2e-6)) << std::endl;
   std::cout << (1.0 == kspc::approx(1.0 + 2e-7)) << std::endl;
   std::cout << (1.0 != kspc::approx(1.0 + 0.20, 0.1, 0.01)) << std::endl;

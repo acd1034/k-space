@@ -363,7 +363,6 @@ namespace kspc {
   template <typename T, std::size_t N>
   struct matrix : detail2::matrix_base<matrix<T, N>> {
   private:
-    using base = detail2::matrix_base<matrix>;
     std::array<T, N * N> instance_{};
 
   public:
@@ -374,6 +373,8 @@ namespace kspc {
     using reference = iter_reference_t<iterator>;
     using const_reference = iter_reference_t<const_iterator>;
     using value_type = iter_value_t<iterator>;
+
+    constexpr matrix() {}
 
     template <typename... U,
               std::enable_if_t<1UL + sizeof...(U) == N * N, std::nullptr_t> = nullptr>
@@ -416,13 +417,13 @@ namespace kspc {
     }
 
     constexpr decltype(auto) operator()(const size_type j, const size_type k) //
-      noexcept(noexcept(base::operator[](j* dim() + k))) {
-      return base::operator[](j* dim() + k);
+      noexcept(noexcept((*this)[j * dim() + k])) {
+      return (*this)[j * dim() + k];
     }
 
     constexpr decltype(auto) operator()(const size_type j, const size_type k) const
-      noexcept(noexcept(base::operator[](j* dim() + k))) {
-      return base::operator[](j* dim() + k);
+      noexcept(noexcept((*this)[j * dim() + k])) {
+      return (*this)[j * dim() + k];
     }
 
     constexpr decltype(auto) at(const size_type j, const size_type k) {
@@ -455,7 +456,8 @@ namespace kspc {
   }; // struct matrix
 
   /// deduction guide for @link matrix matrix @endlink
-  template <typename T, typename... U>
+  template <typename T, typename... U,
+            std::enable_if_t<std::conjunction_v<std::is_same<U, T>...>, std::nullptr_t> = nullptr>
   matrix(T, U...) -> matrix<T, isqrt(1UL + sizeof...(U))>;
 
   /// partial specialization of `fixed_size_matrix_dim`
@@ -474,11 +476,12 @@ namespace kspc {
     using value_type = iter_value_t<iterator>;
 
   private:
-    using base = detail2::matrix_base<ndmatrix>;
     size_type dim_ = 0;
     std::vector<T> instance_{};
 
   public:
+    constexpr ndmatrix() {}
+
     constexpr explicit ndmatrix(size_type n) : dim_(n), instance_(n * n) {}
 
     constexpr explicit ndmatrix(size_type n, const T& init) : dim_(n), instance_(n * n, init) {}
@@ -530,13 +533,13 @@ namespace kspc {
     }
 
     constexpr decltype(auto) operator()(const size_type j, const size_type k) //
-      noexcept(noexcept(base::operator[](j* dim() + k))) {
-      return base::operator[](j* dim() + k);
+      noexcept(noexcept((*this)[j * dim() + k])) {
+      return (*this)[j * dim() + k];
     }
 
     constexpr decltype(auto) operator()(const size_type j, const size_type k) const
-      noexcept(noexcept(base::operator[](j* dim() + k))) {
-      return base::operator[](j* dim() + k);
+      noexcept(noexcept((*this)[j * dim() + k])) {
+      return (*this)[j * dim() + k];
     }
 
     constexpr decltype(auto) at(const size_type j, const size_type k) {
@@ -577,24 +580,45 @@ namespace kspc {
   template <typename I, typename S>
   ndmatrix(I, S) -> ndmatrix<iter_value_t<I>>;
 
-  // TODO: mel
+  /// mel
   // clang-format off
-  template <typename M, typename R,
+  template <typename M, typename Vs,
   std::enable_if_t<std::conjunction_v<
-    is_range<M>,
-    is_range<R>,
-    is_range<range_reference_t<R>>>, std::nullptr_t> = nullptr>
+    is_range<M>, is_fixed_size_matrix<M>,
+    is_range<Vs>, is_range<range_reference_t<Vs>>>, std::nullptr_t> = nullptr>
   // clang-format on
-  auto mel(const M& op, const R& r) {
+  constexpr auto mel(const M& op, const Vs& vs) {
+    constexpr std::size_t N = fixed_size_matrix_dim_v<M>;
     using std::size;
-    const std::size_t n = std::size(r);
+    assert(size(vs) == N);
+
+    using T = std::common_type_t<range_value_t<M>, range_value_t<range_reference_t<Vs>>>;
+    matrix<T, N> ret{};
+    for (std::size_t i = 0; i < N; ++i) {
+      for (std::size_t j = 0; j < N; ++j) {
+        ret(i, j) = innerp(vs[i], op, vs[j]);
+      }
+    }
+    return ret;
+  }
+
+  /// @overload
+  // clang-format off
+  template <typename M, typename Vs,
+  std::enable_if_t<std::conjunction_v<
+    is_range<M>, std::negation<is_fixed_size_matrix<M>>,
+    is_range<Vs>, is_range<range_reference_t<Vs>>>, std::nullptr_t> = nullptr>
+  // clang-format on
+  constexpr auto mel(const M& op, const Vs& vs) {
+    using std::size;
+    const std::size_t n = std::size(vs);
     assert(size(op) == n * n);
 
-    using T = std::common_type_t<range_value_t<M>, range_value_t<range_reference_t<R>>>;
+    using T = std::common_type_t<range_value_t<M>, range_value_t<range_reference_t<Vs>>>;
     ndmatrix<T> ret(n);
     for (std::size_t i = 0; i < n; ++i) {
       for (std::size_t j = 0; j < n; ++j) {
-        ret(i, j) = innerp(r[i], op, r[j]);
+        ret(i, j) = innerp(vs[i], op, vs[j]);
       }
     }
     return ret;

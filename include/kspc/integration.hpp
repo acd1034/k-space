@@ -50,8 +50,8 @@ namespace kspc {
   template <std::size_t N>
   double cquad(void* temp_p_params) {
     auto* p_params = (params_t*)temp_p_params;
-    assert(std::size(p_params->a) == N);
-    assert(std::size(p_params->b) == N);
+    assert(std::size(p_params->a) >= N);
+    assert(std::size(p_params->b) >= N);
 
     p_params->temp_x.resize(N);
     gsl_function F = {&detail::cquad_integrand<N - 1>, (void*)p_params};

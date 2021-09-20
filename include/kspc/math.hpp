@@ -100,7 +100,7 @@ namespace kspc {
 
   /// helper variable template for `fixed_size_matrix_dim`
   template <typename T>
-  inline constexpr std::size_t fixed_size_matrix_dim_v = fixed_size_matrix_dim<T>::value;
+  inline constexpr auto fixed_size_matrix_dim_v = fixed_size_matrix_dim<T>::value;
 
   /// %is_fixed_size_matrix
   template <typename T, typename = void>
