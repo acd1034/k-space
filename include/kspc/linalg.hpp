@@ -3,8 +3,7 @@
 #include <array>
 #include <complex>
 #include <vector>
-#include <gsl/gsl_integration.h>
-#include <kspc/core.hpp>
+#include <kspc/math.hpp>
 
 namespace kspc {
   namespace lapack {

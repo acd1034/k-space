@@ -452,6 +452,10 @@ namespace kspc {
   template <typename T, typename... U>
   matrix(T, U...) -> matrix<T, 1 + sizeof...(U)>;
 
+  /// partial specialization of `is_fixed_size_matrix_v`
+  template <typename T, std::size_t N>
+  inline constexpr bool is_fixed_size_matrix_v<matrix<T, N>> = true;
+
   /// variadic-size matrix
   template <typename T>
   struct ndmatrix : detail2::matrix_base<ndmatrix<T>> {

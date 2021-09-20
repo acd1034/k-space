@@ -72,6 +72,20 @@ namespace kspc {
     }
   }; // struct conj_fn
 
+  // fixed-size matrix optimization
+
+  /// is_fixed_size_matrix_v
+  template <typename>
+  inline constexpr bool is_fixed_size_matrix_v = false;
+
+  /// partial specialization of `is_fixed_size_matrix_v`
+  template <typename T, std::size_t N>
+  inline constexpr bool is_fixed_size_matrix_v<T[N]> = true;
+
+  /// partial specialization of `is_fixed_size_matrix_v`
+  template <typename T, std::size_t N>
+  inline constexpr bool is_fixed_size_matrix_v<std::array<T, N>> = true;
+
   // sum
 
   // clang-format off
