@@ -17,13 +17,17 @@ NamespaceIndentation: All
 PointerAlignment: Left
 
 # short description
-# AllowShortBlocksOnASingleLine: true
 AllowShortCaseLabelsOnASingleLine: true
 # AllowShortEnumsOnASingleLine: true
-AllowShortFunctionsOnASingleLine: Empty
-AllowShortIfStatementsOnASingleLine: true
-AllowShortLambdasOnASingleLine: true
 AllowShortLoopsOnASingleLine: true
+# Never, Empty, Always
+# AllowShortBlocksOnASingleLine:
+# None, InlineOnly, Empty, Inline, All
+AllowShortFunctionsOnASingleLine: Empty
+# Never, WithoutElse, OnlyFirstIf, AllIfsAndElse
+# AllowShortIfStatementsOnASingleLine: AllIfsAndElse
+# None, Empty, Inline, All
+AllowShortLambdasOnASingleLine: All
 
 CommentPragmas: '^ NO-FORMAT:'
 IncludeCategories:
