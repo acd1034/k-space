@@ -140,12 +140,12 @@ constexpr void&#160;</td><td class="memItemRight" valign="bottom"><b>swap</b> (<
 <tr class="memitem:ae0f064c474301104da7abe2ebf1b61f3"><td class="memItemLeft" align="right" valign="top"><a id="ae0f064c474301104da7abe2ebf1b61f3"></a>
 constexpr size_type&#160;</td><td class="memItemRight" valign="bottom"><b>dim</b> () const noexcept</td></tr>
 <tr class="separator:ae0f064c474301104da7abe2ebf1b61f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac951058c978f6c8e8eade8203940de67"><td class="memItemLeft" align="right" valign="top"><a id="ac951058c978f6c8e8eade8203940de67"></a>
-constexpr decltype(auto)&#160;</td><td class="memItemRight" valign="bottom"><b>operator()</b> (const size_type j, const size_type k) noexcept(noexcept(base::operator[](j *dim()+k)))</td></tr>
-<tr class="separator:ac951058c978f6c8e8eade8203940de67"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2fa2a56b3e7a07080304586c8287e0a8"><td class="memItemLeft" align="right" valign="top"><a id="a2fa2a56b3e7a07080304586c8287e0a8"></a>
-constexpr decltype(auto)&#160;</td><td class="memItemRight" valign="bottom"><b>operator()</b> (const size_type j, const size_type k) const noexcept(noexcept(base::operator[](j *dim()+k)))</td></tr>
-<tr class="separator:a2fa2a56b3e7a07080304586c8287e0a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97026451e692524c3bf92ae24a3264eb"><td class="memItemLeft" align="right" valign="top"><a id="a97026451e692524c3bf92ae24a3264eb"></a>
+constexpr decltype(auto)&#160;</td><td class="memItemRight" valign="bottom"><b>operator()</b> (const size_type j, const size_type k) noexcept(noexcept((*this)[j *dim()+k]))</td></tr>
+<tr class="separator:a97026451e692524c3bf92ae24a3264eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f01ca10501b4d3ef6d5a1ca1922e3dd"><td class="memItemLeft" align="right" valign="top"><a id="a3f01ca10501b4d3ef6d5a1ca1922e3dd"></a>
+constexpr decltype(auto)&#160;</td><td class="memItemRight" valign="bottom"><b>operator()</b> (const size_type j, const size_type k) const noexcept(noexcept((*this)[j *dim()+k]))</td></tr>
+<tr class="separator:a3f01ca10501b4d3ef6d5a1ca1922e3dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3a659d588bb703204faf9b2f76a49965"><td class="memItemLeft" align="right" valign="top"><a id="a3a659d588bb703204faf9b2f76a49965"></a>
 constexpr decltype(auto)&#160;</td><td class="memItemRight" valign="bottom"><b>at</b> (const size_type j, const size_type k)</td></tr>
 <tr class="separator:a3a659d588bb703204faf9b2f76a49965"><td class="memSeparator" colspan="2">&#160;</td></tr>

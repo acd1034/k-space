@@ -120,8 +120,8 @@ $(function() {
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;  <span class="keyword">template</span> &lt;std::<span class="keywordtype">size_t</span> N&gt;</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;  <span class="keywordtype">double</span> cquad(<span class="keywordtype">void</span>* temp_p_params) {</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keyword">auto</span>* p_params = (params_t*)temp_p_params;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    assert(std::size(p_params-&gt;a) == N);</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    assert(std::size(p_params-&gt;b) == N);</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    assert(std::size(p_params-&gt;a) &gt;= N);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    assert(std::size(p_params-&gt;b) &gt;= N);</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    p_params-&gt;temp_x.resize(N);</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    gsl_function F = {&amp;detail::cquad_integrand&lt;N - 1&gt;, (<span class="keywordtype">void</span>*)p_params};</div>
