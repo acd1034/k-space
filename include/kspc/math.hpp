@@ -86,6 +86,49 @@ namespace kspc {
   template <typename T, std::size_t N>
   inline constexpr bool is_fixed_size_matrix_v<std::array<T, N>> = true;
 
+  namespace detail {
+    inline constexpr std::size_t //
+    isqrt(const std::size_t n, const std::size_t l, const std::size_t r) {
+      if (l == r) {
+        return r;
+      } else {
+        const auto mid = l + (r - l) / 2;
+        if (mid * mid >= n)
+          return isqrt(n, l, mid);
+        else
+          return isqrt(n, mid + 1, r);
+      }
+    }
+
+    inline constexpr std::size_t isqrt(const std::size_t n) {
+      return isqrt(n, 1, n);
+    }
+  } // namespace detail
+
+  /// %meta_isqrt
+  template <std::size_t N>
+  struct meta_isqrt : std::integral_constant<detail::isqrt(N)>;
+
+  /// helper variable template for `meta_isqrt`
+  template <std::size_t N>
+  inline constexpr std::size_t meta_isqrt_v = meta_isqrt<N>::value;
+
+  /// %fixed_size_matrix_size
+  template <typename>
+  struct fixed_size_matrix_size {};
+
+  /// partial specialization of `fixed_size_matrix_size`
+  template <typename T, std::size_t N>
+  struct fixed_size_matrix_size<T[N]> : meta_isqrt<N>;
+
+  /// partial specialization of `fixed_size_matrix_size`
+  template <typename T, std::size_t N>
+  struct fixed_size_matrix_size<std::array<T, N>> : meta_isqrt<N>;
+
+  /// helper variable template for `fixed_size_matrix_size`
+  template <std::size_t N>
+  inline constexpr std::size_t fixed_size_matrix_size_v = fixed_size_matrix_size<N>::value;
+
   // sum
 
   // clang-format off
