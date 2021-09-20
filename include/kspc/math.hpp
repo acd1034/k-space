@@ -120,8 +120,7 @@ namespace kspc {
 
   // clang-format off
   namespace detail {
-    template <typename I,
-              typename T,
+    template <typename I, typename T,
               typename BOp = std::plus<>,
               typename P = identity>
     struct sum_result
@@ -130,24 +129,21 @@ namespace kspc {
                   T,
                   std::invoke_result_t<P&, iter_reference_t<I>>> {};
 
-    template <typename I,
-              typename T,
+    template <typename I, typename T,
               typename BOp = std::plus<>,
               typename P = identity>
     using sum_result_t = typename sum_result<I, T, BOp, P>::type;
 
-    template <typename I, typename S,
-              typename T,
+    template <typename I, typename S, typename T,
               typename BOp = std::plus<>,
               typename P = identity,
-              typename U = std::decay_t<sum_result_t<I, T, BOp, P>>>
-    constexpr
-    std::enable_if_t<std::conjunction_v<
-      is_sentinel_for<S, I>,
-      is_input_iterator<I>,
-      std::is_convertible<T, U>,
-      std::is_assignable<U&, sum_result_t<I, U, BOp, P>>>, U>
-    sum(I first, S last, T init, BOp bop = {}, P proj = {}) {
+              typename U = std::decay_t<sum_result_t<I, T, BOp, P>>,
+              std::enable_if_t<std::conjunction_v<
+                is_sentinel_for<S, I>,
+                is_input_iterator<I>,
+                std::is_convertible<T, U>,
+                std::is_assignable<U&, sum_result_t<I, U, BOp, P>>>, std::nullptr_t> = nullptr>
+    constexpr auto sum(I first, S last, T init, BOp bop = {}, P proj = {}) {
       U ret = std::move(init);
       for(; first != last; ++first)
         ret = std::invoke(bop, std::move(ret), std::invoke(proj, *first));
@@ -173,59 +169,55 @@ namespace kspc {
   // innerp
 
   namespace detail {
-    template <typename I1,
-              typename I2,
+    template <typename I1, typename I2,
               typename BOp2 = std::multiplies<>,
-              typename P1 = conj_fn, typename P2 = identity>
+              typename P1 = conj_fn,
+              typename P2 = identity>
     struct innerp_result_impl
       : std::invoke_result<
           BOp2&,
           std::invoke_result_t<P1&, iter_reference_t<I1>>,
           std::invoke_result_t<P2&, iter_reference_t<I2>>> {};
 
-    template <typename I1,
-              typename I2,
+    template <typename I1, typename I2,
               typename BOp2 = std::multiplies<>,
-              typename P1 = conj_fn, typename P2 = identity>
+              typename P1 = conj_fn,
+              typename P2 = identity>
     using innerp_result_impl_t = typename innerp_result_impl<I1, I2, BOp2, P1, P2>::type;
 
-    template <typename I1,
-              typename I2,
-              typename T,
-              typename BOp1 = std::plus<>, typename BOp2 = std::multiplies<>,
-              typename P1   = conj_fn,     typename P2   = identity>
+    template <typename I1, typename I2, typename T,
+              typename BOp1 = std::plus<>,
+              typename BOp2 = std::multiplies<>,
+              typename P1 = conj_fn,
+              typename P2 = identity>
     struct innerp_result
       : std::invoke_result<
                   BOp1&,
                   T,
                   innerp_result_impl_t<I1, I2, BOp2, P1, P2>> {};
 
-    template <typename I1,
-              typename I2,
-              typename T,
-              typename BOp1 = std::plus<>, typename BOp2 = std::multiplies<>,
-              typename P1   = conj_fn,     typename P2   = identity>
+    template <typename I1, typename I2, typename T,
+              typename BOp1 = std::plus<>,
+              typename BOp2 = std::multiplies<>,
+              typename P1 = conj_fn,
+              typename P2 = identity>
     using innerp_result_t = typename innerp_result<I1, I2, T, BOp1, BOp2, P1, P2>::type;
 
-    template <typename I1, typename S1,
-              typename I2, typename S2,
-              typename T,
-              typename BOp1 = std::plus<>, typename BOp2 = std::multiplies<>,
-              typename P1   = conj_fn,     typename P2   = identity,
-              typename U = std::decay_t<innerp_result_t<I1, I2, T, BOp1, BOp2, P1, P2>>>
-    constexpr
-    std::enable_if_t<std::conjunction_v<
-      is_sentinel_for<S1, I1>,
-      is_sentinel_for<S2, I2>,
-      is_input_iterator<I1>,
-      is_input_iterator<I2>,
-      std::is_convertible<T, U>,
-      std::is_assignable<U&, innerp_result_t<I1, I2, U, BOp1, BOp2, P1, P2>>>, U>
-    innerp(I1 first1, S1 last1,
-           I2 first2, S2 last2,
-           T init,
-           BOp1 bop1 = {}, BOp2 bop2 = {},
-           P1 proj1  = {}, P2 proj2  = {}) {
+    template <typename I1, typename S1, typename I2, typename S2, typename T,
+              typename BOp1 = std::plus<>,
+              typename BOp2 = std::multiplies<>,
+              typename P1 = conj_fn,
+              typename P2 = identity,
+              typename U = std::decay_t<innerp_result_t<I1, I2, T, BOp1, BOp2, P1, P2>>,
+              std::enable_if_t<std::conjunction_v<
+                is_sentinel_for<S1, I1>,
+                is_sentinel_for<S2, I2>,
+                is_input_iterator<I1>,
+                is_input_iterator<I2>,
+                std::is_convertible<T, U>,
+                std::is_assignable<U&, innerp_result_t<I1, I2, U, BOp1, BOp2, P1, P2>>>, std::nullptr_t> = nullptr>
+    constexpr auto innerp(I1 first1, S1 last1, I2 first2, S2 last2, T init,
+                          BOp1 bop1 = {}, BOp2 bop2 = {}, P1 proj1  = {}, P2 proj2  = {}) {
       U ret = std::move(init);
       for (; first1 != last1 && first2 != last2; ++first1, ++first2)
         ret =
@@ -240,17 +232,17 @@ namespace kspc {
   /// innerp
   /// almost same as `std::inner_product` but does not require initial value.
   /// NOTE: the order of the arguments `PN`, `BOpN` is different from range-v3.
-  template <typename R1,
-            typename R2,
-            typename P1   = conj_fn,     typename P2   = identity,
-            typename BOp1 = std::plus<>, typename BOp2 = std::multiplies<>,
+  template <typename R1, typename R2,
+            typename P1 = conj_fn,
+            typename P2 = identity,
+            typename BOp1 = std::plus<>,
+            typename BOp2 = std::multiplies<>,
             std::enable_if_t<std::conjunction_v<
               is_range<R1>,
               is_range<R2>,
               std::negation<is_range<P1>>>, std::nullptr_t> = nullptr>
   constexpr auto innerp(R1&& r1, R2&& r2,
-                        P1 proj1  = {}, P2 proj2  = {},
-                        BOp1 bop1 = {}, BOp2 bop2 = {}) {
+                        P1 proj1  = {}, P2 proj2  = {}, BOp1 bop1 = {}, BOp2 bop2 = {}) {
     using std::begin, std::end, std::empty; // for ADL
     assert(!empty(r1) && !empty(r2));
 
@@ -261,11 +253,11 @@ namespace kspc {
                   std::invoke(proj1, *first1++),
                   std::invoke(proj2, *first2++));
     return detail::innerp(
-             first1, end(r1),
-             first2, end(r2),
-             init,
-             std::move(bop1),  std::move(bop2),
-             std::move(proj1), std::move(proj2));
+             first1, end(r1), first2, end(r2), init,
+             std::move(bop1),
+             std::move(bop2),
+             std::move(proj1),
+             std::move(proj2));
   }
 
   // innerp2: ([1] BOp2 ([2] BOp3 [3])) BOp1 ...
@@ -294,8 +286,7 @@ namespace kspc {
               typename P3 = identity>
     using innerp2_result_impl_t = typename innerp2_result_impl<I1, I2, I3, BOp2, BOp3, P1, P2, P3>::type;
 
-    template <typename I1, typename I2, typename I3,
-              typename T,
+    template <typename I1, typename I2, typename I3, typename T,
               typename BOp1 = std::plus<>,
               typename BOp2 = std::multiplies<>,
               typename BOp3 = std::multiplies<>,
@@ -308,8 +299,7 @@ namespace kspc {
                   T,
                   innerp2_result_impl_t<I1, I2, I3, BOp2, BOp3, P1, P2, P3>> {};
 
-    template <typename I1, typename I2, typename I3,
-              typename T,
+    template <typename I1, typename I2, typename I3, typename T,
               typename BOp1 = std::plus<>,
               typename BOp2 = std::multiplies<>,
               typename BOp3 = std::multiplies<>,
@@ -318,33 +308,26 @@ namespace kspc {
               typename P3 = identity>
     using innerp2_result_t = typename innerp2_result<I1, I2, I3, T, BOp1, BOp2, BOp3, P1, P2, P3>::type;
 
-    template <typename I1, typename S1, typename I2, typename S2, typename I3, typename S3,
-              typename T,
+    template <typename I1, typename S1, typename I2, typename S2, typename I3, typename S3, typename T,
               typename BOp1 = std::plus<>,
               typename BOp2 = std::multiplies<>,
               typename BOp3 = std::multiplies<>,
               typename P1 = conj_fn,
               typename P2 = identity,
               typename P3 = identity,
-              typename U = std::decay_t<innerp2_result_t<I1, I2, I3, T, BOp1, BOp2, BOp3, P1, P2, P3>>>
-    constexpr
-    std::enable_if_t<std::conjunction_v<
-      is_sentinel_for<S1, I1>,
-      is_sentinel_for<S2, I2>,
-      is_sentinel_for<S3, I3>,
-      is_input_iterator<I1>,
-      is_input_iterator<I2>,
-      is_input_iterator<I3>,
-      std::is_convertible<T, U>,
-      std::is_assignable<U&, innerp2_result_t<I1, I2, I3, U, BOp1, BOp2, BOp3, P1, P2, P3>>>, U>
-    innerp2(I1 first1, S1 last1, I2 first2, S2 last2, I3 first3, S3 last3,
-            T init,
-            BOp1 bop1 = {},
-            BOp2 bop2 = {},
-            BOp3 bop3 = {},
-            P1 proj1 = {},
-            P2 proj2 = {},
-            P3 proj3 = {}) {
+              typename U = std::decay_t<innerp2_result_t<I1, I2, I3, T, BOp1, BOp2, BOp3, P1, P2, P3>>,
+              std::enable_if_t<std::conjunction_v<
+                is_sentinel_for<S1, I1>,
+                is_sentinel_for<S2, I2>,
+                is_sentinel_for<S3, I3>,
+                is_input_iterator<I1>,
+                is_input_iterator<I2>,
+                is_input_iterator<I3>,
+                std::is_convertible<T, U>,
+                std::is_assignable<U&, innerp2_result_t<I1, I2, I3, U, BOp1, BOp2, BOp3, P1, P2, P3>>>, std::nullptr_t> = nullptr>
+    constexpr auto
+    innerp2(I1 first1, S1 last1, I2 first2, S2 last2, I3 first3, S3 last3, T init,
+            BOp1 bop1 = {}, BOp2 bop2 = {}, BOp3 bop3 = {}, P1 proj1 = {}, P2 proj2 = {}, P3 proj3 = {}) {
       U ret = std::move(init);
       for (; first1 != last1; ++first1) {
         for (auto first3_copy = first3;
@@ -384,17 +367,12 @@ namespace kspc {
               is_range<R2>,
               is_range<R3>,
               std::is_default_constructible<T>>, std::nullptr_t> = nullptr>
-  constexpr auto innerp(R1&& r1, R2&& r2, R3&& r3,
-                        P1 proj1 = {},
-                        P2 proj2 = {},
-                        P3 proj3 = {},
-                        BOp1 bop1 = {},
-                        BOp2 bop2 = {},
-                        BOp3 bop3 = {}) {
+  constexpr auto
+  innerp(R1&& r1, R2&& r2, R3&& r3,
+         P1 proj1 = {}, P2 proj2 = {}, P3 proj3 = {}, BOp1 bop1 = {}, BOp2 bop2 = {}, BOp3 bop3 = {}) {
     using std::begin, std::end; // for ADL
     return detail::innerp2(
-             begin(r1), end(r1), begin(r2), end(r2), begin(r3), end(r3),
-             T{},
+             begin(r1), end(r1), begin(r2), end(r2), begin(r3), end(r3), T{},
              std::move(bop1),
              std::move(bop2),
              std::move(bop3),
