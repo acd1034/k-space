@@ -243,11 +243,12 @@ namespace kspc {
         return static_cast<const Derived&>(*this);
       }
 
-      template <typename Derived2, bool B = true, typename T = std::nullptr_t>
-      using enable_if_derived = std::enable_if_t<std::is_same_v<Derived2, Derived> && B, T>;
+      // TODO: impose requirements?
+      // template <typename D, bool B = true, typename T = std::nullptr_t>
+      // using enable_if_derived = std::enable_if_t<std::is_same_v<D, Derived> && B, T>;
 
-      template <typename Derived2>
-      using size_type_impl = std::make_unsigned_t<range_difference_t<Derived2>>;
+      template <typename D>
+      using size_type_impl = std::make_unsigned_t<range_difference_t<D>>;
 
     public:
       constexpr auto cbegin() const noexcept(noexcept(begin(derived()))) {
@@ -323,27 +324,27 @@ namespace kspc {
         return *std::prev(end(derived()));
       }
 
-      template <typename Derived2 = Derived, enable_if_derived<Derived2> = nullptr>
-      constexpr decltype(auto) operator[](const size_type_impl<Derived2> j) //
+      template <typename D = Derived>
+      constexpr decltype(auto) operator[](const size_type_impl<D> j) //
         noexcept(noexcept(begin(derived())[j])) {
         return begin(derived())[j];
       }
 
-      template <typename Derived2 = Derived, enable_if_derived<Derived2> = nullptr>
-      constexpr decltype(auto) operator[](const size_type_impl<Derived2> j) const
+      template <typename D = Derived>
+      constexpr decltype(auto) operator[](const size_type_impl<D> j) const
         noexcept(noexcept(begin(derived())[j])) {
         return begin(derived())[j];
       }
 
-      template <typename Derived2 = Derived, enable_if_derived<Derived2> = nullptr>
-      constexpr decltype(auto) at(const size_type_impl<Derived2> j) {
+      template <typename D = Derived>
+      constexpr decltype(auto) at(const size_type_impl<D> j) {
         if (j >= size())
           throw std::out_of_range("matrix_base::at");
         return (*this)[j];
       }
 
-      template <typename Derived2 = Derived, enable_if_derived<Derived2> = nullptr>
-      constexpr decltype(auto) at(const size_type_impl<Derived2> j) const {
+      template <typename D = Derived>
+      constexpr decltype(auto) at(const size_type_impl<D> j) const {
         if (j >= size())
           throw std::out_of_range("matrix_base::at");
         return (*this)[j];
