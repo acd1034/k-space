@@ -3,6 +3,7 @@
 #include <cassert>          // assert
 #include <cstddef>          // size_t, ptrdiff_t, nullptr_t
 #include <cstdint>          // int32_t
+#include <functional>       // invoke
 #include <initializer_list> // initializer_list
 #include <tuple>            // tuple
 #include <type_traits>      // enable_if_t, void_t, true_type, false_type, etc.

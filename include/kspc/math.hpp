@@ -78,8 +78,7 @@ namespace kspc {
     std::size_t l = 0, r = N;
     while (r - l > 1) {
       const std::size_t mid = l + (r - l) / 2;
-      if (mid * mid <= N)
-        l = mid;
+      if (mid * mid <= N) l = mid;
       else
         r = mid;
     }

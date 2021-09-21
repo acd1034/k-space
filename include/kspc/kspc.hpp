@@ -22,7 +22,7 @@ namespace kspc {
     template <typename T, std::size_t N,
               std::enable_if_t<std::is_arithmetic_v<T>, std::nullptr_t> = nullptr>
     inline constexpr auto operator-(const std::array<T, N>& x) {
-      std::array<T, N> ret;
+      std::array<T, N> ret{};
       for (std::size_t i = 0; i < N; ++i) ret[i] = -x[i];
       return ret;
     }
@@ -30,7 +30,7 @@ namespace kspc {
     template <typename T, std::size_t N,
               std::enable_if_t<std::is_arithmetic_v<T>, std::nullptr_t> = nullptr>
     inline constexpr auto operator+(const std::array<T, N>& x, const std::array<T, N>& y) {
-      std::array<T, N> ret;
+      std::array<T, N> ret{};
       for (std::size_t i = 0; i < N; ++i) ret[i] = x[i] + y[i];
       return ret;
     }
@@ -38,7 +38,7 @@ namespace kspc {
     template <typename T, std::size_t N,
               std::enable_if_t<std::is_arithmetic_v<T>, std::nullptr_t> = nullptr>
     inline constexpr auto operator-(const std::array<T, N>& x, const std::array<T, N>& y) {
-      std::array<T, N> ret;
+      std::array<T, N> ret{};
       for (std::size_t i = 0; i < N; ++i) ret[i] = x[i] - y[i];
       return ret;
     }
@@ -46,7 +46,7 @@ namespace kspc {
     template <typename T, std::size_t N,
               std::enable_if_t<std::is_arithmetic_v<T>, std::nullptr_t> = nullptr>
     inline constexpr auto operator*(T val, const std::array<T, N>& x) {
-      std::array<T, N> ret;
+      std::array<T, N> ret{};
       for (std::size_t i = 0; i < N; ++i) ret[i] = val * x[i];
       return ret;
     }
@@ -54,7 +54,7 @@ namespace kspc {
     template <typename T, std::size_t N,
               std::enable_if_t<std::is_arithmetic_v<T>, std::nullptr_t> = nullptr>
     inline constexpr auto operator*(const std::array<T, N>& x, T val) {
-      std::array<T, N> ret;
+      std::array<T, N> ret{};
       for (std::size_t i = 0; i < N; ++i) ret[i] = x[i] * val;
       return ret;
     }
@@ -62,7 +62,7 @@ namespace kspc {
     template <typename T, std::size_t N,
               std::enable_if_t<std::is_arithmetic_v<T>, std::nullptr_t> = nullptr>
     inline constexpr auto operator/(const std::array<T, N>& x, T val) {
-      std::array<T, N> ret;
+      std::array<T, N> ret{};
       for (std::size_t i = 0; i < N; ++i) ret[i] = x[i] / val;
       return ret;
     }
@@ -132,6 +132,7 @@ namespace kspc {
   inline constexpr double eps = eps_v<double>;
 
   /// %approx
+  // TODO: address complex
   template <typename T,
             std::enable_if_t<std::is_convertible_v<T, double>, std::nullptr_t> = nullptr>
   struct approx {
@@ -201,6 +202,7 @@ namespace kspc {
     const double epsabs_ = 0.0;                                                                    \
                                                                                                    \
   public:                                                                                          \
+    constexpr Name() {}                                                                            \
     constexpr explicit Name(const double epsrel, const double epsabs = 0.0)                        \
       : epsrel_(epsrel), epsabs_(epsabs) {}                                                        \
                                                                                                    \
@@ -338,15 +340,13 @@ namespace kspc {
 
       template <typename D = Derived>
       constexpr decltype(auto) at(const size_type_impl<D> j) {
-        if (j >= size())
-          throw std::out_of_range("matrix_base::at");
+        if (j >= size()) throw std::out_of_range("matrix_base::at");
         return (*this)[j];
       }
 
       template <typename D = Derived>
       constexpr decltype(auto) at(const size_type_impl<D> j) const {
-        if (j >= size())
-          throw std::out_of_range("matrix_base::at");
+        if (j >= size()) throw std::out_of_range("matrix_base::at");
         return (*this)[j];
       }
 
@@ -428,14 +428,12 @@ namespace kspc {
     }
 
     constexpr decltype(auto) at(const size_type j, const size_type k) {
-      if (j >= dim() || k >= dim())
-        throw std::out_of_range("matrix::at");
+      if (j >= dim() || k >= dim()) throw std::out_of_range("matrix::at");
       return (*this)(j, k);
     }
 
     constexpr decltype(auto) at(const size_type j, const size_type k) const {
-      if (j >= dim() || k >= dim())
-        throw std::out_of_range("matrix::at");
+      if (j >= dim() || k >= dim()) throw std::out_of_range("matrix::at");
       return (*this)(j, k);
     }
 
@@ -544,14 +542,12 @@ namespace kspc {
     }
 
     constexpr decltype(auto) at(const size_type j, const size_type k) {
-      if (j >= dim() || k >= dim())
-        throw std::out_of_range("ndmatrix::at");
+      if (j >= dim() || k >= dim()) throw std::out_of_range("ndmatrix::at");
       return (*this)(j, k);
     }
 
     constexpr decltype(auto) at(const size_type j, const size_type k) const {
-      if (j >= dim() || k >= dim())
-        throw std::out_of_range("ndmatrix::at");
+      if (j >= dim() || k >= dim()) throw std::out_of_range("ndmatrix::at");
       return (*this)(j, k);
     }
 

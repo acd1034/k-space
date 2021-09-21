@@ -48,7 +48,7 @@ namespace kspc {
   } // namespace detail
 
   template <std::size_t N>
-  double cquad(void* temp_p_params) {
+  auto cquad(void* temp_p_params) {
     auto* p_params = (params_t*)temp_p_params;
     assert(std::size(p_params->a) >= N);
     assert(std::size(p_params->b) >= N);
