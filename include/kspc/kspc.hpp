@@ -580,9 +580,9 @@ namespace kspc {
   /// mel
   // clang-format off
   template <typename M, typename Vs,
-  std::enable_if_t<std::conjunction_v<
-    is_range<M>, is_fixed_size_matrix<M>,
-    is_range<Vs>, is_range<range_reference_t<Vs>>>, std::nullptr_t> = nullptr>
+            std::enable_if_t<std::conjunction_v<
+              is_range<M>, is_fixed_size_matrix<M>,
+              is_range<Vs>, is_range<range_reference_t<Vs>>>, std::nullptr_t> = nullptr>
   // clang-format on
   constexpr auto mel(const M& op, const Vs& vs) {
     constexpr std::size_t N = fixed_size_matrix_dim_v<M>;
@@ -602,9 +602,9 @@ namespace kspc {
   /// @overload
   // clang-format off
   template <typename M, typename Vs,
-  std::enable_if_t<std::conjunction_v<
-    is_range<M>, std::negation<is_fixed_size_matrix<M>>,
-    is_range<Vs>, is_range<range_reference_t<Vs>>>, std::nullptr_t> = nullptr>
+            std::enable_if_t<std::conjunction_v<
+              is_range<M>, std::negation<is_fixed_size_matrix<M>>,
+              is_range<Vs>, is_range<range_reference_t<Vs>>>, std::nullptr_t> = nullptr>
   // clang-format on
   constexpr auto mel(const M& op, const Vs& vs) {
     using std::size;

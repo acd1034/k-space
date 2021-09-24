@@ -49,16 +49,46 @@ namespace kspc {
   template <typename T>
   inline constexpr bool is_complex_v = is_complex<T>::value;
 
+  /// real
+  template <typename T, std::enable_if_t<is_complex_v<std::decay_t<T>>, std::nullptr_t> = nullptr>
+  inline constexpr auto real(T&& x) noexcept(noexcept(std::real(std::forward<T>(x))))
+    -> decltype((std::real(std::forward<T>(x)))) {
+    return std::real(std::forward<T>(x));
+  }
+
+  /// @overload
+  template <typename T, std::enable_if_t<!is_complex_v<std::decay_t<T>>, std::nullptr_t> = nullptr>
+  inline constexpr T&& real(T&& x) noexcept(noexcept(std::forward<T>(x))) {
+    return std::forward<T>(x);
+  }
+
+  /// imag
+  template <typename T, std::enable_if_t<is_complex_v<std::decay_t<T>>, std::nullptr_t> = nullptr>
+  inline constexpr auto imag(T&& x) noexcept(noexcept(std::imag(std::forward<T>(x))))
+    -> decltype((std::imag(std::forward<T>(x)))) {
+    return std::imag(std::forward<T>(x));
+  }
+
+  /// @overload
+  // clang-format off
+  template <typename T,
+            std::enable_if_t<std::conjunction_v<
+              std::negation<is_complex<std::decay_t<T>>>,
+              std::is_default_constructible<std::decay_t<T>>>, std::nullptr_t> = nullptr>
+  // clang-format on
+  inline constexpr auto imag(T&& x) noexcept(noexcept(std::decay_t<T>{})) {
+    return std::decay_t<T>{};
+  }
+
   /// conj
-  template <typename T, std::enable_if_t<is_complex_v<remove_cvref_t<T>>, std::nullptr_t> = nullptr>
+  template <typename T, std::enable_if_t<is_complex_v<std::decay_t<T>>, std::nullptr_t> = nullptr>
   inline constexpr auto conj(T&& x) noexcept(noexcept(std::conj(std::forward<T>(x))))
     -> decltype((std::conj(std::forward<T>(x)))) {
     return std::conj(std::forward<T>(x));
   }
 
   /// @overload
-  template <typename T,
-            std::enable_if_t<!is_complex_v<remove_cvref_t<T>>, std::nullptr_t> = nullptr>
+  template <typename T, std::enable_if_t<!is_complex_v<std::decay_t<T>>, std::nullptr_t> = nullptr>
   inline constexpr T&& conj(T&& x) noexcept(noexcept(std::forward<T>(x))) {
     return std::forward<T>(x);
   }
