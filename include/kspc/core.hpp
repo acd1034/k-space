@@ -13,9 +13,9 @@
 #include <iterator> // begin, end
 
 namespace kspc {
-  /// false_v
+  /// always_false
   template <typename...>
-  inline constexpr bool false_v = false;
+  inline constexpr bool always_false = false;
 
   /// builtin_array_noextent
   template <typename T>
