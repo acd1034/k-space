@@ -296,13 +296,15 @@ namespace kspc {
   namespace detail {
     // is_weakly_equality_comparable_with
 
-    template <typename T, typename U>
+    template <typename T, typename U,
+              typename T2 = std::remove_reference_t<T>,
+              typename U2 = std::remove_reference_t<U>>
     struct is_weakly_equality_comparable_with
       : std::conjunction<
-          is_detected<equal_to_t, const std::remove_reference_t<T>&, const std::remove_reference_t<U>&>,     // -> boolean-testable
-          is_detected<equal_to_t, const std::remove_reference_t<U>&, const std::remove_reference_t<T>&>,     // -> boolean-testable
-          is_detected<not_equal_to_t, const std::remove_reference_t<T>&, const std::remove_reference_t<U>&>, // -> boolean-testable
-          is_detected<not_equal_to_t, const std::remove_reference_t<U>&, const std::remove_reference_t<T>&>  // -> boolean-testable
+          is_detected<equal_to_t, const T2&, const U2&>,     // -> boolean-testable
+          is_detected<equal_to_t, const U2&, const T2&>,     // -> boolean-testable
+          is_detected<not_equal_to_t, const T2&, const U2&>, // -> boolean-testable
+          is_detected<not_equal_to_t, const U2&, const T2&>  // -> boolean-testable
           > {};
 
     template <typename T, typename U>
