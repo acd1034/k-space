@@ -4,7 +4,7 @@ var indexSectionsWithContent =
   1: "acfimnprstw",
   2: "ciklm",
   3: "acdfilmnos",
-  4: "efilpst",
+  4: "aefilpst",
   5: "birst",
   6: "k"
 };

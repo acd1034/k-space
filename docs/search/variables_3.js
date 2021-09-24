@@ -1,11 +1,14 @@
 var searchData=
 [
-  ['ln10_239',['ln10',['../kspc_8hpp.html#a25a74df4d2bf42d205ed4f8125cd18b6',1,'kspc']]],
-  ['ln10_5fv_240',['ln10_v',['../kspc_8hpp.html#a69125ae7ba71facf844e24bacddece19',1,'kspc']]],
-  ['ln2_241',['ln2',['../kspc_8hpp.html#a83c8d4b6d90b4b4665905f45bfcc8c52',1,'kspc']]],
-  ['ln2_5fv_242',['ln2_v',['../kspc_8hpp.html#a45a293f1e65e53c63faca2d95448652f',1,'kspc']]],
-  ['log10e_243',['log10e',['../kspc_8hpp.html#ac29a890bdb50e859b54b7cb09be04e74',1,'kspc']]],
-  ['log10e_5fv_244',['log10e_v',['../kspc_8hpp.html#af4c24bd3792563ecb4f6e92cab89a744',1,'kspc']]],
-  ['log2e_245',['log2e',['../kspc_8hpp.html#a04a47448bedcbc18016d5a824ebe7f01',1,'kspc']]],
-  ['log2e_5fv_246',['log2e_v',['../kspc_8hpp.html#a7bbf4bf2826a14150c2f1de8bf740c32',1,'kspc']]]
+  ['i_228',['i',['../kspc_8hpp.html#a89addcbe8fa6c91e5c8a634636a41e28',1,'kspc']]],
+  ['i_5fv_229',['i_v',['../kspc_8hpp.html#a1361ffbf229a8d1e67163f7c506f1aad',1,'kspc']]],
+  ['is_5fcomplex_5fv_230',['is_complex_v',['../math_8hpp.html#a689b2a2abfa8dabacc5f91bab321529e',1,'kspc']]],
+  ['is_5fdetected_5fv_231',['is_detected_v',['../core_8hpp.html#a44228db2bf9c0b4baeaaf635b6a6ceff',1,'kspc']]],
+  ['is_5ffixed_5fsize_5fmatrix_5fv_232',['is_fixed_size_matrix_v',['../math_8hpp.html#a320e37004d7e4bce0a641ff1dff5b280',1,'kspc']]],
+  ['is_5findirectly_5freadable_5fv_233',['is_indirectly_readable_v',['../core_8hpp.html#a12f639b92a7180f95cc0ddeca0a3f33b',1,'kspc']]],
+  ['is_5finput_5fiterator_5fv_234',['is_input_iterator_v',['../core_8hpp.html#a3ebd5ebb178a06d8f4a2edf8a13708b9',1,'kspc']]],
+  ['is_5finput_5for_5foutput_5fiterator_5fv_235',['is_input_or_output_iterator_v',['../core_8hpp.html#a37e8e17aa3e99a6e43ffeb97a0159d53',1,'kspc']]],
+  ['is_5frange_5fv_236',['is_range_v',['../core_8hpp.html#a68a34a4e6cb4df747d6232228634cf4e',1,'kspc']]],
+  ['is_5fsentinel_5ffor_5fv_237',['is_sentinel_for_v',['../core_8hpp.html#a3d5a702a935978fbd2a9eebd652e9c04',1,'kspc']]],
+  ['is_5fweakly_5fincrementable_5fv_238',['is_weakly_incrementable_v',['../core_8hpp.html#a0620895011a326ad05bb28cf22d56672',1,'kspc']]]
 ];
