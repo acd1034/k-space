@@ -13,6 +13,14 @@
 #include <iterator> // begin, end
 
 namespace kspc {
+  /// Implementation details are here.
+  namespace detail {}
+
+  /// `using std::begin, std::end` is declared in this namespace.
+  namespace detail2 {
+    using std::begin, std::end; // for ADL
+  }
+
   /// always_false
   template <typename...>
   inline constexpr bool always_false = false;
@@ -59,6 +67,7 @@ namespace kspc {
 
   // detection idiom
 
+  /// @cond
   namespace detail {
     template <typename AlwaysVoid, template <typename...> typename Op, typename... Args>
     struct is_detected_impl : std::false_type {};
@@ -66,6 +75,7 @@ namespace kspc {
     template <template <typename...> typename Op, typename... Args>
     struct is_detected_impl<std::void_t<Op<Args...>>, Op, Args...> : std::true_type {};
   } // namespace detail
+  /// @endcond
 
   /// %is_detected
   template <template <typename...> typename Op, typename... Args>
@@ -77,6 +87,7 @@ namespace kspc {
 
   // alias templates for return types of operators
 
+  /// @cond
   namespace detail {
     template <class T, class U>
     using minus_t = decltype(std::declval<T>() - std::declval<U>());
@@ -96,6 +107,7 @@ namespace kspc {
     template <typename T, typename U>
     using not_equal_to_t = decltype(std::declval<T>() != std::declval<U>());
   } // namespace detail
+    /// @endcond
 
   // iterator associated types (one part):
   // [x] incrementable_traits
@@ -106,6 +118,7 @@ namespace kspc {
   // incrementable_traits
 
   // clang-format off
+  /// @cond
   namespace detail {
     template <class, typename = void>
     struct incrementable_traits_impl {};
@@ -125,6 +138,7 @@ namespace kspc {
       using difference_type = T;
     };
   } // namespace detail
+  /// @endcond
 
   /// %incrementable_traits
   template <class T, class = void>
@@ -150,6 +164,7 @@ namespace kspc {
 
   // indirectly_readable_traits
 
+  /// @cond
   namespace detail {
     template <class, typename = void>
     struct indirectly_readable_traits_impl {};
@@ -159,6 +174,7 @@ namespace kspc {
       using value_type = std::remove_cv_t<typename T::element_type>;
     };
   } // namespace detail
+  /// @endcond
 
   /// %indirectly_readable_traits
   template <class T, class = void>
@@ -211,6 +227,7 @@ namespace kspc {
   // [x] is_weakly_equality_comparable_with<T, U> (exposition only)
   // [x] is_sentinel_for<S, I> = is_input_or_output_iterator<I> && is_weakly_equality_comparable_with<S, I>
 
+  /// @cond
   namespace detail {
     // is_dereferenceable
 
@@ -242,6 +259,7 @@ namespace kspc {
     template <typename T>
     inline constexpr bool is_post_incrementable_v = is_post_incrementable<T>::value;
   } // namespace detail
+  /// @endcond
 
   /// %is_weakly_incrementable
   template <typename I>
@@ -293,6 +311,7 @@ namespace kspc {
   template <typename I>
   inline constexpr bool is_input_iterator_v = is_input_iterator<I>::value;
 
+  /// @cond
   namespace detail {
     // is_weakly_equality_comparable_with
 
@@ -310,6 +329,7 @@ namespace kspc {
     template <typename T, typename U>
     inline constexpr bool is_weakly_equality_comparable_with_v = is_weakly_equality_comparable_with<T, U>::value;
   } // namespace detail
+  /// @endcond
 
   /// %is_sentinel_for
   template <typename S, typename I>
@@ -327,15 +347,15 @@ namespace kspc {
   // range concept:
   // [x] is_range
 
+  /// @cond
   namespace detail2 {
-    using std::begin, std::end; // for ADL
-
     template <typename T>
     using begin_t = decltype(begin(std::declval<T>()));
 
     template <typename T>
     using end_t = decltype(end(std::declval<T>()));
   } // namespace detail2
+  /// @endcond
 
   /// %is_range
   template <typename R>

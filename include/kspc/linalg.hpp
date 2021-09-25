@@ -6,6 +6,7 @@
 #include <kspc/math.hpp>
 
 namespace kspc {
+  /// @cond
   namespace lapack {
     extern "C" {
     void zheev_(const char& JOBZ, const char& UPLO, const int& N, std::complex<double>* A,
@@ -13,6 +14,7 @@ namespace kspc {
                 double* RWORK, int& INFO, int JOBZlen, int UPLOlen);
     }
   } // namespace lapack
+    /// @endcond
 
   /// diagonalize hermitian matrix
   // clang-format off

@@ -155,6 +155,7 @@ namespace kspc {
   // sum
 
   // clang-format off
+  /// @cond
   namespace detail {
     // NOTE: irrelevant to `std::projected`
     template <typename P, typename I>
@@ -182,6 +183,7 @@ namespace kspc {
       return ret;
     }
   } // namespace detail
+  /// @endcond
 
   /// sum
   /// almost same as `std::accumulate` but does not require initial value.
@@ -201,6 +203,7 @@ namespace kspc {
 
   // innerp
 
+  /// @cond
   namespace detail {
     template <typename I1, typename I2, typename T,
               typename BOp1 = std::plus<>,
@@ -244,6 +247,7 @@ namespace kspc {
       return ret;
     }
   } // namespace detail
+  /// @endcond
 
   /// innerp
   /// almost same as `std::inner_product` but does not require initial value.
@@ -278,6 +282,7 @@ namespace kspc {
 
   // innerp2: ([1] BOp2 ([2] BOp3 [3])) BOp1 ...
 
+  /// @cond
   namespace detail {
     // NOTE: irrelevant to `std::projected`
     template <typename BOp, typename P1, typename I1, typename P2, typename I2>
@@ -353,6 +358,7 @@ namespace kspc {
       return ret;
     }
   } // namespace detail
+  /// @endcond
 
   /// `innerp` with matrix
   /// WORKAROUND: difficulty in omitting the initial value.

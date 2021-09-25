@@ -17,6 +17,7 @@ namespace kspc {
     std::vector<double> tmp_x;
   }; // struct params_t
 
+  /// @cond
   namespace detail {
     inline constexpr std::size_t wssize = 1000;
 
@@ -47,6 +48,7 @@ namespace kspc {
       return (*(p_params->p_fn))(p_params->tmp_x, (void*)p_params);
     }
   } // namespace detail
+  /// @endcond
 
   /// D-dimensional integral
   template <std::size_t D>

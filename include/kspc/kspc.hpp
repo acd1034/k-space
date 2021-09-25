@@ -123,6 +123,7 @@ namespace kspc {
 
   // approximate comparison
 
+  /// @cond
   namespace detail {
     template <typename T,
               std::enable_if_t<std::is_convertible_v<T, double>, std::nullptr_t> = nullptr>
@@ -132,6 +133,7 @@ namespace kspc {
       return max(max(epsabs, 0.0), abs(isinf(value) ? 0.0 : value) * max(epsrel, 0.0));
     }
   } // namespace detail
+  /// @endcond
 
   /// default epsilon
   template <typename T>
@@ -662,10 +664,12 @@ namespace kspc {
 
   // math constants
 
+  /// @cond
   namespace detail {
     template <typename T>
     using enable_if_floating = std::enable_if_t<std::is_floating_point_v<T>, T>;
   } // namespace detail
+    /// @endcond
 
   // clang-format off
   /// Imaginary unit
