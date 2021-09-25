@@ -1,11 +1,13 @@
 var searchData=
 [
-  ['make_5fsigned_5fv_85',['make_signed_v',['../math_8hpp.html#a09d760d9c47c778498c3e521373cbc12',1,'kspc::make_signed_v(const T &amp;x) noexcept(noexcept(static_cast&lt; std::make_signed_t&lt; T &gt;&gt;(x)))'],['../math_8hpp.html#a50e89aa824d65865fd209cf75f4d082f',1,'kspc::make_signed_v(T &amp;&amp;x) noexcept(noexcept(std::forward&lt; T &gt;(x)))']]],
-  ['make_5funsigned_5fv_86',['make_unsigned_v',['../math_8hpp.html#a8f5dc460d06df63e1f97b43136442278',1,'kspc::make_unsigned_v(const T &amp;x) noexcept(noexcept(static_cast&lt; std::make_unsigned_t&lt; T &gt;&gt;(x)))'],['../math_8hpp.html#a4f440561437f86c59c9db0bca5137017',1,'kspc::make_unsigned_v(T &amp;&amp;x) noexcept(noexcept(std::forward&lt; T &gt;(x)))']]],
-  ['math_2ehpp_87',['math.hpp',['../math_8hpp.html',1,'']]],
-  ['matrix_88',['matrix',['../structkspc_1_1matrix.html',1,'kspc::matrix&lt; T, N &gt;'],['../kspc_8hpp.html#a609a0a2e7491622a3cba90137d8b6676',1,'kspc::matrix(T, U...) -&gt; matrix&lt; T, isqrt(1UL+sizeof...(U))&gt;']]],
-  ['matrix_5fbase_89',['matrix_base',['../structkspc_1_1detail2_1_1matrix__base.html',1,'kspc::detail2']]],
-  ['matrix_5fbase_3c_20matrix_3c_20t_2c_20n_20_3e_20_3e_90',['matrix_base&lt; matrix&lt; T, N &gt; &gt;',['../structkspc_1_1detail2_1_1matrix__base.html',1,'kspc::detail2']]],
-  ['matrix_5fbase_3c_20ndmatrix_3c_20t_20_3e_20_3e_91',['matrix_base&lt; ndmatrix&lt; T &gt; &gt;',['../structkspc_1_1detail2_1_1matrix__base.html',1,'kspc::detail2']]],
-  ['mel_92',['mel',['../kspc_8hpp.html#a90634ed5d1f881771d66e09414f4ebd1',1,'kspc']]]
+  ['lerp_76',['lerp',['../kspc_8hpp.html#a8d7add5d5bac48379ae68d9286e3adf5',1,'kspc']]],
+  ['linalg_2ehpp_77',['linalg.hpp',['../linalg_8hpp.html',1,'']]],
+  ['ln10_78',['ln10',['../kspc_8hpp.html#a25a74df4d2bf42d205ed4f8125cd18b6',1,'kspc']]],
+  ['ln10_5fv_79',['ln10_v',['../kspc_8hpp.html#a69125ae7ba71facf844e24bacddece19',1,'kspc']]],
+  ['ln2_80',['ln2',['../kspc_8hpp.html#a83c8d4b6d90b4b4665905f45bfcc8c52',1,'kspc']]],
+  ['ln2_5fv_81',['ln2_v',['../kspc_8hpp.html#a45a293f1e65e53c63faca2d95448652f',1,'kspc']]],
+  ['log10e_82',['log10e',['../kspc_8hpp.html#ac29a890bdb50e859b54b7cb09be04e74',1,'kspc']]],
+  ['log10e_5fv_83',['log10e_v',['../kspc_8hpp.html#af4c24bd3792563ecb4f6e92cab89a744',1,'kspc']]],
+  ['log2e_84',['log2e',['../kspc_8hpp.html#a04a47448bedcbc18016d5a824ebe7f01',1,'kspc']]],
+  ['log2e_5fv_85',['log2e_v',['../kspc_8hpp.html#a7bbf4bf2826a14150c2f1de8bf740c32',1,'kspc']]]
 ];
