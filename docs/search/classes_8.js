@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['sum_5fconstraints_198',['sum_constraints',['../structkspc_1_1detail_1_1sum__constraints.html',1,'kspc::detail']]]
+  ['type_5fidentity_156',['type_identity',['../structkspc_1_1type__identity.html',1,'kspc']]]
 ];

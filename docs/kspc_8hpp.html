@@ -67,8 +67,8 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
+<a href="#namespaces">Namespaces</a> &#124;
 <a href="#define-members">Macros</a> &#124;
-<a href="#typedef-members">Typedefs</a> &#124;
 <a href="#func-members">Functions</a> &#124;
 <a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
@@ -108,17 +108,16 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">variadic-size matrix  <a href="structkspc_1_1ndmatrix.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
+Namespaces</h2></td></tr>
+<tr class="memitem:namespacekspc_1_1detail2"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekspc_1_1detail2.html">kspc::detail2</a></td></tr>
+<tr class="memdesc:namespacekspc_1_1detail2"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>using std::begin, std::end</code> is declared in this namespace. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
 <tr class="memitem:a52f6d259a7db534b501fb3607d826652"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><b>KSPC_DEFINE_APPROXIMATE_COMPARISON</b>(Name,  Op)</td></tr>
 <tr class="separator:a52f6d259a7db534b501fb3607d826652"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
-Typedefs</h2></td></tr>
-<tr class="memitem:a055fc5a06e2fef1fc0f9881a783ca24d"><td class="memTemplParams" colspan="2"><a id="a055fc5a06e2fef1fc0f9881a783ca24d"></a>
-template&lt;typename T &gt; </td></tr>
-<tr class="memitem:a055fc5a06e2fef1fc0f9881a783ca24d"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::detail::enable_if_floating</b> = std::enable_if_t&lt; std::is_floating_point_v&lt; T &gt;, T &gt;</td></tr>
-<tr class="separator:a055fc5a06e2fef1fc0f9881a783ca24d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
@@ -178,10 +177,6 @@ template&lt;typename T , std::enable_if_t&lt; std::is_arithmetic_v&lt; T &gt;, s
 template&lt;typename T , std::enable_if_t&lt; std::is_arithmetic_v&lt; T &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
 <tr class="memitem:a6be6485f1fe2e3ac131851e0a42aa3b4"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::operator/</b> (const std::vector&lt; T &gt; &amp;x, T val)</td></tr>
 <tr class="separator:a6be6485f1fe2e3ac131851e0a42aa3b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8a86e38cef887121e4a8ec78a0cf3f14"><td class="memTemplParams" colspan="2"><a id="a8a86e38cef887121e4a8ec78a0cf3f14"></a>
-template&lt;typename T , std::enable_if_t&lt; std::is_convertible_v&lt; T, double &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
-<tr class="memitem:a8a86e38cef887121e4a8ec78a0cf3f14"><td class="memTemplItemLeft" align="right" valign="top">constexpr double&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::detail::calclate_margin</b> (const T &amp;value, const double epsrel, const double epsabs)</td></tr>
-<tr class="separator:a8a86e38cef887121e4a8ec78a0cf3f14"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7542a6b450267008da1604caa180138d"><td class="memTemplParams" colspan="2"><a id="a7542a6b450267008da1604caa180138d"></a>
 template&lt;typename T &gt; </td></tr>
 <tr class="memitem:a7542a6b450267008da1604caa180138d"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="kspc_8hpp.html#a7542a6b450267008da1604caa180138d">kspc::approx</a> (T, const double=eps, const double=0.0) -&gt; approx&lt; T &gt;</td></tr>
@@ -421,7 +416,7 @@ constexpr double&#160;</td><td class="memItemRight" valign="bottom"><a class="el
 <div class="line">      return x Op <a class="code" href="kspc_8hpp.html#a7542a6b450267008da1604caa180138d">approx</a>(y, epsrel_, epsabs_);                                                     \</div>
 <div class="line">    }                                                                                              \</div>
 <div class="line">  };</div>
-<div class="ttc" id="akspc_8hpp_html_a0e12b80d3cd73fbf5bc3458306b7e17a"><div class="ttname"><a href="kspc_8hpp.html#a0e12b80d3cd73fbf5bc3458306b7e17a">kspc::eps</a></div><div class="ttdeci">constexpr double eps</div><div class="ttdoc">alias for eps_v&lt;double&gt;</div><div class="ttdef"><b>Definition:</b> kspc.hpp:141</div></div>
+<div class="ttc" id="akspc_8hpp_html_a0e12b80d3cd73fbf5bc3458306b7e17a"><div class="ttname"><a href="kspc_8hpp.html#a0e12b80d3cd73fbf5bc3458306b7e17a">kspc::eps</a></div><div class="ttdeci">constexpr double eps</div><div class="ttdoc">alias for eps_v&lt;double&gt;</div><div class="ttdef"><b>Definition:</b> kspc.hpp:143</div></div>
 <div class="ttc" id="akspc_8hpp_html_a7542a6b450267008da1604caa180138d"><div class="ttname"><a href="kspc_8hpp.html#a7542a6b450267008da1604caa180138d">kspc::approx</a></div><div class="ttdeci">approx(T, const double=eps, const double=0.0) -&gt; approx&lt; T &gt;</div><div class="ttdoc">deduction guide for approx</div></div>
 </div><!-- fragment -->
 </div>

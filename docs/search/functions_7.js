@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['ndmatrix_222',['ndmatrix',['../kspc_8hpp.html#a105b89bafa2fbdff348dbbd9ec0c7239',1,'kspc']]]
+  ['ndmatrix_180',['ndmatrix',['../kspc_8hpp.html#a105b89bafa2fbdff348dbbd9ec0c7239',1,'kspc']]]
 ];
