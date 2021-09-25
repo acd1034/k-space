@@ -1,6 +1,8 @@
 /// @file math.hpp
 #pragma once
+#include <array>
 #include <complex>
+#include <limits>
 #include <kspc/core.hpp>
 
 namespace kspc {
@@ -106,8 +108,9 @@ namespace kspc {
     }
   }; // struct conj_fn
 
-  // fixed-size matrix optimization
+  // fixed-size array optimization
 
+  /// sqrt for unsigned integer
   inline constexpr std::size_t isqrt(const std::size_t N) {
     std::size_t l = 0, r = N;
     while (r - l > 1) {
@@ -190,6 +193,7 @@ namespace kspc {
   constexpr auto sum(R&& r, P proj = {}, BOp bop = {}) {
     using std::begin, std::end, std::empty; // for ADL
     assert(!empty(r));
+
     auto first = begin(r);
     auto init = std::invoke(proj, *first++);
     return detail::sum(first, end(r), init, std::move(bop), std::move(proj));

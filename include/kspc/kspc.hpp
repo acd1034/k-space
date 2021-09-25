@@ -4,7 +4,6 @@
 #include <array>
 #include <cmath> // exp, pow, cosh, sinh, etc.
 #include <complex>
-#include <numeric>
 #include <vector>
 #include <kspc/math.hpp>
 
