@@ -223,7 +223,7 @@ namespace kspc {
               std::enable_if_t<std::is_convertible_v<U, double>, std::nullptr_t> = nullptr>
     friend inline constexpr bool //
     operator==(const std::complex<U>& x, const approx& y) {
-      using std::abs;
+      using std::abs; // for ADL
       return std::abs(y.value_ - x) <= y.margin_;
     }
     // boilerplate
@@ -452,7 +452,6 @@ namespace kspc {
     // [x] dim
     // [x] operator()(const size_type j, const size_type k)
     // [x] at(const size_type j, const size_type k)
-    // [x] is_hermitian
 
     constexpr size_type dim() const noexcept {
       return N;
@@ -476,22 +475,6 @@ namespace kspc {
     constexpr decltype(auto) at(const size_type j, const size_type k) const {
       if (j >= dim() || k >= dim()) throw std::out_of_range("matrix::at");
       return (*this)(j, k);
-    }
-
-    template <typename Proj1 = conj_fn, typename Proj2 = identity, typename Comp = approx_eq>
-    constexpr bool is_hermitian(Proj1 proj1 = {}, Proj2 proj2 = {}, Comp comp = {}) const {
-      for (size_type j = 0; j < dim(); ++j) {
-        for (size_type k = j; k < dim(); ++k) {
-          // clang-format off
-          if (!std::invoke(
-                 comp,
-                 std::invoke(proj1, (*this)(j, k)),
-                 std::invoke(proj2, (*this)(k, j))))
-            return false;
-          // clang-format on
-        }
-      }
-      return true;
     }
   }; // struct matrix
 
@@ -565,7 +548,6 @@ namespace kspc {
     // [x] dim
     // [x] operator()(const size_type j, const size_type k)
     // [x] at(const size_type j, const size_type k)
-    // [x] is_hermitian
     // [x] reshape
 
     constexpr size_type dim() const noexcept {
@@ -592,22 +574,6 @@ namespace kspc {
       return (*this)(j, k);
     }
 
-    template <typename Proj1 = conj_fn, typename Proj2 = identity, typename Comp = approx_eq>
-    constexpr bool is_hermitian(Proj1 proj1 = {}, Proj2 proj2 = {}, Comp comp = {}) const {
-      for (size_type j = 0; j < dim(); ++j) {
-        for (size_type k = j; k < dim(); ++k) {
-          // clang-format off
-          if (!std::invoke(
-                 comp,
-                 std::invoke(proj1, (*this)(j, k)),
-                 std::invoke(proj2, (*this)(k, j))))
-            return false;
-          // clang-format on
-        }
-      }
-      return true;
-    }
-
     constexpr void reshape(const size_type n) noexcept(noexcept(instance_.resize())) {
       dim_ = n;
       instance_.resize(n * n);
@@ -618,6 +584,25 @@ namespace kspc {
   template <typename I, typename S>
   ndmatrix(I, S) -> ndmatrix<iter_value_t<I>>;
 
+  /// hermitian
+  template <typename M, typename Proj1 = conj_fn, typename Proj2 = identity,
+            typename Comp = approx_eq, std::enable_if_t<is_range_v<M>, std::nullptr_t> = nullptr>
+  constexpr bool hermitian(const M& op, Proj1 proj1 = {}, Proj2 proj2 = {}, Comp comp = {}) {
+    using std::size; // for ADL
+    const std::size_t dim = isqrt(size(op));
+    for (std::size_t j = 0; j < dim; ++j) {
+      for (std::size_t k = j; k < dim; ++k) {
+        // clang-format off
+        if (!std::invoke(comp,
+                         std::invoke(proj1, op[j * dim + k]),
+                         std::invoke(proj2, op[k * dim + j])))
+          return false;
+        // clang-format on
+      }
+    }
+    return true;
+  }
+
   /// mel
   // clang-format off
   template <typename M, typename Vs,
@@ -627,7 +612,7 @@ namespace kspc {
   // clang-format on
   constexpr auto mel(const M& op, const Vs& vs) {
     constexpr std::size_t N = isqrt(fixed_size_array_size_v<M>);
-    using std::size;
+    using std::size; // for ADL
     assert(size(vs) == N);
 
     using T = std::common_type_t<range_value_t<M>, range_value_t<range_reference_t<Vs>>>;
@@ -648,7 +633,7 @@ namespace kspc {
               is_range<Vs>, is_range<range_reference_t<Vs>>>, std::nullptr_t> = nullptr>
   // clang-format on
   constexpr auto mel(const M& op, const Vs& vs) {
-    using std::size;
+    using std::size; // for ADL
     const std::size_t n = std::size(vs);
     assert(size(op) == n * n);
 

@@ -98,7 +98,7 @@ inline constexpr auto in_BZ = kspc::make_in_BZ(g);
 double Bz_(const std::vector<double>& k, void* temp_p_params) {
   if (!in_BZ(k)) return 0.0;
   auto H = H_(k, temp_p_params);
-  assert(!H.is_hermitian());
+  assert(kspc::hermitian(H));
   auto [E, U] = kspc::zheev(H);
   auto dHdkx = kspc::mel(dHdkx_(k, temp_p_params), U);
   auto dHdky = kspc::mel(dHdky_(k, temp_p_params), U);
