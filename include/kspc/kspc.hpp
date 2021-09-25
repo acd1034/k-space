@@ -2,7 +2,7 @@
 #pragma once
 #include <algorithm> // all_of
 #include <array>
-#include <cmath> // exp, pow, cosh, sinh
+#include <cmath> // exp, pow, cosh, sinh, etc.
 #include <complex>
 #include <numeric>
 #include <vector>
@@ -124,6 +124,16 @@ namespace kspc {
 
   // approximate comparison
 
+  namespace detail {
+    template <typename T,
+              std::enable_if_t<std::is_convertible_v<T, double>, std::nullptr_t> = nullptr>
+    constexpr double calclate_margin( //
+      const T& value, const double epsrel, const double epsabs) {
+      using std::isinf, std::abs, std::max; // for ADL
+      return max(max(epsabs, 0.0), abs(isinf(value) ? 0.0 : value) * max(epsrel, 0.0));
+    }
+  } // namespace detail
+
   /// default epsilon
   template <typename T>
   inline constexpr T eps_v = std::enable_if_t<std::is_arithmetic_v<T>, T>(1e-6);
@@ -132,38 +142,36 @@ namespace kspc {
   inline constexpr double eps = eps_v<double>;
 
   /// %approx
-  // TODO: address complex
-  template <typename T,
-            std::enable_if_t<std::is_convertible_v<T, double>, std::nullptr_t> = nullptr>
+  template <typename T, typename = void>
   struct approx {
+    static_assert(always_false<T>);
+  };
+
+  /// partial specialization of @link approx approx @endlink
+  template <typename T>
+  struct approx<T, std::enable_if_t<std::is_convertible_v<T, double>>> {
   private:
     const T value_;
     const double margin_ = eps;
 
-    constexpr double calclate_margin(const T& value, const double epsrel,
-                                     const double epsabs) const noexcept {
-      using std::isinf, std::abs, std::max; // for ADL
-      return max(max(epsabs, 0.0), abs(isinf(value) ? 0.0 : value) * max(epsrel, 0.0));
-    }
-
   public:
-    constexpr explicit approx(const T& value, const double epsrel = eps,
-                              const double epsabs = 0.0) noexcept
-      : value_(value), margin_(calclate_margin(value_, epsrel, epsabs)) {}
-    constexpr explicit approx(T&& value, const double epsrel = eps,
-                              const double epsabs = 0.0) noexcept
-      : value_(std::move(value)), margin_(calclate_margin(value_, epsrel, epsabs)) {}
+    constexpr explicit approx(const T& value, const double epsrel = eps, const double epsabs = 0.0)
+      : value_(value), margin_(detail::calclate_margin(value_, epsrel, epsabs)) {}
+    constexpr explicit approx(T&& value, const double epsrel = eps, const double epsabs = 0.0)
+      : value_(std::move(value)), margin_(detail::calclate_margin(value_, epsrel, epsabs)) {}
 
-    // Performs equivalent check of std::abs(x - y.value_) <= y.margin_
-    // But without the subtraction to allow for infinity in comparison
-    template <typename U>
+    template <typename U,
+              std::enable_if_t<std::is_convertible_v<U, double>, std::nullptr_t> = nullptr>
     friend inline constexpr bool
     operator<(const U& x, const approx& y) noexcept(noexcept(x + y.margin_ < y.value_)) {
+      // avoid the subtraction with infinity
       return x + y.margin_ < y.value_;
     }
-    template <typename U>
+    template <typename U,
+              std::enable_if_t<std::is_convertible_v<U, double>, std::nullptr_t> = nullptr>
     friend inline constexpr bool
     operator>(const U& x, const approx& y) noexcept(noexcept(x > y.value_ + y.margin_)) {
+      // avoid the subtraction with infinity
       return x > y.value_ + y.margin_;
     }
     // boilerplate
@@ -189,9 +197,45 @@ namespace kspc {
     }
   }; // struct approx
 
+  /// partial specialization of @link approx approx @endlink
+  // TODO: comparison between floating-point and complex
+  template <typename T>
+  struct approx<std::complex<T>, std::enable_if_t<std::is_convertible_v<T, double>>> {
+  private:
+    const std::complex<T> value_;
+    const double margin_ = eps;
+
+  public:
+    constexpr explicit approx(const std::complex<T>& value, const double epsrel = eps,
+                              const double epsabs = 0.0)
+      : value_(value), margin_(detail::calclate_margin(std::abs(value_), epsrel, epsabs)) {}
+    constexpr explicit approx(std::complex<T>&& value, const double epsrel = eps,
+                              const double epsabs = 0.0)
+      : value_(std::move(value)),
+        margin_(detail::calclate_margin(std::abs(value_), epsrel, epsabs)) {}
+
+    template <typename U,
+              std::enable_if_t<std::is_convertible_v<U, double>, std::nullptr_t> = nullptr>
+    friend inline constexpr bool //
+    operator==(const std::complex<U>& x, const approx& y) {
+      using std::abs;
+      return std::abs(y.value_ - x) <= y.margin_;
+    }
+    // boilerplate
+    template <typename U>
+    friend inline constexpr bool //
+    operator!=(const std::complex<U>& x, const approx& y) {
+      return !(x == y);
+    }
+  }; // struct approx
+
   /// deduction guide for @link approx approx @endlink
   template <typename T>
   approx(T, const double = eps, const double = 0.0) -> approx<T>;
+
+  /// deduction guide for @link approx approx @endlink
+  template <typename T>
+  approx(std::complex<T>, const double = eps, const double = 0.0) -> approx<std::complex<T>>;
 
   // function object for approximate comparison
 
@@ -244,10 +288,6 @@ namespace kspc {
       constexpr const Derived& derived() const noexcept {
         return static_cast<const Derived&>(*this);
       }
-
-      // TODO: impose requirements?
-      // template <typename D, bool B = true, typename T = std::nullptr_t>
-      // using enable_if_derived = std::enable_if_t<std::is_same_v<D, Derived> && B, T>;
 
       template <typename D>
       using size_type_impl = std::make_unsigned_t<range_difference_t<D>>;
