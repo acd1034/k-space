@@ -505,9 +505,10 @@ namespace kspc {
   public:
     constexpr ndmatrix() {}
 
-    constexpr explicit ndmatrix(size_type n) : dim_(n), instance_(n * n) {}
+    constexpr explicit ndmatrix(size_type dim) : dim_(dim), instance_(dim * dim) {}
 
-    constexpr explicit ndmatrix(size_type n, const T& init) : dim_(n), instance_(n * n, init) {}
+    constexpr explicit ndmatrix(size_type dim, const T& init)
+      : dim_(dim), instance_(dim * dim, init) {}
 
     // clang-format off
     template <typename I, typename S,
@@ -574,9 +575,9 @@ namespace kspc {
       return (*this)(j, k);
     }
 
-    constexpr void reshape(const size_type n) noexcept(noexcept(instance_.resize())) {
-      dim_ = n;
-      instance_.resize(n * n);
+    constexpr void reshape(const size_type dim) noexcept(noexcept(instance_.resize())) {
+      dim_ = dim;
+      instance_.resize(dim * dim);
     }
   }; // struct ndmatrix
 
@@ -589,13 +590,13 @@ namespace kspc {
             typename Comp = approx_eq, std::enable_if_t<is_range_v<M>, std::nullptr_t> = nullptr>
   constexpr bool hermitian(const M& op, Proj1 proj1 = {}, Proj2 proj2 = {}, Comp comp = {}) {
     using std::size; // for ADL
-    const std::size_t dim = isqrt(size(op));
-    for (std::size_t j = 0; j < dim; ++j) {
-      for (std::size_t k = j; k < dim; ++k) {
+    const std::size_t N = isqrt(size(op));
+    for (std::size_t j = 0; j < N; ++j) {
+      for (std::size_t k = j; k < N; ++k) {
         // clang-format off
         if (!std::invoke(comp,
-                         std::invoke(proj1, op[j * dim + k]),
-                         std::invoke(proj2, op[k * dim + j])))
+                         std::invoke(proj1, op[j * N + k]),
+                         std::invoke(proj2, op[k * N + j])))
           return false;
         // clang-format on
       }
@@ -611,8 +612,8 @@ namespace kspc {
               is_range<Vs>, is_range<range_reference_t<Vs>>>, std::nullptr_t> = nullptr>
   // clang-format on
   constexpr auto mel(const M& op, const Vs& vs) {
-    constexpr std::size_t N = isqrt(fixed_size_array_size_v<M>);
     using std::size; // for ADL
+    constexpr std::size_t N = isqrt(fixed_size_array_size_v<M>);
     assert(size(vs) == N);
 
     using T = std::common_type_t<range_value_t<M>, range_value_t<range_reference_t<Vs>>>;
@@ -634,13 +635,13 @@ namespace kspc {
   // clang-format on
   constexpr auto mel(const M& op, const Vs& vs) {
     using std::size; // for ADL
-    const std::size_t n = std::size(vs);
-    assert(size(op) == n * n);
+    const std::size_t N = isqrt(size(op));
+    assert(size(vs) == N);
 
     using T = std::common_type_t<range_value_t<M>, range_value_t<range_reference_t<Vs>>>;
-    ndmatrix<T> ret(n);
-    for (std::size_t i = 0; i < n; ++i) {
-      for (std::size_t j = 0; j < n; ++j) {
+    ndmatrix<T> ret(N);
+    for (std::size_t i = 0; i < N; ++i) {
+      for (std::size_t j = 0; j < N; ++j) {
         ret(i, j) = innerp(vs[i], op, vs[j]);
       }
     }
