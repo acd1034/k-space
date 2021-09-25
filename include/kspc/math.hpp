@@ -119,35 +119,35 @@ namespace kspc {
     return l;
   }
 
-  /// %fixed_size_matrix_dim
+  /// %fixed_size_array_size
   template <typename>
-  struct fixed_size_matrix_dim {};
+  struct fixed_size_array_size {};
 
-  /// partial specialization of `fixed_size_matrix_dim`
+  /// partial specialization of `fixed_size_array_size`
   template <typename T, std::size_t N>
-  struct fixed_size_matrix_dim<T[N]> : std::integral_constant<std::size_t, isqrt(N)> {};
+  struct fixed_size_array_size<T[N]> : std::integral_constant<std::size_t, N> {};
 
-  /// partial specialization of `fixed_size_matrix_dim`
+  /// partial specialization of `fixed_size_array_size`
   template <typename T, std::size_t N>
-  struct fixed_size_matrix_dim<std::array<T, N>> : std::integral_constant<std::size_t, isqrt(N)> {};
+  struct fixed_size_array_size<std::array<T, N>> : std::integral_constant<std::size_t, N> {};
 
-  /// helper variable template for `fixed_size_matrix_dim`
+  /// helper variable template for `fixed_size_array_size`
   template <typename T>
-  inline constexpr auto fixed_size_matrix_dim_v = fixed_size_matrix_dim<T>::value;
+  inline constexpr auto fixed_size_array_size_v = fixed_size_array_size<T>::value;
 
-  /// %is_fixed_size_matrix
+  /// %is_fixed_size_array
   template <typename T, typename = void>
-  struct is_fixed_size_matrix : std::false_type {};
+  struct is_fixed_size_array : std::false_type {};
 
-  /// partial specialization of `is_fixed_size_matrix`
+  /// partial specialization of `is_fixed_size_array`
   template <typename T>
-  struct is_fixed_size_matrix<T, std::void_t<decltype(fixed_size_matrix_dim<T>::value)>>
+  struct is_fixed_size_array<T, std::void_t<decltype(fixed_size_array_size<T>::value)>>
     : std::true_type {};
 
-  /// helper variable template for `is_fixed_size_matrix`
-  /// To make this true, partially/fully specialize `fixed_size_matrix_dim`.
+  /// helper variable template for `is_fixed_size_array`
+  /// To make this true, partially/fully specialize `fixed_size_array_size`.
   template <typename T>
-  inline constexpr bool is_fixed_size_matrix_v = is_fixed_size_matrix<T>::value;
+  inline constexpr bool is_fixed_size_array_v = is_fixed_size_array<T>::value;
 
   // sum
 

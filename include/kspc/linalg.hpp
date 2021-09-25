@@ -20,11 +20,11 @@ namespace kspc {
             std::enable_if_t<std::conjunction_v<
               is_range<M>,
               is_complex<std::decay_t<range_reference_t<M>>>,
-              is_fixed_size_matrix<M>>, std::nullptr_t> = nullptr>
+              is_fixed_size_array<M>>, std::nullptr_t> = nullptr>
   // clang-format on
   auto zheev(const M& H) {
     using T = complex_value_t<std::decay_t<range_reference_t<M>>>;
-    constexpr auto N = fixed_size_matrix_dim_v<M>;
+    constexpr auto N = isqrt(fixed_size_array_size_v<M>);
     static std::complex<T> tmp_H[N * N];
     static T tmp_E[N];
     static std::complex<T> cwork[N * 4];
@@ -58,7 +58,7 @@ namespace kspc {
             std::enable_if_t<std::conjunction_v<
               is_range<M>,
               is_complex<std::decay_t<range_reference_t<M>>>,
-              std::negation<is_fixed_size_matrix<M>>>, std::nullptr_t> = nullptr>
+              std::negation<is_fixed_size_array<M>>>, std::nullptr_t> = nullptr>
   // clang-format on
   auto zheev(const M& H) {
     using T = complex_value_t<std::decay_t<range_reference_t<M>>>;

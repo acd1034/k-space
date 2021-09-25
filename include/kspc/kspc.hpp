@@ -197,6 +197,10 @@ namespace kspc {
     }
   }; // struct approx
 
+  /// deduction guide for @link approx approx @endlink
+  template <typename T>
+  approx(T, const double = eps, const double = 0.0) -> approx<T>;
+
   /// partial specialization of @link approx approx @endlink
   // TODO: comparison between floating-point and complex
   template <typename T>
@@ -228,10 +232,6 @@ namespace kspc {
       return !(x == y);
     }
   }; // struct approx
-
-  /// deduction guide for @link approx approx @endlink
-  template <typename T>
-  approx(T, const double = eps, const double = 0.0) -> approx<T>;
 
   /// deduction guide for @link approx approx @endlink
   template <typename T>
@@ -499,9 +499,9 @@ namespace kspc {
             std::enable_if_t<std::conjunction_v<std::is_same<U, T>...>, std::nullptr_t> = nullptr>
   matrix(T, U...) -> matrix<T, isqrt(1UL + sizeof...(U))>;
 
-  /// partial specialization of `fixed_size_matrix_dim`
+  /// partial specialization of `fixed_size_array_size`
   template <typename T, std::size_t N>
-  struct fixed_size_matrix_dim<matrix<T, N>> : std::integral_constant<std::size_t, N> {};
+  struct fixed_size_array_size<matrix<T, N>> : std::integral_constant<std::size_t, N * N> {};
 
   /// variadic-size matrix
   template <typename T>
@@ -621,11 +621,11 @@ namespace kspc {
   // clang-format off
   template <typename M, typename Vs,
             std::enable_if_t<std::conjunction_v<
-              is_range<M>, is_fixed_size_matrix<M>,
+              is_range<M>, is_fixed_size_array<M>,
               is_range<Vs>, is_range<range_reference_t<Vs>>>, std::nullptr_t> = nullptr>
   // clang-format on
   constexpr auto mel(const M& op, const Vs& vs) {
-    constexpr std::size_t N = fixed_size_matrix_dim_v<M>;
+    constexpr std::size_t N = isqrt(fixed_size_array_size_v<M>);
     using std::size;
     assert(size(vs) == N);
 
@@ -643,7 +643,7 @@ namespace kspc {
   // clang-format off
   template <typename M, typename Vs,
             std::enable_if_t<std::conjunction_v<
-              is_range<M>, std::negation<is_fixed_size_matrix<M>>,
+              is_range<M>, std::negation<is_fixed_size_array<M>>,
               is_range<Vs>, is_range<range_reference_t<Vs>>>, std::nullptr_t> = nullptr>
   // clang-format on
   constexpr auto mel(const M& op, const Vs& vs) {

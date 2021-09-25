@@ -26,9 +26,9 @@ int main() {
   std::cout << (1.0 != kspc::approx(1.0 + 2.0, 0.1, 1.0)) << std::endl;
   std::cout << (1.0 == kspc::approx(1.0 + 0.2, 0.1, 1.0)) << std::endl;
 
-  std::cout << kspc::is_fixed_size_matrix_v<std::array<int, 3>> << std::endl;
-  std::cout << kspc::is_fixed_size_matrix_v<kspc::matrix<int, 3>> << std::endl;
-  std::cout << !kspc::is_fixed_size_matrix_v<std::vector<int>> << std::endl;
+  std::cout << kspc::is_fixed_size_array_v<std::array<int, 3>> << std::endl;
+  std::cout << kspc::is_fixed_size_array_v<kspc::matrix<int, 3>> << std::endl;
+  std::cout << !kspc::is_fixed_size_array_v<std::vector<int>> << std::endl;
 
   // 14, 5, 4, 5, 4, 6, 12
   // clang-format off
