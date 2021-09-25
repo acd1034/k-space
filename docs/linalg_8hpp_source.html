@@ -93,7 +93,7 @@ $(function() {
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;  <span class="comment">// clang-format on</span></div>
 <div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="linalg_8hpp.html#ad395f8074bef33bdb8665f6ccc567ad3">   25</a></span>&#160;  <span class="keyword">auto</span> <a class="code" href="linalg_8hpp.html#ad395f8074bef33bdb8665f6ccc567ad3">zheev</a>(<span class="keyword">const</span> M&amp; H) {</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keyword">using</span> T = <a class="code" href="math_8hpp.html#ab6f0cb4b25dda4688ab00806f0a44eeb">complex_value_t&lt;std::decay_t&lt;range_reference_t&lt;M&gt;</a>&gt;&gt;;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    constexpr <span class="keyword">auto</span> N = isqrt(fixed_size_array_size_v&lt;M&gt;);</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    constexpr <span class="keyword">auto</span> N = <a class="code" href="math_8hpp.html#a2a2021c637e217b5a86f94a0ae7f49c1">isqrt</a>(fixed_size_array_size_v&lt;M&gt;);</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keyword">static</span> std::complex&lt;T&gt; tmp_H[N * N];</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keyword">static</span> T tmp_E[N];</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keyword">static</span> std::complex&lt;T&gt; cwork[N * 4];</div>
@@ -164,7 +164,8 @@ $(function() {
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;} <span class="comment">// namespace kspc</span></div>
 <div class="ttc" id="alinalg_8hpp_html_ad395f8074bef33bdb8665f6ccc567ad3"><div class="ttname"><a href="linalg_8hpp.html#ad395f8074bef33bdb8665f6ccc567ad3">kspc::zheev</a></div><div class="ttdeci">auto zheev(const M &amp;H)</div><div class="ttdoc">diagonalize hermitian matrix</div><div class="ttdef"><b>Definition:</b> linalg.hpp:25</div></div>
 <div class="ttc" id="amath_8hpp_html"><div class="ttname"><a href="math_8hpp.html">math.hpp</a></div></div>
-<div class="ttc" id="amath_8hpp_html_ab6f0cb4b25dda4688ab00806f0a44eeb"><div class="ttname"><a href="math_8hpp.html#ab6f0cb4b25dda4688ab00806f0a44eeb">kspc::complex_value_t</a></div><div class="ttdeci">typename T::value_type complex_value_t</div><div class="ttdoc">complex_value_t</div><div class="ttdef"><b>Definition:</b> math.hpp:54</div></div>
+<div class="ttc" id="amath_8hpp_html_a2a2021c637e217b5a86f94a0ae7f49c1"><div class="ttname"><a href="math_8hpp.html#a2a2021c637e217b5a86f94a0ae7f49c1">kspc::isqrt</a></div><div class="ttdeci">constexpr std::size_t isqrt(const std::size_t N)</div><div class="ttdoc">sqrt for unsigned integer</div><div class="ttdef"><b>Definition:</b> math.hpp:114</div></div>
+<div class="ttc" id="amath_8hpp_html_ab6f0cb4b25dda4688ab00806f0a44eeb"><div class="ttname"><a href="math_8hpp.html#ab6f0cb4b25dda4688ab00806f0a44eeb">kspc::complex_value_t</a></div><div class="ttdeci">typename T::value_type complex_value_t</div><div class="ttdoc">complex_value_t</div><div class="ttdef"><b>Definition:</b> math.hpp:56</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
