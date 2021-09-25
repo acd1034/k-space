@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['type_5fidentity_5ft_269',['type_identity_t',['../core_8hpp.html#aded1ea76309ffc8cac73aad8d7455125',1,'kspc']]]
+  ['sentinel_5ft_276',['sentinel_t',['../core_8hpp.html#ae29fd7f20b3ab18a4e71e55b6c9958b7',1,'kspc']]]
 ];

@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['fixed_5fsize_5fmatrix_5fdim_136',['fixed_size_matrix_dim',['../structkspc_1_1fixed__size__matrix__dim.html',1,'kspc']]],
-  ['fixed_5fsize_5fmatrix_5fdim_3c_20matrix_3c_20t_2c_20n_20_3e_20_3e_137',['fixed_size_matrix_dim&lt; matrix&lt; T, N &gt; &gt;',['../structkspc_1_1fixed__size__matrix__dim_3_01matrix_3_01_t_00_01_n_01_4_01_4.html',1,'kspc']]],
-  ['fixed_5fsize_5fmatrix_5fdim_3c_20std_3a_3aarray_3c_20t_2c_20n_20_3e_20_3e_138',['fixed_size_matrix_dim&lt; std::array&lt; T, N &gt; &gt;',['../structkspc_1_1fixed__size__matrix__dim_3_01std_1_1array_3_01_t_00_01_n_01_4_01_4.html',1,'kspc']]],
-  ['fixed_5fsize_5fmatrix_5fdim_3c_20t_5bn_5d_3e_139',['fixed_size_matrix_dim&lt; T[N]&gt;',['../structkspc_1_1fixed__size__matrix__dim_3_01_t_0f_n_0e_4.html',1,'kspc']]]
+  ['fixed_5fsize_5farray_5fsize_142',['fixed_size_array_size',['../structkspc_1_1fixed__size__array__size.html',1,'kspc']]],
+  ['fixed_5fsize_5farray_5fsize_3c_20matrix_3c_20t_2c_20n_20_3e_20_3e_143',['fixed_size_array_size&lt; matrix&lt; T, N &gt; &gt;',['../structkspc_1_1fixed__size__array__size_3_01matrix_3_01_t_00_01_n_01_4_01_4.html',1,'kspc']]],
+  ['fixed_5fsize_5farray_5fsize_3c_20std_3a_3aarray_3c_20t_2c_20n_20_3e_20_3e_144',['fixed_size_array_size&lt; std::array&lt; T, N &gt; &gt;',['../structkspc_1_1fixed__size__array__size_3_01std_1_1array_3_01_t_00_01_n_01_4_01_4.html',1,'kspc']]],
+  ['fixed_5fsize_5farray_5fsize_3c_20t_5bn_5d_3e_145',['fixed_size_array_size&lt; T[N]&gt;',['../structkspc_1_1fixed__size__array__size_3_01_t_0f_n_0e_4.html',1,'kspc']]]
 ];
