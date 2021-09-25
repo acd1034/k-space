@@ -49,6 +49,10 @@ namespace kspc {
   template <typename T>
   inline constexpr bool is_complex_v = is_complex<T>::value;
 
+  /// complex_value_t
+  template <typename T, std::enable_if_t<is_complex_v<T>, std::nullptr_t> = nullptr>
+  using complex_value_t = typename T::value_type;
+
   /// real
   template <typename T, std::enable_if_t<is_complex_v<std::decay_t<T>>, std::nullptr_t> = nullptr>
   inline constexpr auto real(T&& x) noexcept(noexcept(std::real(std::forward<T>(x))))

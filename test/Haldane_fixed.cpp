@@ -1,5 +1,5 @@
 /**
- * @file Haldane.cpp
+ * @file Haldane_fixed.cpp
  * compiler: GCC version 10.2.0
  * compiler option:
  * -O3 -std=c++17 -lm -llapack -lblas -lgsl -lgslcblas -mtune=native -march=native -mfpmath=both
@@ -12,6 +12,7 @@
 using namespace kspc::arithmetic_ops;
 
 inline constexpr std::size_t D = 2;
+inline constexpr std::size_t Nsite = 2;
 
 // nearest neighbor lattice vectors
 inline constexpr std::array a{
@@ -44,7 +45,7 @@ struct params_t : kspc::params_t {
 
 // clang-format off
 auto gen_hermitian_matrix(const double d0, const double dx, const double dy, const double dz) {
-  return kspc::ndmatrix<std::complex<double>>{
+  return kspc::matrix<std::complex<double>, Nsite>{
     d0 + dz, std::complex{dx, -dy},
     std::complex{dx, dy}, d0 - dz};
 }
