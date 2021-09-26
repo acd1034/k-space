@@ -267,10 +267,28 @@ namespace kspc {
 
 #undef KSPC_DEFINE_APPROXIMATE_COMPARISON
 
-  // matrix:
-  // [x] matrix_base
-  // [x] matrix
-  // [x] ndmatrix
+  // matrix utilities? operations?
+
+  /// hermitian
+  template <typename M, typename Proj1 = conj_fn, typename Proj2 = identity,
+            typename Comp = approx_eq,
+            std::enable_if_t<is_sized_range_v<M>, std::nullptr_t> = nullptr>
+  constexpr bool hermitian(const M& op, Proj1 proj1 = {}, Proj2 proj2 = {}, Comp comp = {}) {
+    const std::size_t N = kspc::dim(op);
+    for (std::size_t j = 0; j < N; ++j) {
+      for (std::size_t k = j; k < N; ++k) {
+        // clang-format off
+        if (!std::invoke(comp,
+                         std::invoke(proj1, op[j * N + k]),
+                         std::invoke(proj2, op[k * N + j])))
+          return false;
+        // clang-format on
+      }
+    }
+    return true;
+  }
+
+  // matrix class
 
   namespace detail2 {
     /// %matrix_base
@@ -487,7 +505,7 @@ namespace kspc {
   template <typename T, std::size_t N>
   struct fixed_size_array_size<matrix<T, N>> : std::integral_constant<std::size_t, N * N> {};
 
-  /// variadic-size matrix
+  /// dynamic-size matrix
   template <typename T>
   struct ndmatrix : detail2::matrix_base<ndmatrix<T>> {
     using iterator = iterator_t<std::vector<T>>;
@@ -585,30 +603,11 @@ namespace kspc {
   template <typename I, typename S>
   ndmatrix(I, S) -> ndmatrix<iter_value_t<I>>;
 
-  /// hermitian
-  template <typename M, typename Proj1 = conj_fn, typename Proj2 = identity,
-            typename Comp = approx_eq, std::enable_if_t<is_range_v<M>, std::nullptr_t> = nullptr>
-  constexpr bool hermitian(const M& op, Proj1 proj1 = {}, Proj2 proj2 = {}, Comp comp = {}) {
-    using std::size; // for ADL
-    const std::size_t N = isqrt(size(op));
-    for (std::size_t j = 0; j < N; ++j) {
-      for (std::size_t k = j; k < N; ++k) {
-        // clang-format off
-        if (!std::invoke(comp,
-                         std::invoke(proj1, op[j * N + k]),
-                         std::invoke(proj2, op[k * N + j])))
-          return false;
-        // clang-format on
-      }
-    }
-    return true;
-  }
-
   /// mel
   // clang-format off
   template <typename M, typename Vs,
             std::enable_if_t<std::conjunction_v<
-              is_range<M>, is_fixed_size_array<M>,
+              is_sized_range<M>, is_fixed_size_array<M>,
               is_range<Vs>, is_range<range_reference_t<Vs>>>, std::nullptr_t> = nullptr>
   // clang-format on
   constexpr auto mel(const M& op, const Vs& vs) {
@@ -630,12 +629,12 @@ namespace kspc {
   // clang-format off
   template <typename M, typename Vs,
             std::enable_if_t<std::conjunction_v<
-              is_range<M>, std::negation<is_fixed_size_array<M>>,
+              is_sized_range<M>, std::negation<is_fixed_size_array<M>>,
               is_range<Vs>, is_range<range_reference_t<Vs>>>, std::nullptr_t> = nullptr>
   // clang-format on
   constexpr auto mel(const M& op, const Vs& vs) {
     using std::size; // for ADL
-    const std::size_t N = isqrt(size(op));
+    const std::size_t N = kspc::dim(op);
     assert(size(vs) == N);
 
     using T = std::common_type_t<range_value_t<M>, range_value_t<range_reference_t<Vs>>>;
