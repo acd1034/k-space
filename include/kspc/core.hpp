@@ -16,9 +16,9 @@ namespace kspc {
   /// Implementation details are here.
   namespace detail {}
 
-  /// `using std::begin, std::end` is declared in this namespace.
+  /// `using std::begin, std::end, std::size` is declared in this namespace.
   namespace detail2 {
-    using std::begin, std::end; // for ADL
+    using std::begin, std::end, std::size; // for ADL
   }
 
   /// always_false
@@ -346,14 +346,18 @@ namespace kspc {
 
   // range concept:
   // [x] is_range
+  // [x] is_sized_range
 
   /// @cond
   namespace detail2 {
     template <typename T>
-    using begin_t = decltype(begin(std::declval<T>()));
+    using unqualified_begin_t = decltype(begin(std::declval<T>()));
 
     template <typename T>
-    using end_t = decltype(end(std::declval<T>()));
+    using unqualified_end_t = decltype(end(std::declval<T>()));
+
+    template <typename T>
+    using unqualified_size_t = decltype(size(std::declval<T>()));
   } // namespace detail2
   /// @endcond
 
@@ -361,13 +365,25 @@ namespace kspc {
   template <typename R>
   struct is_range
     : std::conjunction<
-        is_detected<detail2::begin_t, R&>,
-        is_detected<detail2::end_t, R&>
+        is_detected<detail2::unqualified_begin_t, R&>,
+        is_detected<detail2::unqualified_end_t, R&>
         > {};
 
   /// helper variable template for `is_range`
   template <typename R>
   inline constexpr bool is_range_v = is_range<R>::value;
+
+  /// %is_sized_range
+  template <typename R>
+  struct is_sized_range
+    : std::conjunction<
+        is_range<R>,
+        is_detected<detail2::unqualified_size_t, R&>
+        > {};
+
+  /// helper variable template for `is_sized_range`
+  template <typename R>
+  inline constexpr bool is_sized_range_v = is_sized_range<R>::value;
   // clang-format on
 
   // iterator associated types (remaining):
@@ -389,11 +405,11 @@ namespace kspc {
 
   /// iterator_t
   template <typename R>
-  using iterator_t = detail2::begin_t<R&>;
+  using iterator_t = detail2::unqualified_begin_t<R&>;
 
   /// sentinel_t
   template <typename R, std::enable_if_t<is_range_v<R>, std::nullptr_t> = nullptr>
-  using sentinel_t = detail2::end_t<R&>;
+  using sentinel_t = detail2::unqualified_end_t<R&>;
 
   /// range_difference_t
   template <typename R, std::enable_if_t<is_range_v<R>, std::nullptr_t> = nullptr>
@@ -411,7 +427,7 @@ namespace kspc {
 
   /// ssize
   template <typename C>
-  constexpr auto ssize(const C& c)
+  inline constexpr auto ssize(const C& c)
     -> std::common_type_t<std::ptrdiff_t, std::make_signed_t<decltype(c.size())>> {
     using T = std::common_type_t<std::ptrdiff_t, std::make_signed_t<decltype(c.size())>>;
     return static_cast<T>(c.size());
@@ -419,7 +435,7 @@ namespace kspc {
 
   /// @overload
   template <typename T, std::size_t N>
-  constexpr std::ptrdiff_t ssize(const T (&)[N]) noexcept {
+  inline constexpr std::ptrdiff_t ssize(const T (&)[N]) noexcept {
     return N;
   }
 
