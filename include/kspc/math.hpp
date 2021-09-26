@@ -111,7 +111,7 @@ namespace kspc {
   // fixed-size array optimization
 
   /// sqrt for unsigned integer
-  inline constexpr std::size_t isqrt(const std::size_t N) {
+  inline constexpr std::size_t isqrt(const std::size_t N) noexcept {
     std::size_t l = 0, r = N;
     while (r - l > 1) {
       const std::size_t mid = l + (r - l) / 2;
@@ -151,6 +151,55 @@ namespace kspc {
   /// To make this true, partially/fully specialize `fixed_size_array_size`.
   template <typename T>
   inline constexpr bool is_fixed_size_array_v = is_fixed_size_array<T>::value;
+
+  // matrix dim
+  // NOTE: matrix constraint:
+  // - is_sized_range
+  // - is_random_access_range
+  // - kspc::cpo::dim callable
+
+  /// @cond
+  namespace detail2 {
+    // detail for niebloid
+
+    template <typename C>
+    inline constexpr auto dim(const C& c) noexcept(noexcept(c.dim())) //
+      -> decltype((c.dim())) {
+      return c.dim();
+    }
+
+    template <typename T>
+    using unqualified_dim_t = decltype(dim(std::declval<T>()));
+
+    template <typename T>
+    struct has_unqualified_dim : is_detected<unqualified_dim_t, T&> {};
+
+    template <typename T>
+    inline constexpr bool has_unqualified_dim_v = has_unqualified_dim<T>::value;
+
+    struct dim_fn {
+      template <typename M, std::enable_if_t<has_unqualified_dim_v<M>, std::nullptr_t> = nullptr>
+      inline constexpr auto operator()(const M& m) const noexcept(noexcept(dim(m))) {
+        return dim(m);
+      }
+
+      // clang-format off
+      template <typename M,
+                std::enable_if_t<
+                  !has_unqualified_dim_v<M> &&
+                  is_sized_range_v<M>, std::nullptr_t> = nullptr>
+      // clang-format on
+      inline constexpr auto operator()(const M& m) const noexcept(noexcept(isqrt(size(m)))) {
+        return isqrt(size(m));
+      }
+    }; // struct dim_fn
+  }    // namespace detail2
+  /// @endcond
+
+  inline namespace cpo {
+    /// dim
+    inline constexpr auto dim = detail2::dim_fn{};
+  } // namespace cpo
 
   // sum
 
