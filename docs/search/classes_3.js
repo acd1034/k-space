@@ -15,7 +15,7 @@ var searchData=
   ['is_5fcomplex_3c_20std_3a_3acomplex_3c_20t_20_3e_20_3e_143',['is_complex&lt; std::complex&lt; T &gt; &gt;',['../structkspc_1_1is__complex_3_01std_1_1complex_3_01_t_01_4_01_4.html',1,'kspc']]],
   ['is_5fdetected_144',['is_detected',['../structkspc_1_1is__detected.html',1,'kspc']]],
   ['is_5ffixed_5fsize_5farray_145',['is_fixed_size_array',['../structkspc_1_1is__fixed__size__array.html',1,'kspc']]],
-  ['is_5ffixed_5fsize_5farray_3c_20t_2c_20std_3a_3avoid_5ft_3c_20decltype_28fixed_5fsize_5farray_5fsize_3c_20t_20_3e_3a_3avalue_29_3e_20_3e_146',['is_fixed_size_array&lt; T, std::void_t&lt; decltype(fixed_size_array_size&lt; T &gt;::value)&gt; &gt;',['../structkspc_1_1is__fixed__size__array_3_01_t_00_01std_1_1void__t_3_01decltype_07fixed__size__arra4dc6dd664bb681c1da3a8a67ce28aebe.html',1,'kspc']]],
+  ['is_5ffixed_5fsize_5farray_3c_20t_2c_20std_3a_3avoid_5ft_3c_20decltype_28fixed_5fsize_5farray_5fsize_3c_20remove_5fcvref_5ft_3c_20t_20_3e_3e_3a_3avalue_29_3e_20_3e_146',['is_fixed_size_array&lt; T, std::void_t&lt; decltype(fixed_size_array_size&lt; remove_cvref_t&lt; T &gt;&gt;::value)&gt; &gt;',['../structkspc_1_1is__fixed__size__array_3_01_t_00_01std_1_1void__t_3_01decltype_07fixed__size__arradf5ece06e5f73b42d4d8c0f006c04942.html',1,'kspc']]],
   ['is_5findirectly_5freadable_147',['is_indirectly_readable',['../structkspc_1_1is__indirectly__readable.html',1,'kspc']]],
   ['is_5finput_5fiterator_148',['is_input_iterator',['../structkspc_1_1is__input__iterator.html',1,'kspc']]],
   ['is_5finput_5for_5foutput_5fiterator_149',['is_input_or_output_iterator',['../structkspc_1_1is__input__or__output__iterator.html',1,'kspc']]],

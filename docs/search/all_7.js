@@ -22,7 +22,7 @@ var searchData=
   ['is_5fdetected_51',['is_detected',['../structkspc_1_1is__detected.html',1,'kspc']]],
   ['is_5fdetected_5fv_52',['is_detected_v',['../core_8hpp.html#a44228db2bf9c0b4baeaaf635b6a6ceff',1,'kspc']]],
   ['is_5ffixed_5fsize_5farray_53',['is_fixed_size_array',['../structkspc_1_1is__fixed__size__array.html',1,'kspc']]],
-  ['is_5ffixed_5fsize_5farray_3c_20t_2c_20std_3a_3avoid_5ft_3c_20decltype_28fixed_5fsize_5farray_5fsize_3c_20t_20_3e_3a_3avalue_29_3e_20_3e_54',['is_fixed_size_array&lt; T, std::void_t&lt; decltype(fixed_size_array_size&lt; T &gt;::value)&gt; &gt;',['../structkspc_1_1is__fixed__size__array_3_01_t_00_01std_1_1void__t_3_01decltype_07fixed__size__arra4dc6dd664bb681c1da3a8a67ce28aebe.html',1,'kspc']]],
+  ['is_5ffixed_5fsize_5farray_3c_20t_2c_20std_3a_3avoid_5ft_3c_20decltype_28fixed_5fsize_5farray_5fsize_3c_20remove_5fcvref_5ft_3c_20t_20_3e_3e_3a_3avalue_29_3e_20_3e_54',['is_fixed_size_array&lt; T, std::void_t&lt; decltype(fixed_size_array_size&lt; remove_cvref_t&lt; T &gt;&gt;::value)&gt; &gt;',['../structkspc_1_1is__fixed__size__array_3_01_t_00_01std_1_1void__t_3_01decltype_07fixed__size__arradf5ece06e5f73b42d4d8c0f006c04942.html',1,'kspc']]],
   ['is_5ffixed_5fsize_5farray_5fv_55',['is_fixed_size_array_v',['../math_8hpp.html#a6b72a099d95086e568320bed273f4969',1,'kspc']]],
   ['is_5findirectly_5freadable_56',['is_indirectly_readable',['../structkspc_1_1is__indirectly__readable.html',1,'kspc']]],
   ['is_5findirectly_5freadable_5fv_57',['is_indirectly_readable_v',['../core_8hpp.html#a12f639b92a7180f95cc0ddeca0a3f33b',1,'kspc']]],
