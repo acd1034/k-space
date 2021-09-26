@@ -399,13 +399,13 @@ namespace kspc {
 
       template <typename D = Derived>
       constexpr decltype(auto) at(const size_type_impl<D> j) {
-        if (j >= size()) throw std::out_of_range("matrix_base::at");
+        if (j >= size()) throw std::out_of_range("out_of_range thrown at matrix_base::at");
         return (*this)[j];
       }
 
       template <typename D = Derived>
       constexpr decltype(auto) at(const size_type_impl<D> j) const {
-        if (j >= size()) throw std::out_of_range("matrix_base::at");
+        if (j >= size()) throw std::out_of_range("out_of_range thrown at matrix_base::at");
         return (*this)[j];
       }
 
@@ -486,13 +486,11 @@ namespace kspc {
     }
 
     constexpr decltype(auto) at(const size_type j, const size_type k) {
-      if (j >= dim() || k >= dim()) throw std::out_of_range("matrix::at");
-      return (*this)(j, k);
+      return at(j * dim() + k);
     }
 
     constexpr decltype(auto) at(const size_type j, const size_type k) const {
-      if (j >= dim() || k >= dim()) throw std::out_of_range("matrix::at");
-      return (*this)(j, k);
+      return at(j * dim() + k);
     }
   }; // struct matrix
 
@@ -584,13 +582,11 @@ namespace kspc {
     }
 
     constexpr decltype(auto) at(const size_type j, const size_type k) {
-      if (j >= dim() || k >= dim()) throw std::out_of_range("ndmatrix::at");
-      return (*this)(j, k);
+      return at(j * dim() + k);
     }
 
     constexpr decltype(auto) at(const size_type j, const size_type k) const {
-      if (j >= dim() || k >= dim()) throw std::out_of_range("ndmatrix::at");
-      return (*this)(j, k);
+      return at(j * dim() + k);
     }
 
     constexpr void reshape(const size_type dim) noexcept(noexcept(instance_.resize())) {
@@ -603,19 +599,35 @@ namespace kspc {
   template <typename I, typename S>
   ndmatrix(I, S) -> ndmatrix<iter_value_t<I>>;
 
+  /// @cond
+  namespace detail {
+    // clang-format off
+    template <typename M, typename Vs>
+    struct fixed_mel_constraints : std::conjunction<
+        is_fixed_size_array<M>,
+        is_fixed_size_array<Vs>,
+        is_fixed_size_array<range_reference_t<Vs>>> {};
+    // clang-format on
+  } // namespace detail
+    /// @endcond
+
   /// mel
   // clang-format off
   template <typename M, typename Vs,
             std::enable_if_t<std::conjunction_v<
-              is_sized_range<M>, is_fixed_size_array<M>,
-              is_range<Vs>, is_range<range_reference_t<Vs>>>, std::nullptr_t> = nullptr>
+              is_sized_range<M>,
+              is_range<Vs>, is_range<range_reference_t<Vs>>,
+              detail::fixed_mel_constraints<M, Vs>>, std::nullptr_t> = nullptr>
   // clang-format on
   constexpr auto mel(const M& op, const Vs& vs) {
     using std::size; // for ADL
-    constexpr std::size_t N = isqrt(fixed_size_array_size_v<M>);
-    assert(size(vs) == N);
+    constexpr std::size_t N = fixed_size_array_size_v<Vs>;
+    static_assert(fixed_size_array_size_v<M> == N * N
+                    && fixed_size_array_size_v<remove_cvref_t<range_reference_t<Vs>>> == N,
+                  "the matrix size and the vector sizes are inconsistent");
 
-    using T = std::common_type_t<range_value_t<M>, range_value_t<range_reference_t<Vs>>>;
+    using T = std::common_type_t<std::decay_t<range_reference_t<M>>,
+                                 std::decay_t<range_reference_t<range_reference_t<Vs>>>>;
     matrix<T, N> ret{};
     for (std::size_t i = 0; i < N; ++i) {
       for (std::size_t j = 0; j < N; ++j) {
@@ -629,15 +641,17 @@ namespace kspc {
   // clang-format off
   template <typename M, typename Vs,
             std::enable_if_t<std::conjunction_v<
-              is_sized_range<M>, std::negation<is_fixed_size_array<M>>,
-              is_range<Vs>, is_range<range_reference_t<Vs>>>, std::nullptr_t> = nullptr>
+              is_sized_range<M>,
+              is_range<Vs>, is_range<range_reference_t<Vs>>,
+              std::negation<detail::fixed_mel_constraints<M, Vs>>>, std::nullptr_t> = nullptr>
   // clang-format on
   constexpr auto mel(const M& op, const Vs& vs) {
     using std::size; // for ADL
     const std::size_t N = kspc::dim(op);
     assert(size(vs) == N);
 
-    using T = std::common_type_t<range_value_t<M>, range_value_t<range_reference_t<Vs>>>;
+    using T = std::common_type_t<std::decay_t<range_reference_t<M>>,
+                                 std::decay_t<range_reference_t<range_reference_t<Vs>>>>;
     ndmatrix<T> ret(N);
     for (std::size_t i = 0; i < N; ++i) {
       for (std::size_t j = 0; j < N; ++j) {

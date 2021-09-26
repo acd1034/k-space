@@ -144,7 +144,8 @@ namespace kspc {
 
   /// partial specialization of `is_fixed_size_array`
   template <typename T>
-  struct is_fixed_size_array<T, std::void_t<decltype(fixed_size_array_size<T>::value)>>
+  struct is_fixed_size_array<T,
+                             std::void_t<decltype(fixed_size_array_size<remove_cvref_t<T>>::value)>>
     : std::true_type {};
 
   /// helper variable template for `is_fixed_size_array`
