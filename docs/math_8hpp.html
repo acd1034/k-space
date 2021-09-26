@@ -162,10 +162,10 @@ template&lt;typename T , std::enable_if_t&lt;!is_complex_v&lt; std::decay_t&lt; 
 <tr class="memitem:a766d69b7ded08fd04c9d8f1a553be545"><td class="memTemplItemLeft" align="right" valign="top">constexpr T &amp;&amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="math_8hpp.html#a766d69b7ded08fd04c9d8f1a553be545">kspc::conj</a> (T &amp;&amp;x) noexcept(noexcept(std::forward&lt; T &gt;(x)))</td></tr>
 <tr class="memdesc:a766d69b7ded08fd04c9d8f1a553be545"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. <br /></td></tr>
 <tr class="separator:a766d69b7ded08fd04c9d8f1a553be545"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2a2021c637e217b5a86f94a0ae7f49c1"><td class="memItemLeft" align="right" valign="top"><a id="a2a2021c637e217b5a86f94a0ae7f49c1"></a>
-constexpr std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8hpp.html#a2a2021c637e217b5a86f94a0ae7f49c1">kspc::isqrt</a> (const std::size_t N)</td></tr>
-<tr class="memdesc:a2a2021c637e217b5a86f94a0ae7f49c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">sqrt for unsigned integer <br /></td></tr>
-<tr class="separator:a2a2021c637e217b5a86f94a0ae7f49c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65d1cf5a3f68cba8c253183d1cb21d98"><td class="memItemLeft" align="right" valign="top"><a id="a65d1cf5a3f68cba8c253183d1cb21d98"></a>
+constexpr std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8hpp.html#a65d1cf5a3f68cba8c253183d1cb21d98">kspc::isqrt</a> (const std::size_t N) noexcept</td></tr>
+<tr class="memdesc:a65d1cf5a3f68cba8c253183d1cb21d98"><td class="mdescLeft">&#160;</td><td class="mdescRight">sqrt for unsigned integer <br /></td></tr>
+<tr class="separator:a65d1cf5a3f68cba8c253183d1cb21d98"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af68d059d849df50b608442c0068014cf"><td class="memTemplParams" colspan="2">template&lt;typename R , typename P  = identity, typename BOp  = std::plus&lt;&gt;, std::enable_if_t&lt; is_range_v&lt; R &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
 <tr class="memitem:af68d059d849df50b608442c0068014cf"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="math_8hpp.html#af68d059d849df50b608442c0068014cf">kspc::sum</a> (R &amp;&amp;r, P proj={}, BOp bop={})</td></tr>
 <tr class="separator:af68d059d849df50b608442c0068014cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -191,6 +191,10 @@ template&lt;typename T &gt; </td></tr>
 <tr class="memitem:a6b72a099d95086e568320bed273f4969"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
 <tr class="memitem:a6b72a099d95086e568320bed273f4969"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="math_8hpp.html#a6b72a099d95086e568320bed273f4969">kspc::is_fixed_size_array_v</a> = is_fixed_size_array&lt;T&gt;::value</td></tr>
 <tr class="separator:a6b72a099d95086e568320bed273f4969"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f6c38ca1ded9f649acd3b3cf2d522ba"><td class="memItemLeft" align="right" valign="top"><a id="a3f6c38ca1ded9f649acd3b3cf2d522ba"></a>
+constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8hpp.html#a3f6c38ca1ded9f649acd3b3cf2d522ba">kspc::dim</a> = detail2::dim_fn{}</td></tr>
+<tr class="memdesc:a3f6c38ca1ded9f649acd3b3cf2d522ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">dim <br /></td></tr>
+<tr class="separator:a3f6c38ca1ded9f649acd3b3cf2d522ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="aa8922ff061ea3b82a7e31837fdb648bd"></a>

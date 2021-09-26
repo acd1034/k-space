@@ -80,7 +80,7 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ad395f8074bef33bdb8665f6ccc567ad3"><td class="memTemplParams" colspan="2">template&lt;typename M , std::enable_if_t&lt; std::conjunction_v&lt; is_range&lt; M &gt;, is_complex&lt; std::decay_t&lt; range_reference_t&lt; M &gt;&gt;&gt;, is_fixed_size_array&lt; M &gt;&gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
+<tr class="memitem:ad395f8074bef33bdb8665f6ccc567ad3"><td class="memTemplParams" colspan="2">template&lt;typename M , std::enable_if_t&lt; std::conjunction_v&lt; is_sized_range&lt; M &gt;, is_complex&lt; std::decay_t&lt; range_reference_t&lt; M &gt;&gt;&gt;, is_fixed_size_array&lt; M &gt;&gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
 <tr class="memitem:ad395f8074bef33bdb8665f6ccc567ad3"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="linalg_8hpp.html#ad395f8074bef33bdb8665f6ccc567ad3">kspc::zheev</a> (const M &amp;H)</td></tr>
 <tr class="memdesc:ad395f8074bef33bdb8665f6ccc567ad3"><td class="mdescLeft">&#160;</td><td class="mdescRight">diagonalize hermitian matrix  <a href="linalg_8hpp.html#ad395f8074bef33bdb8665f6ccc567ad3">More...</a><br /></td></tr>
 <tr class="separator:ad395f8074bef33bdb8665f6ccc567ad3"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -92,7 +92,7 @@ Functions</h2></td></tr>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename M , std::enable_if_t&lt; std::conjunction_v&lt; is_range&lt; M &gt;, is_complex&lt; std::decay_t&lt; range_reference_t&lt; M &gt;&gt;&gt;, is_fixed_size_array&lt; M &gt;&gt;, std::nullptr_t &gt;  = nullptr&gt; </div>
+template&lt;typename M , std::enable_if_t&lt; std::conjunction_v&lt; is_sized_range&lt; M &gt;, is_complex&lt; std::decay_t&lt; range_reference_t&lt; M &gt;&gt;&gt;, is_fixed_size_array&lt; M &gt;&gt;, std::nullptr_t &gt;  = nullptr&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">auto kspc::zheev </td>

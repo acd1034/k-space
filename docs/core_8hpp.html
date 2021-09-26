@@ -150,6 +150,9 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkspc_1_1is__range.html">kspc::is_range&lt; R &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">is_range  <a href="structkspc_1_1is__range.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkspc_1_1is__sized__range.html">kspc::is_sized_range&lt; R &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">is_sized_range  <a href="structkspc_1_1is__sized__range.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
 Namespaces</h2></td></tr>
@@ -157,7 +160,7 @@ Namespaces</h2></td></tr>
 <tr class="memdesc:namespacekspc_1_1detail"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implementation details are here. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:namespacekspc_1_1detail2"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekspc_1_1detail2.html">kspc::detail2</a></td></tr>
-<tr class="memdesc:namespacekspc_1_1detail2"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>using std::begin, std::end</code> is declared in this namespace. <br /></td></tr>
+<tr class="memdesc:namespacekspc_1_1detail2"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>using std::begin, std::end, std::size</code> is declared in this namespace. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
@@ -198,16 +201,16 @@ template&lt;typename I , std::enable_if_t&lt; detail::is_dereferenceable_v&lt; I
 <tr class="memitem:a7cb2ffb8dd2a5e23587da31cbad10338"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="core_8hpp.html#a7cb2ffb8dd2a5e23587da31cbad10338">kspc::iter_reference_t</a> = detail::dereference_t&lt; I &amp; &gt;</td></tr>
 <tr class="memdesc:a7cb2ffb8dd2a5e23587da31cbad10338"><td class="mdescLeft">&#160;</td><td class="mdescRight">iter_reference_t <br /></td></tr>
 <tr class="separator:a7cb2ffb8dd2a5e23587da31cbad10338"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2a3e6847414fd6fc2bcbff76d5a1c8d3"><td class="memTemplParams" colspan="2"><a id="a2a3e6847414fd6fc2bcbff76d5a1c8d3"></a>
+<tr class="memitem:a9809868d97b6c003c48a590acd3b7f9c"><td class="memTemplParams" colspan="2"><a id="a9809868d97b6c003c48a590acd3b7f9c"></a>
 template&lt;typename R &gt; </td></tr>
-<tr class="memitem:a2a3e6847414fd6fc2bcbff76d5a1c8d3"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="core_8hpp.html#a2a3e6847414fd6fc2bcbff76d5a1c8d3">kspc::iterator_t</a> = detail2::begin_t&lt; R &amp; &gt;</td></tr>
-<tr class="memdesc:a2a3e6847414fd6fc2bcbff76d5a1c8d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">iterator_t <br /></td></tr>
-<tr class="separator:a2a3e6847414fd6fc2bcbff76d5a1c8d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae29fd7f20b3ab18a4e71e55b6c9958b7"><td class="memTemplParams" colspan="2"><a id="ae29fd7f20b3ab18a4e71e55b6c9958b7"></a>
+<tr class="memitem:a9809868d97b6c003c48a590acd3b7f9c"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="core_8hpp.html#a9809868d97b6c003c48a590acd3b7f9c">kspc::iterator_t</a> = detail2::unqualified_begin_t&lt; R &amp; &gt;</td></tr>
+<tr class="memdesc:a9809868d97b6c003c48a590acd3b7f9c"><td class="mdescLeft">&#160;</td><td class="mdescRight">iterator_t <br /></td></tr>
+<tr class="separator:a9809868d97b6c003c48a590acd3b7f9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1671686e4a0c75785d8a7d1a9912e2a5"><td class="memTemplParams" colspan="2"><a id="a1671686e4a0c75785d8a7d1a9912e2a5"></a>
 template&lt;typename R , std::enable_if_t&lt; is_range_v&lt; R &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
-<tr class="memitem:ae29fd7f20b3ab18a4e71e55b6c9958b7"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="core_8hpp.html#ae29fd7f20b3ab18a4e71e55b6c9958b7">kspc::sentinel_t</a> = detail2::end_t&lt; R &amp; &gt;</td></tr>
-<tr class="memdesc:ae29fd7f20b3ab18a4e71e55b6c9958b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">sentinel_t <br /></td></tr>
-<tr class="separator:ae29fd7f20b3ab18a4e71e55b6c9958b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1671686e4a0c75785d8a7d1a9912e2a5"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="core_8hpp.html#a1671686e4a0c75785d8a7d1a9912e2a5">kspc::sentinel_t</a> = detail2::unqualified_end_t&lt; R &amp; &gt;</td></tr>
+<tr class="memdesc:a1671686e4a0c75785d8a7d1a9912e2a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">sentinel_t <br /></td></tr>
+<tr class="separator:a1671686e4a0c75785d8a7d1a9912e2a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a18bd8d28401faa9a1f5e50ffe3a9102d"><td class="memTemplParams" colspan="2"><a id="a18bd8d28401faa9a1f5e50ffe3a9102d"></a>
 template&lt;typename R , std::enable_if_t&lt; is_range_v&lt; R &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
 <tr class="memitem:a18bd8d28401faa9a1f5e50ffe3a9102d"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="core_8hpp.html#a18bd8d28401faa9a1f5e50ffe3a9102d">kspc::range_difference_t</a> = iter_difference_t&lt; iterator_t&lt; R &gt; &gt;</td></tr>
@@ -284,6 +287,11 @@ template&lt;typename R &gt; </td></tr>
 <tr class="memitem:a68a34a4e6cb4df747d6232228634cf4e"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="core_8hpp.html#a68a34a4e6cb4df747d6232228634cf4e">kspc::is_range_v</a> = is_range&lt;R&gt;::value</td></tr>
 <tr class="memdesc:a68a34a4e6cb4df747d6232228634cf4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">helper variable template for <code><a class="el" href="structkspc_1_1is__range.html" title="is_range">is_range</a></code> <br /></td></tr>
 <tr class="separator:a68a34a4e6cb4df747d6232228634cf4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af4bf00febada81338666676554c286a1"><td class="memTemplParams" colspan="2"><a id="af4bf00febada81338666676554c286a1"></a>
+template&lt;typename R &gt; </td></tr>
+<tr class="memitem:af4bf00febada81338666676554c286a1"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="core_8hpp.html#af4bf00febada81338666676554c286a1">kspc::is_sized_range_v</a> = is_sized_range&lt;R&gt;::value</td></tr>
+<tr class="memdesc:af4bf00febada81338666676554c286a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">helper variable template for <code><a class="el" href="structkspc_1_1is__sized__range.html" title="is_sized_range">is_sized_range</a></code> <br /></td></tr>
+<tr class="separator:af4bf00febada81338666676554c286a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Typedef Documentation</h2>
 <a id="a26e0e38429a46fcfc1095852e65a1ce9"></a>

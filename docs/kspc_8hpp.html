@@ -105,13 +105,13 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">partial specialization of <code><a class="el" href="structkspc_1_1fixed__size__array__size.html" title="fixed_size_array_size">fixed_size_array_size</a></code>  <a href="structkspc_1_1fixed__size__array__size_3_01matrix_3_01_t_00_01_n_01_4_01_4.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkspc_1_1ndmatrix.html">kspc::ndmatrix&lt; T &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">variadic-size matrix  <a href="structkspc_1_1ndmatrix.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">dynamic-size matrix  <a href="structkspc_1_1ndmatrix.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:namespacekspc_1_1detail2"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekspc_1_1detail2.html">kspc::detail2</a></td></tr>
-<tr class="memdesc:namespacekspc_1_1detail2"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>using std::begin, std::end</code> is declared in this namespace. <br /></td></tr>
+<tr class="memdesc:namespacekspc_1_1detail2"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>using std::begin, std::end, std::size</code> is declared in this namespace. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
@@ -187,6 +187,11 @@ template&lt;typename T &gt; </td></tr>
 <tr class="memitem:aa1d13d5dbd955f83725e19762dd08684"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="kspc_8hpp.html#aa1d13d5dbd955f83725e19762dd08684">kspc::approx</a> (std::complex&lt; T &gt;, const double=eps, const double=0.0) -&gt; approx&lt; std::complex&lt; T &gt;&gt;</td></tr>
 <tr class="memdesc:aa1d13d5dbd955f83725e19762dd08684"><td class="mdescLeft">&#160;</td><td class="mdescRight">deduction guide for <a class="el" href="structkspc_1_1approx.html">approx </a> <br /></td></tr>
 <tr class="separator:aa1d13d5dbd955f83725e19762dd08684"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ae53fd9fbad056071c75fad6652291b"><td class="memTemplParams" colspan="2"><a id="a0ae53fd9fbad056071c75fad6652291b"></a>
+template&lt;typename M , typename Proj1  = conj_fn, typename Proj2  = identity, typename Comp  = approx_eq, std::enable_if_t&lt; is_sized_range_v&lt; M &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
+<tr class="memitem:a0ae53fd9fbad056071c75fad6652291b"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="kspc_8hpp.html#a0ae53fd9fbad056071c75fad6652291b">kspc::hermitian</a> (const M &amp;op, Proj1 proj1={}, Proj2 proj2={}, Comp comp={})</td></tr>
+<tr class="memdesc:a0ae53fd9fbad056071c75fad6652291b"><td class="mdescLeft">&#160;</td><td class="mdescRight">hermitian <br /></td></tr>
+<tr class="separator:a0ae53fd9fbad056071c75fad6652291b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a609a0a2e7491622a3cba90137d8b6676"><td class="memTemplParams" colspan="2"><a id="a609a0a2e7491622a3cba90137d8b6676"></a>
 template&lt;typename T , typename... U, std::enable_if_t&lt; std::conjunction_v&lt; std::is_same&lt; U, T &gt;... &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
 <tr class="memitem:a609a0a2e7491622a3cba90137d8b6676"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="kspc_8hpp.html#a609a0a2e7491622a3cba90137d8b6676">kspc::matrix</a> (T, U...) -&gt; matrix&lt; T, isqrt(1UL+sizeof...(U))&gt;</td></tr>
@@ -197,12 +202,7 @@ template&lt;typename I , typename S &gt; </td></tr>
 <tr class="memitem:a105b89bafa2fbdff348dbbd9ec0c7239"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="kspc_8hpp.html#a105b89bafa2fbdff348dbbd9ec0c7239">kspc::ndmatrix</a> (I, S) -&gt; ndmatrix&lt; iter_value_t&lt; I &gt;&gt;</td></tr>
 <tr class="memdesc:a105b89bafa2fbdff348dbbd9ec0c7239"><td class="mdescLeft">&#160;</td><td class="mdescRight">deduction guide for <a class="el" href="structkspc_1_1ndmatrix.html">ndmatrix </a> <br /></td></tr>
 <tr class="separator:a105b89bafa2fbdff348dbbd9ec0c7239"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0ae53fd9fbad056071c75fad6652291b"><td class="memTemplParams" colspan="2"><a id="a0ae53fd9fbad056071c75fad6652291b"></a>
-template&lt;typename M , typename Proj1  = conj_fn, typename Proj2  = identity, typename Comp  = approx_eq, std::enable_if_t&lt; is_range_v&lt; M &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
-<tr class="memitem:a0ae53fd9fbad056071c75fad6652291b"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="kspc_8hpp.html#a0ae53fd9fbad056071c75fad6652291b">kspc::hermitian</a> (const M &amp;op, Proj1 proj1={}, Proj2 proj2={}, Comp comp={})</td></tr>
-<tr class="memdesc:a0ae53fd9fbad056071c75fad6652291b"><td class="mdescLeft">&#160;</td><td class="mdescRight">hermitian <br /></td></tr>
-<tr class="separator:a0ae53fd9fbad056071c75fad6652291b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a90634ed5d1f881771d66e09414f4ebd1"><td class="memTemplParams" colspan="2">template&lt;typename M , typename Vs , std::enable_if_t&lt; std::conjunction_v&lt; is_range&lt; M &gt;, is_fixed_size_array&lt; M &gt;, is_range&lt; Vs &gt;, is_range&lt; range_reference_t&lt; Vs &gt;&gt;&gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
+<tr class="memitem:a90634ed5d1f881771d66e09414f4ebd1"><td class="memTemplParams" colspan="2">template&lt;typename M , typename Vs , std::enable_if_t&lt; std::conjunction_v&lt; is_sized_range&lt; M &gt;, is_fixed_size_array&lt; M &gt;, is_range&lt; Vs &gt;, is_range&lt; range_reference_t&lt; Vs &gt;&gt;&gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
 <tr class="memitem:a90634ed5d1f881771d66e09414f4ebd1"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="kspc_8hpp.html#a90634ed5d1f881771d66e09414f4ebd1">kspc::mel</a> (const M &amp;op, const Vs &amp;vs)</td></tr>
 <tr class="memdesc:a90634ed5d1f881771d66e09414f4ebd1"><td class="mdescLeft">&#160;</td><td class="mdescRight">mel  <a href="kspc_8hpp.html#a90634ed5d1f881771d66e09414f4ebd1">More...</a><br /></td></tr>
 <tr class="separator:a90634ed5d1f881771d66e09414f4ebd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -433,7 +433,7 @@ constexpr double&#160;</td><td class="memItemRight" valign="bottom"><a class="el
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename M , typename Vs , std::enable_if_t&lt; std::conjunction_v&lt; is_range&lt; M &gt;, is_fixed_size_array&lt; M &gt;, is_range&lt; Vs &gt;, is_range&lt; range_reference_t&lt; Vs &gt;&gt;&gt;, std::nullptr_t &gt;  = nullptr&gt; </div>
+template&lt;typename M , typename Vs , std::enable_if_t&lt; std::conjunction_v&lt; is_sized_range&lt; M &gt;, is_fixed_size_array&lt; M &gt;, is_range&lt; Vs &gt;, is_range&lt; range_reference_t&lt; Vs &gt;&gt;&gt;, std::nullptr_t &gt;  = nullptr&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
