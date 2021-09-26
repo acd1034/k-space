@@ -154,14 +154,14 @@ namespace kspc {
   inline constexpr bool is_fixed_size_array_v = is_fixed_size_array<T>::value;
 
   // matrix dim
-  // NOTE: matrix constraint:
+  // NOTE: matrix constraints:
   // - is_sized_range
   // - is_random_access_range
-  // - kspc::cpo::dim callable
+  // - kspc::cpo::dim is callable
 
   /// @cond
   namespace detail2 {
-    // detail for niebloid
+    // details for niebloid
 
     template <typename C>
     inline constexpr auto dim(const C& c) noexcept(noexcept(c.dim())) //
@@ -198,7 +198,7 @@ namespace kspc {
   /// @endcond
 
   inline namespace cpo {
-    /// dim
+    /// dim (niebloid)
     inline constexpr auto dim = detail2::dim_fn{};
   } // namespace cpo
 
