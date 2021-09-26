@@ -20,7 +20,7 @@ namespace kspc {
   // clang-format off
   template <typename M,
             std::enable_if_t<std::conjunction_v<
-              is_range<M>,
+              is_sized_range<M>,
               is_complex<std::decay_t<range_reference_t<M>>>,
               is_fixed_size_array<M>>, std::nullptr_t> = nullptr>
   // clang-format on
@@ -58,13 +58,13 @@ namespace kspc {
   // clang-format off
   template <typename M,
             std::enable_if_t<std::conjunction_v<
-              is_range<M>,
+              is_sized_range<M>,
               is_complex<std::decay_t<range_reference_t<M>>>,
               std::negation<is_fixed_size_array<M>>>, std::nullptr_t> = nullptr>
   // clang-format on
   auto zheev(const M& H) {
     using T = complex_value_t<std::decay_t<range_reference_t<M>>>;
-    const std::size_t N = isqrt(std::size(H));
+    const std::size_t N = kspc::dim(H);
     auto* tmp_H = new std::complex<T>[N * N];
     auto* tmp_E = new T[N];
     auto* cwork = new std::complex<T>[N * 4];
