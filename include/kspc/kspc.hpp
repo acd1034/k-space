@@ -620,7 +620,6 @@ namespace kspc {
               detail::fixed_mel_constraints<M, Vs>>, std::nullptr_t> = nullptr>
   // clang-format on
   constexpr auto mel(const M& op, const Vs& vs) {
-    using std::size; // for ADL
     constexpr std::size_t N = fixed_size_array_size_v<Vs>;
     static_assert(fixed_size_array_size_v<M> == N * N
                     && fixed_size_array_size_v<remove_cvref_t<range_reference_t<Vs>>> == N,
