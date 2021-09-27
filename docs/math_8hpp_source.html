@@ -449,31 +449,30 @@ $(function() {
 <div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160;            <span class="keyword">typename</span> BOp1 = std::plus&lt;&gt;,</div>
 <div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160;            <span class="keyword">typename</span> BOp2 = std::multiplies&lt;&gt;,</div>
 <div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;            <span class="keyword">typename</span> BOp3 = std::multiplies&lt;&gt;,</div>
-<div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;            <span class="keyword">typename</span> TImpl = std::invoke_result_t&lt;</div>
-<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;              BOp2&amp;,</div>
-<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;              detail::projected_t&lt;P1, iterator_t&lt;R1&gt;&gt;,</div>
-<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;              detail::projected2_t&lt;BOp3, P2, iterator_t&lt;R2&gt;, P3, iterator_t&lt;R3&gt;&gt;&gt;,</div>
-<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;            <span class="keyword">typename</span> T = std::decay_t&lt;std::invoke_result_t&lt;BOp1&amp;, TImpl, TImpl&gt;&gt;,</div>
-<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160;            std::enable_if_t&lt;std::conjunction_v&lt;</div>
-<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;              is_range&lt;R1&gt;,</div>
-<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160;              is_range&lt;R2&gt;,</div>
-<div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160;              is_range&lt;R3&gt;,</div>
-<div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;              std::is_default_constructible&lt;T&gt;&gt;, std::nullptr_t&gt; = <span class="keyword">nullptr</span>&gt;</div>
-<div class="line"><a name="l00433"></a><span class="lineno">  433</span>&#160;  constexpr <span class="keyword">auto</span></div>
-<div class="line"><a name="l00434"></a><span class="lineno"><a class="line" href="math_8hpp.html#a22bd87c4971ffd49e68e3119dc4533c4">  434</a></span>&#160;  <a class="code" href="math_8hpp.html#a3332d85228da007f0095334443521c3a">innerp</a>(R1&amp;&amp; r1, R2&amp;&amp; r2, R3&amp;&amp; r3,</div>
-<div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160;         P1 proj1 = {}, P2 proj2 = {}, P3 proj3 = {}, BOp1 bop1 = {}, BOp2 bop2 = {}, BOp3 bop3 = {}) {</div>
-<div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160;    <span class="keyword">using</span> std::begin, std::end; <span class="comment">// for ADL</span></div>
-<div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;    <span class="keywordflow">return</span> detail::innerp2(</div>
-<div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;             begin(r1), end(r1), begin(r2), end(r2), begin(r3), end(r3), T{},</div>
-<div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160;             std::move(bop1),</div>
-<div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160;             std::move(bop2),</div>
-<div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160;             std::move(bop3),</div>
-<div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;             std::move(proj1),</div>
-<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;             std::move(proj2),</div>
-<div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160;             std::move(proj3));</div>
-<div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;  }</div>
-<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;  <span class="comment">// clang-format on</span></div>
-<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;} <span class="comment">// namespace kspc</span></div>
+<div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;            <span class="keyword">typename</span> T = std::common_type_t&lt;</div>
+<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;              detail::projected_t&lt;P1, iterator_t&lt;R1&gt;&gt;,</div>
+<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;              detail::projected_t&lt;P2, iterator_t&lt;R2&gt;&gt;,</div>
+<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;              detail::projected_t&lt;P3, iterator_t&lt;R3&gt;&gt;&gt;,</div>
+<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;            std::enable_if_t&lt;std::conjunction_v&lt;</div>
+<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160;              is_range&lt;R1&gt;,</div>
+<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;              is_range&lt;R2&gt;,</div>
+<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160;              is_range&lt;R3&gt;,</div>
+<div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160;              std::is_default_constructible&lt;T&gt;&gt;, std::nullptr_t&gt; = <span class="keyword">nullptr</span>&gt;</div>
+<div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;  constexpr <span class="keyword">auto</span></div>
+<div class="line"><a name="l00433"></a><span class="lineno"><a class="line" href="math_8hpp.html#a4191c40428cc9ba061996fa0d7ce596b">  433</a></span>&#160;  <a class="code" href="math_8hpp.html#a3332d85228da007f0095334443521c3a">innerp</a>(R1&amp;&amp; r1, R2&amp;&amp; r2, R3&amp;&amp; r3,</div>
+<div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160;         P1 proj1 = {}, P2 proj2 = {}, P3 proj3 = {}, BOp1 bop1 = {}, BOp2 bop2 = {}, BOp3 bop3 = {}) {</div>
+<div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160;    <span class="keyword">using</span> std::begin, std::end; <span class="comment">// for ADL</span></div>
+<div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160;    <span class="keywordflow">return</span> detail::innerp2(</div>
+<div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;             begin(r1), end(r1), begin(r2), end(r2), begin(r3), end(r3), T{},</div>
+<div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;             std::move(bop1),</div>
+<div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160;             std::move(bop2),</div>
+<div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160;             std::move(bop3),</div>
+<div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160;             std::move(proj1),</div>
+<div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;             std::move(proj2),</div>
+<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;             std::move(proj3));</div>
+<div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160;  }</div>
+<div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;  <span class="comment">// clang-format on</span></div>
+<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;} <span class="comment">// namespace kspc</span></div>
 <div class="ttc" id="acore_8hpp_html"><div class="ttname"><a href="core_8hpp.html">core.hpp</a></div></div>
 <div class="ttc" id="amath_8hpp_html_a09d760d9c47c778498c3e521373cbc12"><div class="ttname"><a href="math_8hpp.html#a09d760d9c47c778498c3e521373cbc12">kspc::make_signed_v</a></div><div class="ttdeci">constexpr auto make_signed_v(const T &amp;x) noexcept(noexcept(static_cast&lt; std::make_signed_t&lt; T &gt;&gt;(x)))</div><div class="ttdoc">make_signed_v</div><div class="ttdef"><b>Definition:</b> math.hpp:14</div></div>
 <div class="ttc" id="amath_8hpp_html_a3332d85228da007f0095334443521c3a"><div class="ttname"><a href="math_8hpp.html#a3332d85228da007f0095334443521c3a">kspc::innerp</a></div><div class="ttdeci">constexpr auto innerp(R1 &amp;&amp;r1, R2 &amp;&amp;r2, P1 proj1={}, P2 proj2={}, BOp1 bop1={}, BOp2 bop2={})</div><div class="ttdef"><b>Definition:</b> math.hpp:314</div></div>
