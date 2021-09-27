@@ -420,11 +420,10 @@ namespace kspc {
             typename BOp1 = std::plus<>,
             typename BOp2 = std::multiplies<>,
             typename BOp3 = std::multiplies<>,
-            typename TImpl = std::invoke_result_t<
-              BOp2&,
+            typename T = std::common_type_t<
               detail::projected_t<P1, iterator_t<R1>>,
-              detail::projected2_t<BOp3, P2, iterator_t<R2>, P3, iterator_t<R3>>>,
-            typename T = std::decay_t<std::invoke_result_t<BOp1&, TImpl, TImpl>>,
+              detail::projected_t<P2, iterator_t<R2>>,
+              detail::projected_t<P3, iterator_t<R3>>>,
             std::enable_if_t<std::conjunction_v<
               is_range<R1>,
               is_range<R2>,

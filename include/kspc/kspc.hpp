@@ -625,8 +625,7 @@ namespace kspc {
                     && fixed_size_array_size_v<remove_cvref_t<range_reference_t<Vs>>> == N,
                   "the matrix size and the vector sizes are inconsistent");
 
-    using T = std::common_type_t<std::decay_t<range_reference_t<M>>,
-                                 std::decay_t<range_reference_t<range_reference_t<Vs>>>>;
+    using T = std::common_type_t<range_reference_t<M>, range_reference_t<range_reference_t<Vs>>>;
     matrix<T, N> ret{};
     for (std::size_t i = 0; i < N; ++i) {
       for (std::size_t j = 0; j < N; ++j) {
@@ -649,8 +648,7 @@ namespace kspc {
     const std::size_t N = kspc::dim(op);
     assert(size(vs) == N);
 
-    using T = std::common_type_t<std::decay_t<range_reference_t<M>>,
-                                 std::decay_t<range_reference_t<range_reference_t<Vs>>>>;
+    using T = std::common_type_t<range_reference_t<M>, range_reference_t<range_reference_t<Vs>>>;
     ndmatrix<T> ret(N);
     for (std::size_t i = 0; i < N; ++i) {
       for (std::size_t j = 0; j < N; ++j) {
