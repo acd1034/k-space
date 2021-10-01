@@ -12,6 +12,9 @@
 #include <iosfwd>   // basic_ostream
 #include <iterator> // begin, end
 
+/// @example Haldane.cpp
+/// @example Haldane_fixed.cpp
+
 namespace kspc {
   /// Implementation details are here.
   namespace detail {}
