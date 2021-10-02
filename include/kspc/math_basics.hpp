@@ -6,7 +6,10 @@
 #include <kspc/core.hpp>
 
 namespace kspc {
-  // seemless use of floating-point and complex
+  /// @addtogroup complex
+  /// @{
+
+  // consistent complex access
 
   /// %is_complex
   template <typename T>
@@ -77,7 +80,12 @@ namespace kspc {
     }
   }; // struct conj_fn
 
-  // fixed-size array optimization
+  /// @}
+
+  /// @addtogroup matrix
+  /// @{
+
+  // support for fixed-size array specialization
 
   /// compile-time sqrt for unsigned integer
   inline constexpr std::size_t isqrt(const std::size_t N) noexcept {
@@ -117,16 +125,12 @@ namespace kspc {
                              std::void_t<decltype(fixed_size_array_size<remove_cvref_t<T>>::value)>>
     : std::true_type {};
 
-  /// helper variable template for `is_fixed_size_array`
-  /// To make this true, partially/fully specialize `fixed_size_array_size`.
+  /// @brief helper variable template for `is_fixed_size_array`
+  /// @details To make this true, partially/fully specialize `fixed_size_array_size`.
   template <typename T>
   inline constexpr bool is_fixed_size_array_v = is_fixed_size_array<T>::value;
 
-  // matrix dim
-  // NOTE: matrix constraints:
-  // - is_sized_range
-  // - is_random_access_range
-  // - kspc::cpo::dim is callable
+  // matrix dimension
 
   /// @cond
   namespace detail2 {
@@ -171,10 +175,16 @@ namespace kspc {
     inline constexpr auto dim = detail2::dim_fn{};
   } // namespace cpo
 
+  /// @}
+
+  /// @addtogroup numeric
+  /// @{
+
   // arithmetic operators for `std::array`, `std::vector`
 
   inline namespace arithmetic_ops {
-    // array
+    // std::array
+
     template <typename T, std::size_t N,
               std::enable_if_t<std::is_arithmetic_v<T>, std::nullptr_t> = nullptr>
     inline constexpr auto& operator+(const std::array<T, N>& x) {
@@ -229,7 +239,8 @@ namespace kspc {
       return ret;
     }
 
-    // vector
+    // std::vector
+
     template <typename T, std::enable_if_t<std::is_arithmetic_v<T>, std::nullptr_t> = nullptr>
     inline constexpr auto& operator+(const std::vector<T>& x) {
       return x;
@@ -317,9 +328,8 @@ namespace kspc {
   } // namespace detail
   /// @endcond
 
-  /// sum
-  /// almost same as `std::accumulate` but does not require initial value.
-  /// NOTE: the order of the arguments `P`, `BOp` is different from range-v3.
+  /// @brief `std::accumulate` without the initial value
+  /// @note The order of the arguments `P`, `BOp` is different from range-v3.
   template <typename R,
             typename P = identity,
             typename BOp = std::plus<>,
@@ -381,9 +391,8 @@ namespace kspc {
   } // namespace detail
   /// @endcond
 
-  /// innerp
-  /// almost same as `std::inner_product` but does not require initial value.
-  /// NOTE: the order of the arguments `PN`, `BOpN` is different from range-v3.
+  /// @brief `std::inner_product` without the initial value
+  /// @note The order of the arguments `P#`, `BOp#` is different from range-v3.
   template <typename R1, typename R2,
             typename P1 = conj_fn,
             typename P2 = identity,
@@ -493,8 +502,8 @@ namespace kspc {
   /// @endcond
 
   /// `innerp` with matrix
-  /// WORKAROUND: difficulty in omitting the initial value.
-  // TODO: SFINAE incomplete
+  // WORKAROUND: difficulty in omitting the initial value
+  // TODO: SFINAE is incomplete.
   template <typename R1, typename R2, typename R3,
             typename P1 = conj_fn,
             typename P2 = identity,
@@ -525,4 +534,6 @@ namespace kspc {
              std::move(proj3));
   }
   // clang-format on
+
+  /// @}
 } // namespace kspc
