@@ -93,6 +93,8 @@ namespace kspc {
 
   /// %identity (C++20)
   struct identity {
+    using is_transparent = void;
+
     template <typename T>
     constexpr T&& operator()(T&& t) const noexcept(noexcept(std::forward<T>(t))) {
       return std::forward<T>(t);

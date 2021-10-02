@@ -73,6 +73,8 @@ namespace kspc {
 
   /// %conj_fn
   struct conj_fn {
+    using is_transparent = void;
+
     template <typename T>
     constexpr auto operator()(T&& t) const noexcept(noexcept(kspc::conj(std::forward<T>(t))))
       -> decltype((kspc::conj(std::forward<T>(t)))) {
