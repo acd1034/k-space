@@ -16,7 +16,8 @@ namespace kspc {
   } // namespace lapack
     /// @endcond
 
-  /// diagonalize hermitian matrix
+  /// @brief diagonalize hermitian matrix (fixed-size)
+  /// @example Haldane_fixed.cpp
   // clang-format off
   template <typename M,
             std::enable_if_t<std::conjunction_v<
@@ -54,7 +55,8 @@ namespace kspc {
     return std::make_pair(std::move(E), std::move(U));
   }
 
-  /// @overload
+  /// @brief diagonalize hermitian matrix (dynamic-size)
+  /// @example Haldane.cpp
   // clang-format off
   template <typename M,
             std::enable_if_t<std::conjunction_v<

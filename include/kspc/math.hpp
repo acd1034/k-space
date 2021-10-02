@@ -171,7 +171,8 @@ namespace kspc {
 
   // matrix algorithms
 
-  /// hermitian
+  /// @brief Check whether matrix is hermitian.
+  /// @example hermitian.cpp
   template <typename M, typename Proj1 = conj_fn, typename Proj2 = identity,
             typename Comp = approx_eq,
             std::enable_if_t<is_sized_range_v<M>, std::nullptr_t> = nullptr>

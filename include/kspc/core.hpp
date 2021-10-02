@@ -43,9 +43,6 @@
 
 /// @defgroup physics Physics
 
-/// @example Haldane.cpp
-/// @example Haldane_fixed.cpp
-
 namespace kspc {
   /// Implementation details are here.
   namespace detail {}
