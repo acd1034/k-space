@@ -35,10 +35,10 @@
 /// @defgroup approx Approximate comparison
 /// @ingroup math
 
-/// @defgroup constants Constants
+/// @defgroup math_constants Constants
 /// @ingroup math
 
-/// @defgroup functions Functions
+/// @defgroup math_functions Functions
 /// @ingroup math
 
 /// @defgroup physics Physics

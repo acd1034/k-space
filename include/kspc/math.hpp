@@ -9,6 +9,9 @@
 #include <kspc/math_basics.hpp>
 
 namespace kspc {
+  /// @addtogroup approx
+  /// @{
+
   // approximate comparison
 
   /// @cond
@@ -126,7 +129,7 @@ namespace kspc {
   template <typename T>
   approx(std::complex<T>, const double = eps, const double = 0.0) -> approx<std::complex<T>>;
 
-  // function object for approximate comparison
+  // function objects for approximate comparison
 
 #define KSPC_DEFINE_APPROXIMATE_COMPARISON(Name, Op)                                               \
   struct Name {                                                                                    \
@@ -146,14 +149,27 @@ namespace kspc {
     }                                                                                              \
   };
 
+  /// %approx_eq
   KSPC_DEFINE_APPROXIMATE_COMPARISON(approx_eq, ==)
+  /// %approx_ne
   KSPC_DEFINE_APPROXIMATE_COMPARISON(approx_ne, !=)
+  /// %approx_lt
   KSPC_DEFINE_APPROXIMATE_COMPARISON(approx_lt, <)
+  /// %approx_gt
   KSPC_DEFINE_APPROXIMATE_COMPARISON(approx_gt, >)
+  /// %approx_le
   KSPC_DEFINE_APPROXIMATE_COMPARISON(approx_le, <=)
+  /// %approx_ge
   KSPC_DEFINE_APPROXIMATE_COMPARISON(approx_ge, >=)
 
 #undef KSPC_DEFINE_APPROXIMATE_COMPARISON
+
+  /// @}
+
+  /// @addtogroup matrix
+  /// @{
+
+  // matrix algorithms
 
   /// hermitian
   template <typename M, typename Proj1 = conj_fn, typename Proj2 = identity,
@@ -485,6 +501,8 @@ namespace kspc {
   template <typename I, typename S>
   ndmatrix(I, S) -> ndmatrix<iter_value_t<I>>;
 
+  // matrix element
+
   /// @cond
   namespace detail {
     // clang-format off
@@ -544,7 +562,10 @@ namespace kspc {
     return ret;
   }
 
-  // math constants
+  /// @}
+
+  /// @addtogroup math_constants
+  /// @{
 
   /// @cond
   namespace detail {
@@ -609,7 +630,10 @@ namespace kspc {
   inline constexpr double exp_egamma = exp_egamma_v<double>;
   // clang-format on
 
-  // math functions
+  /// @}
+
+  /// @addtogroup math_functions
+  /// @{
 
   /// The Fermi distribution
   template <typename T>
@@ -659,7 +683,10 @@ namespace kspc {
     return x * x * x;
   }
 
-  // numerical calculation in k-space
+  /// @}
+
+  /// @addtogroup physics
+  /// @{
 
   template <typename K, typename B,
             std::enable_if_t<is_range_v<K> && is_range_v<B>, std::nullptr_t> = nullptr>
@@ -674,4 +701,6 @@ namespace kspc {
       return std::all_of(begin(bs), end(bs), [&k](const auto& b) { return in_BZ(k, b); });
     };
   }
+
+  /// @}
 } // namespace kspc
