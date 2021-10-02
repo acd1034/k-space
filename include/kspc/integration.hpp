@@ -2,7 +2,7 @@
 #pragma once
 #include <vector>
 #include <gsl/gsl_integration.h>
-#include <kspc/math.hpp>
+#include <kspc/math_basics.hpp>
 
 namespace kspc {
   /// helper class for defining parameters of integrand

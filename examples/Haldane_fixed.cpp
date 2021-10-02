@@ -7,8 +7,8 @@
 #include <fstream>
 #include <iostream>
 #include <kspc/integration.hpp>
-#include <kspc/kspc.hpp>
 #include <kspc/linalg.hpp>
+#include <kspc/math.hpp>
 using namespace kspc::arithmetic_ops;
 
 inline constexpr std::size_t D = 2;

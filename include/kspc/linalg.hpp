@@ -3,7 +3,7 @@
 #include <array>
 #include <complex>
 #include <vector>
-#include <kspc/math.hpp>
+#include <kspc/math_basics.hpp>
 
 namespace kspc {
   /// @cond
