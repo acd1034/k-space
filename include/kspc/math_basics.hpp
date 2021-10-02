@@ -1,4 +1,4 @@
-/// @file math.hpp
+/// @file math_basics.hpp
 #pragma once
 #include <array>
 #include <complex>

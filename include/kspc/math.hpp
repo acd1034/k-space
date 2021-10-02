@@ -1,4 +1,4 @@
-/// @file kspc.hpp
+/// @file math.hpp
 #pragma once
 #include <algorithm> // all_of
 #include <array>
