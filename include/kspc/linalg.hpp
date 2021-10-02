@@ -19,15 +19,15 @@ namespace kspc {
   /// @brief diagonalize hermitian matrix (fixed-size)
   /// @example Haldane_fixed.cpp
   // clang-format off
-  template <typename M,
+  template <typename L,
             std::enable_if_t<std::conjunction_v<
-              is_sized_range<M>,
-              is_complex<std::decay_t<range_reference_t<M>>>,
-              is_fixed_size_array<M>>, std::nullptr_t> = nullptr>
+              is_sized_range<L>,
+              is_complex<std::decay_t<range_reference_t<L>>>,
+              is_fixed_size_array<L>>, std::nullptr_t> = nullptr>
   // clang-format on
-  auto zheev(const M& H) {
-    using T = complex_value_t<std::decay_t<range_reference_t<M>>>;
-    constexpr auto N = isqrt(fixed_size_array_size_v<M>);
+  auto zheev(const L& H) {
+    using T = complex_value_t<std::decay_t<range_reference_t<L>>>;
+    constexpr auto N = isqrt(fixed_size_array_size_v<L>);
     static std::complex<T> tmp_H[N * N];
     static T tmp_E[N];
     static std::complex<T> cwork[N * 4];

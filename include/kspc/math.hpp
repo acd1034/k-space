@@ -518,19 +518,19 @@ namespace kspc {
 
   /// mel
   // clang-format off
-  template <typename M, typename Vs,
+  template <typename L, typename Vs,
             std::enable_if_t<std::conjunction_v<
-              is_sized_range<M>,
+              is_sized_range<L>,
               is_range<Vs>, is_range<range_reference_t<Vs>>,
-              detail::fixed_mel_constraints<M, Vs>>, std::nullptr_t> = nullptr>
+              detail::fixed_mel_constraints<L, Vs>>, std::nullptr_t> = nullptr>
   // clang-format on
-  constexpr auto mel(const M& op, const Vs& vs) {
+  constexpr auto mel(const L& op, const Vs& vs) {
     constexpr std::size_t N = fixed_size_array_size_v<Vs>;
-    static_assert(fixed_size_array_size_v<M> == N * N
+    static_assert(fixed_size_array_size_v<L> == N * N
                     && fixed_size_array_size_v<remove_cvref_t<range_reference_t<Vs>>> == N,
                   "the matrix size and the vector sizes are inconsistent");
 
-    using T = std::common_type_t<range_reference_t<M>, range_reference_t<range_reference_t<Vs>>>;
+    using T = std::common_type_t<range_reference_t<L>, range_reference_t<range_reference_t<Vs>>>;
     matrix<T, N> ret{};
     for (std::size_t i = 0; i < N; ++i) {
       for (std::size_t j = 0; j < N; ++j) {

@@ -28,10 +28,10 @@ namespace kspc {
   using complex_value_t = typename T::value_type;
 
   /// real
-  template <typename T, std::enable_if_t<is_complex_v<std::decay_t<T>>, std::nullptr_t> = nullptr>
-  inline constexpr auto real(T&& x) noexcept(noexcept(std::real(std::forward<T>(x))))
-    -> decltype((std::real(std::forward<T>(x)))) {
-    return std::real(std::forward<T>(x));
+  template <typename C, std::enable_if_t<is_complex_v<std::decay_t<C>>, std::nullptr_t> = nullptr>
+  inline constexpr auto real(C&& x) noexcept(noexcept(std::real(std::forward<C>(x))))
+    -> decltype((std::real(std::forward<C>(x)))) {
+    return std::real(std::forward<C>(x));
   }
 
   /// @overload
@@ -41,10 +41,10 @@ namespace kspc {
   }
 
   /// imag
-  template <typename T, std::enable_if_t<is_complex_v<std::decay_t<T>>, std::nullptr_t> = nullptr>
-  inline constexpr auto imag(T&& x) noexcept(noexcept(std::imag(std::forward<T>(x))))
-    -> decltype((std::imag(std::forward<T>(x)))) {
-    return std::imag(std::forward<T>(x));
+  template <typename C, std::enable_if_t<is_complex_v<std::decay_t<C>>, std::nullptr_t> = nullptr>
+  inline constexpr auto imag(C&& x) noexcept(noexcept(std::imag(std::forward<C>(x))))
+    -> decltype((std::imag(std::forward<C>(x)))) {
+    return std::imag(std::forward<C>(x));
   }
 
   /// @overload
@@ -59,10 +59,10 @@ namespace kspc {
   }
 
   /// conj
-  template <typename T, std::enable_if_t<is_complex_v<std::decay_t<T>>, std::nullptr_t> = nullptr>
-  inline constexpr auto conj(T&& x) noexcept(noexcept(std::conj(std::forward<T>(x))))
-    -> decltype((std::conj(std::forward<T>(x)))) {
-    return std::conj(std::forward<T>(x));
+  template <typename C, std::enable_if_t<is_complex_v<std::decay_t<C>>, std::nullptr_t> = nullptr>
+  inline constexpr auto conj(C&& x) noexcept(noexcept(std::conj(std::forward<C>(x))))
+    -> decltype((std::conj(std::forward<C>(x)))) {
+    return std::conj(std::forward<C>(x));
   }
 
   /// @overload

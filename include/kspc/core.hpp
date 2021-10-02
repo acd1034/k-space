@@ -109,7 +109,8 @@ namespace kspc {
   }
 
   /// @overload
-  template <typename T, std::enable_if_t<!std::is_unsigned_v<T>, std::nullptr_t> = nullptr>
+  template <typename T,
+            std::enable_if_t<!std::is_unsigned_v<std::decay_t<T>>, std::nullptr_t> = nullptr>
   inline constexpr T&& make_signed_v(T&& x) noexcept(noexcept(std::forward<T>(x))) {
     return std::forward<T>(x);
   }
@@ -123,7 +124,8 @@ namespace kspc {
   }
 
   /// @overload
-  template <typename T, std::enable_if_t<!std::is_signed_v<T>, std::nullptr_t> = nullptr>
+  template <typename T,
+            std::enable_if_t<!std::is_signed_v<std::decay_t<T>>, std::nullptr_t> = nullptr>
   inline constexpr T&& make_unsigned_v(T&& x) noexcept(noexcept(std::forward<T>(x))) {
     return std::forward<T>(x);
   }
