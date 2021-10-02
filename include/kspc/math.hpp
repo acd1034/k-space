@@ -6,37 +6,6 @@
 #include <kspc/core.hpp>
 
 namespace kspc {
-  // conversion between signed integer and unsigned integer
-
-  /// make_signed_v
-  template <typename T, std::enable_if_t<std::is_unsigned_v<T>, std::nullptr_t> = nullptr>
-  inline constexpr auto
-  make_signed_v(const T& x) noexcept(noexcept(static_cast<std::make_signed_t<T>>(x))) {
-    using U = std::make_signed_t<T>;
-    assert(x <= static_cast<T>(std::numeric_limits<U>::max()));
-    return static_cast<U>(x);
-  }
-
-  /// @overload
-  template <typename T, std::enable_if_t<!std::is_unsigned_v<T>, std::nullptr_t> = nullptr>
-  inline constexpr T&& make_signed_v(T&& x) noexcept(noexcept(std::forward<T>(x))) {
-    return std::forward<T>(x);
-  }
-
-  /// make_unsigned_v
-  template <typename T, std::enable_if_t<std::is_signed_v<T>, std::nullptr_t> = nullptr>
-  inline constexpr auto
-  make_unsigned_v(const T& x) noexcept(noexcept(static_cast<std::make_unsigned_t<T>>(x))) {
-    assert(x >= static_cast<T>(0));
-    return static_cast<std::make_unsigned_t<T>>(x);
-  }
-
-  /// @overload
-  template <typename T, std::enable_if_t<!std::is_signed_v<T>, std::nullptr_t> = nullptr>
-  inline constexpr T&& make_unsigned_v(T&& x) noexcept(noexcept(std::forward<T>(x))) {
-    return std::forward<T>(x);
-  }
-
   // seemless use of floating-point and complex
 
   /// %is_complex
