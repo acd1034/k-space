@@ -155,27 +155,6 @@ namespace kspc {
 
 #undef KSPC_DEFINE_APPROXIMATE_COMPARISON
 
-  // matrix utilities? operations?
-
-  /// hermitian
-  template <typename M, typename Proj1 = conj_fn, typename Proj2 = identity,
-            typename Comp = approx_eq,
-            std::enable_if_t<is_sized_range_v<M>, std::nullptr_t> = nullptr>
-  constexpr bool hermitian(const M& op, Proj1 proj1 = {}, Proj2 proj2 = {}, Comp comp = {}) {
-    const std::size_t N = kspc::dim(op);
-    for (std::size_t j = 0; j < N; ++j) {
-      for (std::size_t k = j; k < N; ++k) {
-        // clang-format off
-        if (!std::invoke(comp,
-                         std::invoke(proj1, op[j * N + k]),
-                         std::invoke(proj2, op[k * N + j])))
-          return false;
-        // clang-format on
-      }
-    }
-    return true;
-  }
-
   // matrix class
 
   namespace detail2 {

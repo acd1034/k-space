@@ -79,7 +79,7 @@ namespace kspc {
 
   // fixed-size array optimization
 
-  /// sqrt for unsigned integer
+  /// compile-time sqrt for unsigned integer
   inline constexpr std::size_t isqrt(const std::size_t N) noexcept {
     std::size_t l = 0, r = N;
     while (r - l > 1) {
@@ -132,10 +132,10 @@ namespace kspc {
   namespace detail2 {
     // details for niebloid
 
-    template <typename C>
-    inline constexpr auto dim(const C& c) noexcept(noexcept(c.dim())) //
-      -> decltype((c.dim())) {
-      return c.dim();
+    template <typename M>
+    inline constexpr auto dim(const M& m) noexcept(noexcept(m.dim())) //
+      -> decltype((m.dim())) {
+      return m.dim();
     }
 
     template <typename T>
@@ -171,7 +171,26 @@ namespace kspc {
     inline constexpr auto dim = detail2::dim_fn{};
   } // namespace cpo
 
-  // arithmetic operator for `std::array`, `std::vector`
+  /// hermitian
+  template <typename M, typename Proj1 = conj_fn, typename Proj2 = identity,
+            typename Comp = approx_eq,
+            std::enable_if_t<is_sized_range_v<M>, std::nullptr_t> = nullptr>
+  constexpr bool hermitian(const M& op, Proj1 proj1 = {}, Proj2 proj2 = {}, Comp comp = {}) {
+    const std::size_t N = kspc::dim(op);
+    for (std::size_t j = 0; j < N; ++j) {
+      for (std::size_t k = j; k < N; ++k) {
+        // clang-format off
+        if (!std::invoke(comp,
+                         std::invoke(proj1, op[j * N + k]),
+                         std::invoke(proj2, op[k * N + j])))
+          return false;
+        // clang-format on
+      }
+    }
+    return true;
+  }
+
+  // arithmetic operators for `std::array`, `std::vector`
 
   inline namespace arithmetic_ops {
     // array
