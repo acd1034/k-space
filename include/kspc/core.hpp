@@ -3,14 +3,14 @@
 #include <cassert>          // assert
 #include <cstddef>          // size_t, ptrdiff_t, nullptr_t
 #include <cstdint>          // int32_t
-#include <functional>       // invoke
 #include <initializer_list> // initializer_list
 #include <tuple>            // tuple
-#include <type_traits>      // enable_if_t, void_t, true_type, false_type, etc.
+#include <type_traits>      // enable_if_t, void_t, true_type, invoke_result, etc.
 #include <utility>          // move, forward, pair, swap, exchange, declval
 
 #include <iosfwd>   // basic_ostream
 #include <iterator> // begin, end
+#include <limits>   // numeric_limits
 
 /// @example Haldane.cpp
 /// @example Haldane_fixed.cpp

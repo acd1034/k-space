@@ -2,7 +2,7 @@
 #pragma once
 #include <array>
 #include <complex>
-#include <limits>
+#include <functional> // invoke
 #include <kspc/core.hpp>
 
 namespace kspc {
