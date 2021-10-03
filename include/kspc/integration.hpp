@@ -14,7 +14,7 @@ namespace kspc {
     double epsabs;
     double epsrel;
     // workspace
-    std::vector<double> tmp_x;
+    std::vector<double> temp_x;
   }; // struct params_t
 
   /// @cond
@@ -24,7 +24,7 @@ namespace kspc {
     template <std::size_t D>
     double cquad_integrand(double x, void* temp_p_params) {
       auto* p_params = (params_t*)temp_p_params;
-      p_params->tmp_x[D] = x;
+      p_params->temp_x[D] = x;
       gsl_function F = {&cquad_integrand<D - 1>, (void*)p_params};
       double result, error;
       std::size_t nevals;
@@ -44,8 +44,8 @@ namespace kspc {
     template <>
     double cquad_integrand<0>(double x, void* temp_p_params) {
       auto* p_params = (params_t*)temp_p_params;
-      p_params->tmp_x[0] = x;
-      return (*(p_params->p_fn))(p_params->tmp_x, (void*)p_params);
+      p_params->temp_x[0] = x;
+      return (*(p_params->p_fn))(p_params->temp_x, (void*)p_params);
     }
   } // namespace detail
   /// @endcond
@@ -57,7 +57,7 @@ namespace kspc {
     assert(std::size(p_params->a) >= D);
     assert(std::size(p_params->b) >= D);
 
-    p_params->tmp_x.resize(D);
+    p_params->temp_x.resize(D);
     gsl_function F = {&detail::cquad_integrand<D - 1>, (void*)p_params};
     double result, error;
     std::size_t nevals;
