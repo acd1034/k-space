@@ -3,17 +3,45 @@
 #include <cassert>          // assert
 #include <cstddef>          // size_t, ptrdiff_t, nullptr_t
 #include <cstdint>          // int32_t
-#include <functional>       // invoke
 #include <initializer_list> // initializer_list
 #include <tuple>            // tuple
-#include <type_traits>      // enable_if_t, void_t, true_type, false_type, etc.
+#include <type_traits>      // enable_if_t, void_t, true_type, invoke_result, etc.
 #include <utility>          // move, forward, pair, swap, exchange, declval
 
 #include <iosfwd>   // basic_ostream
 #include <iterator> // begin, end
+#include <limits>   // numeric_limits
 
-/// @example Haldane.cpp
-/// @example Haldane_fixed.cpp
+/// @defgroup utility Utility
+/// Utility inline variables, type aliases, type transformations and function objects
+
+/// @defgroup iterator Iterator
+
+/// @defgroup range Range
+
+/// @defgroup io IO
+
+/// @defgroup math Math
+
+/// @defgroup complex Complex
+/// @ingroup math
+
+/// @defgroup matrix Matrix
+/// @ingroup math
+
+/// @defgroup numeric Numeric algorithms
+/// @ingroup math
+
+/// @defgroup approx Approximate comparison
+/// @ingroup math
+
+/// @defgroup math_constants Mathematical Constants
+/// @ingroup math
+
+/// @defgroup math_functions Mathematical Functions
+/// @ingroup math
+
+/// @defgroup physics Physics
 
 namespace kspc {
   /// Implementation details are here.
@@ -23,6 +51,9 @@ namespace kspc {
   namespace detail2 {
     using std::begin, std::end, std::size; // for ADL
   }
+
+  /// @addtogroup utility
+  /// @{
 
   /// always_false
   template <typename...>
@@ -62,11 +93,44 @@ namespace kspc {
 
   /// %identity (C++20)
   struct identity {
+    using is_transparent = void;
+
     template <typename T>
     constexpr T&& operator()(T&& t) const noexcept(noexcept(std::forward<T>(t))) {
       return std::forward<T>(t);
     }
   };
+
+  /// make_signed_v
+  template <typename T, std::enable_if_t<std::is_unsigned_v<T>, std::nullptr_t> = nullptr>
+  inline constexpr auto
+  make_signed_v(const T& x) noexcept(noexcept(static_cast<std::make_signed_t<T>>(x))) {
+    using U = std::make_signed_t<T>;
+    assert(x <= static_cast<T>(std::numeric_limits<U>::max()));
+    return static_cast<U>(x);
+  }
+
+  /// @overload
+  template <typename T,
+            std::enable_if_t<!std::is_unsigned_v<std::decay_t<T>>, std::nullptr_t> = nullptr>
+  inline constexpr T&& make_signed_v(T&& x) noexcept(noexcept(std::forward<T>(x))) {
+    return std::forward<T>(x);
+  }
+
+  /// make_unsigned_v
+  template <typename T, std::enable_if_t<std::is_signed_v<T>, std::nullptr_t> = nullptr>
+  inline constexpr auto
+  make_unsigned_v(const T& x) noexcept(noexcept(static_cast<std::make_unsigned_t<T>>(x))) {
+    assert(x >= static_cast<T>(0));
+    return static_cast<std::make_unsigned_t<T>>(x);
+  }
+
+  /// @overload
+  template <typename T,
+            std::enable_if_t<!std::is_signed_v<std::decay_t<T>>, std::nullptr_t> = nullptr>
+  inline constexpr T&& make_unsigned_v(T&& x) noexcept(noexcept(std::forward<T>(x))) {
+    return std::forward<T>(x);
+  }
 
   // detection idiom
 
@@ -88,7 +152,7 @@ namespace kspc {
   template <template <typename...> typename Op, typename... Args>
   inline constexpr bool is_detected_v = is_detected<Op, Args...>::value;
 
-  // alias templates for return types of operators
+  // type aliases to get the return type of operators
 
   /// @cond
   namespace detail {
@@ -111,6 +175,11 @@ namespace kspc {
     using not_equal_to_t = decltype(std::declval<T>() != std::declval<U>());
   } // namespace detail
     /// @endcond
+
+  /// @}
+
+  /// @addtogroup iterator
+  /// @{
 
   // iterator associated types (one part):
   // [x] incrementable_traits
@@ -211,17 +280,17 @@ namespace kspc {
   template <class T>
   struct indirectly_readable_traits<const T> : indirectly_readable_traits<T> {};
 
-  /// iter_difference_t
-  /// NOTE: specialization of `std::iterator_traits` is NOT supported.
+  /// @brief iter_difference_t
+  /// @note Specialization of `std::iterator_traits` is NOT supported.
   template <typename I>
   using iter_difference_t = typename incrementable_traits<remove_cvref_t<I>>::difference_type;
 
-  /// iter_value_t
-  /// NOTE: specialization of `std::iterator_traits` is NOT supported.
+  /// @brief iter_value_t
+  /// @note Specialization of `std::iterator_traits` is NOT supported.
   template <typename I>
   using iter_value_t = typename indirectly_readable_traits<remove_cvref_t<I>>::value_type;
 
-  // iterator concept:
+  // iterator concepts:
   // [x] is_dereferenceable (exposition only)
   // [x] is_weakly_incrementable
   // [x] is_input_or_output_iterator = is_dereferenceable && is_weakly_incrementable
@@ -346,11 +415,27 @@ namespace kspc {
   /// helper variable template for `is_sentinel_for`
   template <typename S, typename I>
   inline constexpr bool is_sentinel_for_v = is_sentinel_for<S, I>::value;
+  // clang-format on
 
-  // range concept:
+  // iterator associated types (remaining):
+  // [x] iter_reference_t
+  // [ ] iter_rvalue_reference_t (need `iter_move`)
+  // [ ] iter_common_reference_t (need `common_reference_t`)
+
+  /// iter_reference_t
+  template <typename I, std::enable_if_t<detail::is_dereferenceable_v<I>, std::nullptr_t> = nullptr>
+  using iter_reference_t = detail::dereference_t<I&>;
+
+  /// @}
+
+  /// @addtogroup range
+  /// @{
+
+  // range concepts:
   // [x] is_range
   // [x] is_sized_range
 
+  // clang-format off
   /// @cond
   namespace detail2 {
     template <typename T>
@@ -388,15 +473,6 @@ namespace kspc {
   template <typename R>
   inline constexpr bool is_sized_range_v = is_sized_range<R>::value;
   // clang-format on
-
-  // iterator associated types (remaining):
-  // [x] iter_reference_t
-  // [ ] iter_rvalue_reference_t (need `iter_move`)
-  // [ ] iter_common_reference_t (need `common_reference_t`)
-
-  /// iter_reference_t
-  template <typename I, std::enable_if_t<detail::is_dereferenceable_v<I>, std::nullptr_t> = nullptr>
-  using iter_reference_t = detail::dereference_t<I&>;
 
   // range associated types:
   // [x] iterator_t
@@ -442,10 +518,13 @@ namespace kspc {
     return N;
   }
 
-  // stream insertion
+  /// @}
+
+  /// @addtogroup io
+  /// @{
 
   inline namespace io {
-    /// stream insertion for range
+    /// Stream insertion for range
     template <typename CharT, typename Traits, typename R,
               std::enable_if_t<is_range_v<R>, std::nullptr_t> = nullptr>
     auto& operator<<(std::basic_ostream<CharT, Traits>& os, const R& r) {
@@ -454,4 +533,6 @@ namespace kspc {
       return os;
     }
   } // namespace io
+
+  /// @}
 } // namespace kspc

@@ -1,7 +1,7 @@
 #include <iostream>
 #include <memory>
 #include <kspc/draft.hpp>
-#include <kspc/kspc.hpp>
+#include <kspc/math.hpp>
 
 struct X {
   friend inline constexpr std::ptrdiff_t operator-(const X&, const X&) {
