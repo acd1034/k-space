@@ -1,13 +1,14 @@
 var indexSectionsWithContent =
 {
-  0: "abcdefhiklmnoprstz",
+  0: "abcdefiklmnoprstu",
   1: "acfimnprt",
   2: "k",
-  3: "ciklm",
-  4: "acdfhilmnorsz",
+  3: "cilm",
+  4: "acdfilmnors",
   5: "adefilpst",
   6: "bcirst",
-  7: "k"
+  7: "acimnpru",
+  8: "k"
 };
 
 var indexSectionNames =
@@ -19,7 +20,8 @@ var indexSectionNames =
   4: "functions",
   5: "variables",
   6: "typedefs",
-  7: "pages"
+  7: "groups",
+  8: "pages"
 };
 
 var indexSectionLabels =
@@ -31,6 +33,7 @@ var indexSectionLabels =
   4: "Functions",
   5: "Variables",
   6: "Typedefs",
-  7: "Pages"
+  7: "Modules",
+  8: "Pages"
 };
 

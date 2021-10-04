@@ -74,43 +74,21 @@ $(function() {
 <div class="textblock"><code>#include &lt;array&gt;</code><br />
 <code>#include &lt;complex&gt;</code><br />
 <code>#include &lt;vector&gt;</code><br />
-<code>#include &lt;<a class="el" href="math_8hpp_source.html">kspc/math.hpp</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="math__basics_8hpp_source.html">kspc/math_basics.hpp</a>&gt;</code><br />
 </div>
 <p><a href="linalg_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ad395f8074bef33bdb8665f6ccc567ad3"><td class="memTemplParams" colspan="2">template&lt;typename M , std::enable_if_t&lt; std::conjunction_v&lt; is_sized_range&lt; M &gt;, is_complex&lt; std::decay_t&lt; range_reference_t&lt; M &gt;&gt;&gt;, is_fixed_size_array&lt; M &gt;&gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
-<tr class="memitem:ad395f8074bef33bdb8665f6ccc567ad3"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="linalg_8hpp.html#ad395f8074bef33bdb8665f6ccc567ad3">kspc::zheev</a> (const M &amp;H)</td></tr>
-<tr class="memdesc:ad395f8074bef33bdb8665f6ccc567ad3"><td class="mdescLeft">&#160;</td><td class="mdescRight">diagonalize hermitian matrix  <a href="linalg_8hpp.html#ad395f8074bef33bdb8665f6ccc567ad3">More...</a><br /></td></tr>
+<tr class="memitem:a18c820c1e5cafe818db9b090bb45165f"><td class="memTemplParams" colspan="2"><a id="a18c820c1e5cafe818db9b090bb45165f"></a>
+template&lt;typename L , std::enable_if_t&lt; std::conjunction_v&lt; is_sized_range&lt; L &gt;, is_complex&lt; std::decay_t&lt; range_reference_t&lt; L &gt;&gt;&gt;, is_fixed_size_array&lt; L &gt;&gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
+<tr class="memitem:a18c820c1e5cafe818db9b090bb45165f"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::zheev</b> (const L &amp;H)</td></tr>
+<tr class="separator:a18c820c1e5cafe818db9b090bb45165f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad395f8074bef33bdb8665f6ccc567ad3"><td class="memTemplParams" colspan="2"><a id="ad395f8074bef33bdb8665f6ccc567ad3"></a>
+template&lt;typename M , std::enable_if_t&lt; std::conjunction_v&lt; is_sized_range&lt; M &gt;, is_complex&lt; std::decay_t&lt; range_reference_t&lt; M &gt;&gt;&gt;, std::negation&lt; is_fixed_size_array&lt; M &gt;&gt;&gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
+<tr class="memitem:ad395f8074bef33bdb8665f6ccc567ad3"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::zheev</b> (const M &amp;H)</td></tr>
 <tr class="separator:ad395f8074bef33bdb8665f6ccc567ad3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Function Documentation</h2>
-<a id="ad395f8074bef33bdb8665f6ccc567ad3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad395f8074bef33bdb8665f6ccc567ad3">&#9670;&nbsp;</a></span>zheev()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename M , std::enable_if_t&lt; std::conjunction_v&lt; is_sized_range&lt; M &gt;, is_complex&lt; std::decay_t&lt; range_reference_t&lt; M &gt;&gt;&gt;, is_fixed_size_array&lt; M &gt;&gt;, std::nullptr_t &gt;  = nullptr&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">auto kspc::zheev </td>
-          <td>(</td>
-          <td class="paramtype">const M &amp;&#160;</td>
-          <td class="paramname"><em>H</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>diagonalize hermitian matrix </p>
-<p>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. </p>
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_haldane_8cpp-example.html#a6">Haldane.cpp</a>, and <a class="el" href="_haldane_fixed_8cpp-example.html#a6">Haldane_fixed.cpp</a>.</dd>
-</dl>
-
-</div>
-</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

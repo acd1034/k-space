@@ -65,20 +65,21 @@ $(function() {
 <div class="title">Haldane.cpp</div>  </div>
 </div><!--header-->
 <div class="contents">
+<p>diagonalize hermitian matrix (dynamic-size)</p>
 <div class="fragment"><div class="line"> </div>
 <div class="line"><span class="preprocessor">#include &lt;fstream&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;iostream&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;<a class="code" href="integration_8hpp.html">kspc/integration.hpp</a>&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;<a class="code" href="kspc_8hpp.html">kspc/kspc.hpp</a>&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;<a class="code" href="linalg_8hpp.html">kspc/linalg.hpp</a>&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;<a class="code" href="math_8hpp.html">kspc/math.hpp</a>&gt;</span></div>
 <div class="line"><span class="keyword">using namespace </span>kspc::arithmetic_ops;</div>
 <div class="line"> </div>
 <div class="line"><span class="keyword">inline</span> constexpr std::size_t D = 2;</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// nearest neighbor lattice vectors</span></div>
 <div class="line"><span class="keyword">inline</span> constexpr std::array a{</div>
-<div class="line">  std::array{<a name="a0"></a><a class="code" href="kspc_8hpp.html#a9f5eb29f175060f10338ee159422c987">kspc::sqrt3</a> / 2, 1.0 / 2},</div>
-<div class="line">  std::array{-<a class="code" href="kspc_8hpp.html#a9f5eb29f175060f10338ee159422c987">kspc::sqrt3</a> / 2, 1.0 / 2},</div>
+<div class="line">  std::array{<a name="a0"></a><a class="code" href="group__math__constants.html#ga9f5eb29f175060f10338ee159422c987">kspc::sqrt3</a> / 2, 1.0 / 2},</div>
+<div class="line">  std::array{-<a class="code" href="group__math__constants.html#ga9f5eb29f175060f10338ee159422c987">kspc::sqrt3</a> / 2, 1.0 / 2},</div>
 <div class="line">  std::array{0.0, -1.0},</div>
 <div class="line">};</div>
 <div class="line"> </div>
@@ -91,9 +92,9 @@ $(function() {
 <div class="line"> </div>
 <div class="line"><span class="comment">// reciprocal lattice vector</span></div>
 <div class="line"><span class="keyword">inline</span> constexpr std::array g{</div>
-<div class="line">  std::array{-2.0 * <a name="a1"></a><a class="code" href="kspc_8hpp.html#af4e3e696f52b21176de64e875554c386">kspc::pi</a> / <a class="code" href="kspc_8hpp.html#a9f5eb29f175060f10338ee159422c987">kspc::sqrt3</a>, 2.0 * <a class="code" href="kspc_8hpp.html#af4e3e696f52b21176de64e875554c386">kspc::pi</a> / 3},</div>
-<div class="line">  std::array{-2.0 * <a class="code" href="kspc_8hpp.html#af4e3e696f52b21176de64e875554c386">kspc::pi</a> / <a class="code" href="kspc_8hpp.html#a9f5eb29f175060f10338ee159422c987">kspc::sqrt3</a>, -2.0 * <a class="code" href="kspc_8hpp.html#af4e3e696f52b21176de64e875554c386">kspc::pi</a> / 3},</div>
-<div class="line">  std::array{0.0, -4.0 * <a class="code" href="kspc_8hpp.html#af4e3e696f52b21176de64e875554c386">kspc::pi</a> / 3},</div>
+<div class="line">  std::array{-2.0 * <a name="a1"></a><a class="code" href="group__math__constants.html#gaf4e3e696f52b21176de64e875554c386">kspc::pi</a> / <a class="code" href="group__math__constants.html#ga9f5eb29f175060f10338ee159422c987">kspc::sqrt3</a>, 2.0 * <a class="code" href="group__math__constants.html#gaf4e3e696f52b21176de64e875554c386">kspc::pi</a> / 3},</div>
+<div class="line">  std::array{-2.0 * <a class="code" href="group__math__constants.html#gaf4e3e696f52b21176de64e875554c386">kspc::pi</a> / <a class="code" href="group__math__constants.html#ga9f5eb29f175060f10338ee159422c987">kspc::sqrt3</a>, -2.0 * <a class="code" href="group__math__constants.html#gaf4e3e696f52b21176de64e875554c386">kspc::pi</a> / 3},</div>
+<div class="line">  std::array{0.0, -4.0 * <a class="code" href="group__math__constants.html#gaf4e3e696f52b21176de64e875554c386">kspc::pi</a> / 3},</div>
 <div class="line">};</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// params of integrand</span></div>
@@ -115,13 +116,13 @@ $(function() {
 <div class="line">  <span class="keyword">auto</span>* p = (params_t*)temp_p_params;</div>
 <div class="line">  <span class="keywordflow">return</span> gen_hermitian_matrix(</div>
 <div class="line">    2.0 * p-&gt;t2 * std::cos(p-&gt;phi)</div>
-<div class="line">      * <a name="a4"></a>kspc::sum(b, [&amp;k](<span class="keyword">const</span> <span class="keyword">auto</span>&amp; bi){ return std::cos(kspc::innerp(k, bi)); }),</div>
+<div class="line">      * <a name="a4"></a><a class="code" href="group__numeric.html#gaf68d059d849df50b608442c0068014cf">kspc::sum</a>(b, [&amp;k](<span class="keyword">const</span> <span class="keyword">auto</span>&amp; bi){ return std::cos(kspc::innerp(k, bi)); }),</div>
 <div class="line">    p-&gt;t</div>
-<div class="line">      * kspc::sum(a, [&amp;k](<span class="keyword">const</span> <span class="keyword">auto</span>&amp; ai){ return std::cos(kspc::innerp(k, ai)); }),</div>
+<div class="line">      * <a class="code" href="group__numeric.html#gaf68d059d849df50b608442c0068014cf">kspc::sum</a>(a, [&amp;k](<span class="keyword">const</span> <span class="keyword">auto</span>&amp; ai){ return std::cos(kspc::innerp(k, ai)); }),</div>
 <div class="line">    p-&gt;t</div>
-<div class="line">      * kspc::sum(a, [&amp;k](<span class="keyword">const</span> <span class="keyword">auto</span>&amp; ai){ return std::sin(kspc::innerp(k, ai)); }),</div>
+<div class="line">      * <a class="code" href="group__numeric.html#gaf68d059d849df50b608442c0068014cf">kspc::sum</a>(a, [&amp;k](<span class="keyword">const</span> <span class="keyword">auto</span>&amp; ai){ return std::sin(kspc::innerp(k, ai)); }),</div>
 <div class="line">    p-&gt;delta + 2.0 * p-&gt;t2 * std::sin(p-&gt;phi)</div>
-<div class="line">      * kspc::sum(b, [&amp;k](<span class="keyword">const</span> <span class="keyword">auto</span>&amp; bi){ return std::sin(kspc::innerp(k, bi)); })</div>
+<div class="line">      * <a class="code" href="group__numeric.html#gaf68d059d849df50b608442c0068014cf">kspc::sum</a>(b, [&amp;k](<span class="keyword">const</span> <span class="keyword">auto</span>&amp; bi){ return std::sin(kspc::innerp(k, bi)); })</div>
 <div class="line">  );</div>
 <div class="line">}</div>
 <div class="line"> </div>
@@ -129,13 +130,13 @@ $(function() {
 <div class="line">  <span class="keyword">auto</span>* p = (params_t*)temp_p_params;</div>
 <div class="line">  <span class="keywordflow">return</span> gen_hermitian_matrix(</div>
 <div class="line">    -2.0 * p-&gt;t2 * std::cos(p-&gt;phi)</div>
-<div class="line">      * kspc::sum(b, [&amp;k](<span class="keyword">const</span> <span class="keyword">auto</span>&amp; bi){ return bi[0] * std::sin(kspc::innerp(k, bi)); }),</div>
+<div class="line">      * <a class="code" href="group__numeric.html#gaf68d059d849df50b608442c0068014cf">kspc::sum</a>(b, [&amp;k](<span class="keyword">const</span> <span class="keyword">auto</span>&amp; bi){ return bi[0] * std::sin(kspc::innerp(k, bi)); }),</div>
 <div class="line">    -p-&gt;t</div>
-<div class="line">      * kspc::sum(a, [&amp;k](<span class="keyword">const</span> <span class="keyword">auto</span>&amp; ai){ return ai[0] * std::sin(kspc::innerp(k, ai)); }),</div>
+<div class="line">      * <a class="code" href="group__numeric.html#gaf68d059d849df50b608442c0068014cf">kspc::sum</a>(a, [&amp;k](<span class="keyword">const</span> <span class="keyword">auto</span>&amp; ai){ return ai[0] * std::sin(kspc::innerp(k, ai)); }),</div>
 <div class="line">    p-&gt;t</div>
-<div class="line">      * kspc::sum(a, [&amp;k](<span class="keyword">const</span> <span class="keyword">auto</span>&amp; ai){ return ai[0] * std::cos(kspc::innerp(k, ai)); }),</div>
+<div class="line">      * <a class="code" href="group__numeric.html#gaf68d059d849df50b608442c0068014cf">kspc::sum</a>(a, [&amp;k](<span class="keyword">const</span> <span class="keyword">auto</span>&amp; ai){ return ai[0] * std::cos(kspc::innerp(k, ai)); }),</div>
 <div class="line">    p-&gt;delta + 2.0 * p-&gt;t2 * std::sin(p-&gt;phi)</div>
-<div class="line">      * kspc::sum(b, [&amp;k](<span class="keyword">const</span> <span class="keyword">auto</span>&amp; bi){ return bi[0] * std::cos(kspc::innerp(k, bi)); })</div>
+<div class="line">      * <a class="code" href="group__numeric.html#gaf68d059d849df50b608442c0068014cf">kspc::sum</a>(b, [&amp;k](<span class="keyword">const</span> <span class="keyword">auto</span>&amp; bi){ return bi[0] * std::cos(kspc::innerp(k, bi)); })</div>
 <div class="line">  );</div>
 <div class="line">}</div>
 <div class="line"> </div>
@@ -143,13 +144,13 @@ $(function() {
 <div class="line">  <span class="keyword">auto</span>* p = (params_t*)temp_p_params;</div>
 <div class="line">  <span class="keywordflow">return</span> gen_hermitian_matrix(</div>
 <div class="line">    -2.0 * p-&gt;t2 * std::cos(p-&gt;phi)</div>
-<div class="line">      * kspc::sum(b, [&amp;k](<span class="keyword">const</span> <span class="keyword">auto</span>&amp; bi){ return bi[1] * std::sin(kspc::innerp(k, bi)); }),</div>
+<div class="line">      * <a class="code" href="group__numeric.html#gaf68d059d849df50b608442c0068014cf">kspc::sum</a>(b, [&amp;k](<span class="keyword">const</span> <span class="keyword">auto</span>&amp; bi){ return bi[1] * std::sin(kspc::innerp(k, bi)); }),</div>
 <div class="line">    -p-&gt;t</div>
-<div class="line">      * kspc::sum(a, [&amp;k](<span class="keyword">const</span> <span class="keyword">auto</span>&amp; ai){ return ai[1] * std::sin(kspc::innerp(k, ai)); }),</div>
+<div class="line">      * <a class="code" href="group__numeric.html#gaf68d059d849df50b608442c0068014cf">kspc::sum</a>(a, [&amp;k](<span class="keyword">const</span> <span class="keyword">auto</span>&amp; ai){ return ai[1] * std::sin(kspc::innerp(k, ai)); }),</div>
 <div class="line">    p-&gt;t</div>
-<div class="line">      * kspc::sum(a, [&amp;k](<span class="keyword">const</span> <span class="keyword">auto</span>&amp; ai){ return ai[1] * std::cos(kspc::innerp(k, ai)); }),</div>
+<div class="line">      * <a class="code" href="group__numeric.html#gaf68d059d849df50b608442c0068014cf">kspc::sum</a>(a, [&amp;k](<span class="keyword">const</span> <span class="keyword">auto</span>&amp; ai){ return ai[1] * std::cos(kspc::innerp(k, ai)); }),</div>
 <div class="line">    p-&gt;delta + 2.0 * p-&gt;t2 * std::sin(p-&gt;phi)</div>
-<div class="line">      * kspc::sum(b, [&amp;k](<span class="keyword">const</span> <span class="keyword">auto</span>&amp; bi){ return bi[1] * std::cos(kspc::innerp(k, bi)); })</div>
+<div class="line">      * <a class="code" href="group__numeric.html#gaf68d059d849df50b608442c0068014cf">kspc::sum</a>(b, [&amp;k](<span class="keyword">const</span> <span class="keyword">auto</span>&amp; bi){ return bi[1] * std::cos(kspc::innerp(k, bi)); })</div>
 <div class="line">  );</div>
 <div class="line">}</div>
 <div class="line"><span class="comment">// clang-format on</span></div>
@@ -160,14 +161,14 @@ $(function() {
 <div class="line"><span class="keywordtype">double</span> Bz_(<span class="keyword">const</span> std::vector&lt;double&gt;&amp; k, <span class="keywordtype">void</span>* temp_p_params) {</div>
 <div class="line">  <span class="keywordflow">if</span> (!in_BZ(k)) <span class="keywordflow">return</span> 0.0;</div>
 <div class="line">  <span class="keyword">auto</span> H = H_(k, temp_p_params);</div>
-<div class="line">  assert(<a name="a5"></a>kspc::hermitian(H));</div>
-<div class="line">  <span class="keyword">auto</span> [E, U] = <a name="a6"></a><a class="code" href="linalg_8hpp.html#ad395f8074bef33bdb8665f6ccc567ad3">kspc::zheev</a>(H);</div>
-<div class="line">  <span class="keyword">auto</span> dHdkx = <a name="a7"></a><a class="code" href="kspc_8hpp.html#a90634ed5d1f881771d66e09414f4ebd1">kspc::mel</a>(dHdkx_(k, temp_p_params), U);</div>
-<div class="line">  <span class="keyword">auto</span> dHdky = <a class="code" href="kspc_8hpp.html#a90634ed5d1f881771d66e09414f4ebd1">kspc::mel</a>(dHdky_(k, temp_p_params), U);</div>
+<div class="line">  assert(kspc::hermitian(H));</div>
+<div class="line">  <span class="keyword">auto</span> [E, U] = kspc::zheev(H);</div>
+<div class="line">  <span class="keyword">auto</span> dHdkx = <a name="a5"></a><a class="code" href="group__matrix.html#gabe3298b1461d2583211f6a073c7366be">kspc::mel</a>(dHdkx_(k, temp_p_params), U);</div>
+<div class="line">  <span class="keyword">auto</span> dHdky = <a class="code" href="group__matrix.html#gabe3298b1461d2583211f6a073c7366be">kspc::mel</a>(dHdky_(k, temp_p_params), U);</div>
 <div class="line"> </div>
 <div class="line">  <span class="keywordtype">double</span> bz = 0.0;</div>
 <div class="line">  <span class="keywordflow">for</span> (std::size_t m = 0; m &lt; H.dim(); ++m) {</div>
-<div class="line">    <span class="keywordflow">if</span> (m != n) bz -= 2.0 * <a name="a8"></a>std::imag(dHdkx(n, m) * dHdky(m, n)) / std::pow(E[n] - E[m], 2);</div>
+<div class="line">    <span class="keywordflow">if</span> (m != n) bz -= 2.0 * <a name="a6"></a><a class="code" href="group__complex.html#ga774eb624bd9e917479710bb0bf890364">std::imag</a>(dHdkx(n, m) * dHdky(m, n)) / std::pow(E[n] - E[m], 2);</div>
 <div class="line">  }</div>
 <div class="line">  <span class="keywordflow">return</span> bz;</div>
 <div class="line">}</div>
@@ -175,12 +176,12 @@ $(function() {
 <div class="line"><span class="keywordtype">int</span> main() {</div>
 <div class="line">  params_t params;</div>
 <div class="line">  params.p_fn = &amp;Bz_;</div>
-<div class="line">  params.b = std::vector{<a class="code" href="kspc_8hpp.html#af4e3e696f52b21176de64e875554c386">kspc::pi</a>, <a class="code" href="kspc_8hpp.html#af4e3e696f52b21176de64e875554c386">kspc::pi</a>};</div>
+<div class="line">  params.b = std::vector{<a class="code" href="group__math__constants.html#gaf4e3e696f52b21176de64e875554c386">kspc::pi</a>, <a class="code" href="group__math__constants.html#gaf4e3e696f52b21176de64e875554c386">kspc::pi</a>};</div>
 <div class="line">  params.a = -params.b;</div>
-<div class="line">  params.epsabs = 1<a name="a9"></a><a class="code" href="kspc_8hpp.html#ab283bf7abbd1672477fa1d0583a0d6f9">e</a>-4;</div>
-<div class="line">  params.epsrel = 1<a class="code" href="kspc_8hpp.html#ab283bf7abbd1672477fa1d0583a0d6f9">e</a>-4;</div>
+<div class="line">  params.epsabs = 1<a name="a7"></a><a class="code" href="group__math__constants.html#gab283bf7abbd1672477fa1d0583a0d6f9">e</a>-4;</div>
+<div class="line">  params.epsrel = 1<a class="code" href="group__math__constants.html#gab283bf7abbd1672477fa1d0583a0d6f9">e</a>-4;</div>
 <div class="line">  params.t2 = 1.0;</div>
-<div class="line">  std::array phi_arr{-<a class="code" href="kspc_8hpp.html#af4e3e696f52b21176de64e875554c386">kspc::pi</a> / 2, 0.0, <a class="code" href="kspc_8hpp.html#af4e3e696f52b21176de64e875554c386">kspc::pi</a> / 2};</div>
+<div class="line">  std::array phi_arr{-<a class="code" href="group__math__constants.html#gaf4e3e696f52b21176de64e875554c386">kspc::pi</a> / 2, 0.0, <a class="code" href="group__math__constants.html#gaf4e3e696f52b21176de64e875554c386">kspc::pi</a> / 2};</div>
 <div class="line"> </div>
 <div class="line">  <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; phi : phi_arr) {</div>
 <div class="line">    params.phi = phi;</div>
@@ -188,19 +189,20 @@ $(function() {
 <div class="line">    <span class="comment">// clang-format off</span></div>
 <div class="line">    std::cout</div>
 <div class="line">      &lt;&lt; <span class="stringliteral">&quot;phi: &quot;</span> &lt;&lt; phi</div>
-<div class="line">      &lt;&lt; <span class="stringliteral">&quot;, chern #: &quot;</span> &lt;&lt; value / 2.0 / <a class="code" href="kspc_8hpp.html#af4e3e696f52b21176de64e875554c386">kspc::pi</a> &lt;&lt; std::endl;</div>
+<div class="line">      &lt;&lt; <span class="stringliteral">&quot;, chern #: &quot;</span> &lt;&lt; value / 2.0 / <a class="code" href="group__math__constants.html#gaf4e3e696f52b21176de64e875554c386">kspc::pi</a> &lt;&lt; std::endl;</div>
 <div class="line">    <span class="comment">// clang-format on</span></div>
 <div class="line">  }</div>
 <div class="line">}</div>
+<div class="ttc" id="agroup__complex_html_ga774eb624bd9e917479710bb0bf890364"><div class="ttname"><a href="group__complex.html#ga774eb624bd9e917479710bb0bf890364">kspc::imag</a></div><div class="ttdeci">constexpr auto imag(C &amp;&amp;x) noexcept(noexcept(std::imag(std::forward&lt; C &gt;(x)))) -&gt; decltype((std::imag(std::forward&lt; C &gt;(x))))</div><div class="ttdoc">imag</div><div class="ttdef"><b>Definition:</b> math_basics.hpp:45</div></div>
+<div class="ttc" id="agroup__math__constants_html_ga9f5eb29f175060f10338ee159422c987"><div class="ttname"><a href="group__math__constants.html#ga9f5eb29f175060f10338ee159422c987">kspc::sqrt3</a></div><div class="ttdeci">constexpr double sqrt3</div><div class="ttdoc">alias for sqrt3_v&lt;double&gt;</div><div class="ttdef"><b>Definition:</b> math.hpp:625</div></div>
+<div class="ttc" id="agroup__math__constants_html_gab283bf7abbd1672477fa1d0583a0d6f9"><div class="ttname"><a href="group__math__constants.html#gab283bf7abbd1672477fa1d0583a0d6f9">kspc::e</a></div><div class="ttdeci">constexpr double e</div><div class="ttdoc">alias for e_v&lt;double&gt;</div><div class="ttdef"><b>Definition:</b> math.hpp:609</div></div>
+<div class="ttc" id="agroup__math__constants_html_gaf4e3e696f52b21176de64e875554c386"><div class="ttname"><a href="group__math__constants.html#gaf4e3e696f52b21176de64e875554c386">kspc::pi</a></div><div class="ttdeci">constexpr double pi</div><div class="ttdoc">alias for pi_v&lt;double&gt;</div><div class="ttdef"><b>Definition:</b> math.hpp:619</div></div>
+<div class="ttc" id="agroup__matrix_html_gabe3298b1461d2583211f6a073c7366be"><div class="ttname"><a href="group__matrix.html#gabe3298b1461d2583211f6a073c7366be">kspc::mel</a></div><div class="ttdeci">constexpr auto mel(const L &amp;op, const Vs &amp;vs)</div><div class="ttdoc">mel</div><div class="ttdef"><b>Definition:</b> math.hpp:527</div></div>
+<div class="ttc" id="agroup__numeric_html_gaf68d059d849df50b608442c0068014cf"><div class="ttname"><a href="group__numeric.html#gaf68d059d849df50b608442c0068014cf">kspc::sum</a></div><div class="ttdeci">constexpr auto sum(R &amp;&amp;r, P proj={}, BOp bop={})</div><div class="ttdoc">std::accumulate without the initial value</div><div class="ttdef"><b>Definition:</b> math_basics.hpp:339</div></div>
 <div class="ttc" id="aintegration_8hpp_html"><div class="ttname"><a href="integration_8hpp.html">integration.hpp</a></div></div>
-<div class="ttc" id="akspc_8hpp_html"><div class="ttname"><a href="kspc_8hpp.html">kspc.hpp</a></div></div>
-<div class="ttc" id="akspc_8hpp_html_a90634ed5d1f881771d66e09414f4ebd1"><div class="ttname"><a href="kspc_8hpp.html#a90634ed5d1f881771d66e09414f4ebd1">kspc::mel</a></div><div class="ttdeci">constexpr auto mel(const M &amp;op, const Vs &amp;vs)</div><div class="ttdoc">mel</div><div class="ttdef"><b>Definition:</b> kspc.hpp:622</div></div>
-<div class="ttc" id="akspc_8hpp_html_a9f5eb29f175060f10338ee159422c987"><div class="ttname"><a href="kspc_8hpp.html#a9f5eb29f175060f10338ee159422c987">kspc::sqrt3</a></div><div class="ttdeci">constexpr double sqrt3</div><div class="ttdoc">alias for sqrt3_v&lt;double&gt;</div><div class="ttdef"><b>Definition:</b> kspc.hpp:717</div></div>
-<div class="ttc" id="akspc_8hpp_html_ab283bf7abbd1672477fa1d0583a0d6f9"><div class="ttname"><a href="kspc_8hpp.html#ab283bf7abbd1672477fa1d0583a0d6f9">kspc::e</a></div><div class="ttdeci">constexpr double e</div><div class="ttdoc">alias for e_v&lt;double&gt;</div><div class="ttdef"><b>Definition:</b> kspc.hpp:701</div></div>
-<div class="ttc" id="akspc_8hpp_html_af4e3e696f52b21176de64e875554c386"><div class="ttname"><a href="kspc_8hpp.html#af4e3e696f52b21176de64e875554c386">kspc::pi</a></div><div class="ttdeci">constexpr double pi</div><div class="ttdoc">alias for pi_v&lt;double&gt;</div><div class="ttdef"><b>Definition:</b> kspc.hpp:711</div></div>
 <div class="ttc" id="alinalg_8hpp_html"><div class="ttname"><a href="linalg_8hpp.html">linalg.hpp</a></div></div>
-<div class="ttc" id="alinalg_8hpp_html_ad395f8074bef33bdb8665f6ccc567ad3"><div class="ttname"><a href="linalg_8hpp.html#ad395f8074bef33bdb8665f6ccc567ad3">kspc::zheev</a></div><div class="ttdeci">auto zheev(const M &amp;H)</div><div class="ttdoc">diagonalize hermitian matrix</div><div class="ttdef"><b>Definition:</b> linalg.hpp:27</div></div>
-<div class="ttc" id="astructkspc_1_1ndmatrix_html"><div class="ttname"><a href="structkspc_1_1ndmatrix.html">kspc::ndmatrix</a></div><div class="ttdoc">dynamic-size matrix</div><div class="ttdef"><b>Definition:</b> kspc.hpp:508</div></div>
+<div class="ttc" id="amath_8hpp_html"><div class="ttname"><a href="math_8hpp.html">math.hpp</a></div></div>
+<div class="ttc" id="astructkspc_1_1ndmatrix_html"><div class="ttname"><a href="structkspc_1_1ndmatrix.html">kspc::ndmatrix</a></div><div class="ttdoc">dynamic-size matrix</div><div class="ttdef"><b>Definition:</b> math.hpp:411</div></div>
 <div class="ttc" id="astructkspc_1_1params__t_html"><div class="ttname"><a href="structkspc_1_1params__t.html">kspc::params_t</a></div><div class="ttdoc">helper class for defining parameters of integrand</div><div class="ttdef"><b>Definition:</b> integration.hpp:9</div></div>
 </div><!-- fragment --> </div><!-- contents -->
 <!-- start footer part -->

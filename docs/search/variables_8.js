@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['tau_232',['tau',['../kspc_8hpp.html#a2c933e2a32e66c2bad4f2189ff734f4e',1,'kspc']]],
-  ['tau_5fv_233',['tau_v',['../kspc_8hpp.html#aa033619324e979675d05f3942c847588',1,'kspc']]]
+  ['tau_252',['tau',['../group__math__constants.html#ga2c933e2a32e66c2bad4f2189ff734f4e',1,'kspc']]],
+  ['tau_5fv_253',['tau_v',['../group__math__constants.html#gaa033619324e979675d05f3942c847588',1,'kspc']]]
 ];

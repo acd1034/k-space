@@ -78,13 +78,13 @@ $(function() {
 <div class="textblock"><code>#include &lt;cassert&gt;</code><br />
 <code>#include &lt;cstddef&gt;</code><br />
 <code>#include &lt;cstdint&gt;</code><br />
-<code>#include &lt;functional&gt;</code><br />
 <code>#include &lt;initializer_list&gt;</code><br />
 <code>#include &lt;tuple&gt;</code><br />
 <code>#include &lt;type_traits&gt;</code><br />
 <code>#include &lt;utility&gt;</code><br />
 <code>#include &lt;iosfwd&gt;</code><br />
 <code>#include &lt;iterator&gt;</code><br />
+<code>#include &lt;limits&gt;</code><br />
 </div>
 <p><a href="core_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -165,169 +165,156 @@ Namespaces</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:a8bae7fce161eda4cecdae9f65c03640d"><td class="memTemplParams" colspan="2"><a id="a8bae7fce161eda4cecdae9f65c03640d"></a>
+<tr class="memitem:ga8bae7fce161eda4cecdae9f65c03640d"><td class="memTemplParams" colspan="2">
 template&lt;typename T &gt; </td></tr>
-<tr class="memitem:a8bae7fce161eda4cecdae9f65c03640d"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="core_8hpp.html#a8bae7fce161eda4cecdae9f65c03640d">kspc::builtin_array_noextent</a> = T[]</td></tr>
-<tr class="memdesc:a8bae7fce161eda4cecdae9f65c03640d"><td class="mdescLeft">&#160;</td><td class="mdescRight">builtin_array_noextent <br /></td></tr>
-<tr class="separator:a8bae7fce161eda4cecdae9f65c03640d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae78ffa229fbb8f2a4faebc8753139637"><td class="memTemplParams" colspan="2"><a id="ae78ffa229fbb8f2a4faebc8753139637"></a>
+<tr class="memitem:ga8bae7fce161eda4cecdae9f65c03640d"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__utility.html#ga8bae7fce161eda4cecdae9f65c03640d">kspc::builtin_array_noextent</a> = T[]</td></tr>
+<tr class="memdesc:ga8bae7fce161eda4cecdae9f65c03640d"><td class="mdescLeft">&#160;</td><td class="mdescRight">builtin_array_noextent <br /></td></tr>
+<tr class="separator:ga8bae7fce161eda4cecdae9f65c03640d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae78ffa229fbb8f2a4faebc8753139637"><td class="memTemplParams" colspan="2">
 template&lt;typename T , std::size_t N&gt; </td></tr>
-<tr class="memitem:ae78ffa229fbb8f2a4faebc8753139637"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="core_8hpp.html#ae78ffa229fbb8f2a4faebc8753139637">kspc::builtin_array</a> = T[N]</td></tr>
-<tr class="memdesc:ae78ffa229fbb8f2a4faebc8753139637"><td class="mdescLeft">&#160;</td><td class="mdescRight">builtin_array <br /></td></tr>
-<tr class="separator:ae78ffa229fbb8f2a4faebc8753139637"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab40f435739d536eab7ce58bd8ec31b86"><td class="memTemplParams" colspan="2"><a id="ab40f435739d536eab7ce58bd8ec31b86"></a>
+<tr class="memitem:gae78ffa229fbb8f2a4faebc8753139637"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__utility.html#gae78ffa229fbb8f2a4faebc8753139637">kspc::builtin_array</a> = T[N]</td></tr>
+<tr class="memdesc:gae78ffa229fbb8f2a4faebc8753139637"><td class="mdescLeft">&#160;</td><td class="mdescRight">builtin_array <br /></td></tr>
+<tr class="separator:gae78ffa229fbb8f2a4faebc8753139637"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab40f435739d536eab7ce58bd8ec31b86"><td class="memTemplParams" colspan="2">
 template&lt;typename T , typename... Args&gt; </td></tr>
-<tr class="memitem:ab40f435739d536eab7ce58bd8ec31b86"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="core_8hpp.html#ab40f435739d536eab7ce58bd8ec31b86">kspc::builtin_function</a> = T(Args...)</td></tr>
-<tr class="memdesc:ab40f435739d536eab7ce58bd8ec31b86"><td class="mdescLeft">&#160;</td><td class="mdescRight">builtin_function <br /></td></tr>
-<tr class="separator:ab40f435739d536eab7ce58bd8ec31b86"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a84e8e34e5d10ad3ee287dc2ca3e636c5"><td class="memTemplParams" colspan="2"><a id="a84e8e34e5d10ad3ee287dc2ca3e636c5"></a>
+<tr class="memitem:gab40f435739d536eab7ce58bd8ec31b86"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__utility.html#gab40f435739d536eab7ce58bd8ec31b86">kspc::builtin_function</a> = T(Args...)</td></tr>
+<tr class="memdesc:gab40f435739d536eab7ce58bd8ec31b86"><td class="mdescLeft">&#160;</td><td class="mdescRight">builtin_function <br /></td></tr>
+<tr class="separator:gab40f435739d536eab7ce58bd8ec31b86"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga84e8e34e5d10ad3ee287dc2ca3e636c5"><td class="memTemplParams" colspan="2">
 template&lt;typename T &gt; </td></tr>
-<tr class="memitem:a84e8e34e5d10ad3ee287dc2ca3e636c5"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="core_8hpp.html#a84e8e34e5d10ad3ee287dc2ca3e636c5">kspc::remove_cvref_t</a> = typename remove_cvref&lt; T &gt;::type</td></tr>
-<tr class="memdesc:a84e8e34e5d10ad3ee287dc2ca3e636c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">remove_cvref_t (C++20) <br /></td></tr>
-<tr class="separator:a84e8e34e5d10ad3ee287dc2ca3e636c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aded1ea76309ffc8cac73aad8d7455125"><td class="memTemplParams" colspan="2"><a id="aded1ea76309ffc8cac73aad8d7455125"></a>
+<tr class="memitem:ga84e8e34e5d10ad3ee287dc2ca3e636c5"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__utility.html#ga84e8e34e5d10ad3ee287dc2ca3e636c5">kspc::remove_cvref_t</a> = typename remove_cvref&lt; T &gt;::type</td></tr>
+<tr class="memdesc:ga84e8e34e5d10ad3ee287dc2ca3e636c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">remove_cvref_t (C++20) <br /></td></tr>
+<tr class="separator:ga84e8e34e5d10ad3ee287dc2ca3e636c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaded1ea76309ffc8cac73aad8d7455125"><td class="memTemplParams" colspan="2">
 template&lt;class T &gt; </td></tr>
-<tr class="memitem:aded1ea76309ffc8cac73aad8d7455125"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="core_8hpp.html#aded1ea76309ffc8cac73aad8d7455125">kspc::type_identity_t</a> = typename type_identity&lt; T &gt;::type</td></tr>
-<tr class="memdesc:aded1ea76309ffc8cac73aad8d7455125"><td class="mdescLeft">&#160;</td><td class="mdescRight">type_identity_t (C++20) <br /></td></tr>
-<tr class="separator:aded1ea76309ffc8cac73aad8d7455125"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a26e0e38429a46fcfc1095852e65a1ce9"><td class="memTemplParams" colspan="2">template&lt;typename I &gt; </td></tr>
-<tr class="memitem:a26e0e38429a46fcfc1095852e65a1ce9"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="core_8hpp.html#a26e0e38429a46fcfc1095852e65a1ce9">kspc::iter_difference_t</a> = typename incrementable_traits&lt; remove_cvref_t&lt; I &gt; &gt;::difference_type</td></tr>
-<tr class="separator:a26e0e38429a46fcfc1095852e65a1ce9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af352495531dca3b36f1f7c06c2dfe8dd"><td class="memTemplParams" colspan="2">template&lt;typename I &gt; </td></tr>
-<tr class="memitem:af352495531dca3b36f1f7c06c2dfe8dd"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="core_8hpp.html#af352495531dca3b36f1f7c06c2dfe8dd">kspc::iter_value_t</a> = typename indirectly_readable_traits&lt; remove_cvref_t&lt; I &gt; &gt;::value_type</td></tr>
-<tr class="separator:af352495531dca3b36f1f7c06c2dfe8dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7cb2ffb8dd2a5e23587da31cbad10338"><td class="memTemplParams" colspan="2"><a id="a7cb2ffb8dd2a5e23587da31cbad10338"></a>
+<tr class="memitem:gaded1ea76309ffc8cac73aad8d7455125"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__utility.html#gaded1ea76309ffc8cac73aad8d7455125">kspc::type_identity_t</a> = typename type_identity&lt; T &gt;::type</td></tr>
+<tr class="memdesc:gaded1ea76309ffc8cac73aad8d7455125"><td class="mdescLeft">&#160;</td><td class="mdescRight">type_identity_t (C++20) <br /></td></tr>
+<tr class="separator:gaded1ea76309ffc8cac73aad8d7455125"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga26e0e38429a46fcfc1095852e65a1ce9"><td class="memTemplParams" colspan="2">template&lt;typename I &gt; </td></tr>
+<tr class="memitem:ga26e0e38429a46fcfc1095852e65a1ce9"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__iterator.html#ga26e0e38429a46fcfc1095852e65a1ce9">kspc::iter_difference_t</a> = typename incrementable_traits&lt; remove_cvref_t&lt; I &gt; &gt;::difference_type</td></tr>
+<tr class="memdesc:ga26e0e38429a46fcfc1095852e65a1ce9"><td class="mdescLeft">&#160;</td><td class="mdescRight">iter_difference_t  <a href="group__iterator.html#ga26e0e38429a46fcfc1095852e65a1ce9">More...</a><br /></td></tr>
+<tr class="separator:ga26e0e38429a46fcfc1095852e65a1ce9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf352495531dca3b36f1f7c06c2dfe8dd"><td class="memTemplParams" colspan="2">template&lt;typename I &gt; </td></tr>
+<tr class="memitem:gaf352495531dca3b36f1f7c06c2dfe8dd"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__iterator.html#gaf352495531dca3b36f1f7c06c2dfe8dd">kspc::iter_value_t</a> = typename indirectly_readable_traits&lt; remove_cvref_t&lt; I &gt; &gt;::value_type</td></tr>
+<tr class="memdesc:gaf352495531dca3b36f1f7c06c2dfe8dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">iter_value_t  <a href="group__iterator.html#gaf352495531dca3b36f1f7c06c2dfe8dd">More...</a><br /></td></tr>
+<tr class="separator:gaf352495531dca3b36f1f7c06c2dfe8dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7cb2ffb8dd2a5e23587da31cbad10338"><td class="memTemplParams" colspan="2">
 template&lt;typename I , std::enable_if_t&lt; detail::is_dereferenceable_v&lt; I &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
-<tr class="memitem:a7cb2ffb8dd2a5e23587da31cbad10338"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="core_8hpp.html#a7cb2ffb8dd2a5e23587da31cbad10338">kspc::iter_reference_t</a> = detail::dereference_t&lt; I &amp; &gt;</td></tr>
-<tr class="memdesc:a7cb2ffb8dd2a5e23587da31cbad10338"><td class="mdescLeft">&#160;</td><td class="mdescRight">iter_reference_t <br /></td></tr>
-<tr class="separator:a7cb2ffb8dd2a5e23587da31cbad10338"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9809868d97b6c003c48a590acd3b7f9c"><td class="memTemplParams" colspan="2"><a id="a9809868d97b6c003c48a590acd3b7f9c"></a>
+<tr class="memitem:ga7cb2ffb8dd2a5e23587da31cbad10338"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__iterator.html#ga7cb2ffb8dd2a5e23587da31cbad10338">kspc::iter_reference_t</a> = detail::dereference_t&lt; I &amp; &gt;</td></tr>
+<tr class="memdesc:ga7cb2ffb8dd2a5e23587da31cbad10338"><td class="mdescLeft">&#160;</td><td class="mdescRight">iter_reference_t <br /></td></tr>
+<tr class="separator:ga7cb2ffb8dd2a5e23587da31cbad10338"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9809868d97b6c003c48a590acd3b7f9c"><td class="memTemplParams" colspan="2">
 template&lt;typename R &gt; </td></tr>
-<tr class="memitem:a9809868d97b6c003c48a590acd3b7f9c"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="core_8hpp.html#a9809868d97b6c003c48a590acd3b7f9c">kspc::iterator_t</a> = detail2::unqualified_begin_t&lt; R &amp; &gt;</td></tr>
-<tr class="memdesc:a9809868d97b6c003c48a590acd3b7f9c"><td class="mdescLeft">&#160;</td><td class="mdescRight">iterator_t <br /></td></tr>
-<tr class="separator:a9809868d97b6c003c48a590acd3b7f9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1671686e4a0c75785d8a7d1a9912e2a5"><td class="memTemplParams" colspan="2"><a id="a1671686e4a0c75785d8a7d1a9912e2a5"></a>
+<tr class="memitem:ga9809868d97b6c003c48a590acd3b7f9c"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__range.html#ga9809868d97b6c003c48a590acd3b7f9c">kspc::iterator_t</a> = detail2::unqualified_begin_t&lt; R &amp; &gt;</td></tr>
+<tr class="memdesc:ga9809868d97b6c003c48a590acd3b7f9c"><td class="mdescLeft">&#160;</td><td class="mdescRight">iterator_t <br /></td></tr>
+<tr class="separator:ga9809868d97b6c003c48a590acd3b7f9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1671686e4a0c75785d8a7d1a9912e2a5"><td class="memTemplParams" colspan="2">
 template&lt;typename R , std::enable_if_t&lt; is_range_v&lt; R &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
-<tr class="memitem:a1671686e4a0c75785d8a7d1a9912e2a5"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="core_8hpp.html#a1671686e4a0c75785d8a7d1a9912e2a5">kspc::sentinel_t</a> = detail2::unqualified_end_t&lt; R &amp; &gt;</td></tr>
-<tr class="memdesc:a1671686e4a0c75785d8a7d1a9912e2a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">sentinel_t <br /></td></tr>
-<tr class="separator:a1671686e4a0c75785d8a7d1a9912e2a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a18bd8d28401faa9a1f5e50ffe3a9102d"><td class="memTemplParams" colspan="2"><a id="a18bd8d28401faa9a1f5e50ffe3a9102d"></a>
+<tr class="memitem:ga1671686e4a0c75785d8a7d1a9912e2a5"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__range.html#ga1671686e4a0c75785d8a7d1a9912e2a5">kspc::sentinel_t</a> = detail2::unqualified_end_t&lt; R &amp; &gt;</td></tr>
+<tr class="memdesc:ga1671686e4a0c75785d8a7d1a9912e2a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">sentinel_t <br /></td></tr>
+<tr class="separator:ga1671686e4a0c75785d8a7d1a9912e2a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga18bd8d28401faa9a1f5e50ffe3a9102d"><td class="memTemplParams" colspan="2">
 template&lt;typename R , std::enable_if_t&lt; is_range_v&lt; R &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
-<tr class="memitem:a18bd8d28401faa9a1f5e50ffe3a9102d"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="core_8hpp.html#a18bd8d28401faa9a1f5e50ffe3a9102d">kspc::range_difference_t</a> = iter_difference_t&lt; iterator_t&lt; R &gt; &gt;</td></tr>
-<tr class="memdesc:a18bd8d28401faa9a1f5e50ffe3a9102d"><td class="mdescLeft">&#160;</td><td class="mdescRight">range_difference_t <br /></td></tr>
-<tr class="separator:a18bd8d28401faa9a1f5e50ffe3a9102d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa37e5148fdcaf719fe194b676309adc4"><td class="memTemplParams" colspan="2"><a id="aa37e5148fdcaf719fe194b676309adc4"></a>
+<tr class="memitem:ga18bd8d28401faa9a1f5e50ffe3a9102d"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__range.html#ga18bd8d28401faa9a1f5e50ffe3a9102d">kspc::range_difference_t</a> = iter_difference_t&lt; iterator_t&lt; R &gt; &gt;</td></tr>
+<tr class="memdesc:ga18bd8d28401faa9a1f5e50ffe3a9102d"><td class="mdescLeft">&#160;</td><td class="mdescRight">range_difference_t <br /></td></tr>
+<tr class="separator:ga18bd8d28401faa9a1f5e50ffe3a9102d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa37e5148fdcaf719fe194b676309adc4"><td class="memTemplParams" colspan="2">
 template&lt;typename R , std::enable_if_t&lt; is_range_v&lt; R &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
-<tr class="memitem:aa37e5148fdcaf719fe194b676309adc4"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="core_8hpp.html#aa37e5148fdcaf719fe194b676309adc4">kspc::range_value_t</a> = iter_value_t&lt; iterator_t&lt; R &gt; &gt;</td></tr>
-<tr class="memdesc:aa37e5148fdcaf719fe194b676309adc4"><td class="mdescLeft">&#160;</td><td class="mdescRight">range_value_t <br /></td></tr>
-<tr class="separator:aa37e5148fdcaf719fe194b676309adc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a206f6e863c3cf8b6107f81e2f44acb5a"><td class="memTemplParams" colspan="2"><a id="a206f6e863c3cf8b6107f81e2f44acb5a"></a>
+<tr class="memitem:gaa37e5148fdcaf719fe194b676309adc4"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__range.html#gaa37e5148fdcaf719fe194b676309adc4">kspc::range_value_t</a> = iter_value_t&lt; iterator_t&lt; R &gt; &gt;</td></tr>
+<tr class="memdesc:gaa37e5148fdcaf719fe194b676309adc4"><td class="mdescLeft">&#160;</td><td class="mdescRight">range_value_t <br /></td></tr>
+<tr class="separator:gaa37e5148fdcaf719fe194b676309adc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga206f6e863c3cf8b6107f81e2f44acb5a"><td class="memTemplParams" colspan="2">
 template&lt;typename R , std::enable_if_t&lt; is_range_v&lt; R &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
-<tr class="memitem:a206f6e863c3cf8b6107f81e2f44acb5a"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="core_8hpp.html#a206f6e863c3cf8b6107f81e2f44acb5a">kspc::range_reference_t</a> = iter_reference_t&lt; iterator_t&lt; R &gt; &gt;</td></tr>
-<tr class="memdesc:a206f6e863c3cf8b6107f81e2f44acb5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">range_reference_t <br /></td></tr>
-<tr class="separator:a206f6e863c3cf8b6107f81e2f44acb5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga206f6e863c3cf8b6107f81e2f44acb5a"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__range.html#ga206f6e863c3cf8b6107f81e2f44acb5a">kspc::range_reference_t</a> = iter_reference_t&lt; iterator_t&lt; R &gt; &gt;</td></tr>
+<tr class="memdesc:ga206f6e863c3cf8b6107f81e2f44acb5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">range_reference_t <br /></td></tr>
+<tr class="separator:ga206f6e863c3cf8b6107f81e2f44acb5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a30abd6b695e4c604df0024cdefd7a248"><td class="memTemplParams" colspan="2"><a id="a30abd6b695e4c604df0024cdefd7a248"></a>
+<tr class="memitem:ga09d760d9c47c778498c3e521373cbc12"><td class="memTemplParams" colspan="2">
+template&lt;typename T , std::enable_if_t&lt; std::is_unsigned_v&lt; T &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
+<tr class="memitem:ga09d760d9c47c778498c3e521373cbc12"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__utility.html#ga09d760d9c47c778498c3e521373cbc12">kspc::make_signed_v</a> (const T &amp;x) noexcept(noexcept(static_cast&lt; std::make_signed_t&lt; T &gt;&gt;(x)))</td></tr>
+<tr class="memdesc:ga09d760d9c47c778498c3e521373cbc12"><td class="mdescLeft">&#160;</td><td class="mdescRight">make_signed_v <br /></td></tr>
+<tr class="separator:ga09d760d9c47c778498c3e521373cbc12"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga50e89aa824d65865fd209cf75f4d082f"><td class="memTemplParams" colspan="2">
+template&lt;typename T , std::enable_if_t&lt;!std::is_unsigned_v&lt; std::decay_t&lt; T &gt;&gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
+<tr class="memitem:ga50e89aa824d65865fd209cf75f4d082f"><td class="memTemplItemLeft" align="right" valign="top">constexpr T &amp;&amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__utility.html#ga50e89aa824d65865fd209cf75f4d082f">kspc::make_signed_v</a> (T &amp;&amp;x) noexcept(noexcept(std::forward&lt; T &gt;(x)))</td></tr>
+<tr class="memdesc:ga50e89aa824d65865fd209cf75f4d082f"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. <br /></td></tr>
+<tr class="separator:ga50e89aa824d65865fd209cf75f4d082f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8f5dc460d06df63e1f97b43136442278"><td class="memTemplParams" colspan="2">
+template&lt;typename T , std::enable_if_t&lt; std::is_signed_v&lt; T &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
+<tr class="memitem:ga8f5dc460d06df63e1f97b43136442278"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__utility.html#ga8f5dc460d06df63e1f97b43136442278">kspc::make_unsigned_v</a> (const T &amp;x) noexcept(noexcept(static_cast&lt; std::make_unsigned_t&lt; T &gt;&gt;(x)))</td></tr>
+<tr class="memdesc:ga8f5dc460d06df63e1f97b43136442278"><td class="mdescLeft">&#160;</td><td class="mdescRight">make_unsigned_v <br /></td></tr>
+<tr class="separator:ga8f5dc460d06df63e1f97b43136442278"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4f440561437f86c59c9db0bca5137017"><td class="memTemplParams" colspan="2">
+template&lt;typename T , std::enable_if_t&lt;!std::is_signed_v&lt; std::decay_t&lt; T &gt;&gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
+<tr class="memitem:ga4f440561437f86c59c9db0bca5137017"><td class="memTemplItemLeft" align="right" valign="top">constexpr T &amp;&amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__utility.html#ga4f440561437f86c59c9db0bca5137017">kspc::make_unsigned_v</a> (T &amp;&amp;x) noexcept(noexcept(std::forward&lt; T &gt;(x)))</td></tr>
+<tr class="memdesc:ga4f440561437f86c59c9db0bca5137017"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. <br /></td></tr>
+<tr class="separator:ga4f440561437f86c59c9db0bca5137017"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga30abd6b695e4c604df0024cdefd7a248"><td class="memTemplParams" colspan="2">
 template&lt;typename C &gt; </td></tr>
-<tr class="memitem:a30abd6b695e4c604df0024cdefd7a248"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="core_8hpp.html#a30abd6b695e4c604df0024cdefd7a248">kspc::ssize</a> (const C &amp;c) -&gt; std::common_type_t&lt; std::ptrdiff_t, std::make_signed_t&lt; decltype(c.size())&gt;&gt;</td></tr>
-<tr class="memdesc:a30abd6b695e4c604df0024cdefd7a248"><td class="mdescLeft">&#160;</td><td class="mdescRight">ssize <br /></td></tr>
-<tr class="separator:a30abd6b695e4c604df0024cdefd7a248"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a21135f7043428d75632d3c977e8e02e6"><td class="memTemplParams" colspan="2"><a id="a21135f7043428d75632d3c977e8e02e6"></a>
+<tr class="memitem:ga30abd6b695e4c604df0024cdefd7a248"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__range.html#ga30abd6b695e4c604df0024cdefd7a248">kspc::ssize</a> (const C &amp;c) -&gt; std::common_type_t&lt; std::ptrdiff_t, std::make_signed_t&lt; decltype(c.size())&gt;&gt;</td></tr>
+<tr class="memdesc:ga30abd6b695e4c604df0024cdefd7a248"><td class="mdescLeft">&#160;</td><td class="mdescRight">ssize <br /></td></tr>
+<tr class="separator:ga30abd6b695e4c604df0024cdefd7a248"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga21135f7043428d75632d3c977e8e02e6"><td class="memTemplParams" colspan="2">
 template&lt;typename T , std::size_t N&gt; </td></tr>
-<tr class="memitem:a21135f7043428d75632d3c977e8e02e6"><td class="memTemplItemLeft" align="right" valign="top">constexpr std::ptrdiff_t&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="core_8hpp.html#a21135f7043428d75632d3c977e8e02e6">kspc::ssize</a> (const T(&amp;)[N]) noexcept</td></tr>
-<tr class="memdesc:a21135f7043428d75632d3c977e8e02e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. <br /></td></tr>
-<tr class="separator:a21135f7043428d75632d3c977e8e02e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga21135f7043428d75632d3c977e8e02e6"><td class="memTemplItemLeft" align="right" valign="top">constexpr std::ptrdiff_t&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__range.html#ga21135f7043428d75632d3c977e8e02e6">kspc::ssize</a> (const T(&amp;)[N]) noexcept</td></tr>
+<tr class="memdesc:ga21135f7043428d75632d3c977e8e02e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. <br /></td></tr>
+<tr class="separator:ga21135f7043428d75632d3c977e8e02e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a83c2d04b913119071a5ea80a7b6941fa"><td class="memTemplParams" colspan="2"><a id="a83c2d04b913119071a5ea80a7b6941fa"></a>
 template&lt;typename CharT , typename Traits , typename R , std::enable_if_t&lt; is_range_v&lt; R &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
 <tr class="memitem:a83c2d04b913119071a5ea80a7b6941fa"><td class="memTemplItemLeft" align="right" valign="top">auto &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="core_8hpp.html#a83c2d04b913119071a5ea80a7b6941fa">kspc::operator&lt;&lt;</a> (std::basic_ostream&lt; CharT, Traits &gt; &amp;os, const R &amp;r)</td></tr>
-<tr class="memdesc:a83c2d04b913119071a5ea80a7b6941fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">stream insertion for range <br /></td></tr>
+<tr class="memdesc:a83c2d04b913119071a5ea80a7b6941fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stream insertion for range. <br /></td></tr>
 <tr class="separator:a83c2d04b913119071a5ea80a7b6941fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a0e0be584ecf2502487b2528b4137aeb8"><td class="memTemplParams" colspan="2"><a id="a0e0be584ecf2502487b2528b4137aeb8"></a>
+<tr class="memitem:ga0e0be584ecf2502487b2528b4137aeb8"><td class="memTemplParams" colspan="2">
 template&lt;typename... &gt; </td></tr>
-<tr class="memitem:a0e0be584ecf2502487b2528b4137aeb8"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="core_8hpp.html#a0e0be584ecf2502487b2528b4137aeb8">kspc::always_false</a> = false</td></tr>
-<tr class="memdesc:a0e0be584ecf2502487b2528b4137aeb8"><td class="mdescLeft">&#160;</td><td class="mdescRight">always_false <br /></td></tr>
-<tr class="separator:a0e0be584ecf2502487b2528b4137aeb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a44228db2bf9c0b4baeaaf635b6a6ceff"><td class="memTemplParams" colspan="2"><a id="a44228db2bf9c0b4baeaaf635b6a6ceff"></a>
+<tr class="memitem:ga0e0be584ecf2502487b2528b4137aeb8"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__utility.html#ga0e0be584ecf2502487b2528b4137aeb8">kspc::always_false</a> = false</td></tr>
+<tr class="memdesc:ga0e0be584ecf2502487b2528b4137aeb8"><td class="mdescLeft">&#160;</td><td class="mdescRight">always_false <br /></td></tr>
+<tr class="separator:ga0e0be584ecf2502487b2528b4137aeb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga44228db2bf9c0b4baeaaf635b6a6ceff"><td class="memTemplParams" colspan="2">
 template&lt;template&lt; typename... &gt; typename Op, typename... Args&gt; </td></tr>
-<tr class="memitem:a44228db2bf9c0b4baeaaf635b6a6ceff"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="core_8hpp.html#a44228db2bf9c0b4baeaaf635b6a6ceff">kspc::is_detected_v</a> = is_detected&lt;Op, Args...&gt;::value</td></tr>
-<tr class="memdesc:a44228db2bf9c0b4baeaaf635b6a6ceff"><td class="mdescLeft">&#160;</td><td class="mdescRight">helper variable template for <code><a class="el" href="structkspc_1_1is__detected.html" title="is_detected">is_detected</a></code> <br /></td></tr>
-<tr class="separator:a44228db2bf9c0b4baeaaf635b6a6ceff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0620895011a326ad05bb28cf22d56672"><td class="memTemplParams" colspan="2"><a id="a0620895011a326ad05bb28cf22d56672"></a>
+<tr class="memitem:ga44228db2bf9c0b4baeaaf635b6a6ceff"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__utility.html#ga44228db2bf9c0b4baeaaf635b6a6ceff">kspc::is_detected_v</a> = is_detected&lt;Op, Args...&gt;::value</td></tr>
+<tr class="memdesc:ga44228db2bf9c0b4baeaaf635b6a6ceff"><td class="mdescLeft">&#160;</td><td class="mdescRight">helper variable template for <code><a class="el" href="structkspc_1_1is__detected.html" title="is_detected">is_detected</a></code> <br /></td></tr>
+<tr class="separator:ga44228db2bf9c0b4baeaaf635b6a6ceff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0620895011a326ad05bb28cf22d56672"><td class="memTemplParams" colspan="2">
 template&lt;typename I &gt; </td></tr>
-<tr class="memitem:a0620895011a326ad05bb28cf22d56672"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="core_8hpp.html#a0620895011a326ad05bb28cf22d56672">kspc::is_weakly_incrementable_v</a> = is_weakly_incrementable&lt;I&gt;::value</td></tr>
-<tr class="memdesc:a0620895011a326ad05bb28cf22d56672"><td class="mdescLeft">&#160;</td><td class="mdescRight">helper variable template for <code><a class="el" href="structkspc_1_1is__weakly__incrementable.html" title="is_weakly_incrementable">is_weakly_incrementable</a></code> <br /></td></tr>
-<tr class="separator:a0620895011a326ad05bb28cf22d56672"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a37e8e17aa3e99a6e43ffeb97a0159d53"><td class="memTemplParams" colspan="2"><a id="a37e8e17aa3e99a6e43ffeb97a0159d53"></a>
+<tr class="memitem:ga0620895011a326ad05bb28cf22d56672"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__iterator.html#ga0620895011a326ad05bb28cf22d56672">kspc::is_weakly_incrementable_v</a> = is_weakly_incrementable&lt;I&gt;::value</td></tr>
+<tr class="memdesc:ga0620895011a326ad05bb28cf22d56672"><td class="mdescLeft">&#160;</td><td class="mdescRight">helper variable template for <code><a class="el" href="structkspc_1_1is__weakly__incrementable.html" title="is_weakly_incrementable">is_weakly_incrementable</a></code> <br /></td></tr>
+<tr class="separator:ga0620895011a326ad05bb28cf22d56672"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga37e8e17aa3e99a6e43ffeb97a0159d53"><td class="memTemplParams" colspan="2">
 template&lt;typename I &gt; </td></tr>
-<tr class="memitem:a37e8e17aa3e99a6e43ffeb97a0159d53"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="core_8hpp.html#a37e8e17aa3e99a6e43ffeb97a0159d53">kspc::is_input_or_output_iterator_v</a> = is_input_or_output_iterator&lt;I&gt;::value</td></tr>
-<tr class="memdesc:a37e8e17aa3e99a6e43ffeb97a0159d53"><td class="mdescLeft">&#160;</td><td class="mdescRight">helper variable template for <code><a class="el" href="structkspc_1_1is__input__or__output__iterator.html" title="is_input_or_output_iterator">is_input_or_output_iterator</a></code> <br /></td></tr>
-<tr class="separator:a37e8e17aa3e99a6e43ffeb97a0159d53"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a12f639b92a7180f95cc0ddeca0a3f33b"><td class="memTemplParams" colspan="2"><a id="a12f639b92a7180f95cc0ddeca0a3f33b"></a>
+<tr class="memitem:ga37e8e17aa3e99a6e43ffeb97a0159d53"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__iterator.html#ga37e8e17aa3e99a6e43ffeb97a0159d53">kspc::is_input_or_output_iterator_v</a> = is_input_or_output_iterator&lt;I&gt;::value</td></tr>
+<tr class="memdesc:ga37e8e17aa3e99a6e43ffeb97a0159d53"><td class="mdescLeft">&#160;</td><td class="mdescRight">helper variable template for <code><a class="el" href="structkspc_1_1is__input__or__output__iterator.html" title="is_input_or_output_iterator">is_input_or_output_iterator</a></code> <br /></td></tr>
+<tr class="separator:ga37e8e17aa3e99a6e43ffeb97a0159d53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga12f639b92a7180f95cc0ddeca0a3f33b"><td class="memTemplParams" colspan="2">
 template&lt;typename T &gt; </td></tr>
-<tr class="memitem:a12f639b92a7180f95cc0ddeca0a3f33b"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="core_8hpp.html#a12f639b92a7180f95cc0ddeca0a3f33b">kspc::is_indirectly_readable_v</a> = is_indirectly_readable&lt;T&gt;::value</td></tr>
-<tr class="memdesc:a12f639b92a7180f95cc0ddeca0a3f33b"><td class="mdescLeft">&#160;</td><td class="mdescRight">helper variable template for <code><a class="el" href="structkspc_1_1is__indirectly__readable.html" title="is_indirectly_readable">is_indirectly_readable</a></code> <br /></td></tr>
-<tr class="separator:a12f639b92a7180f95cc0ddeca0a3f33b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3ebd5ebb178a06d8f4a2edf8a13708b9"><td class="memTemplParams" colspan="2"><a id="a3ebd5ebb178a06d8f4a2edf8a13708b9"></a>
+<tr class="memitem:ga12f639b92a7180f95cc0ddeca0a3f33b"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__iterator.html#ga12f639b92a7180f95cc0ddeca0a3f33b">kspc::is_indirectly_readable_v</a> = is_indirectly_readable&lt;T&gt;::value</td></tr>
+<tr class="memdesc:ga12f639b92a7180f95cc0ddeca0a3f33b"><td class="mdescLeft">&#160;</td><td class="mdescRight">helper variable template for <code><a class="el" href="structkspc_1_1is__indirectly__readable.html" title="is_indirectly_readable">is_indirectly_readable</a></code> <br /></td></tr>
+<tr class="separator:ga12f639b92a7180f95cc0ddeca0a3f33b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3ebd5ebb178a06d8f4a2edf8a13708b9"><td class="memTemplParams" colspan="2">
 template&lt;typename I &gt; </td></tr>
-<tr class="memitem:a3ebd5ebb178a06d8f4a2edf8a13708b9"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="core_8hpp.html#a3ebd5ebb178a06d8f4a2edf8a13708b9">kspc::is_input_iterator_v</a> = is_input_iterator&lt;I&gt;::value</td></tr>
-<tr class="memdesc:a3ebd5ebb178a06d8f4a2edf8a13708b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">helper variable template for <code><a class="el" href="structkspc_1_1is__input__iterator.html" title="is_input_iterator">is_input_iterator</a></code> <br /></td></tr>
-<tr class="separator:a3ebd5ebb178a06d8f4a2edf8a13708b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3d5a702a935978fbd2a9eebd652e9c04"><td class="memTemplParams" colspan="2"><a id="a3d5a702a935978fbd2a9eebd652e9c04"></a>
+<tr class="memitem:ga3ebd5ebb178a06d8f4a2edf8a13708b9"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__iterator.html#ga3ebd5ebb178a06d8f4a2edf8a13708b9">kspc::is_input_iterator_v</a> = is_input_iterator&lt;I&gt;::value</td></tr>
+<tr class="memdesc:ga3ebd5ebb178a06d8f4a2edf8a13708b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">helper variable template for <code><a class="el" href="structkspc_1_1is__input__iterator.html" title="is_input_iterator">is_input_iterator</a></code> <br /></td></tr>
+<tr class="separator:ga3ebd5ebb178a06d8f4a2edf8a13708b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3d5a702a935978fbd2a9eebd652e9c04"><td class="memTemplParams" colspan="2">
 template&lt;typename S , typename I &gt; </td></tr>
-<tr class="memitem:a3d5a702a935978fbd2a9eebd652e9c04"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="core_8hpp.html#a3d5a702a935978fbd2a9eebd652e9c04">kspc::is_sentinel_for_v</a> = is_sentinel_for&lt;S, I&gt;::value</td></tr>
-<tr class="memdesc:a3d5a702a935978fbd2a9eebd652e9c04"><td class="mdescLeft">&#160;</td><td class="mdescRight">helper variable template for <code><a class="el" href="structkspc_1_1is__sentinel__for.html" title="is_sentinel_for">is_sentinel_for</a></code> <br /></td></tr>
-<tr class="separator:a3d5a702a935978fbd2a9eebd652e9c04"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a68a34a4e6cb4df747d6232228634cf4e"><td class="memTemplParams" colspan="2"><a id="a68a34a4e6cb4df747d6232228634cf4e"></a>
+<tr class="memitem:ga3d5a702a935978fbd2a9eebd652e9c04"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__iterator.html#ga3d5a702a935978fbd2a9eebd652e9c04">kspc::is_sentinel_for_v</a> = is_sentinel_for&lt;S, I&gt;::value</td></tr>
+<tr class="memdesc:ga3d5a702a935978fbd2a9eebd652e9c04"><td class="mdescLeft">&#160;</td><td class="mdescRight">helper variable template for <code><a class="el" href="structkspc_1_1is__sentinel__for.html" title="is_sentinel_for">is_sentinel_for</a></code> <br /></td></tr>
+<tr class="separator:ga3d5a702a935978fbd2a9eebd652e9c04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga68a34a4e6cb4df747d6232228634cf4e"><td class="memTemplParams" colspan="2">
 template&lt;typename R &gt; </td></tr>
-<tr class="memitem:a68a34a4e6cb4df747d6232228634cf4e"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="core_8hpp.html#a68a34a4e6cb4df747d6232228634cf4e">kspc::is_range_v</a> = is_range&lt;R&gt;::value</td></tr>
-<tr class="memdesc:a68a34a4e6cb4df747d6232228634cf4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">helper variable template for <code><a class="el" href="structkspc_1_1is__range.html" title="is_range">is_range</a></code> <br /></td></tr>
-<tr class="separator:a68a34a4e6cb4df747d6232228634cf4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af4bf00febada81338666676554c286a1"><td class="memTemplParams" colspan="2"><a id="af4bf00febada81338666676554c286a1"></a>
+<tr class="memitem:ga68a34a4e6cb4df747d6232228634cf4e"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__range.html#ga68a34a4e6cb4df747d6232228634cf4e">kspc::is_range_v</a> = is_range&lt;R&gt;::value</td></tr>
+<tr class="memdesc:ga68a34a4e6cb4df747d6232228634cf4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">helper variable template for <code><a class="el" href="structkspc_1_1is__range.html" title="is_range">is_range</a></code> <br /></td></tr>
+<tr class="separator:ga68a34a4e6cb4df747d6232228634cf4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf4bf00febada81338666676554c286a1"><td class="memTemplParams" colspan="2">
 template&lt;typename R &gt; </td></tr>
-<tr class="memitem:af4bf00febada81338666676554c286a1"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="core_8hpp.html#af4bf00febada81338666676554c286a1">kspc::is_sized_range_v</a> = is_sized_range&lt;R&gt;::value</td></tr>
-<tr class="memdesc:af4bf00febada81338666676554c286a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">helper variable template for <code><a class="el" href="structkspc_1_1is__sized__range.html" title="is_sized_range">is_sized_range</a></code> <br /></td></tr>
-<tr class="separator:af4bf00febada81338666676554c286a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf4bf00febada81338666676554c286a1"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__range.html#gaf4bf00febada81338666676554c286a1">kspc::is_sized_range_v</a> = is_sized_range&lt;R&gt;::value</td></tr>
+<tr class="memdesc:gaf4bf00febada81338666676554c286a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">helper variable template for <code><a class="el" href="structkspc_1_1is__sized__range.html" title="is_sized_range">is_sized_range</a></code> <br /></td></tr>
+<tr class="separator:gaf4bf00febada81338666676554c286a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Typedef Documentation</h2>
-<a id="a26e0e38429a46fcfc1095852e65a1ce9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a26e0e38429a46fcfc1095852e65a1ce9">&#9670;&nbsp;</a></span>iter_difference_t</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename I &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">using <a class="el" href="core_8hpp.html#a26e0e38429a46fcfc1095852e65a1ce9">kspc::iter_difference_t</a> = typedef typename incrementable_traits&lt;remove_cvref_t&lt;I&gt; &gt;::difference_type</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>iter_difference_t NOTE: specialization of <code>std::iterator_traits</code> is NOT supported. </p>
-
-</div>
-</div>
-<a id="af352495531dca3b36f1f7c06c2dfe8dd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af352495531dca3b36f1f7c06c2dfe8dd">&#9670;&nbsp;</a></span>iter_value_t</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename I &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">using <a class="el" href="core_8hpp.html#af352495531dca3b36f1f7c06c2dfe8dd">kspc::iter_value_t</a> = typedef typename indirectly_readable_traits&lt;remove_cvref_t&lt;I&gt; &gt;::value_type</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>iter_value_t NOTE: specialization of <code>std::iterator_traits</code> is NOT supported. </p>
-
-</div>
-</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

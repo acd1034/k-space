@@ -72,18 +72,18 @@ $(function() {
 <a href="integration_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;gsl/gsl_integration.h&gt;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="math_8hpp.html">kspc/math.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="math__basics_8hpp.html">kspc/math_basics.hpp</a>&gt;</span></div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">namespace </span>kspc {</div>
 <div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="structkspc_1_1params__t.html">    9</a></span>&#160;  <span class="keyword">struct </span><a class="code" href="structkspc_1_1params__t.html">params_t</a> {</div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <span class="comment">// double (*p_fn)(const std::vector&lt;double&gt;&amp; x, void* p_params);</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <a class="code" href="core_8hpp.html#ab40f435739d536eab7ce58bd8ec31b86">builtin_function&lt;double, const std::vector&lt;double&gt;</a>&amp;, <span class="keywordtype">void</span>*&gt;* p_fn;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <a class="code" href="group__utility.html#gab40f435739d536eab7ce58bd8ec31b86">builtin_function&lt;double, const std::vector&lt;double&gt;</a>&amp;, <span class="keywordtype">void</span>*&gt;* p_fn;</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    std::vector&lt;double&gt; a;</div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    std::vector&lt;double&gt; b;</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="keywordtype">double</span> epsabs;</div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keywordtype">double</span> epsrel;</div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="comment">// workspace</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    std::vector&lt;double&gt; tmp_x;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    std::vector&lt;double&gt; temp_x;</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;  }; <span class="comment">// struct params_t</span></div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;  <span class="keyword">namespace </span>detail {</div>
@@ -92,7 +92,7 @@ $(function() {
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keyword">template</span> &lt;std::<span class="keywordtype">size_t</span> D&gt;</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keywordtype">double</span> cquad_integrand(<span class="keywordtype">double</span> x, <span class="keywordtype">void</span>* temp_p_params) {</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;      <span class="keyword">auto</span>* p_params = (<a class="code" href="structkspc_1_1params__t.html">params_t</a>*)temp_p_params;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;      p_params-&gt;tmp_x[D] = x;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;      p_params-&gt;temp_x[D] = x;</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;      gsl_function F = {&amp;cquad_integrand&lt;D - 1&gt;, (<span class="keywordtype">void</span>*)p_params};</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;      <span class="keywordtype">double</span> result, error;</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;      std::size_t nevals;</div>
@@ -112,8 +112,8 @@ $(function() {
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keyword">template</span> &lt;&gt;</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordtype">double</span> cquad_integrand&lt;0&gt;(<span class="keywordtype">double</span> x, <span class="keywordtype">void</span>* temp_p_params) {</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;      <span class="keyword">auto</span>* p_params = (params_t*)temp_p_params;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;      p_params-&gt;tmp_x[0] = x;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;      <span class="keywordflow">return</span> (*(p_params-&gt;p_fn))(p_params-&gt;tmp_x, (<span class="keywordtype">void</span>*)p_params);</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;      p_params-&gt;temp_x[0] = x;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;      <span class="keywordflow">return</span> (*(p_params-&gt;p_fn))(p_params-&gt;temp_x, (<span class="keywordtype">void</span>*)p_params);</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    }</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;  } <span class="comment">// namespace detail</span></div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment"></span> </div>
@@ -123,7 +123,7 @@ $(function() {
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    assert(std::size(p_params-&gt;a) &gt;= D);</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    assert(std::size(p_params-&gt;b) &gt;= D);</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    p_params-&gt;tmp_x.resize(D);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    p_params-&gt;temp_x.resize(D);</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    gsl_function F = {&amp;detail::cquad_integrand&lt;D - 1&gt;, (<span class="keywordtype">void</span>*)p_params};</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keywordtype">double</span> result, error;</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    std::size_t nevals;</div>
@@ -140,9 +140,9 @@ $(function() {
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keywordflow">return</span> std::make_pair(result, error);</div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;  }</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;} <span class="comment">// namespace kspc</span></div>
-<div class="ttc" id="acore_8hpp_html_ab40f435739d536eab7ce58bd8ec31b86"><div class="ttname"><a href="core_8hpp.html#ab40f435739d536eab7ce58bd8ec31b86">kspc::builtin_function</a></div><div class="ttdeci">T(Args...) builtin_function</div><div class="ttdoc">builtin_function</div><div class="ttdef"><b>Definition:</b> core.hpp:41</div></div>
+<div class="ttc" id="agroup__utility_html_gab40f435739d536eab7ce58bd8ec31b86"><div class="ttname"><a href="group__utility.html#gab40f435739d536eab7ce58bd8ec31b86">kspc::builtin_function</a></div><div class="ttdeci">T(Args...) builtin_function</div><div class="ttdoc">builtin_function</div><div class="ttdef"><b>Definition:</b> core.hpp:72</div></div>
 <div class="ttc" id="aintegration_8hpp_html_ae38bf513e7ff6e2e16890bbe7a2b6285"><div class="ttname"><a href="integration_8hpp.html#ae38bf513e7ff6e2e16890bbe7a2b6285">kspc::cquad</a></div><div class="ttdeci">auto cquad(void *temp_p_params)</div><div class="ttdoc">D-dimensional integral.</div><div class="ttdef"><b>Definition:</b> integration.hpp:55</div></div>
-<div class="ttc" id="amath_8hpp_html"><div class="ttname"><a href="math_8hpp.html">math.hpp</a></div></div>
+<div class="ttc" id="amath__basics_8hpp_html"><div class="ttname"><a href="math__basics_8hpp.html">math_basics.hpp</a></div></div>
 <div class="ttc" id="astructkspc_1_1params__t_html"><div class="ttname"><a href="structkspc_1_1params__t.html">kspc::params_t</a></div><div class="ttdoc">helper class for defining parameters of integrand</div><div class="ttdef"><b>Definition:</b> integration.hpp:9</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
