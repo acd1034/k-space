@@ -232,7 +232,8 @@ namespace kspc {
         return std::make_reverse_iterator(end(derived()));
       }
 
-      constexpr auto rbegin() const noexcept(noexcept(std::make_reverse_iterator(end(derived())))) {
+      constexpr auto rbegin() //
+        const noexcept(noexcept(std::make_reverse_iterator(end(derived())))) {
         return std::make_reverse_iterator(end(derived()));
       }
 
@@ -241,7 +242,8 @@ namespace kspc {
         return std::make_reverse_iterator(begin(derived()));
       }
 
-      constexpr auto rend() const noexcept(noexcept(std::make_reverse_iterator(begin(derived())))) {
+      constexpr auto rend() //
+        const noexcept(noexcept(std::make_reverse_iterator(begin(derived())))) {
         return std::make_reverse_iterator(begin(derived()));
       }
 
@@ -258,17 +260,18 @@ namespace kspc {
         return begin(derived()) == end(derived());
       }
 
-      [[nodiscard]] constexpr bool empty() const
-        noexcept(noexcept(begin(derived()) == end(derived()))) {
+      [[nodiscard]] constexpr bool empty() //
+        const noexcept(noexcept(begin(derived()) == end(derived()))) {
         return begin(derived()) == end(derived());
       }
 
-      constexpr auto size() noexcept(noexcept(make_unsigned_v(end(derived()) - begin(derived())))) {
+      constexpr auto size() //
+        noexcept(noexcept(make_unsigned_v(end(derived()) - begin(derived())))) {
         return make_unsigned_v(end(derived()) - begin(derived()));
       }
 
-      constexpr auto size() const
-        noexcept(noexcept(make_unsigned_v(end(derived()) - begin(derived())))) {
+      constexpr auto size() //
+        const noexcept(noexcept(make_unsigned_v(end(derived()) - begin(derived())))) {
         return make_unsigned_v(end(derived()) - begin(derived()));
       }
 
@@ -299,8 +302,8 @@ namespace kspc {
       }
 
       template <typename D = Derived>
-      constexpr decltype(auto) operator[](const size_type_impl<D> j) const
-        noexcept(noexcept(begin(derived())[j])) {
+      constexpr decltype(auto) operator[](const size_type_impl<D> j) //
+        const noexcept(noexcept(begin(derived())[j])) {
         return begin(derived())[j];
       }
 
