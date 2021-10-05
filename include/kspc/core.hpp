@@ -59,6 +59,10 @@ namespace kspc {
   template <typename...>
   inline constexpr bool always_false = false;
 
+  /// always_true_type
+  template <typename...>
+  using always_true_type = std::true_type;
+
   /// builtin_array_noextent
   template <typename T>
   using builtin_array_noextent = T[];
