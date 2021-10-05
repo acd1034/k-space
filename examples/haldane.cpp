@@ -1,5 +1,5 @@
 /**
- * @file Haldane.cpp
+ * @file haldane.cpp
  * compiler: GCC version 10.2.0
  * compiler option:
  * -O3 -std=c++17 -lm -llapack -lblas -lgsl -lgslcblas -mtune=native -march=native -mfpmath=both

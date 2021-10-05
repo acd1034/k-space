@@ -20,7 +20,7 @@ namespace kspc {
     /// @endcond
 
   /// @brief diagonalize hermitian matrix (fixed-size)
-  /// @example Haldane_fixed.cpp
+  /// @example haldane_fixed.cpp
   // clang-format off
   template <typename L,
             std::enable_if_t<std::conjunction_v<
@@ -59,7 +59,7 @@ namespace kspc {
   }
 
   /// @brief diagonalize hermitian matrix (dynamic-size)
-  /// @example Haldane.cpp
+  /// @example haldane.cpp
   // clang-format off
   template <typename M,
             std::enable_if_t<std::conjunction_v<
