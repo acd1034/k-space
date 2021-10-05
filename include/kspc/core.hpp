@@ -53,10 +53,44 @@ namespace kspc {
   /// Implementation details are here.
   namespace detail {}
 
-  /// `using std::begin, std::end, std::size` is declared in this namespace.
-  namespace detail2 {
-    using std::begin, std::end, std::size; // for ADL
-  }
+  /// @cond
+  namespace detail_adl {
+    using std::begin, std::end, std::size, std::data, std::swap; // for ADL
+
+    template <typename C>
+    auto adl_begin(C&& c) noexcept(noexcept(begin(std::forward<C>(c))))
+      -> decltype(begin(std::forward<C>(c))) {
+      return begin(std::forward<C>(c));
+    }
+
+    template <typename C>
+    auto adl_end(C&& c) noexcept(noexcept(end(std::forward<C>(c))))
+      -> decltype(end(std::forward<C>(c))) {
+      return end(std::forward<C>(c));
+    }
+
+    template <typename C>
+    auto adl_size(C&& c) noexcept(noexcept(size(std::forward<C>(c))))
+      -> decltype(size(std::forward<C>(c))) {
+      return size(std::forward<C>(c));
+    }
+
+    template <typename C>
+    auto adl_data(C&& c) noexcept(noexcept(data(std::forward<C>(c))))
+      -> decltype(data(std::forward<C>(c))) {
+      return data(std::forward<C>(c));
+    }
+
+    template <typename T>
+    void adl_swap(T&& lhs, T&& rhs) //
+      noexcept(noexcept(swap(std::forward<T>(lhs), std::forward<T>(rhs)))) {
+      swap(std::forward<T>(lhs), std::forward<T>(rhs));
+    }
+  } // namespace detail_adl
+  /// @endcond
+
+  using detail_adl::adl_begin, detail_adl::adl_end, detail_adl::adl_size, detail_adl::adl_data,
+    detail_adl::adl_swap;
 
   /// @addtogroup utility
   /// @{
@@ -314,7 +348,7 @@ namespace kspc {
     // is_dereferenceable
 
     template <typename T>
-    struct is_dereferenceable : is_detected<dereference_t, T&> /* -> not_void (in particular) */ {};
+    struct is_dereferenceable : is_detected<dereference_t, T&> /* -> not-void (in particular) */ {};
 
     template <typename T>
     inline constexpr bool is_dereferenceable_v = is_dereferenceable<T>::value;
@@ -447,24 +481,27 @@ namespace kspc {
 
   // clang-format off
   /// @cond
-  namespace detail2 {
+  namespace detail {
     template <typename T>
-    using unqualified_begin_t = decltype(begin(std::declval<T>()));
+    using adl_begin_t = decltype(adl_begin(std::declval<T>()));
 
     template <typename T>
-    using unqualified_end_t = decltype(end(std::declval<T>()));
+    using adl_end_t = decltype(adl_end(std::declval<T>()));
 
     template <typename T>
-    using unqualified_size_t = decltype(size(std::declval<T>()));
-  } // namespace detail2
+    using adl_size_t = decltype(adl_size(std::declval<T>()));
+
+    template <typename T>
+    using adl_data_t = decltype(adl_data(std::declval<T>()));
+  } // namespace detail
   /// @endcond
 
   /// %is_range
   template <typename R>
   struct is_range
     : std::conjunction<
-        is_detected<detail2::unqualified_begin_t, R&>,
-        is_detected<detail2::unqualified_end_t, R&>
+        is_detected<detail::adl_begin_t, R&>,
+        is_detected<detail::adl_end_t, R&>
         > {};
 
   /// helper variable template for `is_range`
@@ -476,7 +513,7 @@ namespace kspc {
   struct is_sized_range
     : std::conjunction<
         is_range<R>,
-        is_detected<detail2::unqualified_size_t, R&>
+        is_detected<detail::adl_size_t, R&>
         > {};
 
   /// helper variable template for `is_sized_range`
@@ -488,21 +525,26 @@ namespace kspc {
   // [x] iterator_t
   // [x] sentinel_t
   // [x] range_difference_t (alias)
+  // [x] range_size_t
   // [x] range_value_t (alias)
   // [x] range_reference_t (alias)
   // [ ] range_rvalue_reference_t (need `iter_rvalue_reference_t`)
 
   /// iterator_t
   template <typename R>
-  using iterator_t = detail2::unqualified_begin_t<R&>;
+  using iterator_t = detail::adl_begin_t<R&>;
 
   /// sentinel_t
   template <typename R, std::enable_if_t<is_range_v<R>, std::nullptr_t> = nullptr>
-  using sentinel_t = detail2::unqualified_end_t<R&>;
+  using sentinel_t = detail::adl_end_t<R&>;
 
   /// range_difference_t
   template <typename R, std::enable_if_t<is_range_v<R>, std::nullptr_t> = nullptr>
   using range_difference_t = iter_difference_t<iterator_t<R>>;
+
+  /// range_size_t
+  template <typename R, std::enable_if_t<is_sized_range_v<R>, std::nullptr_t> = nullptr>
+  using range_size_t = detail::adl_size_t<R&>;
 
   /// range_value_t
   template <typename R, std::enable_if_t<is_range_v<R>, std::nullptr_t> = nullptr>
@@ -515,12 +557,16 @@ namespace kspc {
   // range access
 
   /// ssize
+  // clang-format off
   template <typename C>
   inline constexpr auto ssize(const C& c)
+    noexcept(noexcept(
+      static_cast<std::common_type_t<std::ptrdiff_t, std::make_signed_t<decltype(c.size())>>>(c.size())))
     -> std::common_type_t<std::ptrdiff_t, std::make_signed_t<decltype(c.size())>> {
-    using T = std::common_type_t<std::ptrdiff_t, std::make_signed_t<decltype(c.size())>>;
-    return static_cast<T>(c.size());
+    return
+      static_cast<std::common_type_t<std::ptrdiff_t, std::make_signed_t<decltype(c.size())>>>(c.size());
   }
+  // clang-format on
 
   /// @overload
   template <typename T, std::size_t N>
