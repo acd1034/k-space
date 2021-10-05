@@ -6,6 +6,9 @@
 #include <kspc/math_basics.hpp>
 
 namespace kspc {
+  /// @addtogroup linalg
+  /// @{
+
   /// @cond
   namespace lapack {
     extern "C" {
@@ -97,4 +100,6 @@ namespace kspc {
     delete[] rwork;
     return std::make_pair(std::move(E), std::move(U));
   }
+
+  // @}
 } // namespace kspc

@@ -44,6 +44,9 @@
 /// @defgroup integration Integration
 /// @ingroup math
 
+/// @defgroup linalg Linear Algorithms
+/// @ingroup math
+
 /// @defgroup physics Physics
 
 namespace kspc {
