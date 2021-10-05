@@ -41,6 +41,9 @@
 /// @defgroup math_functions Mathematical Functions
 /// @ingroup math
 
+/// @defgroup integration Integration
+/// @ingroup math
+
 /// @defgroup physics Physics
 
 namespace kspc {
