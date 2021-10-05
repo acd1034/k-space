@@ -644,26 +644,26 @@ namespace kspc {
 
   /// The Fermi distribution
   template <typename T>
-  inline detail::enable_if_floating<T> f_FD(const T E, const T beta, const T mu) {
-    return 1.0 / (std::exp(beta * (E - mu)) + 1.0);
+  inline detail::enable_if_floating<T> f_FD(const T ene, const T beta, const T mu) {
+    return 1.0 / (std::exp(beta * (ene - mu)) + 1.0);
   }
 
   /// Derivative of the Fermi distribution
   template <typename T>
-  inline detail::enable_if_floating<T> Df_FD(const T E, const T beta, const T mu) {
-    return -beta * std::pow(2.0 * std::cosh(0.5 * beta * (E - mu)), -2);
+  inline detail::enable_if_floating<T> Df_FD(const T ene, const T beta, const T mu) {
+    return -beta * std::pow(2.0 * std::cosh(0.5 * beta * (ene - mu)), -2);
   }
 
   /// The Bose distribution
   template <typename T>
-  inline detail::enable_if_floating<T> f_BE(const T E, const T beta, const T mu) {
-    return 1.0 / (std::exp(beta * (E - mu)) - 1.0);
+  inline detail::enable_if_floating<T> f_BE(const T ene, const T beta, const T mu) {
+    return 1.0 / (std::exp(beta * (ene - mu)) - 1.0);
   }
 
   /// Derivative of the Bose distribution
   template <typename T>
-  inline detail::enable_if_floating<T> Df_BE(const T E, const T beta, const T mu) {
-    return -beta * std::pow(2.0 * std::sinh(0.5 * beta * (E - mu)), -2);
+  inline detail::enable_if_floating<T> Df_BE(const T ene, const T beta, const T mu) {
+    return -beta * std::pow(2.0 * std::sinh(0.5 * beta * (ene - mu)), -2);
   }
 
   /// lerp (C++20)
