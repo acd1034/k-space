@@ -574,6 +574,20 @@ namespace kspc {
     return N;
   }
 
+  /// to_address
+  template <class T>
+  constexpr T* to_address(T* p) noexcept {
+    static_assert(!std::is_function_v<T>,
+                  "Obtaining address of a function from `to_adress` is ill-formed.");
+    return p;
+  }
+
+  /// @overload
+  template <class T>
+  constexpr auto to_address(const T& p) noexcept {
+    return kspc::to_address(p.operator->());
+  }
+
   /// @}
 
   /// @addtogroup io

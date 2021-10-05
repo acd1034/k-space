@@ -197,141 +197,136 @@ namespace kspc {
 
   // matrix class
 
-  namespace detail2 {
-    /// %matrix_base
-    // clang-format off
+  /// %matrix_base
+  // clang-format off
     template <typename Derived,
               std::enable_if_t<std::conjunction_v<
                 std::is_class<Derived>,
                 std::is_same<Derived, std::remove_cv_t<Derived>>>, std::nullptr_t> = nullptr>
-    // clang-format on
-    struct matrix_base {
-    private:
-      constexpr Derived& derived() noexcept {
-        return static_cast<Derived&>(*this);
-      }
+  // clang-format on
+  struct matrix_base {
+  private:
+    constexpr Derived& derived() noexcept {
+      return static_cast<Derived&>(*this);
+    }
 
-      constexpr const Derived& derived() const noexcept {
-        return static_cast<const Derived&>(*this);
-      }
+    constexpr const Derived& derived() const noexcept {
+      return static_cast<const Derived&>(*this);
+    }
 
-      template <typename D>
-      using size_type_impl = std::make_unsigned_t<range_difference_t<D>>;
+  public:
+    constexpr auto cbegin() const noexcept(noexcept(adl_begin(derived()))) {
+      return adl_begin(derived());
+    }
 
-    public:
-      constexpr auto cbegin() const noexcept(noexcept(begin(derived()))) {
-        return begin(derived());
-      }
+    constexpr auto cend() const noexcept(noexcept(adl_end(derived()))) {
+      return adl_end(derived());
+    }
 
-      constexpr auto cend() const noexcept(noexcept(end(derived()))) {
-        return end(derived());
-      }
+    constexpr auto rbegin() //
+      noexcept(noexcept(std::make_reverse_iterator(adl_end(derived())))) {
+      return std::make_reverse_iterator(adl_end(derived()));
+    }
 
-      constexpr auto rbegin() //
-        noexcept(noexcept(std::make_reverse_iterator(end(derived())))) {
-        return std::make_reverse_iterator(end(derived()));
-      }
+    constexpr auto rbegin() //
+      const noexcept(noexcept(std::make_reverse_iterator(adl_end(derived())))) {
+      return std::make_reverse_iterator(adl_end(derived()));
+    }
 
-      constexpr auto rbegin() //
-        const noexcept(noexcept(std::make_reverse_iterator(end(derived())))) {
-        return std::make_reverse_iterator(end(derived()));
-      }
+    constexpr auto rend() //
+      noexcept(noexcept(std::make_reverse_iterator(adl_begin(derived())))) {
+      return std::make_reverse_iterator(adl_begin(derived()));
+    }
 
-      constexpr auto rend() //
-        noexcept(noexcept(std::make_reverse_iterator(begin(derived())))) {
-        return std::make_reverse_iterator(begin(derived()));
-      }
+    constexpr auto rend() //
+      const noexcept(noexcept(std::make_reverse_iterator(adl_begin(derived())))) {
+      return std::make_reverse_iterator(adl_begin(derived()));
+    }
 
-      constexpr auto rend() //
-        const noexcept(noexcept(std::make_reverse_iterator(begin(derived())))) {
-        return std::make_reverse_iterator(begin(derived()));
-      }
+    constexpr auto crbegin() const noexcept(noexcept(rbegin())) {
+      return rbegin();
+    }
 
-      constexpr auto crbegin() const noexcept(noexcept(rbegin())) {
-        return rbegin();
-      }
+    constexpr auto crend() const noexcept(noexcept(rend())) {
+      return rend();
+    }
 
-      constexpr auto crend() const noexcept(noexcept(rend())) {
-        return rend();
-      }
+    [[nodiscard]] constexpr bool empty() //
+      noexcept(noexcept(adl_begin(derived()) == adl_end(derived()))) {
+      return adl_begin(derived()) == adl_end(derived());
+    }
 
-      [[nodiscard]] constexpr bool empty() //
-        noexcept(noexcept(begin(derived()) == end(derived()))) {
-        return begin(derived()) == end(derived());
-      }
+    [[nodiscard]] constexpr bool empty() //
+      const noexcept(noexcept(adl_begin(derived()) == adl_end(derived()))) {
+      return adl_begin(derived()) == adl_end(derived());
+    }
 
-      [[nodiscard]] constexpr bool empty() //
-        const noexcept(noexcept(begin(derived()) == end(derived()))) {
-        return begin(derived()) == end(derived());
-      }
+    constexpr auto size() //
+      noexcept(noexcept(make_unsigned_v(adl_end(derived()) - adl_begin(derived())))) {
+      return make_unsigned_v(adl_end(derived()) - adl_begin(derived()));
+    }
 
-      constexpr auto size() //
-        noexcept(noexcept(make_unsigned_v(end(derived()) - begin(derived())))) {
-        return make_unsigned_v(end(derived()) - begin(derived()));
-      }
+    constexpr auto size() //
+      const noexcept(noexcept(make_unsigned_v(adl_end(derived()) - adl_begin(derived())))) {
+      return make_unsigned_v(adl_end(derived()) - adl_begin(derived()));
+    }
 
-      constexpr auto size() //
-        const noexcept(noexcept(make_unsigned_v(end(derived()) - begin(derived())))) {
-        return make_unsigned_v(end(derived()) - begin(derived()));
-      }
+    constexpr decltype(auto) front() noexcept(noexcept(*adl_begin(derived()))) {
+      assert(!empty());
+      return *adl_begin(derived());
+    }
 
-      constexpr decltype(auto) front() noexcept(noexcept(*begin(derived()))) {
-        assert(!empty());
-        return *begin(derived());
-      }
+    constexpr decltype(auto) front() const noexcept(noexcept(*adl_begin(derived()))) {
+      assert(!empty());
+      return *adl_begin(derived());
+    }
 
-      constexpr decltype(auto) front() const noexcept(noexcept(*begin(derived()))) {
-        assert(!empty());
-        return *begin(derived());
-      }
+    constexpr decltype(auto) back() noexcept(noexcept(*(std::prev(adl_end(derived()))))) {
+      assert(!empty());
+      return *std::prev(adl_end(derived()));
+    }
 
-      constexpr decltype(auto) back() noexcept(noexcept(*(std::prev(end(derived()))))) {
-        assert(!empty());
-        return *std::prev(end(derived()));
-      }
+    constexpr decltype(auto) back() const noexcept(noexcept(*(std::prev(adl_end(derived()))))) {
+      assert(!empty());
+      return *std::prev(adl_end(derived()));
+    }
 
-      constexpr decltype(auto) back() const noexcept(noexcept(*(std::prev(end(derived()))))) {
-        assert(!empty());
-        return *std::prev(end(derived()));
-      }
+    template <typename D = Derived>
+    constexpr decltype(auto) operator[](const range_size_t<D> j) //
+      noexcept(noexcept(adl_begin(derived())[j])) {
+      return adl_begin(derived())[j];
+    }
 
-      template <typename D = Derived>
-      constexpr decltype(auto) operator[](const size_type_impl<D> j) //
-        noexcept(noexcept(begin(derived())[j])) {
-        return begin(derived())[j];
-      }
+    template <typename D = Derived>
+    constexpr decltype(auto) operator[](const range_size_t<D> j) //
+      const noexcept(noexcept(adl_begin(derived())[j])) {
+      return adl_begin(derived())[j];
+    }
 
-      template <typename D = Derived>
-      constexpr decltype(auto) operator[](const size_type_impl<D> j) //
-        const noexcept(noexcept(begin(derived())[j])) {
-        return begin(derived())[j];
-      }
+    template <typename D = Derived>
+    constexpr decltype(auto) at(const range_size_t<D> j) {
+      if (j >= size()) throw std::out_of_range("out_of_range thrown at matrix_base::at");
+      return (*this)[j];
+    }
 
-      template <typename D = Derived>
-      constexpr decltype(auto) at(const size_type_impl<D> j) {
-        if (j >= size()) throw std::out_of_range("out_of_range thrown at matrix_base::at");
-        return (*this)[j];
-      }
+    template <typename D = Derived>
+    constexpr decltype(auto) at(const range_size_t<D> j) const {
+      if (j >= size()) throw std::out_of_range("out_of_range thrown at matrix_base::at");
+      return (*this)[j];
+    }
 
-      template <typename D = Derived>
-      constexpr decltype(auto) at(const size_type_impl<D> j) const {
-        if (j >= size()) throw std::out_of_range("out_of_range thrown at matrix_base::at");
-        return (*this)[j];
-      }
+    constexpr auto data() noexcept(noexcept(to_address(adl_begin(derived())))) {
+      return to_address(adl_begin(derived()));
+    }
 
-      constexpr auto data() noexcept(noexcept(std::addressof(*begin(derived())))) {
-        return std::addressof(*begin(derived()));
-      }
-
-      constexpr auto data() const noexcept(noexcept(std::addressof(*begin(derived())))) {
-        return std::addressof(*begin(derived()));
-      }
-    }; // struct matrix_base
-  }    // namespace detail2
+    constexpr auto data() const noexcept(noexcept(to_address(adl_begin(derived())))) {
+      return to_address(adl_begin(derived()));
+    }
+  }; // struct matrix_base
 
   /// fixed-size matrix
   template <typename T, std::size_t N>
-  struct matrix : detail2::matrix_base<matrix<T, N>> {
+  struct matrix : matrix_base<matrix<T, N>> {
   private:
     std::array<T, N * N> instance_{};
 
@@ -415,7 +410,7 @@ namespace kspc {
 
   /// dynamic-size matrix
   template <typename T>
-  struct ndmatrix : detail2::matrix_base<ndmatrix<T>> {
+  struct ndmatrix : matrix_base<ndmatrix<T>> {
     using iterator = iterator_t<std::vector<T>>;
     using const_iterator = iterator_t<const std::vector<T>>;
     using difference_type = iter_difference_t<iterator>;
@@ -465,9 +460,8 @@ namespace kspc {
     }
 
     constexpr void swap(ndmatrix& other) //
-      noexcept(std::is_nothrow_swappable_v<size_type>&& noexcept(instance_.swap(other.instance_))) {
-      using std::swap; // for ADL
-      swap(dim_, other.dim_);
+      noexcept(noexcept(adl_swap(dim_, other.dim_), instance_.swap(other.instance_))) {
+      adl_swap(dim_, other.dim_);
       instance_.swap(other.instance_);
     }
 
@@ -536,7 +530,7 @@ namespace kspc {
     constexpr std::size_t N = fixed_size_array_size_v<Vs>;
     static_assert(fixed_size_array_size_v<L> == N * N
                     && fixed_size_array_size_v<remove_cvref_t<range_reference_t<Vs>>> == N,
-                  "the matrix size and the vector sizes are inconsistent");
+                  "The matrix size and the vector sizes are inconsistent.");
 
     using T = std::common_type_t<range_reference_t<L>, range_reference_t<range_reference_t<Vs>>>;
     matrix<T, N> ret{};
