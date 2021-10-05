@@ -173,9 +173,13 @@ namespace kspc {
 
   /// @brief Check whether matrix is hermitian.
   /// @example hermitian.cpp
+  // clang-format off
   template <typename M, typename Proj1 = conj_fn, typename Proj2 = identity,
             typename Comp = approx_eq,
-            std::enable_if_t<is_sized_range_v<M>, std::nullptr_t> = nullptr>
+            std::enable_if_t<std::conjunction_v<
+              is_sized_range<M>,
+              always_true_type<decltype(std::declval<const M&>()[std::size_t{}])>>, std::nullptr_t> = nullptr>
+  // clang-format on
   constexpr bool hermitian(const M& op, Proj1 proj1 = {}, Proj2 proj2 = {}, Comp comp = {}) {
     const std::size_t N = kspc::dim(op);
     for (std::size_t j = 0; j < N; ++j) {
@@ -509,9 +513,9 @@ namespace kspc {
     // clang-format off
     template <typename M, typename Vs>
     struct fixed_mel_constraints : std::conjunction<
-        is_fixed_size_array<M>,
-        is_fixed_size_array<Vs>,
-        is_fixed_size_array<range_reference_t<Vs>>> {};
+      is_fixed_size_array<M>,
+      is_fixed_size_array<Vs>,
+      is_fixed_size_array<range_reference_t<Vs>>> {};
     // clang-format on
   } // namespace detail
     /// @endcond
@@ -521,7 +525,8 @@ namespace kspc {
   template <typename L, typename Vs,
             std::enable_if_t<std::conjunction_v<
               is_sized_range<L>,
-              is_range<Vs>, is_range<range_reference_t<Vs>>,
+              is_range<Vs>,
+              is_range<range_reference_t<Vs>>,
               detail::fixed_mel_constraints<L, Vs>>, std::nullptr_t> = nullptr>
   // clang-format on
   constexpr auto mel(const L& op, const Vs& vs) {
@@ -545,7 +550,8 @@ namespace kspc {
   template <typename M, typename Vs,
             std::enable_if_t<std::conjunction_v<
               is_sized_range<M>,
-              is_range<Vs>, is_range<range_reference_t<Vs>>,
+              is_range<Vs>,
+              is_range<range_reference_t<Vs>>,
               std::negation<detail::fixed_mel_constraints<M, Vs>>>, std::nullptr_t> = nullptr>
   // clang-format on
   constexpr auto mel(const M& op, const Vs& vs) {
