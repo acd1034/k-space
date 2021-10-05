@@ -4,10 +4,10 @@ var indexSectionsWithContent =
   1: "acfimnprt",
   2: "k",
   3: "cilm",
-  4: "acdfilmnors",
+  4: "acdfilmnorst",
   5: "adefilpst",
-  6: "bcirst",
-  7: "acimnpru",
+  6: "abcirst",
+  7: "acilmnpru",
   8: "k"
 };
 

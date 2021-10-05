@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>k-space: include/kspc/linalg.hpp File Reference</title>
+<title>k-space: Integration</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -45,6 +45,7 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
+</div><!-- top -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -59,36 +60,30 @@ $(function() {
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_919b91d53b27d7e6df05f777d27efdcc.html">kspc</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">linalg.hpp File Reference</div>  </div>
+<div class="title">Integration<div class="ingroups"><a class="el" href="group__math.html">Math</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;array&gt;</code><br />
-<code>#include &lt;complex&gt;</code><br />
-<code>#include &lt;vector&gt;</code><br />
-<code>#include &lt;<a class="el" href="math__basics_8hpp_source.html">kspc/math_basics.hpp</a>&gt;</code><br />
-</div>
-<p><a href="linalg_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkspc_1_1params__t.html">kspc::params_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">helper class for defining parameters of integrand  <a href="structkspc_1_1params__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ga18c820c1e5cafe818db9b090bb45165f"><td class="memTemplParams" colspan="2">
-template&lt;typename L , std::enable_if_t&lt; std::conjunction_v&lt; is_sized_range&lt; L &gt;, is_complex&lt; std::decay_t&lt; range_reference_t&lt; L &gt;&gt;&gt;, is_fixed_size_array&lt; L &gt;&gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
-<tr class="memitem:ga18c820c1e5cafe818db9b090bb45165f"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::zheev</b> (const L &amp;H)</td></tr>
-<tr class="separator:ga18c820c1e5cafe818db9b090bb45165f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gad395f8074bef33bdb8665f6ccc567ad3"><td class="memTemplParams" colspan="2">
-template&lt;typename M , std::enable_if_t&lt; std::conjunction_v&lt; is_sized_range&lt; M &gt;, is_complex&lt; std::decay_t&lt; range_reference_t&lt; M &gt;&gt;&gt;, std::negation&lt; is_fixed_size_array&lt; M &gt;&gt;&gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
-<tr class="memitem:gad395f8074bef33bdb8665f6ccc567ad3"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::zheev</b> (const M &amp;H)</td></tr>
-<tr class="separator:gad395f8074bef33bdb8665f6ccc567ad3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae38bf513e7ff6e2e16890bbe7a2b6285"><td class="memTemplParams" colspan="2"><a id="gae38bf513e7ff6e2e16890bbe7a2b6285"></a>
+template&lt;std::size_t D&gt; </td></tr>
+<tr class="memitem:gae38bf513e7ff6e2e16890bbe7a2b6285"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__integration.html#gae38bf513e7ff6e2e16890bbe7a2b6285">kspc::cquad</a> (void *temp_p_params)</td></tr>
+<tr class="memdesc:gae38bf513e7ff6e2e16890bbe7a2b6285"><td class="mdescLeft">&#160;</td><td class="mdescRight">D-dimensional integral. <br /></td></tr>
+<tr class="separator:gae38bf513e7ff6e2e16890bbe7a2b6285"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

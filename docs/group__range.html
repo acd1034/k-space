@@ -82,44 +82,59 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:ga9809868d97b6c003c48a590acd3b7f9c"><td class="memTemplParams" colspan="2"><a id="ga9809868d97b6c003c48a590acd3b7f9c"></a>
+<tr class="memitem:ga3be24a14599c3f616882c2ca86534d21"><td class="memTemplParams" colspan="2"><a id="ga3be24a14599c3f616882c2ca86534d21"></a>
 template&lt;typename R &gt; </td></tr>
-<tr class="memitem:ga9809868d97b6c003c48a590acd3b7f9c"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__range.html#ga9809868d97b6c003c48a590acd3b7f9c">kspc::iterator_t</a> = detail2::unqualified_begin_t&lt; R &amp; &gt;</td></tr>
-<tr class="memdesc:ga9809868d97b6c003c48a590acd3b7f9c"><td class="mdescLeft">&#160;</td><td class="mdescRight">iterator_t <br /></td></tr>
-<tr class="separator:ga9809868d97b6c003c48a590acd3b7f9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga1671686e4a0c75785d8a7d1a9912e2a5"><td class="memTemplParams" colspan="2"><a id="ga1671686e4a0c75785d8a7d1a9912e2a5"></a>
+<tr class="memitem:ga3be24a14599c3f616882c2ca86534d21"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__range.html#ga3be24a14599c3f616882c2ca86534d21">kspc::iterator_t</a> = detail::adl_begin_t&lt; R &amp; &gt;</td></tr>
+<tr class="memdesc:ga3be24a14599c3f616882c2ca86534d21"><td class="mdescLeft">&#160;</td><td class="mdescRight">iterator_t <br /></td></tr>
+<tr class="separator:ga3be24a14599c3f616882c2ca86534d21"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac4d071ef8f90947000e98f35fa370f31"><td class="memTemplParams" colspan="2"><a id="gac4d071ef8f90947000e98f35fa370f31"></a>
 template&lt;typename R , std::enable_if_t&lt; is_range_v&lt; R &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
-<tr class="memitem:ga1671686e4a0c75785d8a7d1a9912e2a5"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__range.html#ga1671686e4a0c75785d8a7d1a9912e2a5">kspc::sentinel_t</a> = detail2::unqualified_end_t&lt; R &amp; &gt;</td></tr>
-<tr class="memdesc:ga1671686e4a0c75785d8a7d1a9912e2a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">sentinel_t <br /></td></tr>
-<tr class="separator:ga1671686e4a0c75785d8a7d1a9912e2a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac4d071ef8f90947000e98f35fa370f31"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__range.html#gac4d071ef8f90947000e98f35fa370f31">kspc::sentinel_t</a> = detail::adl_end_t&lt; R &amp; &gt;</td></tr>
+<tr class="memdesc:gac4d071ef8f90947000e98f35fa370f31"><td class="mdescLeft">&#160;</td><td class="mdescRight">sentinel_t <br /></td></tr>
+<tr class="separator:gac4d071ef8f90947000e98f35fa370f31"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga18bd8d28401faa9a1f5e50ffe3a9102d"><td class="memTemplParams" colspan="2"><a id="ga18bd8d28401faa9a1f5e50ffe3a9102d"></a>
 template&lt;typename R , std::enable_if_t&lt; is_range_v&lt; R &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
-<tr class="memitem:ga18bd8d28401faa9a1f5e50ffe3a9102d"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__range.html#ga18bd8d28401faa9a1f5e50ffe3a9102d">kspc::range_difference_t</a> = <a class="el" href="group__iterator.html#ga26e0e38429a46fcfc1095852e65a1ce9">iter_difference_t</a>&lt; <a class="el" href="group__range.html#ga9809868d97b6c003c48a590acd3b7f9c">iterator_t</a>&lt; R &gt; &gt;</td></tr>
+<tr class="memitem:ga18bd8d28401faa9a1f5e50ffe3a9102d"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__range.html#ga18bd8d28401faa9a1f5e50ffe3a9102d">kspc::range_difference_t</a> = <a class="el" href="group__iterator.html#ga26e0e38429a46fcfc1095852e65a1ce9">iter_difference_t</a>&lt; <a class="el" href="group__range.html#ga3be24a14599c3f616882c2ca86534d21">iterator_t</a>&lt; R &gt; &gt;</td></tr>
 <tr class="memdesc:ga18bd8d28401faa9a1f5e50ffe3a9102d"><td class="mdescLeft">&#160;</td><td class="mdescRight">range_difference_t <br /></td></tr>
 <tr class="separator:ga18bd8d28401faa9a1f5e50ffe3a9102d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab2660ef108280595688271dd76ec3daf"><td class="memTemplParams" colspan="2"><a id="gab2660ef108280595688271dd76ec3daf"></a>
+template&lt;typename R , std::enable_if_t&lt; is_sized_range_v&lt; R &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
+<tr class="memitem:gab2660ef108280595688271dd76ec3daf"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__range.html#gab2660ef108280595688271dd76ec3daf">kspc::range_size_t</a> = detail::adl_size_t&lt; R &amp; &gt;</td></tr>
+<tr class="memdesc:gab2660ef108280595688271dd76ec3daf"><td class="mdescLeft">&#160;</td><td class="mdescRight">range_size_t <br /></td></tr>
+<tr class="separator:gab2660ef108280595688271dd76ec3daf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaa37e5148fdcaf719fe194b676309adc4"><td class="memTemplParams" colspan="2"><a id="gaa37e5148fdcaf719fe194b676309adc4"></a>
 template&lt;typename R , std::enable_if_t&lt; is_range_v&lt; R &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
-<tr class="memitem:gaa37e5148fdcaf719fe194b676309adc4"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__range.html#gaa37e5148fdcaf719fe194b676309adc4">kspc::range_value_t</a> = <a class="el" href="group__iterator.html#gaf352495531dca3b36f1f7c06c2dfe8dd">iter_value_t</a>&lt; <a class="el" href="group__range.html#ga9809868d97b6c003c48a590acd3b7f9c">iterator_t</a>&lt; R &gt; &gt;</td></tr>
+<tr class="memitem:gaa37e5148fdcaf719fe194b676309adc4"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__range.html#gaa37e5148fdcaf719fe194b676309adc4">kspc::range_value_t</a> = <a class="el" href="group__iterator.html#gaf352495531dca3b36f1f7c06c2dfe8dd">iter_value_t</a>&lt; <a class="el" href="group__range.html#ga3be24a14599c3f616882c2ca86534d21">iterator_t</a>&lt; R &gt; &gt;</td></tr>
 <tr class="memdesc:gaa37e5148fdcaf719fe194b676309adc4"><td class="mdescLeft">&#160;</td><td class="mdescRight">range_value_t <br /></td></tr>
 <tr class="separator:gaa37e5148fdcaf719fe194b676309adc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga206f6e863c3cf8b6107f81e2f44acb5a"><td class="memTemplParams" colspan="2"><a id="ga206f6e863c3cf8b6107f81e2f44acb5a"></a>
 template&lt;typename R , std::enable_if_t&lt; is_range_v&lt; R &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
-<tr class="memitem:ga206f6e863c3cf8b6107f81e2f44acb5a"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__range.html#ga206f6e863c3cf8b6107f81e2f44acb5a">kspc::range_reference_t</a> = <a class="el" href="group__iterator.html#ga7cb2ffb8dd2a5e23587da31cbad10338">iter_reference_t</a>&lt; <a class="el" href="group__range.html#ga9809868d97b6c003c48a590acd3b7f9c">iterator_t</a>&lt; R &gt; &gt;</td></tr>
+<tr class="memitem:ga206f6e863c3cf8b6107f81e2f44acb5a"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__range.html#ga206f6e863c3cf8b6107f81e2f44acb5a">kspc::range_reference_t</a> = <a class="el" href="group__iterator.html#ga7cb2ffb8dd2a5e23587da31cbad10338">iter_reference_t</a>&lt; <a class="el" href="group__range.html#ga3be24a14599c3f616882c2ca86534d21">iterator_t</a>&lt; R &gt; &gt;</td></tr>
 <tr class="memdesc:ga206f6e863c3cf8b6107f81e2f44acb5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">range_reference_t <br /></td></tr>
 <tr class="separator:ga206f6e863c3cf8b6107f81e2f44acb5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ga30abd6b695e4c604df0024cdefd7a248"><td class="memTemplParams" colspan="2"><a id="ga30abd6b695e4c604df0024cdefd7a248"></a>
+<tr class="memitem:gaae414289ef2b3c1a41b14b0062a059a8"><td class="memTemplParams" colspan="2"><a id="gaae414289ef2b3c1a41b14b0062a059a8"></a>
 template&lt;typename C &gt; </td></tr>
-<tr class="memitem:ga30abd6b695e4c604df0024cdefd7a248"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__range.html#ga30abd6b695e4c604df0024cdefd7a248">kspc::ssize</a> (const C &amp;c) -&gt; std::common_type_t&lt; std::ptrdiff_t, std::make_signed_t&lt; decltype(c.size())&gt;&gt;</td></tr>
-<tr class="memdesc:ga30abd6b695e4c604df0024cdefd7a248"><td class="mdescLeft">&#160;</td><td class="mdescRight">ssize <br /></td></tr>
-<tr class="separator:ga30abd6b695e4c604df0024cdefd7a248"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaae414289ef2b3c1a41b14b0062a059a8"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__range.html#gaae414289ef2b3c1a41b14b0062a059a8">kspc::ssize</a> (const C &amp;c) noexcept(noexcept(static_cast&lt; std::common_type_t&lt; std::ptrdiff_t, std::make_signed_t&lt; decltype(c.size())&gt;&gt;&gt;(c.size()))) -&gt; std::common_type_t&lt; std::ptrdiff_t, std::make_signed_t&lt; decltype(c.size())&gt;&gt;</td></tr>
+<tr class="memdesc:gaae414289ef2b3c1a41b14b0062a059a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">ssize <br /></td></tr>
+<tr class="separator:gaae414289ef2b3c1a41b14b0062a059a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga21135f7043428d75632d3c977e8e02e6"><td class="memTemplParams" colspan="2"><a id="ga21135f7043428d75632d3c977e8e02e6"></a>
 template&lt;typename T , std::size_t N&gt; </td></tr>
 <tr class="memitem:ga21135f7043428d75632d3c977e8e02e6"><td class="memTemplItemLeft" align="right" valign="top">constexpr std::ptrdiff_t&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__range.html#ga21135f7043428d75632d3c977e8e02e6">kspc::ssize</a> (const T(&amp;)[N]) noexcept</td></tr>
 <tr class="memdesc:ga21135f7043428d75632d3c977e8e02e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. <br /></td></tr>
 <tr class="separator:ga21135f7043428d75632d3c977e8e02e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaea3cc0697472dcbe97a6a549214ae7a8"><td class="memTemplParams" colspan="2"><a id="gaea3cc0697472dcbe97a6a549214ae7a8"></a>
+template&lt;class T &gt; </td></tr>
+<tr class="memitem:gaea3cc0697472dcbe97a6a549214ae7a8"><td class="memTemplItemLeft" align="right" valign="top">constexpr T *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__range.html#gaea3cc0697472dcbe97a6a549214ae7a8">kspc::to_address</a> (T *p) noexcept</td></tr>
+<tr class="memdesc:gaea3cc0697472dcbe97a6a549214ae7a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">to_address <br /></td></tr>
+<tr class="separator:gaea3cc0697472dcbe97a6a549214ae7a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga464b5ba8a7e84672595e7d0403a9863d"><td class="memTemplParams" colspan="2"><a id="ga464b5ba8a7e84672595e7d0403a9863d"></a>
+template&lt;class T &gt; </td></tr>
+<tr class="memitem:ga464b5ba8a7e84672595e7d0403a9863d"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__range.html#ga464b5ba8a7e84672595e7d0403a9863d">kspc::to_address</a> (const T &amp;p) noexcept</td></tr>
+<tr class="memdesc:ga464b5ba8a7e84672595e7d0403a9863d"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. <br /></td></tr>
+<tr class="separator:ga464b5ba8a7e84672595e7d0403a9863d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>

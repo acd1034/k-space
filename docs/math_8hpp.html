@@ -67,7 +67,6 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#namespaces">Namespaces</a> &#124;
 <a href="#define-members">Macros</a> &#124;
 <a href="#func-members">Functions</a> &#124;
 <a href="#var-members">Variables</a>  </div>
@@ -114,8 +113,8 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkspc_1_1approx__ge.html">kspc::approx_ge</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">approx_ge  <a href="structkspc_1_1approx__ge.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkspc_1_1detail2_1_1matrix__base.html">kspc::detail2::matrix_base&lt; Derived, &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">matrix_base  <a href="structkspc_1_1detail2_1_1matrix__base.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkspc_1_1matrix__base.html">kspc::matrix_base&lt; Derived, &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">matrix_base  <a href="structkspc_1_1matrix__base.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkspc_1_1matrix.html">kspc::matrix&lt; T, N &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">fixed-size matrix  <a href="structkspc_1_1matrix.html#details">More...</a><br /></td></tr>
@@ -125,12 +124,6 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkspc_1_1ndmatrix.html">kspc::ndmatrix&lt; T &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">dynamic-size matrix  <a href="structkspc_1_1ndmatrix.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
-Namespaces</h2></td></tr>
-<tr class="memitem:namespacekspc_1_1detail2"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekspc_1_1detail2.html">kspc::detail2</a></td></tr>
-<tr class="memdesc:namespacekspc_1_1detail2"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>using std::begin, std::end, std::size</code> is declared in this namespace. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
@@ -150,10 +143,10 @@ template&lt;typename T &gt; </td></tr>
 <tr class="memitem:gaa1d13d5dbd955f83725e19762dd08684"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__approx.html#gaa1d13d5dbd955f83725e19762dd08684">kspc::approx</a> (std::complex&lt; T &gt;, const double=eps, const double=0.0) -&gt; approx&lt; std::complex&lt; T &gt;&gt;</td></tr>
 <tr class="memdesc:gaa1d13d5dbd955f83725e19762dd08684"><td class="mdescLeft">&#160;</td><td class="mdescRight">deduction guide for <a class="el" href="group__approx.html">approx </a> <br /></td></tr>
 <tr class="separator:gaa1d13d5dbd955f83725e19762dd08684"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga0ae53fd9fbad056071c75fad6652291b"><td class="memTemplParams" colspan="2">
-template&lt;typename M , typename Proj1  = conj_fn, typename Proj2  = identity, typename Comp  = approx_eq, std::enable_if_t&lt; is_sized_range_v&lt; M &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
-<tr class="memitem:ga0ae53fd9fbad056071c75fad6652291b"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::hermitian</b> (const M &amp;op, Proj1 proj1={}, Proj2 proj2={}, Comp comp={})</td></tr>
-<tr class="separator:ga0ae53fd9fbad056071c75fad6652291b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga52a7e988b5558aa16804368830004725"><td class="memTemplParams" colspan="2">
+template&lt;typename M , typename Proj1  = conj_fn, typename Proj2  = identity, typename Comp  = approx_eq, std::enable_if_t&lt; std::conjunction_v&lt; is_sized_range&lt; M &gt;, always_true_type&lt; decltype(std::declval&lt; const M &amp; &gt;()[std::size_t{}])&gt;&gt; , std::nullptr_t &gt; </td></tr>
+<tr class="memitem:ga52a7e988b5558aa16804368830004725"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::hermitian</b> (const M &amp;op, Proj1 proj1={}, Proj2 proj2={}, Comp comp={})</td></tr>
+<tr class="separator:ga52a7e988b5558aa16804368830004725"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga609a0a2e7491622a3cba90137d8b6676"><td class="memTemplParams" colspan="2">
 template&lt;typename T , typename... U, std::enable_if_t&lt; std::conjunction_v&lt; std::is_same&lt; U, T &gt;... &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
 <tr class="memitem:ga609a0a2e7491622a3cba90137d8b6676"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__matrix.html#ga609a0a2e7491622a3cba90137d8b6676">kspc::matrix</a> (T, U...) -&gt; matrix&lt; T, isqrt(1UL+sizeof...(U))&gt;</td></tr>
@@ -174,26 +167,26 @@ template&lt;typename M , typename Vs , std::enable_if_t&lt; std::conjunction_v&l
 <tr class="memitem:ga90634ed5d1f881771d66e09414f4ebd1"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__matrix.html#ga90634ed5d1f881771d66e09414f4ebd1">kspc::mel</a> (const M &amp;op, const Vs &amp;vs)</td></tr>
 <tr class="memdesc:ga90634ed5d1f881771d66e09414f4ebd1"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. <br /></td></tr>
 <tr class="separator:ga90634ed5d1f881771d66e09414f4ebd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gafc3cbb539c1aae9eafec5b21a86a7369"><td class="memTemplParams" colspan="2">
+<tr class="memitem:gac70951d996f93955adbfbf35ce55f717"><td class="memTemplParams" colspan="2">
 template&lt;typename T &gt; </td></tr>
-<tr class="memitem:gafc3cbb539c1aae9eafec5b21a86a7369"><td class="memTemplItemLeft" align="right" valign="top">detail::enable_if_floating&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__math__functions.html#gafc3cbb539c1aae9eafec5b21a86a7369">kspc::f_FD</a> (const T E, const T beta, const T mu)</td></tr>
-<tr class="memdesc:gafc3cbb539c1aae9eafec5b21a86a7369"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Fermi distribution. <br /></td></tr>
-<tr class="separator:gafc3cbb539c1aae9eafec5b21a86a7369"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga1372ac9061f0dc9fc17dbc5871713922"><td class="memTemplParams" colspan="2">
+<tr class="memitem:gac70951d996f93955adbfbf35ce55f717"><td class="memTemplItemLeft" align="right" valign="top">detail::enable_if_floating&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__math__functions.html#gac70951d996f93955adbfbf35ce55f717">kspc::f_FD</a> (const T ene, const T beta, const T mu)</td></tr>
+<tr class="memdesc:gac70951d996f93955adbfbf35ce55f717"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Fermi distribution. <br /></td></tr>
+<tr class="separator:gac70951d996f93955adbfbf35ce55f717"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga92fcfacb33197ef110afa0c6882cb532"><td class="memTemplParams" colspan="2">
 template&lt;typename T &gt; </td></tr>
-<tr class="memitem:ga1372ac9061f0dc9fc17dbc5871713922"><td class="memTemplItemLeft" align="right" valign="top">detail::enable_if_floating&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__math__functions.html#ga1372ac9061f0dc9fc17dbc5871713922">kspc::Df_FD</a> (const T E, const T beta, const T mu)</td></tr>
-<tr class="memdesc:ga1372ac9061f0dc9fc17dbc5871713922"><td class="mdescLeft">&#160;</td><td class="mdescRight">Derivative of the Fermi distribution. <br /></td></tr>
-<tr class="separator:ga1372ac9061f0dc9fc17dbc5871713922"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gac9605b2ae858fc2278a889f7c06d77a3"><td class="memTemplParams" colspan="2">
+<tr class="memitem:ga92fcfacb33197ef110afa0c6882cb532"><td class="memTemplItemLeft" align="right" valign="top">detail::enable_if_floating&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__math__functions.html#ga92fcfacb33197ef110afa0c6882cb532">kspc::Df_FD</a> (const T ene, const T beta, const T mu)</td></tr>
+<tr class="memdesc:ga92fcfacb33197ef110afa0c6882cb532"><td class="mdescLeft">&#160;</td><td class="mdescRight">Derivative of the Fermi distribution. <br /></td></tr>
+<tr class="separator:ga92fcfacb33197ef110afa0c6882cb532"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga33b9e068cd0b45648cf06e5be9165e78"><td class="memTemplParams" colspan="2">
 template&lt;typename T &gt; </td></tr>
-<tr class="memitem:gac9605b2ae858fc2278a889f7c06d77a3"><td class="memTemplItemLeft" align="right" valign="top">detail::enable_if_floating&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__math__functions.html#gac9605b2ae858fc2278a889f7c06d77a3">kspc::f_BE</a> (const T E, const T beta, const T mu)</td></tr>
-<tr class="memdesc:gac9605b2ae858fc2278a889f7c06d77a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Bose distribution. <br /></td></tr>
-<tr class="separator:gac9605b2ae858fc2278a889f7c06d77a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga60e2a9f885dea26d2ebb3c6b4127ce58"><td class="memTemplParams" colspan="2">
+<tr class="memitem:ga33b9e068cd0b45648cf06e5be9165e78"><td class="memTemplItemLeft" align="right" valign="top">detail::enable_if_floating&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__math__functions.html#ga33b9e068cd0b45648cf06e5be9165e78">kspc::f_BE</a> (const T ene, const T beta, const T mu)</td></tr>
+<tr class="memdesc:ga33b9e068cd0b45648cf06e5be9165e78"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Bose distribution. <br /></td></tr>
+<tr class="separator:ga33b9e068cd0b45648cf06e5be9165e78"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae8b17736f5161c2b1fc2a87050cba4a7"><td class="memTemplParams" colspan="2">
 template&lt;typename T &gt; </td></tr>
-<tr class="memitem:ga60e2a9f885dea26d2ebb3c6b4127ce58"><td class="memTemplItemLeft" align="right" valign="top">detail::enable_if_floating&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__math__functions.html#ga60e2a9f885dea26d2ebb3c6b4127ce58">kspc::Df_BE</a> (const T E, const T beta, const T mu)</td></tr>
-<tr class="memdesc:ga60e2a9f885dea26d2ebb3c6b4127ce58"><td class="mdescLeft">&#160;</td><td class="mdescRight">Derivative of the Bose distribution. <br /></td></tr>
-<tr class="separator:ga60e2a9f885dea26d2ebb3c6b4127ce58"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae8b17736f5161c2b1fc2a87050cba4a7"><td class="memTemplItemLeft" align="right" valign="top">detail::enable_if_floating&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__math__functions.html#gae8b17736f5161c2b1fc2a87050cba4a7">kspc::Df_BE</a> (const T ene, const T beta, const T mu)</td></tr>
+<tr class="memdesc:gae8b17736f5161c2b1fc2a87050cba4a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Derivative of the Bose distribution. <br /></td></tr>
+<tr class="separator:gae8b17736f5161c2b1fc2a87050cba4a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga8d7add5d5bac48379ae68d9286e3adf5"><td class="memTemplParams" colspan="2">
 template&lt;typename T , typename U &gt; </td></tr>
 <tr class="memitem:ga8d7add5d5bac48379ae68d9286e3adf5"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__math__functions.html#ga8d7add5d5bac48379ae68d9286e3adf5">kspc::lerp</a> (const T &amp;a, const T &amp;b, const U &amp;t) noexcept(noexcept(a+t *(b - a))) -&gt; decltype((a+t *(b - a)))</td></tr>

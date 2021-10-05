@@ -72,6 +72,9 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkspc_1_1matrix__base.html">kspc::matrix_base&lt; Derived, &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">matrix_base  <a href="structkspc_1_1matrix__base.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkspc_1_1matrix.html">kspc::matrix&lt; T, N &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">fixed-size matrix  <a href="structkspc_1_1matrix.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -99,10 +102,10 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ga0ae53fd9fbad056071c75fad6652291b"><td class="memTemplParams" colspan="2"><a id="ga0ae53fd9fbad056071c75fad6652291b"></a>
-template&lt;typename M , typename Proj1  = conj_fn, typename Proj2  = identity, typename Comp  = approx_eq, std::enable_if_t&lt; is_sized_range_v&lt; M &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
-<tr class="memitem:ga0ae53fd9fbad056071c75fad6652291b"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::hermitian</b> (const M &amp;op, Proj1 proj1={}, Proj2 proj2={}, Comp comp={})</td></tr>
-<tr class="separator:ga0ae53fd9fbad056071c75fad6652291b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga52a7e988b5558aa16804368830004725"><td class="memTemplParams" colspan="2"><a id="ga52a7e988b5558aa16804368830004725"></a>
+template&lt;typename M , typename Proj1  = conj_fn, typename Proj2  = identity, typename Comp  = approx_eq, std::enable_if_t&lt; std::conjunction_v&lt; is_sized_range&lt; M &gt;, always_true_type&lt; decltype(std::declval&lt; const M &amp; &gt;()[std::size_t{}])&gt;&gt; , std::nullptr_t &gt; </td></tr>
+<tr class="memitem:ga52a7e988b5558aa16804368830004725"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::hermitian</b> (const M &amp;op, Proj1 proj1={}, Proj2 proj2={}, Comp comp={})</td></tr>
+<tr class="separator:ga52a7e988b5558aa16804368830004725"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga609a0a2e7491622a3cba90137d8b6676"><td class="memTemplParams" colspan="2"><a id="ga609a0a2e7491622a3cba90137d8b6676"></a>
 template&lt;typename T , typename... U, std::enable_if_t&lt; std::conjunction_v&lt; std::is_same&lt; U, T &gt;... &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
 <tr class="memitem:ga609a0a2e7491622a3cba90137d8b6676"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__matrix.html#ga609a0a2e7491622a3cba90137d8b6676">kspc::matrix</a> (T, U...) -&gt; <a class="el" href="structkspc_1_1matrix.html">matrix</a>&lt; T, isqrt(1UL+sizeof...(U))&gt;</td></tr>
