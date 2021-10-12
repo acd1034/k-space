@@ -76,7 +76,7 @@ namespace kspc {
               std::negation<is_complex<std::decay_t<T>>>,
               std::is_default_constructible<std::decay_t<T>>>, std::nullptr_t> = nullptr>
   // clang-format on
-  inline constexpr auto imag(T&& x) noexcept(noexcept(std::decay_t<T>{})) {
+  inline constexpr auto imag(T&&) noexcept(noexcept(std::decay_t<T>{})) {
     return std::decay_t<T>{};
   }
 
