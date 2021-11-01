@@ -22,5 +22,5 @@ add_subdirectory(include)
 # Setup test directory
 if (KSPC_TEST)
     enable_testing()
-    add_subdirectory(test)
+    add_subdirectory(tests)
 endif()
