@@ -571,6 +571,8 @@ namespace kspc {
   /// @addtogroup math_constants
   /// @{
 
+  // mathematical constants
+
   /// @cond
   namespace detail {
     template <typename T>
@@ -639,6 +641,8 @@ namespace kspc {
   /// @addtogroup math_functions
   /// @{
 
+  // mathematical functions
+
   /// The Fermi distribution
   template <typename T>
   inline detail::enable_if_floating<T> f_FD(const T ene, const T beta, const T mu) {
@@ -691,6 +695,8 @@ namespace kspc {
 
   /// @addtogroup physics
   /// @{
+
+  // in Brillouin zone
 
   template <typename K, typename B,
             std::enable_if_t<is_range_v<K> && is_range_v<B>, std::nullptr_t> = nullptr>
