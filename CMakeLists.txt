@@ -10,7 +10,7 @@ endif(NOT CMAKE_BUILD_TYPE)
 # Determine whether this is a standalone project or included by other projects
 set(KSPC_STANDALONE_PROJECT OFF)
 if (CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
-    set(KSPC_STANDALONE_PROJECT ON)
+  set(KSPC_STANDALONE_PROJECT ON)
 endif()
 
 # Project options
@@ -21,6 +21,6 @@ add_subdirectory(include)
 
 # Setup test directory
 if (KSPC_TEST)
-    enable_testing()
-    add_subdirectory(tests)
+  include(CTest)
+  add_subdirectory(tests)
 endif()

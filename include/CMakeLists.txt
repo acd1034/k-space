@@ -9,10 +9,6 @@ set_target_properties(kspc PROPERTIES
   CXX_EXTENSIONS OFF
 )
 
-# Library dependencies
-# find_package(Boost 1.61.0 REQUIRED)
-# target_include_directories(header_lib_sample SYSTEM INTERFACE Boost::boost)
-
 # Add include folders to the library and targets that consume it the SYSTEM
 # keyword suppresses warnings for users of the library
 if(KSPC_STANDALONE_PROJECT)
@@ -26,3 +22,7 @@ else()
         $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
     )
 endif()
+
+# Add (header only) external libraries
+# find_package(Boost 1.61.0 REQUIRED)
+# target_link_libraries(kspc SYSTEM INTERFACE Boost::boost)
