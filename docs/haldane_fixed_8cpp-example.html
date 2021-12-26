@@ -91,14 +91,14 @@ $(function() {
 <div class="line">  a[1] - a[0],</div>
 <div class="line">};</div>
 <div class="line"> </div>
-<div class="line"><span class="comment">// reciprocal lattice vector</span></div>
+<div class="line"><span class="comment">// reciprocal lattice vectors</span></div>
 <div class="line"><span class="keyword">inline</span> constexpr std::array g{</div>
 <div class="line">  std::array{-2.0 * <a name="a1"></a><a class="code" href="group__math__constants.html#gaf4e3e696f52b21176de64e875554c386">kspc::pi</a> / <a class="code" href="group__math__constants.html#ga9f5eb29f175060f10338ee159422c987">kspc::sqrt3</a>, 2.0 * <a class="code" href="group__math__constants.html#gaf4e3e696f52b21176de64e875554c386">kspc::pi</a> / 3},</div>
 <div class="line">  std::array{-2.0 * <a class="code" href="group__math__constants.html#gaf4e3e696f52b21176de64e875554c386">kspc::pi</a> / <a class="code" href="group__math__constants.html#ga9f5eb29f175060f10338ee159422c987">kspc::sqrt3</a>, -2.0 * <a class="code" href="group__math__constants.html#gaf4e3e696f52b21176de64e875554c386">kspc::pi</a> / 3},</div>
 <div class="line">  std::array{0.0, -4.0 * <a class="code" href="group__math__constants.html#gaf4e3e696f52b21176de64e875554c386">kspc::pi</a> / 3},</div>
 <div class="line">};</div>
 <div class="line"> </div>
-<div class="line"><span class="comment">// params of integrand</span></div>
+<div class="line"><span class="comment">// parameters of integrand</span></div>
 <div class="line"><span class="keyword">struct </span>params_t : <a name="_a2"></a><a class="code" href="structkspc_1_1params__t.html">kspc::params_t</a> {</div>
 <div class="line">  <span class="keywordtype">double</span> t = 1.0;</div>
 <div class="line">  <span class="keywordtype">double</span> t2 = 0.0;</div>
@@ -159,6 +159,7 @@ $(function() {
 <div class="line"><span class="keyword">inline</span> constexpr std::size_t n = 0;</div>
 <div class="line"><span class="keyword">inline</span> constexpr <span class="keyword">auto</span> in_BZ = kspc::make_in_BZ(g);</div>
 <div class="line"> </div>
+<div class="line"><span class="comment">// calclate z-component of Berry curvature</span></div>
 <div class="line"><span class="keywordtype">double</span> Bz_(<span class="keyword">const</span> std::vector&lt;double&gt;&amp; k, <span class="keywordtype">void</span>* temp_p_params) {</div>
 <div class="line">  <span class="keywordflow">if</span> (!in_BZ(k)) <span class="keywordflow">return</span> 0.0;</div>
 <div class="line">  <span class="keyword">auto</span> H = H_(k, temp_p_params);</div>
@@ -194,12 +195,12 @@ $(function() {
 <div class="line">    <span class="comment">// clang-format on</span></div>
 <div class="line">  }</div>
 <div class="line">}</div>
-<div class="ttc" id="agroup__complex_html_ga774eb624bd9e917479710bb0bf890364"><div class="ttname"><a href="group__complex.html#ga774eb624bd9e917479710bb0bf890364">kspc::imag</a></div><div class="ttdeci">constexpr auto imag(C &amp;&amp;x) noexcept(noexcept(std::imag(std::forward&lt; C &gt;(x)))) -&gt; decltype((std::imag(std::forward&lt; C &gt;(x))))</div><div class="ttdoc">imag</div><div class="ttdef"><b>Definition:</b> math_basics.hpp:45</div></div>
+<div class="ttc" id="agroup__complex_html_ga774eb624bd9e917479710bb0bf890364"><div class="ttname"><a href="group__complex.html#ga774eb624bd9e917479710bb0bf890364">kspc::imag</a></div><div class="ttdeci">constexpr auto imag(C &amp;&amp;x) noexcept(noexcept(std::imag(std::forward&lt; C &gt;(x)))) -&gt; decltype((std::imag(std::forward&lt; C &gt;(x))))</div><div class="ttdoc">imag</div><div class="ttdef"><b>Definition:</b> math_basics.hpp:67</div></div>
 <div class="ttc" id="agroup__math__constants_html_ga9f5eb29f175060f10338ee159422c987"><div class="ttname"><a href="group__math__constants.html#ga9f5eb29f175060f10338ee159422c987">kspc::sqrt3</a></div><div class="ttdeci">constexpr double sqrt3</div><div class="ttdoc">alias for sqrt3_v&lt;double&gt;</div><div class="ttdef"><b>Definition:</b> math.hpp:628</div></div>
 <div class="ttc" id="agroup__math__constants_html_gab283bf7abbd1672477fa1d0583a0d6f9"><div class="ttname"><a href="group__math__constants.html#gab283bf7abbd1672477fa1d0583a0d6f9">kspc::e</a></div><div class="ttdeci">constexpr double e</div><div class="ttdoc">alias for e_v&lt;double&gt;</div><div class="ttdef"><b>Definition:</b> math.hpp:612</div></div>
 <div class="ttc" id="agroup__math__constants_html_gaf4e3e696f52b21176de64e875554c386"><div class="ttname"><a href="group__math__constants.html#gaf4e3e696f52b21176de64e875554c386">kspc::pi</a></div><div class="ttdeci">constexpr double pi</div><div class="ttdoc">alias for pi_v&lt;double&gt;</div><div class="ttdef"><b>Definition:</b> math.hpp:622</div></div>
 <div class="ttc" id="agroup__matrix_html_gabe3298b1461d2583211f6a073c7366be"><div class="ttname"><a href="group__matrix.html#gabe3298b1461d2583211f6a073c7366be">kspc::mel</a></div><div class="ttdeci">constexpr auto mel(const L &amp;op, const Vs &amp;vs)</div><div class="ttdoc">mel</div><div class="ttdef"><b>Definition:</b> math.hpp:529</div></div>
-<div class="ttc" id="agroup__numeric_html_gaf68d059d849df50b608442c0068014cf"><div class="ttname"><a href="group__numeric.html#gaf68d059d849df50b608442c0068014cf">kspc::sum</a></div><div class="ttdeci">constexpr auto sum(R &amp;&amp;r, P proj={}, BOp bop={})</div><div class="ttdoc">std::accumulate without the initial value</div><div class="ttdef"><b>Definition:</b> math_basics.hpp:336</div></div>
+<div class="ttc" id="agroup__numeric_html_gaf68d059d849df50b608442c0068014cf"><div class="ttname"><a href="group__numeric.html#gaf68d059d849df50b608442c0068014cf">kspc::sum</a></div><div class="ttdeci">constexpr auto sum(R &amp;&amp;r, P proj={}, BOp bop={})</div><div class="ttdoc">std::accumulate without the initial value</div><div class="ttdef"><b>Definition:</b> math_basics.hpp:358</div></div>
 <div class="ttc" id="aintegration_8hpp_html"><div class="ttname"><a href="integration_8hpp.html">integration.hpp</a></div></div>
 <div class="ttc" id="alinalg_8hpp_html"><div class="ttname"><a href="linalg_8hpp.html">linalg.hpp</a></div></div>
 <div class="ttc" id="amath_8hpp_html"><div class="ttname"><a href="math_8hpp.html">math.hpp</a></div></div>
