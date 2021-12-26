@@ -28,14 +28,14 @@ inline constexpr std::array b{
   a[1] - a[0],
 };
 
-// reciprocal lattice vector
+// reciprocal lattice vectors
 inline constexpr std::array g{
   std::array{-2.0 * kspc::pi / kspc::sqrt3, 2.0 * kspc::pi / 3},
   std::array{-2.0 * kspc::pi / kspc::sqrt3, -2.0 * kspc::pi / 3},
   std::array{0.0, -4.0 * kspc::pi / 3},
 };
 
-// params of integrand
+// parameters of integrand
 struct params_t : kspc::params_t {
   double t = 1.0;
   double t2 = 0.0;
@@ -96,6 +96,7 @@ auto dHdky_(const std::vector<double>& k, void* temp_p_params) {
 inline constexpr std::size_t n = 0;
 inline constexpr auto in_BZ = kspc::make_in_BZ(g);
 
+// calclate z-component of Berry curvature
 double Bz_(const std::vector<double>& k, void* temp_p_params) {
   if (!in_BZ(k)) return 0.0;
   auto H = H_(k, temp_p_params);

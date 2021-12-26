@@ -23,9 +23,31 @@ namespace kspc {
   template <typename T>
   inline constexpr bool is_complex_v = is_complex<T>::value;
 
+  /// %complex_traits
+  template <typename T, typename = void>
+  struct complex_traits {};
+
+  /// partial specialization of `complex_traits`
+  template <typename T>
+  struct complex_traits<T, std::enable_if_t<std::is_arithmetic_v<T>>> {
+    using value_type = T;
+  };
+
+  /// partial specialization of `complex_traits`
+  template <typename T>
+  struct complex_traits<std::complex<T>, std::enable_if_t<std::is_arithmetic_v<T>>> {
+    using value_type = T;
+  };
+
+  /// partial specialization of `complex_traits`
+  // TODO: necessary? remove cvref?
+  template <typename T>
+  struct complex_traits<const T> : complex_traits<T> {};
+
   /// complex_value_t
-  template <typename T, std::enable_if_t<is_complex_v<T>, std::nullptr_t> = nullptr>
-  using complex_value_t = typename T::value_type;
+  // TODO: constraints?
+  template <typename T>
+  using complex_value_t = typename complex_traits<remove_cvref_t<T>>::value_type;
 
   /// real
   template <typename C, std::enable_if_t<is_complex_v<std::decay_t<C>>, std::nullptr_t> = nullptr>
@@ -54,7 +76,7 @@ namespace kspc {
               std::negation<is_complex<std::decay_t<T>>>,
               std::is_default_constructible<std::decay_t<T>>>, std::nullptr_t> = nullptr>
   // clang-format on
-  inline constexpr auto imag(T&& x) noexcept(noexcept(std::decay_t<T>{})) {
+  inline constexpr auto imag(T&&) noexcept(noexcept(std::decay_t<T>{})) {
     return std::decay_t<T>{};
   }
 
@@ -140,7 +162,7 @@ namespace kspc {
 
     template <typename M>
     inline constexpr auto dim(const M& m) noexcept(noexcept(m.dim())) //
-      -> decltype((m.dim())) {
+      -> decltype(m.dim()) {
       return m.dim();
     }
 

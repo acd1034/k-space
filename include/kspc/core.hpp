@@ -575,7 +575,7 @@ namespace kspc {
   }
 
   /// to_address
-  template <class T>
+  template <typename T>
   constexpr T* to_address(T* p) noexcept {
     static_assert(!std::is_function_v<T>,
                   "Obtaining address of a function from `to_adress` is ill-formed.");
@@ -583,8 +583,8 @@ namespace kspc {
   }
 
   /// @overload
-  template <class T>
-  constexpr auto to_address(const T& p) noexcept {
+  template <typename P>
+  constexpr auto to_address(const P& p) noexcept {
     return kspc::to_address(p.operator->());
   }
 

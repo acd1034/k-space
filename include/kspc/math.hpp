@@ -1,8 +1,8 @@
 /// @file math.hpp
 #pragma once
-#include <algorithm> // all_of
+#include <algorithm> // all_of, max
 #include <array>
-#include <cmath> // exp, pow, cosh, sinh, etc.
+#include <cmath> // abs, isinf, exp, pow, cosh, sinh, etc.
 #include <complex>
 #include <functional> // invoke
 #include <vector>
@@ -20,7 +20,7 @@ namespace kspc {
               std::enable_if_t<std::is_convertible_v<T, double>, std::nullptr_t> = nullptr>
     constexpr double calclate_margin( //
       const T& value, const double epsrel, const double epsabs) {
-      using std::isinf, std::abs, std::max; // for ADL
+      using std::abs, std::isinf, std::max; // for ADL
       return max(max(epsabs, 0.0), abs(isinf(value) ? 0.0 : value) * max(epsrel, 0.0));
     }
   } // namespace detail
