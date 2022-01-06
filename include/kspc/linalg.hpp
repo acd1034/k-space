@@ -101,5 +101,5 @@ namespace kspc {
     return std::make_pair(std::move(E), std::move(U));
   }
 
-  // @}
+  /// @}
 } // namespace kspc

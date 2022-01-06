@@ -99,7 +99,7 @@ namespace kspc {
     constexpr explicit mapping_row_major(const size_type lda) : lda_(lda) {}
 
     constexpr size_type operator()(const size_type i, const size_type j) const noexcept {
-      return lda * i + j;
+      return lda_ * i + j;
     }
   }; // struct mapping_row_major
 

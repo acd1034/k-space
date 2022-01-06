@@ -9,6 +9,7 @@
 #include <kspc/math_basics.hpp>
 
 namespace kspc {
+  /*
   // matrix element
 
   /// @cond
@@ -71,8 +72,7 @@ namespace kspc {
     }
     return ret;
   }
-
-  /// @}
+  */
 
   /// @addtogroup math_constants
   /// @{
