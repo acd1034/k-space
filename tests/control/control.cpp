@@ -2,6 +2,7 @@
 #include <iostream>
 #include <memory>
 #include <catch2/catch.hpp>
+#include <kspc/linalg.hpp>
 #include <kspc/math.hpp>
 
 struct X {};
@@ -126,5 +127,42 @@ TEST_CASE("projection", "[math][projection]") {
     double d = 1.0;
     CHECK(kspc::conj(d) == 1.0);
     CHECK(kspc::conj(1.0) == 1.0);
+  }
+}
+
+TEST_CASE("matrix", "[math][matrix]") {
+  {
+    // clang-format off
+    // NOTE: A is column-major
+    std::vector A{
+       2.0,  2.0,  1.0,
+       1.0, -1.0, -1.0,
+      -3.0, -1.0, -2.0,
+    };
+    // clang-format on
+    std::vector<std::size_t> ipiv(3);
+    std::vector b{-2.0, -2.0, -5.0};
+    auto info = kspc::matrix_vector_solve_impl(A, ipiv, b);
+    CHECK(info == 0);
+    CHECK(b == std::vector{1.0, 2.0, 2.0});
+  }
+  {
+    using namespace std::complex_literals;
+    // clang-format off
+    // NOTE: A is column-major
+    std::vector<std::complex<double>> U{
+      2.0, 1.0 - 1.0i,
+      1.0 + 1.0i, 3.0,
+    };
+    // clang-format on
+    const auto n = kspc::dim(U);
+    CHECK(n == 2);
+    std::vector<double> E(n);
+    std::vector<std::complex<double>> work(4 * n);
+    std::vector<double> rwork(3 * n - 2);
+    auto info = kspc::hermitian_matrix_eigen_solve_impl(U, E, work, rwork);
+    CHECK(info == 0);
+    CHECK(E[0] == 1.0);
+    CHECK(E[1] == 4.0);
   }
 }
