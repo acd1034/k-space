@@ -30,8 +30,6 @@ target_compile_options(kspc_tests_config INTERFACE
     -Wno-weak-vtables
   >
   # $<$<CXX_COMPILER_ID:Clang>:
-
-
   #   $<$<AND:$<VERSION_GREATER:$<CXX_COMPILER_VERSION>,4.99>,$<VERSION_LESS:$<CXX_COMPILER_VERSION>,6>>:
   #     $<$<EQUAL:${KSPC_CXX_STANDARD},17>:-Wno-undefined-func-template>
   #   >
@@ -62,9 +60,7 @@ if (CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
 endif()
 
 # Use Catch2 as a unit testing framework
-# find_package(Catch2)
-
-Include(FetchContent)
+include(FetchContent)
 FetchContent_Declare(Catch2
   GIT_REPOSITORY https://github.com/catchorg/Catch2.git
   GIT_TAG        v2.13.6)
