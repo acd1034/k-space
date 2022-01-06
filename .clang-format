@@ -13,6 +13,7 @@ BreakBeforeBinaryOperators: NonAssignment
 BreakConstructorInitializers: BeforeColon
 ConstructorInitializerIndentWidth: 2
 FixNamespaceComments: true
+IndentExternBlockStyle: Indent
 NamespaceIndentation: All
 PointerAlignment: Left
 
@@ -30,7 +31,7 @@ AllowShortIfStatementsOnASingleLine: Always
 # None, Empty, Inline, All
 AllowShortLambdasOnASingleLine: All
 
-CommentPragmas: '^ NO-FORMAT:'
+CommentPragmas: '^ no-format:'
 IncludeCategories:
   # Headers in <> without extension.
   - Regex:    '<([A-Za-z0-9\/-_])+>'
