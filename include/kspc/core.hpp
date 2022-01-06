@@ -29,7 +29,7 @@
 /// @defgroup matrix Matrix
 /// @ingroup math
 
-/// @defgroup numeric Numeric algorithms
+/// @defgroup numeric Numerical algorithms
 /// @ingroup math
 
 /// @defgroup approx Approximate comparison
