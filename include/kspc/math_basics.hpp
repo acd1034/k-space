@@ -75,9 +75,8 @@ namespace kspc {
               !is_fixed_size_array_v<M> &&
               is_sized_range_v<M>, std::nullptr_t> = nullptr>
   // clang-format on
-  inline auto dim(const M& m) noexcept(noexcept(std::round(std::sqrt(adl_size(m)))))
-    -> decltype(adl_size(m)) {
-    return std::round(std::sqrt(adl_size(m)));
+  inline auto dim(const M& m) noexcept(noexcept(std::round(std::sqrt(adl_size(m))))) {
+    return static_cast<decltype(adl_size(m))>(std::round(std::sqrt(adl_size(m))));
   }
 
   /// @}

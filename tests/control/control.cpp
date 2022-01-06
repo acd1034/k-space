@@ -92,6 +92,19 @@ TEST_CASE("dim", "[math][dim]") {
   }
 }
 
+TEST_CASE("mapping", "[math][mapping]") {
+  {
+    // mapping_row_major
+    constexpr auto mapping = kspc::mapping_row_major(5);
+    CHECK(mapping(1, 2) == 7);
+  }
+  {
+    // mapping_column_major
+    constexpr auto mapping = kspc::mapping_column_major(5);
+    CHECK(mapping(1, 2) == 11);
+  }
+}
+
 TEST_CASE("projection", "[math][projection]") {
   {
     // identity
