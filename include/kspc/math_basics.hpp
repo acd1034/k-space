@@ -83,6 +83,55 @@ namespace kspc {
   /// @}
 } // namespace kspc
 
+// mapping
+namespace kspc {
+  /// @addtogroup matrix
+  /// @{
+
+  /// %mapping_row_major
+  struct mapping_row_major {
+  private:
+    std::size_t lda_{};
+
+  public:
+    using size_type = std::size_t;
+    constexpr mapping_row_major() = default;
+    constexpr explicit mapping_row_major(const size_type lda) : lda_(lda) {}
+
+    constexpr size_type operator()(const size_type i, const size_type j) const noexcept {
+      return lda * i + j;
+    }
+  }; // struct mapping_row_major
+
+  /// %mapping_transpose
+  template <typename Mapping>
+  struct mapping_transpose {
+  private:
+    Mapping mapping_{};
+
+  public:
+    using size_type = std::size_t;
+    constexpr mapping_transpose() = default;
+    constexpr explicit mapping_transpose(const Mapping& mapping) : mapping_(mapping) {}
+    constexpr explicit mapping_transpose(Mapping&& mapping) : mapping_(std::move(mapping)) {}
+
+    constexpr size_type operator()(const size_type i, const size_type j) const noexcept {
+      return mapping_(j, i);
+    }
+  }; // struct mapping_transpose
+
+  /// deduction guide for @link mapping_transpose mapping_transpose @endlink
+  template <typename Mapping>
+  mapping_transpose(Mapping) -> mapping_transpose<Mapping>;
+
+  /// mapping_column_major
+  inline constexpr auto mapping_column_major(const size_type lda) {
+    return mapping_transpose(mapping_row_major(lda));
+  }
+
+  /// @}
+} // namespace kspc
+
 // projection
 namespace kspc {
   /// @addtogroup matrix
@@ -103,7 +152,7 @@ namespace kspc {
   inline namespace cpo {
     /// identity
     inline constexpr identity_fn identity{};
-  }
+  } // namespace cpo
 
   // consistent complex access
 
@@ -140,7 +189,7 @@ namespace kspc {
   inline namespace cpo {
     /// conj
     inline constexpr conj_fn conj{};
-  }
+  } // namespace cpo
 
   /// @}
 } // namespace kspc
