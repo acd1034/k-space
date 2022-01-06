@@ -1,4 +1,6 @@
+#pragma once
 #include <array>
+#include <functional> // invoke
 #include <vector>
 #include <kspc/math_basics.hpp>
 
@@ -8,6 +10,21 @@
 namespace kspc {
   /// @addtogroup linalg
   /// @{
+
+  /// matrix_copy
+  template <class InMat, class OutMat, class M1, class M2, class P1 = identity_fn>
+  void matrix_copy(const InMat& A, OutMat& B, M1&& map1, M2&& map2, P1&& proj1 = {}) {
+    using std::size;
+    const std::size_t n = kspc::dim(A);
+    assert(size(A) == n * n);
+    assert(size(B) == n * n);
+
+    for (std::size_t j = 0; j < n; ++j) {
+      for (std::size_t k = 0; k < n; ++k) {
+        B[map2(j, k)] = std::invoke(proj1, A[map1(j, k)]);
+      }
+    }
+  }
 
   /// @cond
   namespace detail {
@@ -113,15 +130,14 @@ namespace kspc {
   /// @overload
   template <class InOutMat, class InOutVec>
   int matrix_vector_solve(InOutMat& A, InOutVec& b) {
-    using T = range_value_t<InOutMat>;
     int info;
     if constexpr (is_fixed_size_array_v<remove_cvref_t<InOutMat>>) {
       constexpr std::size_t N = kspc::dim(A);
-      static std::array<T, N> ipiv;
+      static std::array<std::size_t, N> ipiv;
       info = matrix_vector_solve(A, ipiv, b);
     } else {
       const std::size_t n = kspc::dim(A);
-      std::vector<T> ipiv(n);
+      std::vector<std::size_t> ipiv(n);
       info = matrix_vector_solve(A, ipiv, b);
     }
     return info;
@@ -194,6 +210,7 @@ namespace kspc {
     assert(size(A) == n * n);
     assert(size(w) == n);
     assert(size(work) >= 3 * n - 1);
+
     int info;
     //      dsyev_(jobz, uplo, n,      A , lda,      w ,      work ,     lwork , info)
     detail::dsyev_( 'V',  'U', n, data(A),   n, data(w), data(work), size(work), info);
@@ -201,33 +218,45 @@ namespace kspc {
   }
 
   /// @overload
-  template <class InOutMat, class OutVec>
-  int hermitian_matrix_eigen_solve(InOutMat& A, OutVec& w) {
-    using T = range_value_t<InOutMat>;
+  template <class InOutMat, class OutVec, class M, class P = identity_fn>
+  int hermitian_matrix_eigen_solve(InOutMat& A, OutVec& w, M&& map, P&& proj = {}) {
+    using T = remove_cvref_t<std::invoke_result_t<P&, range_reference_t<InOutMat>>>;
     int info;
-    if constexpr (is_complex_v<range_value_t<InOutMat>>) {
-      if constexpr (is_fixed_size_array_v<remove_cvref_t<InOutMat>>) {
-        constexpr std::size_t N = kspc::dim(A);
+
+    if constexpr (is_fixed_size_array_v<remove_cvref_t<InOutMat>>) {
+      constexpr std::size_t N = kspc::dim(A);
+      static std::array<T, N * N> B;
+      constexpr auto column_major = mapping_column_major(N);
+      matrix_copy(A, B, map, column_major, proj);
+
+      if constexpr (is_complex_v<T>) {
         static std::array<T, 4 * N> work;
-        static std::array<T, 3 * N - 2> rwork;
-        info = hermitian_matrix_eigen_solve(A, w, work, rwork);
+        static std::array<typename T::value_type, 3 * N - 2> rwork;
+        info = hermitian_matrix_eigen_solve(B, w, work, rwork);
       } else {
-        const std::size_t n = kspc::dim(A);
-        std::vector<T> work(4 * n);
-        std::vector<T> rwork(3 * n - 2);
-        info = hermitian_matrix_eigen_solve(A, w, work, rwork);
-      }
-    } else {
-      if constexpr (is_fixed_size_array_v<remove_cvref_t<InOutMat>>) {
-        constexpr std::size_t N = kspc::dim(A);
         static std::array<T, 6 * N> work;
-        info = symmetric_matrix_eigen_solve(A, w, work);
+        info = symmetric_matrix_eigen_solve(B, w, work);
+      }
+
+      matrix_copy(B, A, column_major, map);
+    } else {
+      const std::size_t n = kspc::dim(A);
+      std::vector<T> B(n);
+      const auto column_major = mapping_column_major(n);
+      matrix_copy(A, B, map, column_major, proj);
+
+      if constexpr (is_complex_v<T>) {
+        std::vector<T> work(4 * n);
+        std::vector<typename T::value_type> rwork(3 * n - 2);
+        info = hermitian_matrix_eigen_solve(A, w, work, rwork);
       } else {
-        const std::size_t n = kspc::dim(A);
         std::vector<T> work(6 * n);
         info = symmetric_matrix_eigen_solve(A, w, work);
       }
+
+      matrix_copy(B, A, column_major, map);
     }
+
     return info;
   }
 

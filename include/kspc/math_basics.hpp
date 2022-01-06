@@ -337,7 +337,7 @@ namespace kspc {
                 is_input_iterator<I>,
                 sum_constraints<I, T, BOp, P>>, std::nullptr_t> = nullptr>
     constexpr auto sum(I first, S last, T init, BOp bop = {}, P proj = {}) {
-      using U = std::decay_t<std::invoke_result_t<BOp&, T, projected_t<P, I>>>;
+      using U = remove_cvref_t<std::invoke_result_t<BOp&, T, projected_t<P, I>>>;
       U ret = std::move(init);
       for(; first != last; ++first)
         ret = std::invoke(bop, std::move(ret), std::invoke(proj, *first));
@@ -392,7 +392,7 @@ namespace kspc {
                 innerp_constraints<I1, I2, T, BOp1, BOp2, P1, P2>>, std::nullptr_t> = nullptr>
     constexpr auto innerp(I1 first1, S1 last1, I2 first2, S2 last2, T init,
                           BOp1 bop1 = {}, BOp2 bop2 = {}, P1 proj1  = {}, P2 proj2  = {}) {
-      using U = std::decay_t<
+      using U = remove_cvref_t<
         std::invoke_result_t<
           BOp1&,
           T,
@@ -489,7 +489,7 @@ namespace kspc {
     constexpr auto
     innerp2(I1 first1, S1 last1, I2 first2, S2 last2, I3 first3, S3 last3, T init,
             BOp1 bop1 = {}, BOp2 bop2 = {}, BOp3 bop3 = {}, P1 proj1 = {}, P2 proj2 = {}, P3 proj3 = {}) {
-      using U = std::decay_t<
+      using U = remove_cvref_t<
         std::invoke_result_t<
           BOp1&,
           T,
