@@ -76,6 +76,15 @@ TEST_CASE("control", "[control]") {
 }
 
 TEST_CASE("projection", "[math][projection]") {
+  {
+    // identity
+    std::complex c{1.0, 1.0};
+    CHECK(kspc::identity(c) == std::complex{1.0, 1.0});
+    CHECK(kspc::identity(std::complex{1.0, 1.0}) == std::complex{1.0, 1.0});
+    double d = 1.0;
+    CHECK(kspc::identity(d) == 1.0);
+    CHECK(kspc::identity(1.0) == 1.0);
+  }
   // is_complex_v
   static_assert(kspc::is_complex_v<std::complex<double>>);
   static_assert(not kspc::is_complex_v<double>);
@@ -91,14 +100,15 @@ TEST_CASE("projection", "[math][projection]") {
 }
 
 TEST_CASE("dim", "[math][dim]") {
+  // fixed_size_array_size_v
   static_assert(kspc::fixed_size_array_size_v<int[3]> == 3);
   static_assert(kspc::fixed_size_array_size_v<std::array<int, 3>> == 3);
-
+  // is_fixed_size_array_v
   static_assert(kspc::is_fixed_size_array_v<int[3]>);
   static_assert(kspc::is_fixed_size_array_v<std::array<int, 3>>);
   static_assert(not kspc::is_fixed_size_array_v<std::vector<int>>);
-
   {
+    // dim
     std::array<int, 4> a;
     static_assert(kspc::dim(a) == 2);
     std::vector<int> v(4);
