@@ -176,7 +176,7 @@ namespace kspc {
   /// lerp (C++20)
   template <typename T, typename U>
   inline constexpr auto lerp(const T& a, const T& b, const U& t) noexcept(noexcept(a + t * (b - a)))
-    -> decltype((a + t * (b - a))) {
+    -> decltype(a + t * (b - a)) {
     if constexpr (std::is_arithmetic_v<T> && std::is_arithmetic_v<U>) {
       if ((a <= 0 && b >= 0) || (a >= 0 && b <= 0)) {
         return (1 - t) * a + t * b;
@@ -187,13 +187,13 @@ namespace kspc {
 
   /// squared
   template <typename T>
-  inline constexpr auto squared(const T& x) noexcept(noexcept(x* x)) -> decltype((x * x)) {
+  inline constexpr auto squared(const T& x) noexcept(noexcept(x* x)) -> decltype(x * x) {
     return x * x;
   }
 
   /// cubed
   template <typename T>
-  inline constexpr auto cubed(const T& x) noexcept(noexcept(x* x* x)) -> decltype((x * x * x)) {
+  inline constexpr auto cubed(const T& x) noexcept(noexcept(x* x* x)) -> decltype(x * x * x) {
     return x * x * x;
   }
 

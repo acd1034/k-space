@@ -27,7 +27,7 @@ namespace kspc {
   /// conj
   template <typename C, std::enable_if_t<is_complex_v<std::decay_t<C>>, std::nullptr_t> = nullptr>
   inline constexpr auto conj(C&& x) noexcept(noexcept(std::conj(std::forward<C>(x))))
-    -> decltype((std::conj(std::forward<C>(x)))) {
+    -> decltype(std::conj(std::forward<C>(x))) {
     return std::conj(std::forward<C>(x));
   }
 
@@ -43,7 +43,7 @@ namespace kspc {
 
     template <typename T>
     constexpr auto operator()(T&& t) const noexcept(noexcept(kspc::conj(std::forward<T>(t))))
-      -> decltype((kspc::conj(std::forward<T>(t)))) {
+      -> decltype(kspc::conj(std::forward<T>(t))) {
       return kspc::conj(std::forward<T>(t));
     }
   }; // struct conj_fn
