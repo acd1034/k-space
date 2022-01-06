@@ -23,10 +23,6 @@ TEST_CASE("control", "[control]") {
   // CHECK(1.0 != kspc::approx(1.0 + 2.0, 0.1, 1.0));
   // CHECK(1.0 == kspc::approx(1.0 + 0.2, 0.1, 1.0));
 
-  static_assert(kspc::is_fixed_size_array_v<int[3]>);
-  static_assert(kspc::is_fixed_size_array_v<std::array<int, 3>>);
-  static_assert(not kspc::is_fixed_size_array_v<std::vector<int>>);
-
   CHECK(kspc::innerp(std::vector{1, 2, 3}, std::vector{1, 2, 3}) == 14);
   CHECK(kspc::innerp(std::vector{1, 2}, std::vector{1, 0, 0, 1}, std::vector{1, 2}) == 5);
   CHECK(kspc::innerp(std::vector{1, 2}, std::vector{0, 1, 1, 0}, std::vector{1, 2}) == 4);
@@ -77,4 +73,20 @@ TEST_CASE("control", "[control]") {
     kspc::indirectly_readable_traits<const std::vector<int>::iterator>::value_type,
     int>);
   // clang-format on
+}
+
+TEST_CASE("dim", "[math][dim]") {
+  static_assert(kspc::fixed_size_array_size_v<int[3]> == 3);
+  static_assert(kspc::fixed_size_array_size_v<std::array<int, 3>> == 3);
+
+  static_assert(kspc::is_fixed_size_array_v<int[3]>);
+  static_assert(kspc::is_fixed_size_array_v<std::array<int, 3>>);
+  static_assert(not kspc::is_fixed_size_array_v<std::vector<int>>);
+
+  {
+    std::array<int, 4> a;
+    static_assert(kspc::dim(a) == 2);
+    std::vector<int> v(4);
+    CHECK(kspc::dim(v) == 2);
+  }
 }
