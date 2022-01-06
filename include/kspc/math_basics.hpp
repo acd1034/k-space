@@ -23,63 +23,6 @@ namespace kspc {
   template <typename T>
   inline constexpr bool is_complex_v = is_complex<T>::value;
 
-  /// %complex_traits
-  template <typename T, typename = void>
-  struct complex_traits {};
-
-  /// partial specialization of `complex_traits`
-  template <typename T>
-  struct complex_traits<T, std::enable_if_t<std::is_arithmetic_v<T>>> {
-    using value_type = T;
-  };
-
-  /// partial specialization of `complex_traits`
-  template <typename T>
-  struct complex_traits<std::complex<T>, std::enable_if_t<std::is_arithmetic_v<T>>> {
-    using value_type = T;
-  };
-
-  /// partial specialization of `complex_traits`
-  // TODO: necessary? remove cvref?
-  template <typename T>
-  struct complex_traits<const T> : complex_traits<T> {};
-
-  /// complex_value_t
-  // TODO: constraints?
-  template <typename T>
-  using complex_value_t = typename complex_traits<remove_cvref_t<T>>::value_type;
-
-  /// real
-  template <typename C, std::enable_if_t<is_complex_v<std::decay_t<C>>, std::nullptr_t> = nullptr>
-  inline constexpr auto real(C&& x) noexcept(noexcept(std::real(std::forward<C>(x))))
-    -> decltype((std::real(std::forward<C>(x)))) {
-    return std::real(std::forward<C>(x));
-  }
-
-  /// @overload
-  template <typename T, std::enable_if_t<!is_complex_v<std::decay_t<T>>, std::nullptr_t> = nullptr>
-  inline constexpr T&& real(T&& x) noexcept(noexcept(std::forward<T>(x))) {
-    return std::forward<T>(x);
-  }
-
-  /// imag
-  template <typename C, std::enable_if_t<is_complex_v<std::decay_t<C>>, std::nullptr_t> = nullptr>
-  inline constexpr auto imag(C&& x) noexcept(noexcept(std::imag(std::forward<C>(x))))
-    -> decltype((std::imag(std::forward<C>(x)))) {
-    return std::imag(std::forward<C>(x));
-  }
-
-  /// @overload
-  // clang-format off
-  template <typename T,
-            std::enable_if_t<std::conjunction_v<
-              std::negation<is_complex<std::decay_t<T>>>,
-              std::is_default_constructible<std::decay_t<T>>>, std::nullptr_t> = nullptr>
-  // clang-format on
-  inline constexpr auto imag(T&&) noexcept(noexcept(std::decay_t<T>{})) {
-    return std::decay_t<T>{};
-  }
-
   /// conj
   template <typename C, std::enable_if_t<is_complex_v<std::decay_t<C>>, std::nullptr_t> = nullptr>
   inline constexpr auto conj(C&& x) noexcept(noexcept(std::conj(std::forward<C>(x))))
@@ -105,7 +48,9 @@ namespace kspc {
   }; // struct conj_fn
 
   /// @}
+}
 
+namespace kspc {
   /// @addtogroup matrix
   /// @{
 
@@ -197,7 +142,9 @@ namespace kspc {
   } // namespace cpo
 
   /// @}
+}
 
+namespace kspc{
   /// @addtogroup numeric
   /// @{
 
