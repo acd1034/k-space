@@ -30,7 +30,7 @@ namespace kspc {
     using is_transparent = void;
 
     template <typename C, std::enable_if_t<is_complex_v<std::decay_t<C>>, std::nullptr_t> = nullptr>
-    constexpr auto conj(C&& x) noexcept(noexcept(std::conj(std::forward<C>(x))))
+    constexpr auto operator()(C&& x) const noexcept(noexcept(std::conj(std::forward<C>(x))))
       -> decltype(std::conj(std::forward<C>(x))) {
       return std::conj(std::forward<C>(x));
     }
@@ -38,7 +38,7 @@ namespace kspc {
     // same as `identity`
     template <typename T,
               std::enable_if_t<!is_complex_v<std::decay_t<T>>, std::nullptr_t> = nullptr>
-    constexpr T&& conj(T&& x) noexcept(noexcept(std::forward<T>(x))) {
+    constexpr T&& operator()(T&& x) const noexcept(noexcept(std::forward<T>(x))) {
       return std::forward<T>(x);
     }
   }; // struct conj_fn

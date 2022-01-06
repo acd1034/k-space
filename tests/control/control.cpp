@@ -75,6 +75,21 @@ TEST_CASE("control", "[control]") {
   // clang-format on
 }
 
+TEST_CASE("projection", "[math][projection]") {
+  // is_complex_v
+  static_assert(kspc::is_complex_v<std::complex<double>>);
+  static_assert(not kspc::is_complex_v<double>);
+  {
+    // conj
+    std::complex c{1.0, 1.0};
+    CHECK(kspc::conj(c) == std::complex{1.0, -1.0});
+    CHECK(kspc::conj(std::complex{1.0, 1.0}) == std::complex{1.0, -1.0});
+    double d = 1.0;
+    CHECK(kspc::conj(d) == 1.0);
+    CHECK(kspc::conj(1.0) == 1.0);
+  }
+}
+
 TEST_CASE("dim", "[math][dim]") {
   static_assert(kspc::fixed_size_array_size_v<int[3]> == 3);
   static_assert(kspc::fixed_size_array_size_v<std::array<int, 3>> == 3);
