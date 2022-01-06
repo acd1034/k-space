@@ -23,9 +23,6 @@
 
 /// @defgroup math Math
 
-/// @defgroup complex Complex
-/// @ingroup math
-
 /// @defgroup matrix Matrix
 /// @ingroup math
 

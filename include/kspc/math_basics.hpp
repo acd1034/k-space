@@ -85,7 +85,7 @@ namespace kspc {
 
 // projection
 namespace kspc {
-  /// @addtogroup complex
+  /// @addtogroup matrix
   /// @{
 
   // identity function
