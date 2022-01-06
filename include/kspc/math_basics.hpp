@@ -6,6 +6,7 @@
 #include <functional> // invoke
 #include <kspc/core.hpp>
 
+// projection
 namespace kspc {
   /// @addtogroup complex
   /// @{
@@ -24,29 +25,27 @@ namespace kspc {
   template <typename T>
   inline constexpr bool is_complex_v = is_complex<T>::value;
 
-  /// conj
-  template <typename C, std::enable_if_t<is_complex_v<std::decay_t<C>>, std::nullptr_t> = nullptr>
-  inline constexpr auto conj(C&& x) noexcept(noexcept(std::conj(std::forward<C>(x))))
-    -> decltype(std::conj(std::forward<C>(x))) {
-    return std::conj(std::forward<C>(x));
-  }
-
-  /// @overload
-  template <typename T, std::enable_if_t<!is_complex_v<std::decay_t<T>>, std::nullptr_t> = nullptr>
-  inline constexpr T&& conj(T&& x) noexcept(noexcept(std::forward<T>(x))) {
-    return std::forward<T>(x);
-  }
-
   /// %conj_fn
   struct conj_fn {
     using is_transparent = void;
 
-    template <typename T>
-    constexpr auto operator()(T&& t) const noexcept(noexcept(kspc::conj(std::forward<T>(t))))
-      -> decltype(kspc::conj(std::forward<T>(t))) {
-      return kspc::conj(std::forward<T>(t));
+    template <typename C, std::enable_if_t<is_complex_v<std::decay_t<C>>, std::nullptr_t> = nullptr>
+    constexpr auto conj(C&& x) noexcept(noexcept(std::conj(std::forward<C>(x))))
+      -> decltype(std::conj(std::forward<C>(x))) {
+      return std::conj(std::forward<C>(x));
+    }
+
+    // same as `identity`
+    template <typename T,
+              std::enable_if_t<!is_complex_v<std::decay_t<T>>, std::nullptr_t> = nullptr>
+    constexpr T&& conj(T&& x) noexcept(noexcept(std::forward<T>(x))) {
+      return std::forward<T>(x);
     }
   }; // struct conj_fn
+
+  inline namespace cpo {
+    inline constexpr conj_fn conj{};
+  }
 
   /// @}
 } // namespace kspc
