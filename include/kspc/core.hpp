@@ -49,49 +49,8 @@
 
 /// @defgroup physics Physics
 
+// Utility
 namespace kspc {
-  /// Implementation details are here.
-  namespace detail {}
-
-  /// @cond
-  namespace detail_adl {
-    using std::begin, std::end, std::size, std::data, std::swap; // for ADL
-
-    template <typename C>
-    auto adl_begin(C&& c) noexcept(noexcept(begin(std::forward<C>(c))))
-      -> decltype(begin(std::forward<C>(c))) {
-      return begin(std::forward<C>(c));
-    }
-
-    template <typename C>
-    auto adl_end(C&& c) noexcept(noexcept(end(std::forward<C>(c))))
-      -> decltype(end(std::forward<C>(c))) {
-      return end(std::forward<C>(c));
-    }
-
-    template <typename C>
-    auto adl_size(C&& c) noexcept(noexcept(size(std::forward<C>(c))))
-      -> decltype(size(std::forward<C>(c))) {
-      return size(std::forward<C>(c));
-    }
-
-    template <typename C>
-    auto adl_data(C&& c) noexcept(noexcept(data(std::forward<C>(c))))
-      -> decltype(data(std::forward<C>(c))) {
-      return data(std::forward<C>(c));
-    }
-
-    template <typename T>
-    void adl_swap(T&& lhs, T&& rhs) //
-      noexcept(noexcept(swap(std::forward<T>(lhs), std::forward<T>(rhs)))) {
-      swap(std::forward<T>(lhs), std::forward<T>(rhs));
-    }
-  } // namespace detail_adl
-  /// @endcond
-
-  using detail_adl::adl_begin, detail_adl::adl_end, detail_adl::adl_size, detail_adl::adl_data,
-    detail_adl::adl_swap;
-
   /// @addtogroup utility
   /// @{
 
@@ -221,7 +180,10 @@ namespace kspc {
     /// @endcond
 
   /// @}
+} // namespace kspc
 
+// Iterator
+namespace kspc {
   /// @addtogroup iterator
   /// @{
 
@@ -471,9 +433,51 @@ namespace kspc {
   using iter_reference_t = detail::dereference_t<I&>;
 
   /// @}
+} // namespace kspc
 
+// Range
+namespace kspc {
   /// @addtogroup range
   /// @{
+
+  /// @cond
+  namespace detail_adl {
+    using std::begin, std::end, std::size, std::data, std::swap; // for ADL
+
+    template <typename C>
+    auto adl_begin(C&& c) noexcept(noexcept(begin(std::forward<C>(c))))
+      -> decltype(begin(std::forward<C>(c))) {
+      return begin(std::forward<C>(c));
+    }
+
+    template <typename C>
+    auto adl_end(C&& c) noexcept(noexcept(end(std::forward<C>(c))))
+      -> decltype(end(std::forward<C>(c))) {
+      return end(std::forward<C>(c));
+    }
+
+    template <typename C>
+    auto adl_size(C&& c) noexcept(noexcept(size(std::forward<C>(c))))
+      -> decltype(size(std::forward<C>(c))) {
+      return size(std::forward<C>(c));
+    }
+
+    template <typename C>
+    auto adl_data(C&& c) noexcept(noexcept(data(std::forward<C>(c))))
+      -> decltype(data(std::forward<C>(c))) {
+      return data(std::forward<C>(c));
+    }
+
+    template <typename T>
+    void adl_swap(T&& lhs, T&& rhs) //
+      noexcept(noexcept(swap(std::forward<T>(lhs), std::forward<T>(rhs)))) {
+      swap(std::forward<T>(lhs), std::forward<T>(rhs));
+    }
+  } // namespace detail_adl
+  /// @endcond
+
+  using detail_adl::adl_begin, detail_adl::adl_end, detail_adl::adl_size, detail_adl::adl_data,
+    detail_adl::adl_swap;
 
   // range concepts:
   // [x] is_range
@@ -559,12 +563,10 @@ namespace kspc {
   /// ssize
   // clang-format off
   template <typename C>
-  inline constexpr auto ssize(const C& c)
-    noexcept(noexcept(
-      static_cast<std::common_type_t<std::ptrdiff_t, std::make_signed_t<decltype(c.size())>>>(c.size())))
-    -> std::common_type_t<std::ptrdiff_t, std::make_signed_t<decltype(c.size())>> {
-    return
-      static_cast<std::common_type_t<std::ptrdiff_t, std::make_signed_t<decltype(c.size())>>>(c.size());
+  inline constexpr auto ssize(const C& c) noexcept(
+    noexcept(static_cast<std::common_type_t<std::ptrdiff_t, std::make_signed_t<decltype(c.size())>>>(c.size())))
+    ->                   std::common_type_t<std::ptrdiff_t, std::make_signed_t<decltype(c.size())>> {
+    return   static_cast<std::common_type_t<std::ptrdiff_t, std::make_signed_t<decltype(c.size())>>>(c.size());
   }
   // clang-format on
 
