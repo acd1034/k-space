@@ -94,16 +94,6 @@ namespace kspc {
   template <class T>
   using type_identity_t = typename type_identity<T>::type;
 
-  /// %identity (C++20)
-  struct identity {
-    using is_transparent = void;
-
-    template <typename T>
-    constexpr T&& operator()(T&& t) const noexcept(noexcept(std::forward<T>(t))) {
-      return std::forward<T>(t);
-    }
-  };
-
   /// make_signed_v
   template <typename T, std::enable_if_t<std::is_unsigned_v<T>, std::nullptr_t> = nullptr>
   inline constexpr auto
