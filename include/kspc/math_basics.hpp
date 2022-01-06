@@ -44,6 +44,7 @@ namespace kspc {
   }; // struct conj_fn
 
   inline namespace cpo {
+    /// conj
     inline constexpr conj_fn conj{};
   }
 
@@ -103,6 +104,7 @@ namespace kspc {
     return l;
   }
 
+  /// dim
   // clang-format off
   template <typename M,
             std::enable_if_t<is_fixed_size_array_v<M>, std::nullptr_t> = nullptr>
@@ -111,6 +113,7 @@ namespace kspc {
     return isqrt(fixed_size_array_size_v<M>);
   }
 
+  /// @overload
   // clang-format off
   template <typename M,
             std::enable_if_t<
