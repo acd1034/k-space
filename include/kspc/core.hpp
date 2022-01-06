@@ -35,16 +35,16 @@
 /// @defgroup approx Approximate comparison
 /// @ingroup math
 
-/// @defgroup math_constants Mathematical Constants
+/// @defgroup math_constants Mathematical constants
 /// @ingroup math
 
-/// @defgroup math_functions Mathematical Functions
+/// @defgroup math_functions Mathematical functions
 /// @ingroup math
 
 /// @defgroup integration Integration
 /// @ingroup math
 
-/// @defgroup linalg Linear Algorithms
+/// @defgroup linalg Linear algorithms
 /// @ingroup math
 
 /// @defgroup physics Physics
