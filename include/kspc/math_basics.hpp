@@ -125,7 +125,7 @@ namespace kspc {
   mapping_transpose(Mapping) -> mapping_transpose<Mapping>;
 
   /// mapping_column_major
-  inline constexpr auto mapping_column_major(const size_type lda) {
+  inline constexpr auto mapping_column_major(const std::size_t lda) {
     return mapping_transpose(mapping_row_major(lda));
   }
 

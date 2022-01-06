@@ -75,6 +75,23 @@ TEST_CASE("control", "[control]") {
   // clang-format on
 }
 
+TEST_CASE("dim", "[math][dim]") {
+  // fixed_size_array_size_v
+  static_assert(kspc::fixed_size_array_size_v<int[3]> == 3);
+  static_assert(kspc::fixed_size_array_size_v<std::array<int, 3>> == 3);
+  // is_fixed_size_array_v
+  static_assert(kspc::is_fixed_size_array_v<int[3]>);
+  static_assert(kspc::is_fixed_size_array_v<std::array<int, 3>>);
+  static_assert(not kspc::is_fixed_size_array_v<std::vector<int>>);
+  {
+    // dim
+    std::array<int, 4> a;
+    static_assert(kspc::dim(a) == 2);
+    std::vector<int> v(4);
+    CHECK(kspc::dim(v) == 2);
+  }
+}
+
 TEST_CASE("projection", "[math][projection]") {
   {
     // identity
@@ -96,22 +113,5 @@ TEST_CASE("projection", "[math][projection]") {
     double d = 1.0;
     CHECK(kspc::conj(d) == 1.0);
     CHECK(kspc::conj(1.0) == 1.0);
-  }
-}
-
-TEST_CASE("dim", "[math][dim]") {
-  // fixed_size_array_size_v
-  static_assert(kspc::fixed_size_array_size_v<int[3]> == 3);
-  static_assert(kspc::fixed_size_array_size_v<std::array<int, 3>> == 3);
-  // is_fixed_size_array_v
-  static_assert(kspc::is_fixed_size_array_v<int[3]>);
-  static_assert(kspc::is_fixed_size_array_v<std::array<int, 3>>);
-  static_assert(not kspc::is_fixed_size_array_v<std::vector<int>>);
-  {
-    // dim
-    std::array<int, 4> a;
-    static_assert(kspc::dim(a) == 2);
-    std::vector<int> v(4);
-    CHECK(kspc::dim(v) == 2);
   }
 }
