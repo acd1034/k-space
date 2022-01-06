@@ -1,6 +1,7 @@
 /// @file math_basics.hpp
 #pragma once
 #include <array>
+#include <cmath> // sqrt, round
 #include <complex>
 #include <functional> // invoke
 #include <kspc/core.hpp>
@@ -48,25 +49,14 @@ namespace kspc {
   }; // struct conj_fn
 
   /// @}
-}
+} // namespace kspc
 
+// dim
 namespace kspc {
   /// @addtogroup matrix
   /// @{
 
-  // support for fixed-size array specialization
-
-  /// compile-time sqrt for unsigned integer
-  inline constexpr std::size_t isqrt(const std::size_t N) noexcept {
-    std::size_t l = 0, r = N;
-    while (r - l > 1) {
-      const std::size_t mid = l + (r - l) / 2;
-      if (mid * mid <= N) l = mid;
-      else
-        r = mid;
-    }
-    return l;
-  }
+  // fixed-size array support
 
   /// %fixed_size_array_size
   template <typename>
@@ -90,8 +80,7 @@ namespace kspc {
 
   /// partial specialization of `is_fixed_size_array`
   template <typename T>
-  struct is_fixed_size_array<T,
-                             std::void_t<decltype(fixed_size_array_size<remove_cvref_t<T>>::value)>>
+  struct is_fixed_size_array<T, std::void_t<decltype(fixed_size_array_size<T>::value)>>
     : std::true_type {};
 
   /// @brief helper variable template for `is_fixed_size_array`
@@ -101,50 +90,43 @@ namespace kspc {
 
   // matrix dimension
 
-  /// @cond
-  namespace detail {
-    // details for niebloid
-
-    template <typename M>
-    inline constexpr auto dim(const M& m) noexcept(noexcept(m.dim())) //
-      -> decltype(m.dim()) {
-      return m.dim();
+  /// compile-time sqrt for unsigned integer
+  inline constexpr std::size_t isqrt(const std::size_t n) noexcept {
+    std::size_t l = 0, r = n;
+    while (r - l > 1) {
+      const std::size_t mid = l + (r - l) / 2;
+      if (mid * mid <= n) {
+        l = mid;
+      } else {
+        r = mid;
+      }
     }
+    return l;
+  }
 
-    template <typename T>
-    using unqualified_dim_t = decltype(dim(std::declval<T>()));
+  // clang-format off
+  template <typename M,
+            std::enable_if_t<is_fixed_size_array_v<M>, std::nullptr_t> = nullptr>
+  // clang-format on
+  inline constexpr auto dim(const M&) noexcept {
+    return isqrt(fixed_size_array_size_v<M>);
+  }
 
-    struct dim_fn {
-      // clang-format off
-      template <typename M,
-                std::enable_if_t<is_detected_v<unqualified_dim_t, const M&>, std::nullptr_t> = nullptr>
-      // clang-format on
-      inline constexpr auto operator()(const M& m) const noexcept(noexcept(dim(m))) {
-        return dim(m);
-      }
-
-      // clang-format off
-      template <typename M,
-                std::enable_if_t<
-                  !is_detected_v<unqualified_dim_t, const M&> &&
-                  is_sized_range_v<M>, std::nullptr_t> = nullptr>
-      // clang-format on
-      inline constexpr auto operator()(const M& m) const noexcept(noexcept(isqrt(size(m)))) {
-        return isqrt(size(m));
-      }
-    }; // struct dim_fn
-  }    // namespace detail
-  /// @endcond
-
-  inline namespace cpo {
-    /// dim (niebloid)
-    inline constexpr auto dim = detail::dim_fn{};
-  } // namespace cpo
+  // clang-format off
+  template <typename M,
+            std::enable_if_t<
+              !is_fixed_size_array_v<M> &&
+              is_sized_range_v<M>, std::nullptr_t> = nullptr>
+  // clang-format on
+  inline auto dim(const M& m) noexcept(noexcept(std::round(std::sqrt(adl_size(m)))))
+    -> decltype(adl_size(m)) {
+    return std::round(std::sqrt(adl_size(m)));
+  }
 
   /// @}
-}
+} // namespace kspc
 
-namespace kspc{
+namespace kspc {
   /// @addtogroup numeric
   /// @{
 
