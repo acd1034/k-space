@@ -186,7 +186,9 @@ namespace kspc {
 
   /// solve Ax = λx with a hermitian matrix A
   template <class InOutMat, class OutVec, class Work, class RWork>
-  int hermitian_matrix_eigen_solve_impl(InOutMat& A, OutVec& w, Work& work, RWork& rwork) {
+  std::enable_if_t<std::conjunction_v<
+    is_range<InOutMat>, is_range<OutVec>, is_range<Work>, is_range<RWork>>, int>
+  hermitian_matrix_eigen_solve_impl(InOutMat& A, OutVec& w, Work& work, RWork& rwork) {
     using std::size, std::data;
     const std::size_t n = kspc::dim(A);
     // std::cout << n << std::endl;
@@ -203,7 +205,9 @@ namespace kspc {
 
   /// solve Ax = λx with a symmetric matrix A
   template <class InOutMat, class OutVec, class Work>
-  int symmetric_matrix_eigen_solve_impl(InOutMat& A, OutVec& w, Work& work) {
+  std::enable_if_t<std::conjunction_v<
+    is_range<InOutMat>, is_range<OutVec>, is_range<Work>>, int>
+  symmetric_matrix_eigen_solve_impl(InOutMat& A, OutVec& w, Work& work) {
     using std::size, std::data;
     const std::size_t n = kspc::dim(A);
     // std::cout << n << std::endl;
@@ -219,7 +223,9 @@ namespace kspc {
 
   /// @overload
   template <class InOutMat, class OutVec, class M, class P = identity_fn>
-  int hermitian_matrix_eigen_solve(InOutMat& A, OutVec& w, M&& map, P&& proj = {}) {
+  std::enable_if_t<
+    is_range_v<InOutMat> and is_range_v<OutVec> and (not is_range_v<M>) and (not is_range_v<P>), int>
+  hermitian_matrix_eigen_solve(InOutMat& A, OutVec& w, M&& map, P&& proj = {}) {
     using T = remove_cvref_t<std::invoke_result_t<P&, range_reference_t<InOutMat>>>;
     int info;
 
@@ -241,17 +247,17 @@ namespace kspc {
       matrix_copy(B, A, column_major, map);
     } else {
       const std::size_t n = kspc::dim(A);
-      std::vector<T> B(n);
+      std::vector<T> B(n * n);
       const auto column_major = mapping_column_major(n);
       matrix_copy(A, B, map, column_major, proj);
 
       if constexpr (is_complex_v<T>) {
         std::vector<T> work(4 * n);
         std::vector<typename T::value_type> rwork(3 * n - 2);
-        info = hermitian_matrix_eigen_solve_impl(A, w, work, rwork);
+        info = hermitian_matrix_eigen_solve_impl(B, w, work, rwork);
       } else {
         std::vector<T> work(6 * n);
-        info = symmetric_matrix_eigen_solve_impl(A, w, work);
+        info = symmetric_matrix_eigen_solve_impl(B, w, work);
       }
 
       matrix_copy(B, A, column_major, map);
