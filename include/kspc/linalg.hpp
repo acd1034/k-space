@@ -119,7 +119,9 @@ namespace kspc {
 
   /// solve Ax = b with a general matrix A
   template <class InOutMat, class OutIPiv, class InOutVec>
-  int matrix_vector_solve_impl(InOutMat& A, OutIPiv& ipiv, InOutVec& b) {
+  std::enable_if_t<std::conjunction_v<
+    is_range<InOutMat>, is_range<OutIPiv>, is_range<InOutVec>>, int>
+  matrix_vector_solve_impl(InOutMat& A, OutIPiv& ipiv, InOutVec& b) {
     int info;
     info = lu_factor(A, ipiv);
     if (info) return info;
@@ -128,18 +130,31 @@ namespace kspc {
   }
 
   /// @overload
-  template <class InOutMat, class InOutVec>
-  int matrix_vector_solve(InOutMat& A, InOutVec& b) {
+  template <class InMat, class InOutVec, class M, class P = identity_fn>
+  std::enable_if_t<
+    is_range_v<InMat> and is_range_v<InOutVec> and (not is_range_v<M>) and (not is_range_v<P>), int>
+  matrix_vector_solve(const InMat& A, InOutVec& b, M&& map, P&& proj = {}) {
+    using T = remove_cvref_t<std::invoke_result_t<P&, range_reference_t<InMat>>>;
     int info;
-    if constexpr (is_fixed_size_array_v<remove_cvref_t<InOutMat>>) {
+
+    if constexpr (is_fixed_size_array_v<remove_cvref_t<InMat>>) {
       constexpr std::size_t N = kspc::dim(A);
+      static std::array<T, N * N> B;
+      constexpr auto column_major = mapping_column_major(N);
+      matrix_copy(A, B, map, column_major, proj);
       static std::array<std::size_t, N> ipiv;
-      info = matrix_vector_solve_impl(A, ipiv, b);
+
+      info = matrix_vector_solve_impl(B, ipiv, b);
     } else {
       const std::size_t n = kspc::dim(A);
+      std::vector<T> B(n * n);
+      const auto column_major = mapping_column_major(n);
+      matrix_copy(A, B, map, column_major, proj);
       std::vector<std::size_t> ipiv(n);
-      info = matrix_vector_solve_impl(A, ipiv, b);
+
+      info = matrix_vector_solve_impl(B, ipiv, b);
     }
+
     return info;
   }
 
