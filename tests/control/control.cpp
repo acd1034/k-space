@@ -132,37 +132,100 @@ TEST_CASE("projection", "[math][projection]") {
 
 TEST_CASE("matrix", "[math][matrix]") {
   {
+    // matrix_vector_solve with column-major dynamic matrix
     // clang-format off
-    // NOTE: A is column-major
     std::vector A{
        2.0,  2.0,  1.0,
        1.0, -1.0, -1.0,
       -3.0, -1.0, -2.0,
-    };
+    }; // NOTE: A is column-major
     // clang-format on
     std::vector<std::size_t> ipiv(3);
     std::vector b{-2.0, -2.0, -5.0};
-    auto info = kspc::matrix_vector_solve(A, ipiv, b);
+    const auto info = kspc::matrix_vector_solve(A, ipiv, b);
     CHECK(info == 0);
     CHECK(b == std::vector{1.0, 2.0, 2.0});
   }
   {
-    using namespace std::complex_literals;
+    // matrix_vector_solve with row-major dynamic matrix
     // clang-format off
-    // NOTE: A is column-major
-    std::vector<std::complex<double>> U{
-      2.0, 1.0 - 1.0i,
-      1.0 + 1.0i, 3.0,
+    std::vector A{
+      2.0,  1.0, -3.0,
+      2.0, -1.0, -1.0,
+      1.0, -1.0, -2.0,
     };
     // clang-format on
-    const auto n = kspc::dim(U);
-    CHECK(n == 2);
-    std::vector<double> E(n);
+    std::vector b{-2.0, -2.0, -5.0};
+    const auto row_major = kspc::mapping_row_major(kspc::dim(A));
+    const auto info = kspc::matrix_vector_solve(A, b, row_major);
+    CHECK(info == 0);
+    CHECK(b == std::vector{1.0, 2.0, 2.0});
+  }
+  {
+    // matrix_vector_solve with row-major static matrix
+    // clang-format off
+    std::array A{
+      2.0,  1.0, -3.0,
+      2.0, -1.0, -1.0,
+      1.0, -1.0, -2.0,
+    };
+    // clang-format on
+    std::array b{-2.0, -2.0, -5.0};
+    constexpr auto row_major = kspc::mapping_row_major(kspc::dim(A));
+    const auto info = kspc::matrix_vector_solve(A, b, row_major);
+    CHECK(info == 0);
+    CHECK(b == std::array{1.0, 2.0, 2.0});
+  }
+  {
+    // hermitian_matrix_eigen_solve with column-major dynamic matrix
+    using namespace std::complex_literals;
+    // clang-format off
+    std::vector<std::complex<double>> A{
+      2.0, 1.0 - 1.0i,
+      1.0 + 1.0i, 3.0,
+    }; // NOTE: A is column-major
+    // clang-format on
+    const auto n = kspc::dim(A);
+    std::vector<double> w(n);
     std::vector<std::complex<double>> work(4 * n);
     std::vector<double> rwork(3 * n - 2);
-    auto info = kspc::hermitian_matrix_eigen_solve(U, E, work, rwork);
+    const auto info = kspc::hermitian_matrix_eigen_solve(A, w, work, rwork);
     CHECK(info == 0);
-    CHECK(E[0] == 1.0);
-    CHECK(E[1] == 4.0);
+    CHECK(w[0] == 1.0);
+    CHECK(w[1] == 4.0);
+  }
+  {
+    // hermitian_matrix_eigen_solve with row-major dynamic matrix
+    using namespace std::complex_literals;
+    // clang-format off
+    std::vector<std::complex<double>> A{
+      2.0, 1.0 + 1.0i,
+      1.0 - 1.0i, 3.0,
+    };
+    // clang-format on
+    const auto n = kspc::dim(A);
+    std::vector<double> w(n);
+    const auto row_major = kspc::mapping_row_major(n);
+    const auto info = kspc::hermitian_matrix_eigen_solve(A, w, row_major);
+    CHECK(info == 0);
+    CHECK(w[0] == 1.0);
+    CHECK(w[1] == 4.0);
+  }
+  {
+    // hermitian_matrix_eigen_solve with row-major static matrix
+    using namespace std::complex_literals;
+    // clang-format off
+    std::array<std::complex<double>, 4> A{
+      2.0, 1.0 + 1.0i,
+      1.0 - 1.0i, 3.0,
+    };
+    // clang-format on
+    constexpr auto N = kspc::dim(A);
+    std::array<double, N> w;
+    constexpr auto row_major = kspc::mapping_row_major(N);
+    const auto info = kspc::hermitian_matrix_eigen_solve(A, w, row_major);
+    CHECK(info == 0);
+    CHECK(w[0] == 1.0);
+    CHECK(w[1] == 4.0);
   }
 }
