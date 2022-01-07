@@ -142,7 +142,7 @@ TEST_CASE("matrix", "[math][matrix]") {
     // clang-format on
     std::vector<std::size_t> ipiv(3);
     std::vector b{-2.0, -2.0, -5.0};
-    auto info = kspc::matrix_vector_solve_impl(A, ipiv, b);
+    auto info = kspc::matrix_vector_solve(A, ipiv, b);
     CHECK(info == 0);
     CHECK(b == std::vector{1.0, 2.0, 2.0});
   }
@@ -160,7 +160,7 @@ TEST_CASE("matrix", "[math][matrix]") {
     std::vector<double> E(n);
     std::vector<std::complex<double>> work(4 * n);
     std::vector<double> rwork(3 * n - 2);
-    auto info = kspc::hermitian_matrix_eigen_solve_impl(U, E, work, rwork);
+    auto info = kspc::hermitian_matrix_eigen_solve(U, E, work, rwork);
     CHECK(info == 0);
     CHECK(E[0] == 1.0);
     CHECK(E[1] == 4.0);

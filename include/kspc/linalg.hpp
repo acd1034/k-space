@@ -121,7 +121,7 @@ namespace kspc {
   template <class InOutMat, class OutIPiv, class InOutVec>
   std::enable_if_t<std::conjunction_v<
     is_range<InOutMat>, is_range<OutIPiv>, is_range<InOutVec>>, int>
-  matrix_vector_solve_impl(InOutMat& A, OutIPiv& ipiv, InOutVec& b) {
+  matrix_vector_solve(InOutMat& A, OutIPiv& ipiv, InOutVec& b) {
     int info;
     info = lu_factor(A, ipiv);
     if (info) return info;
@@ -144,7 +144,7 @@ namespace kspc {
       matrix_copy(A, B, map, column_major, proj);
       static std::array<std::size_t, N> ipiv;
 
-      info = matrix_vector_solve_impl(B, ipiv, b);
+      info = matrix_vector_solve(B, ipiv, b);
     } else {
       const std::size_t n = kspc::dim(A);
       std::vector<T> B(n * n);
@@ -152,7 +152,7 @@ namespace kspc {
       matrix_copy(A, B, map, column_major, proj);
       std::vector<std::size_t> ipiv(n);
 
-      info = matrix_vector_solve_impl(B, ipiv, b);
+      info = matrix_vector_solve(B, ipiv, b);
     }
 
     return info;
@@ -203,7 +203,7 @@ namespace kspc {
   template <class InOutMat, class OutVec, class Work, class RWork>
   std::enable_if_t<std::conjunction_v<
     is_range<InOutMat>, is_range<OutVec>, is_range<Work>, is_range<RWork>>, int>
-  hermitian_matrix_eigen_solve_impl(InOutMat& A, OutVec& w, Work& work, RWork& rwork) {
+  hermitian_matrix_eigen_solve(InOutMat& A, OutVec& w, Work& work, RWork& rwork) {
     using std::size, std::data;
     const std::size_t n = kspc::dim(A);
     // std::cout << n << std::endl;
@@ -222,7 +222,7 @@ namespace kspc {
   template <class InOutMat, class OutVec, class Work>
   std::enable_if_t<std::conjunction_v<
     is_range<InOutMat>, is_range<OutVec>, is_range<Work>>, int>
-  symmetric_matrix_eigen_solve_impl(InOutMat& A, OutVec& w, Work& work) {
+  symmetric_matrix_eigen_solve(InOutMat& A, OutVec& w, Work& work) {
     using std::size, std::data;
     const std::size_t n = kspc::dim(A);
     // std::cout << n << std::endl;
@@ -253,10 +253,10 @@ namespace kspc {
       if constexpr (is_complex_v<T>) {
         static std::array<T, 4 * N> work;
         static std::array<typename T::value_type, 3 * N - 2> rwork;
-        info = hermitian_matrix_eigen_solve_impl(B, w, work, rwork);
+        info = hermitian_matrix_eigen_solve(B, w, work, rwork);
       } else {
         static std::array<T, 6 * N> work;
-        info = symmetric_matrix_eigen_solve_impl(B, w, work);
+        info = symmetric_matrix_eigen_solve(B, w, work);
       }
 
       matrix_copy(B, A, column_major, map);
@@ -269,10 +269,10 @@ namespace kspc {
       if constexpr (is_complex_v<T>) {
         std::vector<T> work(4 * n);
         std::vector<typename T::value_type> rwork(3 * n - 2);
-        info = hermitian_matrix_eigen_solve_impl(B, w, work, rwork);
+        info = hermitian_matrix_eigen_solve(B, w, work, rwork);
       } else {
         std::vector<T> work(6 * n);
-        info = symmetric_matrix_eigen_solve_impl(B, w, work);
+        info = symmetric_matrix_eigen_solve(B, w, work);
       }
 
       matrix_copy(B, A, column_major, map);
