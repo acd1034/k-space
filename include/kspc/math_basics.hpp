@@ -60,6 +60,7 @@ namespace kspc {
   }
 
   /// fixed_size_matrix_dim_v
+  // TODO: add fixed_size_matrix_dim
   template <typename T>
   inline constexpr auto fixed_size_matrix_dim_v = isqrt(fixed_size_array_size<T>::value);
 
@@ -171,14 +172,20 @@ namespace kspc {
   template <typename T>
   inline constexpr bool is_complex_v = is_complex<T>::value;
 
+  /// complex_value_t
+  template <typename T>
+  using complex_value_t =
+    std::conditional_t<is_complex_v<remove_cvref_t<T>>, typename remove_cvref_t<T>::value_type,
+                       remove_cvref_t<T>>;
+
   /// %conj_fn
   struct conj_fn {
     using is_transparent = void;
 
-    template <typename C, std::enable_if_t<is_complex_v<std::decay_t<C>>, std::nullptr_t> = nullptr>
-    constexpr auto operator()(C&& x) const noexcept(noexcept(std::conj(std::forward<C>(x))))
-      -> decltype(std::conj(std::forward<C>(x))) {
-      return std::conj(std::forward<C>(x));
+    template <typename T, std::enable_if_t<is_complex_v<std::decay_t<T>>, std::nullptr_t> = nullptr>
+    constexpr auto operator()(T&& x) const noexcept(noexcept(std::conj(std::forward<T>(x))))
+      -> decltype(std::conj(std::forward<T>(x))) {
+      return std::conj(std::forward<T>(x));
     }
 
     // same as `identity`
