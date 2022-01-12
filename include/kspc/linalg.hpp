@@ -138,7 +138,7 @@ namespace kspc {
     int info;
 
     if constexpr (is_fixed_size_array_v<remove_cvref_t<InMat>>) {
-      constexpr std::size_t N = fixed_size_array_size_v<remove_cvref_t<InMat>>;
+      constexpr std::size_t N = fixed_size_matrix_dim_v<remove_cvref_t<InMat>>;
       static std::array<T, N * N> B;
       constexpr auto column_major = mapping_column_major(N);
       matrix_copy(A, B, map, column_major, proj);
@@ -245,7 +245,7 @@ namespace kspc {
     int info;
 
     if constexpr (is_fixed_size_array_v<remove_cvref_t<InOutMat>>) {
-      constexpr std::size_t N = fixed_size_array_size_v<remove_cvref_t<InOutMat>>;
+      constexpr std::size_t N = fixed_size_matrix_dim_v<remove_cvref_t<InOutMat>>;
       static std::array<T, N * N> B;
       constexpr auto column_major = mapping_column_major(N);
       matrix_copy(A, B, map, column_major, proj);

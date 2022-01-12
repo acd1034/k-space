@@ -59,13 +59,17 @@ namespace kspc {
     return l;
   }
 
+  /// fixed_size_matrix_dim_v
+  template <typename T>
+  inline constexpr auto fixed_size_matrix_dim_v = isqrt(fixed_size_array_size<T>::value);
+
   /// dim
   // clang-format off
   template <typename M,
             std::enable_if_t<is_fixed_size_array_v<M>, std::nullptr_t> = nullptr>
   // clang-format on
   inline constexpr auto dim(const M&) noexcept {
-    return isqrt(fixed_size_array_size_v<M>);
+    return fixed_size_matrix_dim_v<M>;
   }
 
   /// @overload
