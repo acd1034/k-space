@@ -59,18 +59,6 @@ namespace kspc {
   template <typename...>
   using always_true_type = std::true_type;
 
-  /// builtin_array_noextent
-  template <typename T>
-  using builtin_array_noextent = T[];
-
-  /// builtin_array
-  template <typename T, std::size_t N>
-  using builtin_array = T[N];
-
-  /// builtin_function
-  template <typename T, typename... Args>
-  using builtin_function = T(Args...);
-
   /// %remove_cvref (C++20)
   template <typename T>
   struct remove_cvref {
@@ -559,7 +547,7 @@ namespace kspc {
 
   /// @overload
   template <typename T, std::size_t N>
-  inline constexpr std::ptrdiff_t ssize(const T (&)[N]) noexcept {
+  inline constexpr std::ptrdiff_t ssize(std::add_lvalue_reference_t<const T[N]>) noexcept {
     return N;
   }
 
