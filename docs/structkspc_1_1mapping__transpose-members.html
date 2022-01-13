@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>k-space: include/kspc/linalg.hpp File Reference</title>
+<title>k-space: Member List</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -61,35 +61,23 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_919b91d53b27d7e6df05f777d27efdcc.html">kspc</a></li>  </ul>
+<li class="navelem"><b>kspc</b></li><li class="navelem"><a class="el" href="structkspc_1_1mapping__transpose.html">mapping_transpose</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
-  <div class="summary">
-<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">linalg.hpp File Reference</div>  </div>
+<div class="title">kspc::mapping_transpose&lt; Mapping &gt; Member List</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;array&gt;</code><br />
-<code>#include &lt;complex&gt;</code><br />
-<code>#include &lt;vector&gt;</code><br />
-<code>#include &lt;<a class="el" href="math__basics_8hpp_source.html">kspc/math_basics.hpp</a>&gt;</code><br />
-</div>
-<p><a href="linalg_8hpp_source.html">Go to the source code of this file.</a></p>
-<table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
-Functions</h2></td></tr>
-<tr class="memitem:ga18c820c1e5cafe818db9b090bb45165f"><td class="memTemplParams" colspan="2">
-template&lt;typename L , std::enable_if_t&lt; std::conjunction_v&lt; is_sized_range&lt; L &gt;, is_complex&lt; std::decay_t&lt; range_reference_t&lt; L &gt;&gt;&gt;, is_fixed_size_array&lt; L &gt;&gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
-<tr class="memitem:ga18c820c1e5cafe818db9b090bb45165f"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::zheev</b> (const L &amp;H)</td></tr>
-<tr class="separator:ga18c820c1e5cafe818db9b090bb45165f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gad395f8074bef33bdb8665f6ccc567ad3"><td class="memTemplParams" colspan="2">
-template&lt;typename M , std::enable_if_t&lt; std::conjunction_v&lt; is_sized_range&lt; M &gt;, is_complex&lt; std::decay_t&lt; range_reference_t&lt; M &gt;&gt;&gt;, std::negation&lt; is_fixed_size_array&lt; M &gt;&gt;&gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
-<tr class="memitem:gad395f8074bef33bdb8665f6ccc567ad3"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::zheev</b> (const M &amp;H)</td></tr>
-<tr class="separator:gad395f8074bef33bdb8665f6ccc567ad3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table>
-</div><!-- contents -->
+
+<p>This is the complete list of members for <a class="el" href="structkspc_1_1mapping__transpose.html">kspc::mapping_transpose&lt; Mapping &gt;</a>, including all inherited members.</p>
+<table class="directory">
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>mapping_transpose</b>()=default (defined in <a class="el" href="structkspc_1_1mapping__transpose.html">kspc::mapping_transpose&lt; Mapping &gt;</a>)</td><td class="entry"><a class="el" href="structkspc_1_1mapping__transpose.html">kspc::mapping_transpose&lt; Mapping &gt;</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>mapping_transpose</b>(const Mapping &amp;mapping) (defined in <a class="el" href="structkspc_1_1mapping__transpose.html">kspc::mapping_transpose&lt; Mapping &gt;</a>)</td><td class="entry"><a class="el" href="structkspc_1_1mapping__transpose.html">kspc::mapping_transpose&lt; Mapping &gt;</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">explicit</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>mapping_transpose</b>(Mapping &amp;&amp;mapping) (defined in <a class="el" href="structkspc_1_1mapping__transpose.html">kspc::mapping_transpose&lt; Mapping &gt;</a>)</td><td class="entry"><a class="el" href="structkspc_1_1mapping__transpose.html">kspc::mapping_transpose&lt; Mapping &gt;</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">explicit</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>operator()</b>(const size_type i, const size_type j) const noexcept (defined in <a class="el" href="structkspc_1_1mapping__transpose.html">kspc::mapping_transpose&lt; Mapping &gt;</a>)</td><td class="entry"><a class="el" href="structkspc_1_1mapping__transpose.html">kspc::mapping_transpose&lt; Mapping &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>size_type</b> typedef (defined in <a class="el" href="structkspc_1_1mapping__transpose.html">kspc::mapping_transpose&lt; Mapping &gt;</a>)</td><td class="entry"><a class="el" href="structkspc_1_1mapping__transpose.html">kspc::mapping_transpose&lt; Mapping &gt;</a></td><td class="entry"></td></tr>
+</table></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1

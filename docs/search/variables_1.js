@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['dim_226',['dim',['../math__basics_8hpp.html#a3f6c38ca1ded9f649acd3b3cf2d522ba',1,'kspc::cpo']]]
+  ['conj_198',['conj',['../math__basics_8hpp.html#ab6d24386e9bd69a952d04adca8f9cf86',1,'kspc::cpo']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['real_220',['real',['../group__complex.html#ga180d9681cf17e630e544ca5a37b65535',1,'kspc::real(C &amp;&amp;x) noexcept(noexcept(std::real(std::forward&lt; C &gt;(x)))) -&gt; decltype((std::real(std::forward&lt; C &gt;(x))))'],['../group__complex.html#ga9eed3c68b08fa77db25b3f3989b2a196',1,'kspc::real(T &amp;&amp;x) noexcept(noexcept(std::forward&lt; T &gt;(x)))']]]
+  ['to_5faddress_196',['to_address',['../group__range.html#gaea3cc0697472dcbe97a6a549214ae7a8',1,'kspc::to_address(T *p) noexcept'],['../group__range.html#gafeb1b0d13131e285bbbe164bcf4c4e37',1,'kspc::to_address(const P &amp;p) noexcept']]]
 ];

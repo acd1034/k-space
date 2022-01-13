@@ -1,4 +1,7 @@
 var searchData=
 [
-  ['complex_5fvalue_5ft_270',['complex_value_t',['../group__complex.html#ga454ac6c4cbe075972757c42e2027867b',1,'kspc']]]
+  ['iter_5fdifference_5ft_240',['iter_difference_t',['../group__iterator.html#ga26e0e38429a46fcfc1095852e65a1ce9',1,'kspc']]],
+  ['iter_5freference_5ft_241',['iter_reference_t',['../group__iterator.html#ga7cb2ffb8dd2a5e23587da31cbad10338',1,'kspc']]],
+  ['iter_5fvalue_5ft_242',['iter_value_t',['../group__iterator.html#gaf352495531dca3b36f1f7c06c2dfe8dd',1,'kspc']]],
+  ['iterator_5ft_243',['iterator_t',['../group__range.html#ga3be24a14599c3f616882c2ca86534d21',1,'kspc']]]
 ];

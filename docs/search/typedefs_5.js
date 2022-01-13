@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['sentinel_5ft_280',['sentinel_t',['../group__range.html#gac4d071ef8f90947000e98f35fa370f31',1,'kspc']]]
+  ['type_5fidentity_5ft_250',['type_identity_t',['../group__utility.html#gaded1ea76309ffc8cac73aad8d7455125',1,'kspc']]]
 ];

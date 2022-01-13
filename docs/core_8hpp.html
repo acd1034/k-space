@@ -67,7 +67,6 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#namespaces">Namespaces</a> &#124;
 <a href="#typedef-members">Typedefs</a> &#124;
 <a href="#func-members">Functions</a> &#124;
 <a href="#var-members">Variables</a>  </div>
@@ -95,9 +94,6 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkspc_1_1type__identity.html">kspc::type_identity&lt; T &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">type_identity (C++20)  <a href="structkspc_1_1type__identity.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkspc_1_1identity.html">kspc::identity</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">identity (C++20)  <a href="structkspc_1_1identity.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkspc_1_1is__detected.html">kspc::is_detected&lt; Op, Args &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">is_detected  <a href="structkspc_1_1is__detected.html#details">More...</a><br /></td></tr>
@@ -154,12 +150,6 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">is_sized_range  <a href="structkspc_1_1is__sized__range.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
-Namespaces</h2></td></tr>
-<tr class="memitem:namespacekspc_1_1detail"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekspc_1_1detail.html">kspc::detail</a></td></tr>
-<tr class="memdesc:namespacekspc_1_1detail"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implementation details are here. <br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
 <tr class="memitem:ga1a5e54d1d3a63b2a2363c933f65bf84e"><td class="memTemplParams" colspan="2">
@@ -167,21 +157,6 @@ template&lt;typename... &gt; </td></tr>
 <tr class="memitem:ga1a5e54d1d3a63b2a2363c933f65bf84e"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__utility.html#ga1a5e54d1d3a63b2a2363c933f65bf84e">kspc::always_true_type</a> = std::true_type</td></tr>
 <tr class="memdesc:ga1a5e54d1d3a63b2a2363c933f65bf84e"><td class="mdescLeft">&#160;</td><td class="mdescRight">always_true_type <br /></td></tr>
 <tr class="separator:ga1a5e54d1d3a63b2a2363c933f65bf84e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga8bae7fce161eda4cecdae9f65c03640d"><td class="memTemplParams" colspan="2">
-template&lt;typename T &gt; </td></tr>
-<tr class="memitem:ga8bae7fce161eda4cecdae9f65c03640d"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__utility.html#ga8bae7fce161eda4cecdae9f65c03640d">kspc::builtin_array_noextent</a> = T[]</td></tr>
-<tr class="memdesc:ga8bae7fce161eda4cecdae9f65c03640d"><td class="mdescLeft">&#160;</td><td class="mdescRight">builtin_array_noextent <br /></td></tr>
-<tr class="separator:ga8bae7fce161eda4cecdae9f65c03640d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gae78ffa229fbb8f2a4faebc8753139637"><td class="memTemplParams" colspan="2">
-template&lt;typename T , std::size_t N&gt; </td></tr>
-<tr class="memitem:gae78ffa229fbb8f2a4faebc8753139637"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__utility.html#gae78ffa229fbb8f2a4faebc8753139637">kspc::builtin_array</a> = T[N]</td></tr>
-<tr class="memdesc:gae78ffa229fbb8f2a4faebc8753139637"><td class="mdescLeft">&#160;</td><td class="mdescRight">builtin_array <br /></td></tr>
-<tr class="separator:gae78ffa229fbb8f2a4faebc8753139637"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gab40f435739d536eab7ce58bd8ec31b86"><td class="memTemplParams" colspan="2">
-template&lt;typename T , typename... Args&gt; </td></tr>
-<tr class="memitem:gab40f435739d536eab7ce58bd8ec31b86"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__utility.html#gab40f435739d536eab7ce58bd8ec31b86">kspc::builtin_function</a> = T(Args...)</td></tr>
-<tr class="memdesc:gab40f435739d536eab7ce58bd8ec31b86"><td class="mdescLeft">&#160;</td><td class="mdescRight">builtin_function <br /></td></tr>
-<tr class="separator:gab40f435739d536eab7ce58bd8ec31b86"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga84e8e34e5d10ad3ee287dc2ca3e636c5"><td class="memTemplParams" colspan="2">
 template&lt;typename T &gt; </td></tr>
 <tr class="memitem:ga84e8e34e5d10ad3ee287dc2ca3e636c5"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__utility.html#ga84e8e34e5d10ad3ee287dc2ca3e636c5">kspc::remove_cvref_t</a> = typename remove_cvref&lt; T &gt;::type</td></tr>
@@ -263,11 +238,11 @@ template&lt;typename C &gt; </td></tr>
 <tr class="memitem:gaae414289ef2b3c1a41b14b0062a059a8"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__range.html#gaae414289ef2b3c1a41b14b0062a059a8">kspc::ssize</a> (const C &amp;c) noexcept(noexcept(static_cast&lt; std::common_type_t&lt; std::ptrdiff_t, std::make_signed_t&lt; decltype(c.size())&gt;&gt;&gt;(c.size()))) -&gt; std::common_type_t&lt; std::ptrdiff_t, std::make_signed_t&lt; decltype(c.size())&gt;&gt;</td></tr>
 <tr class="memdesc:gaae414289ef2b3c1a41b14b0062a059a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">ssize <br /></td></tr>
 <tr class="separator:gaae414289ef2b3c1a41b14b0062a059a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga21135f7043428d75632d3c977e8e02e6"><td class="memTemplParams" colspan="2">
+<tr class="memitem:ga5bc2cc72d192708158fd8ffc95d86a79"><td class="memTemplParams" colspan="2">
 template&lt;typename T , std::size_t N&gt; </td></tr>
-<tr class="memitem:ga21135f7043428d75632d3c977e8e02e6"><td class="memTemplItemLeft" align="right" valign="top">constexpr std::ptrdiff_t&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__range.html#ga21135f7043428d75632d3c977e8e02e6">kspc::ssize</a> (const T(&amp;)[N]) noexcept</td></tr>
-<tr class="memdesc:ga21135f7043428d75632d3c977e8e02e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. <br /></td></tr>
-<tr class="separator:ga21135f7043428d75632d3c977e8e02e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5bc2cc72d192708158fd8ffc95d86a79"><td class="memTemplItemLeft" align="right" valign="top">constexpr std::ptrdiff_t&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__range.html#ga5bc2cc72d192708158fd8ffc95d86a79">kspc::ssize</a> (std::add_lvalue_reference_t&lt; const T[N]&gt;) noexcept</td></tr>
+<tr class="memdesc:ga5bc2cc72d192708158fd8ffc95d86a79"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. <br /></td></tr>
+<tr class="separator:ga5bc2cc72d192708158fd8ffc95d86a79"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaea3cc0697472dcbe97a6a549214ae7a8"><td class="memTemplParams" colspan="2">
 template&lt;typename T &gt; </td></tr>
 <tr class="memitem:gaea3cc0697472dcbe97a6a549214ae7a8"><td class="memTemplItemLeft" align="right" valign="top">constexpr T *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__range.html#gaea3cc0697472dcbe97a6a549214ae7a8">kspc::to_address</a> (T *p) noexcept</td></tr>

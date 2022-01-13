@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['numeric_20algorithms_292',['Numeric algorithms',['../group__numeric.html',1,'']]]
+  ['physics_261',['Physics',['../group__physics.html',1,'']]]
 ];

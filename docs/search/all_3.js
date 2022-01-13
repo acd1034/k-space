@@ -1,6 +1,9 @@
 var searchData=
 [
-  ['df_5fbe_26',['Df_BE',['../group__math__functions.html#gae8b17736f5161c2b1fc2a87050cba4a7',1,'kspc']]],
-  ['df_5ffd_27',['Df_FD',['../group__math__functions.html#ga92fcfacb33197ef110afa0c6882cb532',1,'kspc']]],
-  ['dim_28',['dim',['../math__basics_8hpp.html#a3f6c38ca1ded9f649acd3b3cf2d522ba',1,'kspc::cpo']]]
+  ['e_15',['e',['../group__math__constants.html#gab283bf7abbd1672477fa1d0583a0d6f9',1,'kspc']]],
+  ['e_5fv_16',['e_v',['../group__math__constants.html#ga4f61c75bc4a432ec3268c22913f65c6e',1,'kspc']]],
+  ['egamma_17',['egamma',['../group__math__constants.html#ga12b9efc407d99803680f37d5564825cb',1,'kspc']]],
+  ['egamma_5fv_18',['egamma_v',['../group__math__constants.html#ga6181999853bc561185beba67827a81ad',1,'kspc']]],
+  ['exp_5fegamma_19',['exp_egamma',['../group__math__constants.html#ga3774d2b5c3e5379899a1da8eeaf55643',1,'kspc']]],
+  ['exp_5fegamma_5fv_20',['exp_egamma_v',['../group__math__constants.html#ga84a53330b2a37e0e4ad642f72f0d059d',1,'kspc']]]
 ];

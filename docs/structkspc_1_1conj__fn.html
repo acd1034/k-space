@@ -70,7 +70,7 @@ $(function() {
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="structkspc_1_1conj__fn-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">kspc::conj_fn Struct Reference<div class="ingroups"><a class="el" href="group__math.html">Math</a> &raquo; <a class="el" href="group__complex.html">Complex</a></div></div>  </div>
+<div class="title">kspc::conj_fn Struct Reference<div class="ingroups"><a class="el" href="group__math.html">Math</a> &raquo; <a class="el" href="group__matrix.html">Matrix</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 
@@ -87,15 +87,17 @@ using&#160;</td><td class="memItemRight" valign="bottom"><b>is_transparent</b> =
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:af705491b714cb9f2f22d1a8bf0082e08"><td class="memTemplParams" colspan="2"><a id="af705491b714cb9f2f22d1a8bf0082e08"></a>
-template&lt;typename T &gt; </td></tr>
-<tr class="memitem:af705491b714cb9f2f22d1a8bf0082e08"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator()</b> (T &amp;&amp;t) const noexcept(noexcept(kspc::conj(std::forward&lt; T &gt;(t)))) -&gt; decltype((kspc::conj(std::forward&lt; T &gt;(t))))</td></tr>
-<tr class="separator:af705491b714cb9f2f22d1a8bf0082e08"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09c65234fdd7a1d98d4544acbe25eace"><td class="memTemplParams" colspan="2"><a id="a09c65234fdd7a1d98d4544acbe25eace"></a>
+template&lt;typename T , std::enable_if_t&lt; is_complex_v&lt; std::decay_t&lt; T &gt;&gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
+<tr class="memitem:a09c65234fdd7a1d98d4544acbe25eace"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator()</b> (T &amp;&amp;x) const noexcept(noexcept(std::conj(std::forward&lt; T &gt;(x)))) -&gt; decltype(std::conj(std::forward&lt; T &gt;(x)))</td></tr>
+<tr class="separator:a09c65234fdd7a1d98d4544acbe25eace"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6fbc74572e7401c7f774e7dead151631"><td class="memTemplParams" colspan="2"><a id="a6fbc74572e7401c7f774e7dead151631"></a>
+template&lt;typename T , std::enable_if_t&lt;!is_complex_v&lt; std::decay_t&lt; T &gt;&gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
+<tr class="memitem:a6fbc74572e7401c7f774e7dead151631"><td class="memTemplItemLeft" align="right" valign="top">constexpr T &amp;&amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator()</b> (T &amp;&amp;x) const noexcept</td></tr>
+<tr class="separator:a6fbc74572e7401c7f774e7dead151631"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>conj_fn </p>
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="hermitian_8cpp-example.html#_a2">hermitian.cpp</a>.</dd>
-</dl>
 </div><hr/>The documentation for this struct was generated from the following file:<ul>
 <li>include/kspc/<a class="el" href="math__basics_8hpp_source.html">math_basics.hpp</a></li>
 </ul>
