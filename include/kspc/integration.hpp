@@ -11,7 +11,8 @@ namespace kspc {
   /// helper class for defining parameters of integrand
   struct params_t {
     // double (*p_fn)(const std::vector<double>& x, void* p_params);
-    builtin_function<double, const std::vector<double>&, void*>* p_fn;
+    // builtin_function<double, const std::vector<double>&, void*>* p_fn;
+    std::add_pointer_t<double(const std::vector<double>&, void*)> p_fn;
     std::vector<double> a;
     std::vector<double> b;
     double epsabs;

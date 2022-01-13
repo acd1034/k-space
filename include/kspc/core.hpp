@@ -9,7 +9,7 @@
 #include <utility>          // move, forward, pair, swap, exchange, declval
 
 #include <iosfwd>   // basic_ostream
-#include <iterator> // begin, end
+#include <iterator> // begin, end, size, data
 #include <limits>   // numeric_limits
 
 /// @defgroup utility Utility
@@ -23,75 +23,31 @@
 
 /// @defgroup math Math
 
-/// @defgroup complex Complex
-/// @ingroup math
-
 /// @defgroup matrix Matrix
 /// @ingroup math
 
-/// @defgroup numeric Numeric algorithms
+/// @defgroup numeric Numerical algorithms
 /// @ingroup math
 
 /// @defgroup approx Approximate comparison
 /// @ingroup math
 
-/// @defgroup math_constants Mathematical Constants
+/// @defgroup math_constants Mathematical constants
 /// @ingroup math
 
-/// @defgroup math_functions Mathematical Functions
+/// @defgroup math_functions Mathematical functions
 /// @ingroup math
 
 /// @defgroup integration Integration
 /// @ingroup math
 
-/// @defgroup linalg Linear Algorithms
+/// @defgroup linalg Linear algorithms
 /// @ingroup math
 
 /// @defgroup physics Physics
 
+// Utility
 namespace kspc {
-  /// Implementation details are here.
-  namespace detail {}
-
-  /// @cond
-  namespace detail_adl {
-    using std::begin, std::end, std::size, std::data, std::swap; // for ADL
-
-    template <typename C>
-    auto adl_begin(C&& c) noexcept(noexcept(begin(std::forward<C>(c))))
-      -> decltype(begin(std::forward<C>(c))) {
-      return begin(std::forward<C>(c));
-    }
-
-    template <typename C>
-    auto adl_end(C&& c) noexcept(noexcept(end(std::forward<C>(c))))
-      -> decltype(end(std::forward<C>(c))) {
-      return end(std::forward<C>(c));
-    }
-
-    template <typename C>
-    auto adl_size(C&& c) noexcept(noexcept(size(std::forward<C>(c))))
-      -> decltype(size(std::forward<C>(c))) {
-      return size(std::forward<C>(c));
-    }
-
-    template <typename C>
-    auto adl_data(C&& c) noexcept(noexcept(data(std::forward<C>(c))))
-      -> decltype(data(std::forward<C>(c))) {
-      return data(std::forward<C>(c));
-    }
-
-    template <typename T>
-    void adl_swap(T&& lhs, T&& rhs) //
-      noexcept(noexcept(swap(std::forward<T>(lhs), std::forward<T>(rhs)))) {
-      swap(std::forward<T>(lhs), std::forward<T>(rhs));
-    }
-  } // namespace detail_adl
-  /// @endcond
-
-  using detail_adl::adl_begin, detail_adl::adl_end, detail_adl::adl_size, detail_adl::adl_data,
-    detail_adl::adl_swap;
-
   /// @addtogroup utility
   /// @{
 
@@ -102,18 +58,6 @@ namespace kspc {
   /// always_true_type
   template <typename...>
   using always_true_type = std::true_type;
-
-  /// builtin_array_noextent
-  template <typename T>
-  using builtin_array_noextent = T[];
-
-  /// builtin_array
-  template <typename T, std::size_t N>
-  using builtin_array = T[N];
-
-  /// builtin_function
-  template <typename T, typename... Args>
-  using builtin_function = T(Args...);
 
   /// %remove_cvref (C++20)
   template <typename T>
@@ -134,16 +78,6 @@ namespace kspc {
   /// type_identity_t (C++20)
   template <class T>
   using type_identity_t = typename type_identity<T>::type;
-
-  /// %identity (C++20)
-  struct identity {
-    using is_transparent = void;
-
-    template <typename T>
-    constexpr T&& operator()(T&& t) const noexcept(noexcept(std::forward<T>(t))) {
-      return std::forward<T>(t);
-    }
-  };
 
   /// make_signed_v
   template <typename T, std::enable_if_t<std::is_unsigned_v<T>, std::nullptr_t> = nullptr>
@@ -221,7 +155,10 @@ namespace kspc {
     /// @endcond
 
   /// @}
+} // namespace kspc
 
+// Iterator
+namespace kspc {
   /// @addtogroup iterator
   /// @{
 
@@ -471,9 +408,51 @@ namespace kspc {
   using iter_reference_t = detail::dereference_t<I&>;
 
   /// @}
+} // namespace kspc
 
+// Range
+namespace kspc {
   /// @addtogroup range
   /// @{
+
+  /// @cond
+  namespace detail_adl {
+    using std::begin, std::end, std::size, std::data, std::swap; // for ADL
+
+    template <typename C>
+    constexpr auto adl_begin(C&& c) noexcept(noexcept(begin(std::forward<C>(c))))
+      -> decltype(begin(std::forward<C>(c))) {
+      return begin(std::forward<C>(c));
+    }
+
+    template <typename C>
+    constexpr auto adl_end(C&& c) noexcept(noexcept(end(std::forward<C>(c))))
+      -> decltype(end(std::forward<C>(c))) {
+      return end(std::forward<C>(c));
+    }
+
+    template <typename C>
+    constexpr auto adl_size(C&& c) noexcept(noexcept(size(std::forward<C>(c))))
+      -> decltype(size(std::forward<C>(c))) {
+      return size(std::forward<C>(c));
+    }
+
+    template <typename C>
+    constexpr auto adl_data(C&& c) noexcept(noexcept(data(std::forward<C>(c))))
+      -> decltype(data(std::forward<C>(c))) {
+      return data(std::forward<C>(c));
+    }
+
+    template <typename T>
+    constexpr void adl_swap(T&& lhs, T&& rhs) //
+      noexcept(noexcept(swap(std::forward<T>(lhs), std::forward<T>(rhs)))) {
+      swap(std::forward<T>(lhs), std::forward<T>(rhs));
+    }
+  } // namespace detail_adl
+  /// @endcond
+
+  using detail_adl::adl_begin, detail_adl::adl_end, detail_adl::adl_size, detail_adl::adl_data,
+    detail_adl::adl_swap;
 
   // range concepts:
   // [x] is_range
@@ -559,18 +538,16 @@ namespace kspc {
   /// ssize
   // clang-format off
   template <typename C>
-  inline constexpr auto ssize(const C& c)
-    noexcept(noexcept(
-      static_cast<std::common_type_t<std::ptrdiff_t, std::make_signed_t<decltype(c.size())>>>(c.size())))
-    -> std::common_type_t<std::ptrdiff_t, std::make_signed_t<decltype(c.size())>> {
-    return
-      static_cast<std::common_type_t<std::ptrdiff_t, std::make_signed_t<decltype(c.size())>>>(c.size());
+  inline constexpr auto ssize(const C& c) noexcept(
+    noexcept(static_cast<std::common_type_t<std::ptrdiff_t, std::make_signed_t<decltype(c.size())>>>(c.size())))
+    ->                   std::common_type_t<std::ptrdiff_t, std::make_signed_t<decltype(c.size())>> {
+    return   static_cast<std::common_type_t<std::ptrdiff_t, std::make_signed_t<decltype(c.size())>>>(c.size());
   }
   // clang-format on
 
   /// @overload
   template <typename T, std::size_t N>
-  inline constexpr std::ptrdiff_t ssize(const T (&)[N]) noexcept {
+  inline constexpr std::ptrdiff_t ssize(std::add_lvalue_reference_t<const T[N]>) noexcept {
     return N;
   }
 
