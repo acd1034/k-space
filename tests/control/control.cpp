@@ -121,6 +121,13 @@ TEST_CASE("projection", "[math][projection]") {
   // is_complex_v
   static_assert(kspc::is_complex_v<std::complex<double>>);
   static_assert(not kspc::is_complex_v<double>);
+  // complex_value_t
+  static_assert(std::is_same_v<kspc::complex_value_t<std::complex<double>>, double>);
+  static_assert(std::is_same_v<kspc::complex_value_t<const std::complex<double>>, double>);
+  static_assert(std::is_same_v<kspc::complex_value_t<const std::complex<double>&>, double>);
+  static_assert(std::is_same_v<kspc::complex_value_t<double>, double>);
+  static_assert(std::is_same_v<kspc::complex_value_t<const double>, double>);
+  static_assert(std::is_same_v<kspc::complex_value_t<const double&>, double>);
   {
     // conj
     std::complex c{1.0, 1.0};
