@@ -234,21 +234,42 @@ TEST_CASE("linalg", "[math][linalg]") {
 }
 
 TEST_CASE("approx", "[math][approx]") {
-  constexpr double eps = 1e-6;
   using namespace kspc::approx;
+  constexpr double eps = 1e-6;
   // clang-format off
-  CHECK(             less(1.0, 1.0 + 2e-6, eps));
-  CHECK(      not greater(1.0, 1.0 + 2e-6, eps));
-  CHECK(       less_equal(1.0, 1.0 + 2e-6, eps));
-  CHECK(not greater_equal(1.0, 1.0 + 2e-6, eps));
-  CHECK(     not_equal_to(1.0, 1.0 + 2e-6, eps));
-  CHECK(     not equal_to(1.0, 1.0 + 2e-6, eps));
+  {
+    // approximate comparison for double
+    CHECK(             less(1.0, 1.0 + 2e-6, eps));
+    CHECK(      not greater(1.0, 1.0 + 2e-6, eps));
+    CHECK(       less_equal(1.0, 1.0 + 2e-6, eps));
+    CHECK(not greater_equal(1.0, 1.0 + 2e-6, eps));
+    CHECK(     not_equal_to(1.0, 1.0 + 2e-6, eps));
+    CHECK(     not equal_to(1.0, 1.0 + 2e-6, eps));
 
-  CHECK(        not less(1.0, 1.0 + 2e-7, eps));
-  CHECK(     not greater(1.0, 1.0 + 2e-7, eps));
-  CHECK(      less_equal(1.0, 1.0 + 2e-7, eps));
-  CHECK(   greater_equal(1.0, 1.0 + 2e-7, eps));
-  CHECK(not not_equal_to(1.0, 1.0 + 2e-7, eps));
-  CHECK(        equal_to(1.0, 1.0 + 2e-7, eps));
+    CHECK(        not less(1.0, 1.0 + 2e-7, eps));
+    CHECK(     not greater(1.0, 1.0 + 2e-7, eps));
+    CHECK(      less_equal(1.0, 1.0 + 2e-7, eps));
+    CHECK(   greater_equal(1.0, 1.0 + 2e-7, eps));
+    CHECK(not not_equal_to(1.0, 1.0 + 2e-7, eps));
+    CHECK(        equal_to(1.0, 1.0 + 2e-7, eps));
+  }
+  {
+    // approximate comparison for complex
+    using namespace std::complex_literals;
+    const std::complex c{1.0, 1.0};
+    CHECK(not_equal_to(c, c + 2e-6, eps));
+    CHECK(not_equal_to(c, c + 2e-6i, eps));
+    CHECK(not_equal_to(c, c + 2e-6*c, eps));
+    CHECK(not equal_to(c, c + 2e-6, eps));
+    CHECK(not equal_to(c, c + 2e-6i, eps));
+    CHECK(not equal_to(c, c + 2e-6*c, eps));
+
+    CHECK(not not_equal_to(c, c + 2e-7, eps));
+    CHECK(not not_equal_to(c, c + 2e-7i, eps));
+    CHECK(not not_equal_to(c, c + 2e-7*c, eps));
+    CHECK(        equal_to(c, c + 2e-7, eps));
+    CHECK(        equal_to(c, c + 2e-7i, eps));
+    CHECK(        equal_to(c, c + 2e-7*c, eps));
+  }
   // clang-format on
 }
