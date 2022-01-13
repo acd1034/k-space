@@ -17,13 +17,6 @@ struct Y {
 };
 
 TEST_CASE("control", "[control]") {
-  // CHECK(1.0 != kspc::approx(1.0 + 2e-6));
-  // CHECK(1.0 == kspc::approx(1.0 + 2e-7));
-  // CHECK(1.0 != kspc::approx(1.0 + 0.20, 0.1, 0.01));
-  // CHECK(1.0 == kspc::approx(1.0 + 0.02, 0.1, 0.01));
-  // CHECK(1.0 != kspc::approx(1.0 + 2.0, 0.1, 1.0));
-  // CHECK(1.0 == kspc::approx(1.0 + 0.2, 0.1, 1.0));
-
   CHECK(kspc::innerp(std::vector{1, 2, 3}, std::vector{1, 2, 3}) == 14);
   CHECK(kspc::innerp(std::vector{1, 2}, std::vector{1, 0, 0, 1}, std::vector{1, 2}) == 5);
   CHECK(kspc::innerp(std::vector{1, 2}, std::vector{0, 1, 1, 0}, std::vector{1, 2}) == 4);
