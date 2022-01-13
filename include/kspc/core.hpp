@@ -9,7 +9,7 @@
 #include <utility>          // move, forward, pair, swap, exchange, declval
 
 #include <iosfwd>   // basic_ostream
-#include <iterator> // begin, end
+#include <iterator> // begin, end, size, data
 #include <limits>   // numeric_limits
 
 /// @defgroup utility Utility
