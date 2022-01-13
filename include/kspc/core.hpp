@@ -420,31 +420,31 @@ namespace kspc {
     using std::begin, std::end, std::size, std::data, std::swap; // for ADL
 
     template <typename C>
-    auto adl_begin(C&& c) noexcept(noexcept(begin(std::forward<C>(c))))
+    constexpr auto adl_begin(C&& c) noexcept(noexcept(begin(std::forward<C>(c))))
       -> decltype(begin(std::forward<C>(c))) {
       return begin(std::forward<C>(c));
     }
 
     template <typename C>
-    auto adl_end(C&& c) noexcept(noexcept(end(std::forward<C>(c))))
+    constexpr auto adl_end(C&& c) noexcept(noexcept(end(std::forward<C>(c))))
       -> decltype(end(std::forward<C>(c))) {
       return end(std::forward<C>(c));
     }
 
     template <typename C>
-    auto adl_size(C&& c) noexcept(noexcept(size(std::forward<C>(c))))
+    constexpr auto adl_size(C&& c) noexcept(noexcept(size(std::forward<C>(c))))
       -> decltype(size(std::forward<C>(c))) {
       return size(std::forward<C>(c));
     }
 
     template <typename C>
-    auto adl_data(C&& c) noexcept(noexcept(data(std::forward<C>(c))))
+    constexpr auto adl_data(C&& c) noexcept(noexcept(data(std::forward<C>(c))))
       -> decltype(data(std::forward<C>(c))) {
       return data(std::forward<C>(c));
     }
 
     template <typename T>
-    void adl_swap(T&& lhs, T&& rhs) //
+    constexpr void adl_swap(T&& lhs, T&& rhs) //
       noexcept(noexcept(swap(std::forward<T>(lhs), std::forward<T>(rhs)))) {
       swap(std::forward<T>(lhs), std::forward<T>(rhs));
     }

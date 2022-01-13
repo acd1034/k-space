@@ -33,6 +33,7 @@ TEST_CASE("control", "[control]") {
   CHECK(kspc::sum(std::vector{1, 2, 3}, [](const auto& x) { return 2 * x; }) == 12);
 
   // clang-format off
+  // incrementable_traits
   static_assert(std::is_same_v<
     kspc::incrementable_traits<int*>::difference_type,
     std::ptrdiff_t>);
@@ -49,6 +50,7 @@ TEST_CASE("control", "[control]") {
     kspc::incrementable_traits<X>::difference_type,
     std::ptrdiff_t>);
 
+  // indirectly_readable_traits
   static_assert(std::is_same_v<
     kspc::indirectly_readable_traits<int*>::value_type,
     int>);
@@ -87,7 +89,7 @@ TEST_CASE("dim", "[math][dim]") {
   {
     // dim
     std::array<int, 4> a;
-    static_assert(kspc::dim(a) == 2);
+    static_assert(kspc::fixed_size_matrix_dim_v<std::remove_cv_t<decltype(a)>> == 2);
     std::vector<int> v(4);
     CHECK(kspc::dim(v) == 2);
   }
@@ -130,7 +132,7 @@ TEST_CASE("projection", "[math][projection]") {
   }
 }
 
-TEST_CASE("matrix", "[math][matrix]") {
+TEST_CASE("linalg", "[math][linalg]") {
   {
     // matrix_vector_solve with column-major dynamic matrix
     // clang-format off
@@ -171,7 +173,8 @@ TEST_CASE("matrix", "[math][matrix]") {
     };
     // clang-format on
     std::array b{-2.0, -2.0, -5.0};
-    constexpr auto row_major = kspc::mapping_row_major(kspc::dim(A));
+    constexpr auto N = kspc::fixed_size_matrix_dim_v<std::remove_cv_t<decltype(A)>>;
+    constexpr auto row_major = kspc::mapping_row_major(N);
     const auto info = kspc::matrix_vector_solve(A, b, row_major);
     CHECK(info == 0);
     CHECK(b == std::array{1.0, 2.0, 2.0});
@@ -220,7 +223,7 @@ TEST_CASE("matrix", "[math][matrix]") {
       1.0 - 1.0i, 3.0,
     };
     // clang-format on
-    constexpr auto N = kspc::dim(A);
+    constexpr auto N = kspc::fixed_size_matrix_dim_v<std::remove_cv_t<decltype(A)>>;
     std::array<double, N> w;
     constexpr auto row_major = kspc::mapping_row_major(N);
     const auto info = kspc::hermitian_matrix_eigen_solve(A, w, row_major);
