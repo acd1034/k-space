@@ -1,9 +1,14 @@
 #define CATCH_CONFIG_MAIN
-#include <iostream>
-#include <memory>
 #include <catch2/catch.hpp>
+
+#include <array>
+#include <complex>
+#include <memory> // shared_ptr
+#include <vector>
+#include <kspc/approx.hpp>
 #include <kspc/linalg.hpp>
 #include <kspc/math.hpp>
+#include <kspc/math_basics.hpp>
 
 struct X {};
 
@@ -102,14 +107,17 @@ TEST_CASE("mapping", "[math][mapping]") {
 }
 
 TEST_CASE("projection", "[math][projection]") {
+  constexpr auto equal_to = [](const auto& x, const auto& y) {
+    return kspc::approx::equal_to(x, y, 1e-6);
+  };
   {
     // identity
     std::complex c{1.0, 1.0};
-    CHECK(kspc::identity(c) == std::complex{1.0, 1.0});
-    CHECK(kspc::identity(std::complex{1.0, 1.0}) == std::complex{1.0, 1.0});
+    CHECK(equal_to(kspc::identity(c), std::complex{1.0, 1.0}));
+    CHECK(equal_to(kspc::identity(std::complex{1.0, 1.0}), std::complex{1.0, 1.0}));
     double d = 1.0;
-    CHECK(kspc::identity(d) == 1.0);
-    CHECK(kspc::identity(1.0) == 1.0);
+    CHECK(equal_to(kspc::identity(d), 1.0));
+    CHECK(equal_to(kspc::identity(1.0), 1.0));
   }
   // is_complex_v
   static_assert(kspc::is_complex_v<std::complex<double>>);
@@ -124,15 +132,18 @@ TEST_CASE("projection", "[math][projection]") {
   {
     // conj
     std::complex c{1.0, 1.0};
-    CHECK(kspc::conj(c) == std::complex{1.0, -1.0});
-    CHECK(kspc::conj(std::complex{1.0, 1.0}) == std::complex{1.0, -1.0});
+    CHECK(equal_to(kspc::conj(c), std::complex{1.0, -1.0}));
+    CHECK(equal_to(kspc::conj(std::complex{1.0, 1.0}), std::complex{1.0, -1.0}));
     double d = 1.0;
-    CHECK(kspc::conj(d) == 1.0);
-    CHECK(kspc::conj(1.0) == 1.0);
+    CHECK(equal_to(kspc::conj(d), 1.0));
+    CHECK(equal_to(kspc::conj(1.0), 1.0));
   }
 }
 
 TEST_CASE("linalg", "[math][linalg]") {
+  constexpr auto equal_to = [](const auto& x, const auto& y) {
+    return kspc::approx::equal_to(x, y, 1e-6);
+  };
   {
     // matrix_vector_solve with column-major dynamic matrix
     // clang-format off
@@ -194,8 +205,8 @@ TEST_CASE("linalg", "[math][linalg]") {
     std::vector<double> rwork(3 * n - 2);
     const auto info = kspc::hermitian_matrix_eigen_solve(A, w, work, rwork);
     CHECK(info == 0);
-    CHECK(w[0] == 1.0);
-    CHECK(w[1] == 4.0);
+    CHECK(equal_to(w[0], 1.0));
+    CHECK(equal_to(w[1], 4.0));
   }
   {
     // hermitian_matrix_eigen_solve with row-major dynamic matrix
@@ -211,8 +222,8 @@ TEST_CASE("linalg", "[math][linalg]") {
     const auto row_major = kspc::mapping_row_major(n);
     const auto info = kspc::hermitian_matrix_eigen_solve(A, w, row_major);
     CHECK(info == 0);
-    CHECK(w[0] == 1.0);
-    CHECK(w[1] == 4.0);
+    CHECK(equal_to(w[0], 1.0));
+    CHECK(equal_to(w[1], 4.0));
   }
   {
     // hermitian_matrix_eigen_solve with row-major static matrix
@@ -228,8 +239,8 @@ TEST_CASE("linalg", "[math][linalg]") {
     constexpr auto row_major = kspc::mapping_row_major(N);
     const auto info = kspc::hermitian_matrix_eigen_solve(A, w, row_major);
     CHECK(info == 0);
-    CHECK(w[0] == 1.0);
-    CHECK(w[1] == 4.0);
+    CHECK(equal_to(w[0], 1.0));
+    CHECK(equal_to(w[1], 4.0));
   }
 }
 
