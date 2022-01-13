@@ -239,3 +239,23 @@ TEST_CASE("linalg", "[math][linalg]") {
     CHECK(w[1] == 4.0);
   }
 }
+
+TEST_CASE("approx", "[math][approx]") {
+  constexpr double eps = 1e-6;
+  using namespace kspc::approx;
+  // clang-format off
+  CHECK(             less(1.0, 1.0 + 2e-6, eps));
+  CHECK(      not greater(1.0, 1.0 + 2e-6, eps));
+  CHECK(       less_equal(1.0, 1.0 + 2e-6, eps));
+  CHECK(not greater_equal(1.0, 1.0 + 2e-6, eps));
+  CHECK(     not_equal_to(1.0, 1.0 + 2e-6, eps));
+  CHECK(     not equal_to(1.0, 1.0 + 2e-6, eps));
+
+  CHECK(        not less(1.0, 1.0 + 2e-7, eps));
+  CHECK(     not greater(1.0, 1.0 + 2e-7, eps));
+  CHECK(      less_equal(1.0, 1.0 + 2e-7, eps));
+  CHECK(   greater_equal(1.0, 1.0 + 2e-7, eps));
+  CHECK(not not_equal_to(1.0, 1.0 + 2e-7, eps));
+  CHECK(        equal_to(1.0, 1.0 + 2e-7, eps));
+  // clang-format on
+}
