@@ -7,9 +7,11 @@
 #include <memory> // shared_ptr
 #include <vector>
 #include <kspc/approx.hpp>
+#include <kspc/core.hpp>
 #include <kspc/linalg.hpp>
 #include <kspc/math.hpp>
 #include <kspc/math_basics.hpp>
+#include <kspc/numeric.hpp>
 
 inline constexpr auto equal_to = [](const auto& x, const auto& y) {
   return kspc::approx::equal_to(x, y, 1e-6);
@@ -33,10 +35,10 @@ struct Y {
 
 TEST_CASE("control", "[control]") {
   CHECK(kspc::innerp(std::vector{1, 2, 3}, std::vector{1, 2, 3}) == 14);
-  CHECK(kspc::innerp(std::vector{1, 2}, std::vector{1, 0, 0, 1}, std::vector{1, 2}) == 5);
-  CHECK(kspc::innerp(std::vector{1, 2}, std::vector{0, 1, 1, 0}, std::vector{1, 2}) == 4);
-  CHECK(kspc::innerp(std::vector{1, 2}, std::array{1, 0, 0, 1}, std::vector{1, 2}) == 5);
-  CHECK(kspc::innerp(std::vector{1, 2}, std::array{0, 1, 1, 0}, std::vector{1, 2}) == 4);
+  // CHECK(kspc::innerp(std::vector{1, 2}, std::vector{1, 0, 0, 1}, std::vector{1, 2}) == 5);
+  // CHECK(kspc::innerp(std::vector{1, 2}, std::vector{0, 1, 1, 0}, std::vector{1, 2}) == 4);
+  // CHECK(kspc::innerp(std::vector{1, 2}, std::array{1, 0, 0, 1}, std::vector{1, 2}) == 5);
+  // CHECK(kspc::innerp(std::vector{1, 2}, std::array{0, 1, 1, 0}, std::vector{1, 2}) == 4);
   CHECK(kspc::sum(std::vector{1, 2, 3}) == 6);
   CHECK(kspc::sum(std::vector{1, 2, 3}, [](const auto& x) { return 2 * x; }) == 12);
 
