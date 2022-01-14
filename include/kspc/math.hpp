@@ -137,19 +137,23 @@ namespace kspc {
   /// @addtogroup physics
   /// @{
 
-  template <typename K, typename B,
-            std::enable_if_t<is_range_v<K> && is_range_v<B>, std::nullptr_t> = nullptr>
-  inline constexpr bool in_BZ(const K& k, const B& b) {
-    return 2 * std::abs(innerp(k, b)) < innerp(b, b);
-  }
+  template <typename Bs>
+  struct in_brillouin_zone {
+  private:
+    Bs bs_{};
 
-  template <typename Bs, std::enable_if_t<is_range_v<Bs>, std::nullptr_t> = nullptr>
-  inline constexpr auto make_in_BZ(const Bs& bs) {
-    return [&bs](const auto& k) {
+  public:
+    constexpr explicit in_brillouin_zone(const Bs& bs) : bs_{bs} {}
+    constexpr explicit in_brillouin_zone(Bs&& bs) : bs_{std::move(bs)} {}
+
+    template <typename K>
+    constexpr std::enable_if_t<std::conjunction_v<is_range<K>, is_range<Bs>>, bool>
+    operator()(const K& k) const {
       using std::begin, std::end; // for ADL
-      return std::all_of(begin(bs), end(bs), [&k](const auto& b) { return in_BZ(k, b); });
-    };
-  }
+      return std::all_of(begin(bs_), end(bs_),
+                         [&k](const auto& b) { return 2 * std::abs(innerp(k, b)) < innerp(b, b); });
+    }
+  }; // struct in_brillouin_zone
 
   /// @}
 } // namespace kspc
