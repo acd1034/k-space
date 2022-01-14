@@ -66,4 +66,4 @@ FetchContent_Declare(Catch2
   GIT_TAG        v2.13.6)
 FetchContent_MakeAvailable(Catch2)
 
-add_subdirectory(control)
+add_subdirectory(math)
