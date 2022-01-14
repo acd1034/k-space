@@ -252,7 +252,7 @@ namespace kspc {
 
       if constexpr (is_complex_v<T>) {
         static std::array<T, 4 * N> work;
-        static std::array<complex_value_t<T>, 3 * N - 2> rwork;
+        static std::array<complex_value_t<T>, N == 0 ? 0 : 3 * N - 2> rwork;
         info = hermitian_matrix_eigen_solve(B, w, work, rwork);
       } else {
         static std::array<T, 6 * N> work;
@@ -268,7 +268,7 @@ namespace kspc {
 
       if constexpr (is_complex_v<T>) {
         std::vector<T> work(4 * n);
-        std::vector<complex_value_t<T>> rwork(3 * n - 2);
+        std::vector<complex_value_t<T>> rwork(n == 0 ? 0 : 3 * n - 2);
         info = hermitian_matrix_eigen_solve(B, w, work, rwork);
       } else {
         std::vector<T> work(6 * n);
