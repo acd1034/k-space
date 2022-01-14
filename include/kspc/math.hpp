@@ -137,12 +137,14 @@ namespace kspc {
   /// @addtogroup physics
   /// @{
 
+  /// %in_brillouin_zone
   template <typename Bs>
   struct in_brillouin_zone {
   private:
     Bs bs_{};
 
   public:
+    constexpr in_brillouin_zone() = default;
     constexpr explicit in_brillouin_zone(const Bs& bs) : bs_{bs} {}
     constexpr explicit in_brillouin_zone(Bs&& bs) : bs_{std::move(bs)} {}
 
@@ -154,6 +156,10 @@ namespace kspc {
                          [&k](const auto& b) { return 2 * std::abs(innerp(k, b)) < innerp(b, b); });
     }
   }; // struct in_brillouin_zone
+
+  /// deduction guide for @link in_brillouin_zone in_brillouin_zone @endlink
+  template <typename Bs>
+  in_brillouin_zone(Bs) -> in_brillouin_zone<Bs>;
 
   /// @}
 } // namespace kspc
