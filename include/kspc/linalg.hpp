@@ -1,3 +1,4 @@
+/// @file linalg.hpp
 #pragma once
 #include <array>
 #include <functional> // invoke
