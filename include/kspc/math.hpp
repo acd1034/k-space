@@ -1,18 +1,14 @@
 /// @file math.hpp
 #pragma once
-#include <algorithm> // all_of, max
-#include <array>
-#include <cmath> // abs, isinf, exp, pow, cosh, sinh, etc.
+#include <algorithm> // all_of
+#include <cmath> // abs, exp, pow, cosh, sinh, etc.
 #include <complex>
-#include <functional> // invoke
-#include <vector>
-#include <kspc/math_basics.hpp>
+#include <kspc/core.hpp>
 
+// Mathematical constants
 namespace kspc {
   /// @addtogroup math_constants
   /// @{
-
-  // mathematical constants
 
   /// @cond
   namespace detail {
@@ -78,11 +74,12 @@ namespace kspc {
   // clang-format on
 
   /// @}
+}
 
+// Mathematical functions
+namespace kspc{
   /// @addtogroup math_functions
   /// @{
-
-  // mathematical functions
 
   /// The Fermi distribution
   template <typename T>
@@ -133,11 +130,12 @@ namespace kspc {
   }
 
   /// @}
+}
 
+// Physics
+namespace kspc{
   /// @addtogroup physics
   /// @{
-
-  // in Brillouin zone
 
   template <typename K, typename B,
             std::enable_if_t<is_range_v<K> && is_range_v<B>, std::nullptr_t> = nullptr>
