@@ -162,8 +162,8 @@ namespace kspc {
   /// @}
 } // namespace kspc
 
-// eigen solve
-namespace kspc {
+// hermitian matrix eigen solve
+namespace kspc::hermitian {
   /// @addtogroup linalg
   /// @{
 
@@ -200,11 +200,29 @@ namespace kspc {
   }
   /// @endcond
 
+  /// solve Ax = λx with a symmetric matrix A
+  template <class InOutMat, class OutVec, class Work>
+  std::enable_if_t<std::conjunction_v<
+    is_range<InOutMat>, is_range<OutVec>, is_range<Work>>, int>
+  eigen_solve(InOutMat& A, OutVec& w, Work& work) {
+    using std::size, std::data;
+    const std::size_t n = kspc::dim(A);
+    // std::cout << n << std::endl;
+    assert(size(A) == n * n);
+    assert(size(w) == n);
+    assert(size(work) >= 3 * n - 1);
+
+    int info;
+    //      dsyev_(jobz, uplo, n,      A , lda,      w ,      work ,     lwork , info)
+    detail::dsyev_( 'V',  'U', n, data(A),   n, data(w), data(work), size(work), info);
+    return info;
+  }
+
   /// solve Ax = λx with a hermitian matrix A
   template <class InOutMat, class OutVec, class Work, class RWork>
   std::enable_if_t<std::conjunction_v<
     is_range<InOutMat>, is_range<OutVec>, is_range<Work>, is_range<RWork>>, int>
-  hermitian_matrix_eigen_solve(InOutMat& A, OutVec& w, Work& work, RWork& rwork) {
+  eigen_solve(InOutMat& A, OutVec& w, Work& work, RWork& rwork) {
     using std::size, std::data;
     const std::size_t n = kspc::dim(A);
     // std::cout << n << std::endl;
@@ -219,29 +237,11 @@ namespace kspc {
     return info;
   }
 
-  /// solve Ax = λx with a symmetric matrix A
-  template <class InOutMat, class OutVec, class Work>
-  std::enable_if_t<std::conjunction_v<
-    is_range<InOutMat>, is_range<OutVec>, is_range<Work>>, int>
-  symmetric_matrix_eigen_solve(InOutMat& A, OutVec& w, Work& work) {
-    using std::size, std::data;
-    const std::size_t n = kspc::dim(A);
-    // std::cout << n << std::endl;
-    assert(size(A) == n * n);
-    assert(size(w) == n);
-    assert(size(work) >= 3 * n - 1);
-
-    int info;
-    //      dsyev_(jobz, uplo, n,      A , lda,      w ,      work ,     lwork , info)
-    detail::dsyev_( 'V',  'U', n, data(A),   n, data(w), data(work), size(work), info);
-    return info;
-  }
-
   /// @overload
   template <class InOutMat, class OutVec, class M, class P = identity_fn>
   std::enable_if_t<
     is_range_v<InOutMat> and is_range_v<OutVec> and (not is_range_v<M>) and (not is_range_v<P>), int>
-  hermitian_matrix_eigen_solve(InOutMat& A, OutVec& w, M&& map, P&& proj = {}) {
+  eigen_solve(InOutMat& A, OutVec& w, M&& map, P&& proj = {}) {
     using T = remove_cvref_t<std::invoke_result_t<P&, range_reference_t<InOutMat>>>;
     int info;
 
@@ -254,10 +254,10 @@ namespace kspc {
       if constexpr (is_complex_v<T>) {
         static std::array<T, 4 * N> work;
         static std::array<complex_value_t<T>, N == 0 ? 0 : 3 * N - 2> rwork;
-        info = hermitian_matrix_eigen_solve(B, w, work, rwork);
+        info = eigen_solve(B, w, work, rwork);
       } else {
         static std::array<T, 6 * N> work;
-        info = symmetric_matrix_eigen_solve(B, w, work);
+        info = eigen_solve(B, w, work);
       }
 
       matrix_copy(B, A, column_major, map);
@@ -270,10 +270,10 @@ namespace kspc {
       if constexpr (is_complex_v<T>) {
         std::vector<T> work(4 * n);
         std::vector<complex_value_t<T>> rwork(n == 0 ? 0 : 3 * n - 2);
-        info = hermitian_matrix_eigen_solve(B, w, work, rwork);
+        info = eigen_solve(B, w, work, rwork);
       } else {
         std::vector<T> work(6 * n);
-        info = symmetric_matrix_eigen_solve(B, w, work);
+        info = eigen_solve(B, w, work);
       }
 
       matrix_copy(B, A, column_major, map);
