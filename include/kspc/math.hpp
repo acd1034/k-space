@@ -1,7 +1,7 @@
 /// @file math.hpp
 #pragma once
 #include <algorithm> // all_of
-#include <cmath> // abs, exp, pow, cosh, sinh, etc.
+#include <cmath>     // abs, exp, pow, cosh, sinh, etc.
 #include <complex>
 #include <kspc/core.hpp>
 
@@ -86,47 +86,35 @@ namespace kspc {
   // clang-format on
 
   /// @}
-}
+} // namespace kspc
 
 // Mathematical functions
-namespace kspc{
+namespace kspc {
   /// @addtogroup math_functions
   /// @{
 
   /// The Fermi distribution
   template <typename T>
-  inline detail::enable_if_floating<T> f_FD(const T ene, const T beta, const T mu) {
+  inline detail::enable_if_floating<T> ffermi(const T ene, const T beta, const T mu) {
     return 1.0 / (std::exp(beta * (ene - mu)) + 1.0);
   }
 
   /// Derivative of the Fermi distribution
   template <typename T>
-  inline detail::enable_if_floating<T> Df_FD(const T ene, const T beta, const T mu) {
+  inline detail::enable_if_floating<T> dffermi(const T ene, const T beta, const T mu) {
     return -beta * std::pow(2.0 * std::cosh(0.5 * beta * (ene - mu)), -2);
   }
 
   /// The Bose distribution
   template <typename T>
-  inline detail::enable_if_floating<T> f_BE(const T ene, const T beta, const T mu) {
+  inline detail::enable_if_floating<T> fbose(const T ene, const T beta, const T mu) {
     return 1.0 / (std::exp(beta * (ene - mu)) - 1.0);
   }
 
   /// Derivative of the Bose distribution
   template <typename T>
-  inline detail::enable_if_floating<T> Df_BE(const T ene, const T beta, const T mu) {
+  inline detail::enable_if_floating<T> dfbose(const T ene, const T beta, const T mu) {
     return -beta * std::pow(2.0 * std::sinh(0.5 * beta * (ene - mu)), -2);
-  }
-
-  /// lerp (C++20)
-  template <typename T, typename U>
-  inline constexpr auto lerp(const T& a, const T& b, const U& t) noexcept(noexcept(a + t * (b - a)))
-    -> decltype(a + t * (b - a)) {
-    if constexpr (std::is_arithmetic_v<T> && std::is_arithmetic_v<U>) {
-      if ((a <= 0 && b >= 0) || (a >= 0 && b <= 0)) {
-        return (1 - t) * a + t * b;
-      }
-    }
-    return a + t * (b - a);
   }
 
   /// squared
@@ -142,10 +130,10 @@ namespace kspc{
   }
 
   /// @}
-}
+} // namespace kspc
 
 // Physics
-namespace kspc{
+namespace kspc {
   /// @addtogroup physics
   /// @{
 
