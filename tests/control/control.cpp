@@ -1,6 +1,7 @@
 #define CATCH_CONFIG_MAIN
 #include <catch2/catch.hpp>
 
+#include <algorithm> // equal
 #include <array>
 #include <complex>
 #include <memory> // shared_ptr
@@ -9,6 +10,15 @@
 #include <kspc/linalg.hpp>
 #include <kspc/math.hpp>
 #include <kspc/math_basics.hpp>
+
+inline constexpr auto equal_to = [](const auto& x, const auto& y) {
+  return kspc::approx::equal_to(x, y, 1e-6);
+};
+
+inline constexpr auto equal = [](const auto& x, const auto& y) {
+  using std::begin, std::end; // for ADL
+  return std::equal(begin(x), end(x), begin(y), end(y), equal_to);
+};
 
 struct X {};
 
@@ -107,9 +117,6 @@ TEST_CASE("mapping", "[math][mapping]") {
 }
 
 TEST_CASE("projection", "[math][projection]") {
-  constexpr auto equal_to = [](const auto& x, const auto& y) {
-    return kspc::approx::equal_to(x, y, 1e-6);
-  };
   {
     // identity
     std::complex c{1.0, 1.0};
@@ -141,9 +148,6 @@ TEST_CASE("projection", "[math][projection]") {
 }
 
 TEST_CASE("linalg", "[math][linalg]") {
-  constexpr auto equal_to = [](const auto& x, const auto& y) {
-    return kspc::approx::equal_to(x, y, 1e-6);
-  };
   {
     // matrix_vector_solve with column-major dynamic matrix
     // clang-format off
@@ -157,7 +161,7 @@ TEST_CASE("linalg", "[math][linalg]") {
     std::vector b{-2.0, -2.0, -5.0};
     const auto info = kspc::matrix_vector_solve(A, ipiv, b);
     CHECK(info == 0);
-    CHECK(b == std::vector{1.0, 2.0, 2.0});
+    CHECK(equal(b, std::vector{1.0, 2.0, 2.0}));
   }
   {
     // matrix_vector_solve with row-major dynamic matrix
@@ -172,7 +176,7 @@ TEST_CASE("linalg", "[math][linalg]") {
     const auto row_major = kspc::mapping_row_major(kspc::dim(A));
     const auto info = kspc::matrix_vector_solve(A, b, row_major);
     CHECK(info == 0);
-    CHECK(b == std::vector{1.0, 2.0, 2.0});
+    CHECK(equal(b, std::vector{1.0, 2.0, 2.0}));
   }
   {
     // matrix_vector_solve with row-major static matrix
@@ -188,7 +192,7 @@ TEST_CASE("linalg", "[math][linalg]") {
     constexpr auto row_major = kspc::mapping_row_major(N);
     const auto info = kspc::matrix_vector_solve(A, b, row_major);
     CHECK(info == 0);
-    CHECK(b == std::array{1.0, 2.0, 2.0});
+    CHECK(equal(b, std::array{1.0, 2.0, 2.0}));
   }
   {
     // hermitian_matrix_eigen_solve with column-major dynamic matrix
@@ -245,42 +249,42 @@ TEST_CASE("linalg", "[math][linalg]") {
 }
 
 TEST_CASE("approx", "[math][approx]") {
-  using namespace kspc::approx;
+  namespace app = kspc::approx;
   constexpr double eps = 1e-6;
   // clang-format off
   {
     // approximate comparison for double
-    CHECK(             less(1.0, 1.0 + 2e-6, eps));
-    CHECK(      not greater(1.0, 1.0 + 2e-6, eps));
-    CHECK(       less_equal(1.0, 1.0 + 2e-6, eps));
-    CHECK(not greater_equal(1.0, 1.0 + 2e-6, eps));
-    CHECK(     not_equal_to(1.0, 1.0 + 2e-6, eps));
-    CHECK(     not equal_to(1.0, 1.0 + 2e-6, eps));
+    CHECK(             app::less(1.0, 1.0 + 2e-6, eps));
+    CHECK(      not app::greater(1.0, 1.0 + 2e-6, eps));
+    CHECK(       app::less_equal(1.0, 1.0 + 2e-6, eps));
+    CHECK(not app::greater_equal(1.0, 1.0 + 2e-6, eps));
+    CHECK(     app::not_equal_to(1.0, 1.0 + 2e-6, eps));
+    CHECK(     not app::equal_to(1.0, 1.0 + 2e-6, eps));
 
-    CHECK(        not less(1.0, 1.0 + 2e-7, eps));
-    CHECK(     not greater(1.0, 1.0 + 2e-7, eps));
-    CHECK(      less_equal(1.0, 1.0 + 2e-7, eps));
-    CHECK(   greater_equal(1.0, 1.0 + 2e-7, eps));
-    CHECK(not not_equal_to(1.0, 1.0 + 2e-7, eps));
-    CHECK(        equal_to(1.0, 1.0 + 2e-7, eps));
+    CHECK(        not app::less(1.0, 1.0 + 2e-7, eps));
+    CHECK(     not app::greater(1.0, 1.0 + 2e-7, eps));
+    CHECK(      app::less_equal(1.0, 1.0 + 2e-7, eps));
+    CHECK(   app::greater_equal(1.0, 1.0 + 2e-7, eps));
+    CHECK(not app::not_equal_to(1.0, 1.0 + 2e-7, eps));
+    CHECK(        app::equal_to(1.0, 1.0 + 2e-7, eps));
   }
   {
     // approximate comparison for complex
     using namespace std::complex_literals;
     const std::complex c{1.0, 1.0};
-    CHECK(not_equal_to(c, c + 2e-6, eps));
-    CHECK(not_equal_to(c, c + 2e-6i, eps));
-    CHECK(not_equal_to(c, c + 2e-6*c, eps));
-    CHECK(not equal_to(c, c + 2e-6, eps));
-    CHECK(not equal_to(c, c + 2e-6i, eps));
-    CHECK(not equal_to(c, c + 2e-6*c, eps));
+    CHECK(app::not_equal_to(c, c + 2e-6, eps));
+    CHECK(app::not_equal_to(c, c + 2e-6i, eps));
+    CHECK(app::not_equal_to(c, c + 2e-6*c, eps));
+    CHECK(not app::equal_to(c, c + 2e-6, eps));
+    CHECK(not app::equal_to(c, c + 2e-6i, eps));
+    CHECK(not app::equal_to(c, c + 2e-6*c, eps));
 
-    CHECK(not not_equal_to(c, c + 2e-7, eps));
-    CHECK(not not_equal_to(c, c + 2e-7i, eps));
-    CHECK(not not_equal_to(c, c + 2e-7*c, eps));
-    CHECK(        equal_to(c, c + 2e-7, eps));
-    CHECK(        equal_to(c, c + 2e-7i, eps));
-    CHECK(        equal_to(c, c + 2e-7*c, eps));
+    CHECK(not app::not_equal_to(c, c + 2e-7, eps));
+    CHECK(not app::not_equal_to(c, c + 2e-7i, eps));
+    CHECK(not app::not_equal_to(c, c + 2e-7*c, eps));
+    CHECK(        app::equal_to(c, c + 2e-7, eps));
+    CHECK(        app::equal_to(c, c + 2e-7i, eps));
+    CHECK(        app::equal_to(c, c + 2e-7*c, eps));
   }
   // clang-format on
 }
