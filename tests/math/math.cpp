@@ -33,15 +33,7 @@ struct Y {
   using value_type = int;
 };
 
-TEST_CASE("control", "[control]") {
-  CHECK(kspc::innerp(std::vector{1, 2, 3}, std::vector{1, 2, 3}) == 14);
-  // CHECK(kspc::innerp(std::vector{1, 2}, std::vector{1, 0, 0, 1}, std::vector{1, 2}) == 5);
-  // CHECK(kspc::innerp(std::vector{1, 2}, std::vector{0, 1, 1, 0}, std::vector{1, 2}) == 4);
-  // CHECK(kspc::innerp(std::vector{1, 2}, std::array{1, 0, 0, 1}, std::vector{1, 2}) == 5);
-  // CHECK(kspc::innerp(std::vector{1, 2}, std::array{0, 1, 1, 0}, std::vector{1, 2}) == 4);
-  CHECK(kspc::sum(std::vector{1, 2, 3}) == 6);
-  CHECK(kspc::sum(std::vector{1, 2, 3}, [](const auto& x) { return 2 * x; }) == 12);
-
+TEST_CASE("core", "[core]") {
   // clang-format off
   // incrementable_traits
   static_assert(std::is_same_v<
@@ -147,6 +139,28 @@ TEST_CASE("projection", "[math][projection]") {
     CHECK(equal_to(kspc::conj(d), 1.0));
     CHECK(equal_to(kspc::conj(1.0), 1.0));
   }
+}
+
+TEST_CASE("numeric", "[numeric]") {
+  { // sum
+    constexpr auto twice = [](const auto& x) { return 2 * x; };
+    const std::vector v{1, 2, 3};
+    CHECK(kspc::sum(v) == 6);
+    CHECK(kspc::sum(v, twice) == 12);
+  }
+  { // innerp
+    using namespace std::complex_literals;
+    const std::vector v{1.0, 2.0, 3.0};
+    const std::vector vc{1.0i, 2.0i, 3.0i};
+    CHECK(equal_to(kspc::innerp(v, v), 14.0));
+    CHECK(equal_to(kspc::innerp(vc, vc), 14.0));
+  }
+  // { // innerp with op
+  //   CHECK(kspc::innerp(std::vector{1, 2}, std::vector{1, 0, 0, 1}, std::vector{1, 2}) == 5);
+  //   CHECK(kspc::innerp(std::vector{1, 2}, std::vector{0, 1, 1, 0}, std::vector{1, 2}) == 4);
+  //   CHECK(kspc::innerp(std::vector{1, 2}, std::array{1, 0, 0, 1}, std::vector{1, 2}) == 5);
+  //   CHECK(kspc::innerp(std::vector{1, 2}, std::array{0, 1, 1, 0}, std::vector{1, 2}) == 4);
+  // }
 }
 
 TEST_CASE("linalg", "[math][linalg]") {
