@@ -88,8 +88,7 @@ TEST_CASE("dim", "[math][dim]") {
   static_assert(kspc::is_fixed_size_array_v<int[3]>);
   static_assert(kspc::is_fixed_size_array_v<std::array<int, 3>>);
   static_assert(not kspc::is_fixed_size_array_v<std::vector<int>>);
-  {
-    // dim
+  { // dim
     std::array<int, 4> a;
     static_assert(kspc::fixed_size_matrix_dim_v<std::remove_cv_t<decltype(a)>> == 2);
     std::vector<int> v(4);
@@ -98,21 +97,18 @@ TEST_CASE("dim", "[math][dim]") {
 }
 
 TEST_CASE("mapping", "[math][mapping]") {
-  {
-    // mapping_row_major
+  { // mapping_row_major
     constexpr auto mapping = kspc::mapping_row_major(5);
     CHECK(mapping(1, 2) == 7);
   }
-  {
-    // mapping_column_major
+  { // mapping_column_major
     constexpr auto mapping = kspc::mapping_column_major(5);
     CHECK(mapping(1, 2) == 11);
   }
 }
 
 TEST_CASE("projection", "[math][projection]") {
-  {
-    // identity
+  { // identity
     std::complex c{1.0, 1.0};
     CHECK(equal_to(kspc::identity(c), std::complex{1.0, 1.0}));
     CHECK(equal_to(kspc::identity(std::complex{1.0, 1.0}), std::complex{1.0, 1.0}));
@@ -130,8 +126,7 @@ TEST_CASE("projection", "[math][projection]") {
   static_assert(std::is_same_v<kspc::complex_value_t<double>, double>);
   static_assert(std::is_same_v<kspc::complex_value_t<const double>, double>);
   static_assert(std::is_same_v<kspc::complex_value_t<const double&>, double>);
-  {
-    // conj
+  { // conj
     std::complex c{1.0, 1.0};
     CHECK(equal_to(kspc::conj(c), std::complex{1.0, -1.0}));
     CHECK(equal_to(kspc::conj(std::complex{1.0, 1.0}), std::complex{1.0, -1.0}));
@@ -164,8 +159,7 @@ TEST_CASE("numeric", "[numeric]") {
 }
 
 TEST_CASE("linalg", "[math][linalg]") {
-  {
-    // matrix_vector_solve with column-major dynamic matrix
+  { // matrix_vector_solve with column-major dynamic matrix
     // clang-format off
     std::vector A{
        2.0,  2.0,  1.0,
@@ -179,8 +173,7 @@ TEST_CASE("linalg", "[math][linalg]") {
     CHECK(info == 0);
     CHECK(equal(b, std::vector{1.0, 2.0, 2.0}));
   }
-  {
-    // matrix_vector_solve with row-major dynamic matrix
+  { // matrix_vector_solve with row-major dynamic matrix
     // clang-format off
     std::vector A{
       2.0,  1.0, -3.0,
@@ -194,8 +187,7 @@ TEST_CASE("linalg", "[math][linalg]") {
     CHECK(info == 0);
     CHECK(equal(b, std::vector{1.0, 2.0, 2.0}));
   }
-  {
-    // matrix_vector_solve with row-major static matrix
+  { // matrix_vector_solve with row-major static matrix
     // clang-format off
     std::array A{
       2.0,  1.0, -3.0,
@@ -210,8 +202,7 @@ TEST_CASE("linalg", "[math][linalg]") {
     CHECK(info == 0);
     CHECK(equal(b, std::array{1.0, 2.0, 2.0}));
   }
-  {
-    // hermitian_matrix_eigen_solve with column-major dynamic matrix
+  { // hermitian_matrix_eigen_solve with column-major dynamic matrix
     using namespace std::complex_literals;
     // clang-format off
     std::vector<std::complex<double>> A{
@@ -228,8 +219,7 @@ TEST_CASE("linalg", "[math][linalg]") {
     CHECK(equal_to(w[0], 1.0));
     CHECK(equal_to(w[1], 4.0));
   }
-  {
-    // hermitian_matrix_eigen_solve with row-major dynamic matrix
+  { // hermitian_matrix_eigen_solve with row-major dynamic matrix
     using namespace std::complex_literals;
     // clang-format off
     std::vector<std::complex<double>> A{
@@ -245,8 +235,7 @@ TEST_CASE("linalg", "[math][linalg]") {
     CHECK(equal_to(w[0], 1.0));
     CHECK(equal_to(w[1], 4.0));
   }
-  {
-    // hermitian_matrix_eigen_solve with row-major static matrix
+  { // hermitian_matrix_eigen_solve with row-major static matrix
     using namespace std::complex_literals;
     // clang-format off
     std::array<std::complex<double>, 4> A{
@@ -268,8 +257,7 @@ TEST_CASE("approx", "[math][approx]") {
   namespace app = kspc::approx;
   constexpr double eps = 1e-6;
   // clang-format off
-  {
-    // approximate comparison for double
+  { // approximate comparison for double
     CHECK(             app::less(1.0, 1.0 + 2e-6, eps));
     CHECK(      not app::greater(1.0, 1.0 + 2e-6, eps));
     CHECK(       app::less_equal(1.0, 1.0 + 2e-6, eps));
@@ -284,8 +272,7 @@ TEST_CASE("approx", "[math][approx]") {
     CHECK(not app::not_equal_to(1.0, 1.0 + 2e-7, eps));
     CHECK(        app::equal_to(1.0, 1.0 + 2e-7, eps));
   }
-  {
-    // approximate comparison for complex
+  { // approximate comparison for complex
     using namespace std::complex_literals;
     const std::complex c{1.0, 1.0};
     CHECK(app::not_equal_to(c, c + 2e-6, eps));
