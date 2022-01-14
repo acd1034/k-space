@@ -158,6 +158,45 @@ TEST_CASE("numeric", "[numeric]") {
   // }
 }
 
+TEST_CASE("approx", "[math][approx]") {
+  namespace app = kspc::approx;
+  constexpr double eps = 1e-6;
+  // clang-format off
+  { // approximate comparison for double
+    CHECK(             app::less(1.0, 1.0 + 2e-6, eps));
+    CHECK(      not app::greater(1.0, 1.0 + 2e-6, eps));
+    CHECK(       app::less_equal(1.0, 1.0 + 2e-6, eps));
+    CHECK(not app::greater_equal(1.0, 1.0 + 2e-6, eps));
+    CHECK(     app::not_equal_to(1.0, 1.0 + 2e-6, eps));
+    CHECK(     not app::equal_to(1.0, 1.0 + 2e-6, eps));
+
+    CHECK(        not app::less(1.0, 1.0 + 2e-7, eps));
+    CHECK(     not app::greater(1.0, 1.0 + 2e-7, eps));
+    CHECK(      app::less_equal(1.0, 1.0 + 2e-7, eps));
+    CHECK(   app::greater_equal(1.0, 1.0 + 2e-7, eps));
+    CHECK(not app::not_equal_to(1.0, 1.0 + 2e-7, eps));
+    CHECK(        app::equal_to(1.0, 1.0 + 2e-7, eps));
+  }
+  { // approximate comparison for complex
+    using namespace std::complex_literals;
+    const std::complex c{1.0, 1.0};
+    CHECK(app::not_equal_to(c, c + 2e-6, eps));
+    CHECK(app::not_equal_to(c, c + 2e-6i, eps));
+    CHECK(app::not_equal_to(c, c + 2e-6*c, eps));
+    CHECK(not app::equal_to(c, c + 2e-6, eps));
+    CHECK(not app::equal_to(c, c + 2e-6i, eps));
+    CHECK(not app::equal_to(c, c + 2e-6*c, eps));
+
+    CHECK(not app::not_equal_to(c, c + 2e-7, eps));
+    CHECK(not app::not_equal_to(c, c + 2e-7i, eps));
+    CHECK(not app::not_equal_to(c, c + 2e-7*c, eps));
+    CHECK(        app::equal_to(c, c + 2e-7, eps));
+    CHECK(        app::equal_to(c, c + 2e-7i, eps));
+    CHECK(        app::equal_to(c, c + 2e-7*c, eps));
+  }
+  // clang-format on
+}
+
 TEST_CASE("linalg", "[math][linalg]") {
   { // matrix_vector_solve with column-major dynamic matrix
     // clang-format off
@@ -251,43 +290,4 @@ TEST_CASE("linalg", "[math][linalg]") {
     CHECK(equal_to(w[0], 1.0));
     CHECK(equal_to(w[1], 4.0));
   }
-}
-
-TEST_CASE("approx", "[math][approx]") {
-  namespace app = kspc::approx;
-  constexpr double eps = 1e-6;
-  // clang-format off
-  { // approximate comparison for double
-    CHECK(             app::less(1.0, 1.0 + 2e-6, eps));
-    CHECK(      not app::greater(1.0, 1.0 + 2e-6, eps));
-    CHECK(       app::less_equal(1.0, 1.0 + 2e-6, eps));
-    CHECK(not app::greater_equal(1.0, 1.0 + 2e-6, eps));
-    CHECK(     app::not_equal_to(1.0, 1.0 + 2e-6, eps));
-    CHECK(     not app::equal_to(1.0, 1.0 + 2e-6, eps));
-
-    CHECK(        not app::less(1.0, 1.0 + 2e-7, eps));
-    CHECK(     not app::greater(1.0, 1.0 + 2e-7, eps));
-    CHECK(      app::less_equal(1.0, 1.0 + 2e-7, eps));
-    CHECK(   app::greater_equal(1.0, 1.0 + 2e-7, eps));
-    CHECK(not app::not_equal_to(1.0, 1.0 + 2e-7, eps));
-    CHECK(        app::equal_to(1.0, 1.0 + 2e-7, eps));
-  }
-  { // approximate comparison for complex
-    using namespace std::complex_literals;
-    const std::complex c{1.0, 1.0};
-    CHECK(app::not_equal_to(c, c + 2e-6, eps));
-    CHECK(app::not_equal_to(c, c + 2e-6i, eps));
-    CHECK(app::not_equal_to(c, c + 2e-6*c, eps));
-    CHECK(not app::equal_to(c, c + 2e-6, eps));
-    CHECK(not app::equal_to(c, c + 2e-6i, eps));
-    CHECK(not app::equal_to(c, c + 2e-6*c, eps));
-
-    CHECK(not app::not_equal_to(c, c + 2e-7, eps));
-    CHECK(not app::not_equal_to(c, c + 2e-7i, eps));
-    CHECK(not app::not_equal_to(c, c + 2e-7*c, eps));
-    CHECK(        app::equal_to(c, c + 2e-7, eps));
-    CHECK(        app::equal_to(c, c + 2e-7i, eps));
-    CHECK(        app::equal_to(c, c + 2e-7*c, eps));
-  }
-  // clang-format on
 }
