@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['hermitian_5fmatrix_5feigen_5fsolve_180',['hermitian_matrix_eigen_solve',['../group__linalg.html#ga7bf3dd7aabcf144d5156248b899bfbdb',1,'kspc::hermitian_matrix_eigen_solve(InOutMat &amp;A, OutVec &amp;w, Work &amp;work, RWork &amp;rwork)'],['../group__linalg.html#gaac4c15148c636bbe4149599d0d49786e',1,'kspc::hermitian_matrix_eigen_solve(InOutMat &amp;A, OutVec &amp;w, M &amp;&amp;map, P &amp;&amp;proj={})']]]
+  ['fbose_182',['fbose',['../group__math__functions.html#gaf94a5948eba4d41bc22684174e7ef3b4',1,'kspc']]],
+  ['ffermi_183',['ffermi',['../group__math__functions.html#ga50f5e2ace6254187bafe2ff0d07a5ed7',1,'kspc']]]
 ];

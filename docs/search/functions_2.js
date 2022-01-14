@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['fbose_178',['fbose',['../group__math__functions.html#gaf94a5948eba4d41bc22684174e7ef3b4',1,'kspc']]],
-  ['ffermi_179',['ffermi',['../group__math__functions.html#ga50f5e2ace6254187bafe2ff0d07a5ed7',1,'kspc']]]
+  ['eigen_5fsolve_181',['eigen_solve',['../group__linalg.html#ga01c576c424aa679b295d19a8d3a51c07',1,'kspc::hermitian::eigen_solve(InOutMat &amp;A, OutVec &amp;w, Work &amp;work)'],['../group__linalg.html#ga2ecba22c7effce9d2446e9803c4149f4',1,'kspc::hermitian::eigen_solve(InOutMat &amp;A, OutVec &amp;w, Work &amp;work, RWork &amp;rwork)'],['../group__linalg.html#ga860bb409a166a97ea7426a98a520170d',1,'kspc::hermitian::eigen_solve(InOutMat &amp;A, OutVec &amp;w, M &amp;&amp;map, P &amp;&amp;proj={})']]]
 ];

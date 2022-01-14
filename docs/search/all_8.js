@@ -1,13 +1,17 @@
 var searchData=
 [
-  ['linear_20algorithms_78',['Linear algorithms',['../group__linalg.html',1,'']]],
-  ['ln10_79',['ln10',['../group__math__constants.html#ga25a74df4d2bf42d205ed4f8125cd18b6',1,'kspc']]],
-  ['ln10_5fv_80',['ln10_v',['../group__math__constants.html#ga37836cab268d2962f729ceed9df36d6f',1,'kspc']]],
-  ['ln2_81',['ln2',['../group__math__constants.html#ga83c8d4b6d90b4b4665905f45bfcc8c52',1,'kspc']]],
-  ['ln2_5fv_82',['ln2_v',['../group__math__constants.html#ga694cc18fc5ade8311c287323ebc2301c',1,'kspc']]],
-  ['log10e_83',['log10e',['../group__math__constants.html#gac29a890bdb50e859b54b7cb09be04e74',1,'kspc']]],
-  ['log10e_5fv_84',['log10e_v',['../group__math__constants.html#ga0967f35b99ebc363aa1b1388d4341dab',1,'kspc']]],
-  ['log2e_85',['log2e',['../group__math__constants.html#ga04a47448bedcbc18016d5a824ebe7f01',1,'kspc']]],
-  ['log2e_5fv_86',['log2e_v',['../group__math__constants.html#ga0f2359654a43f0939491777d76ff7006',1,'kspc']]],
-  ['lu_5ffactor_87',['lu_factor',['../group__linalg.html#ga8ad83e9fe6d1b5b0b8877268f9441ee8',1,'kspc']]]
+  ['make_5fsigned_5fv_89',['make_signed_v',['../group__utility.html#ga09d760d9c47c778498c3e521373cbc12',1,'kspc::make_signed_v(const T &amp;x) noexcept(noexcept(static_cast&lt; std::make_signed_t&lt; T &gt;&gt;(x)))'],['../group__utility.html#ga50e89aa824d65865fd209cf75f4d082f',1,'kspc::make_signed_v(T &amp;&amp;x) noexcept(noexcept(std::forward&lt; T &gt;(x)))']]],
+  ['make_5funsigned_5fv_90',['make_unsigned_v',['../group__utility.html#ga8f5dc460d06df63e1f97b43136442278',1,'kspc::make_unsigned_v(const T &amp;x) noexcept(noexcept(static_cast&lt; std::make_unsigned_t&lt; T &gt;&gt;(x)))'],['../group__utility.html#ga4f440561437f86c59c9db0bca5137017',1,'kspc::make_unsigned_v(T &amp;&amp;x) noexcept(noexcept(std::forward&lt; T &gt;(x)))']]],
+  ['mapping_5fcolumn_5fmajor_91',['mapping_column_major',['../group__matrix.html#ga555eff80d62690b8de72d5fd1b936716',1,'kspc']]],
+  ['mapping_5frow_5fmajor_92',['mapping_row_major',['../structkspc_1_1mapping__row__major.html',1,'kspc']]],
+  ['mapping_5ftranspose_93',['mapping_transpose',['../structkspc_1_1mapping__transpose.html',1,'kspc::mapping_transpose&lt; Mapping &gt;'],['../group__matrix.html#gaaebb5dbdfbb8b1d567dbdc55f4e7f2dc',1,'kspc::mapping_transpose(Mapping) -&gt; mapping_transpose&lt; Mapping &gt;']]],
+  ['math_94',['Math',['../group__math.html',1,'']]],
+  ['math_2ehpp_95',['math.hpp',['../math_8hpp.html',1,'']]],
+  ['math_5fbasics_2ehpp_96',['math_basics.hpp',['../math__basics_8hpp.html',1,'']]],
+  ['mathematical_20constants_97',['Mathematical constants',['../group__math__constants.html',1,'']]],
+  ['mathematical_20functions_98',['Mathematical functions',['../group__math__functions.html',1,'']]],
+  ['matrix_99',['Matrix',['../group__matrix.html',1,'']]],
+  ['matrix_5fcopy_100',['matrix_copy',['../group__linalg.html#ga4b012f86c9d63060537f10b86917d905',1,'kspc']]],
+  ['matrix_5fvector_5fsolve_101',['matrix_vector_solve',['../group__linalg.html#ga663b4c51d296f9b35597dd1f8c1abcb1',1,'kspc::matrix_vector_solve(InOutMat &amp;A, OutIPiv &amp;ipiv, InOutVec &amp;b)'],['../group__linalg.html#ga4ab67842f4653a397aceacf9d458e41a',1,'kspc::matrix_vector_solve(const InMat &amp;A, InOutVec &amp;b, M &amp;&amp;map, P &amp;&amp;proj={})']]],
+  ['matrix_5fvector_5fsolve_5fwith_5flu_5ffactor_102',['matrix_vector_solve_with_lu_factor',['../group__linalg.html#ga82a2b20a5bef9ce0922339ccc71e9fb3',1,'kspc']]]
 ];

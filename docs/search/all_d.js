@@ -1,10 +1,13 @@
 var searchData=
 [
-  ['range_108',['Range',['../group__range.html',1,'']]],
-  ['range_5fdifference_5ft_109',['range_difference_t',['../group__range.html#ga18bd8d28401faa9a1f5e50ffe3a9102d',1,'kspc']]],
-  ['range_5freference_5ft_110',['range_reference_t',['../group__range.html#ga206f6e863c3cf8b6107f81e2f44acb5a',1,'kspc']]],
-  ['range_5fsize_5ft_111',['range_size_t',['../group__range.html#gab2660ef108280595688271dd76ec3daf',1,'kspc']]],
-  ['range_5fvalue_5ft_112',['range_value_t',['../group__range.html#gaa37e5148fdcaf719fe194b676309adc4',1,'kspc']]],
-  ['remove_5fcvref_113',['remove_cvref',['../structkspc_1_1remove__cvref.html',1,'kspc']]],
-  ['remove_5fcvref_5ft_114',['remove_cvref_t',['../group__utility.html#ga84e8e34e5d10ad3ee287dc2ca3e636c5',1,'kspc']]]
+  ['sentinel_5ft_117',['sentinel_t',['../group__range.html#gac4d071ef8f90947000e98f35fa370f31',1,'kspc']]],
+  ['sqrt2_118',['sqrt2',['../group__math__constants.html#ga40b92fd047ea0344da972a415e2fc57d',1,'kspc']]],
+  ['sqrt2_5fv_119',['sqrt2_v',['../group__math__constants.html#ga13495c68cdf4ee306d82c684a32835d6',1,'kspc']]],
+  ['sqrt3_120',['sqrt3',['../group__math__constants.html#ga9f5eb29f175060f10338ee159422c987',1,'kspc']]],
+  ['sqrt3_5fv_121',['sqrt3_v',['../group__math__constants.html#gaf16e42785ec8af1e4056fc435a2d6b6d',1,'kspc']]],
+  ['sqrt5_122',['sqrt5',['../group__math__constants.html#gad878f4f124754abd263e32d85618f0a8',1,'kspc']]],
+  ['sqrt5_5fv_123',['sqrt5_v',['../group__math__constants.html#gabc71a557d06205d0dfebf889277de653',1,'kspc']]],
+  ['squared_124',['squared',['../group__math__functions.html#ga7b3b51148ec88ed4105859112b15ea5e',1,'kspc']]],
+  ['ssize_125',['ssize',['../group__range.html#gaae414289ef2b3c1a41b14b0062a059a8',1,'kspc::ssize(const C &amp;c) noexcept(noexcept(static_cast&lt; std::common_type_t&lt; std::ptrdiff_t, std::make_signed_t&lt; decltype(c.size())&gt;&gt;&gt;(c.size()))) -&gt; std::common_type_t&lt; std::ptrdiff_t, std::make_signed_t&lt; decltype(c.size())&gt;&gt;'],['../group__range.html#ga5bc2cc72d192708158fd8ffc95d86a79',1,'kspc::ssize(std::add_lvalue_reference_t&lt; const T[N]&gt;) noexcept']]],
+  ['sum_126',['sum',['../group__numeric.html#gaf68d059d849df50b608442c0068014cf',1,'kspc']]]
 ];

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>k-space: Linear algorithms</title>
+<title>k-space: include/kspc/linalg.hpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -45,7 +45,6 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
-</div><!-- top -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -60,58 +59,68 @@ $(function() {
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_919b91d53b27d7e6df05f777d27efdcc.html">kspc</a></li>  </ul>
+</div>
+</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">Linear algorithms<div class="ingroups"><a class="el" href="group__math.html">Math</a></div></div>  </div>
+<div class="title">linalg.hpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+<div class="textblock"><code>#include &lt;array&gt;</code><br />
+<code>#include &lt;functional&gt;</code><br />
+<code>#include &lt;vector&gt;</code><br />
+<code>#include &lt;<a class="el" href="math__basics_8hpp_source.html">kspc/math_basics.hpp</a>&gt;</code><br />
+</div>
+<p><a href="linalg_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ga4b012f86c9d63060537f10b86917d905"><td class="memTemplParams" colspan="2"><a id="ga4b012f86c9d63060537f10b86917d905"></a>
+<tr class="memitem:ga4b012f86c9d63060537f10b86917d905"><td class="memTemplParams" colspan="2">
 template&lt;class InMat , class OutMat , class M1 , class M2 , class P1  = identity_fn&gt; </td></tr>
 <tr class="memitem:ga4b012f86c9d63060537f10b86917d905"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__linalg.html#ga4b012f86c9d63060537f10b86917d905">kspc::matrix_copy</a> (const InMat &amp;A, OutMat &amp;B, M1 &amp;&amp;map1, M2 &amp;&amp;map2, P1 &amp;&amp;proj1={})</td></tr>
 <tr class="memdesc:ga4b012f86c9d63060537f10b86917d905"><td class="mdescLeft">&#160;</td><td class="mdescRight">matrix_copy <br /></td></tr>
 <tr class="separator:ga4b012f86c9d63060537f10b86917d905"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga8ad83e9fe6d1b5b0b8877268f9441ee8"><td class="memTemplParams" colspan="2"><a id="ga8ad83e9fe6d1b5b0b8877268f9441ee8"></a>
+<tr class="memitem:ga8ad83e9fe6d1b5b0b8877268f9441ee8"><td class="memTemplParams" colspan="2">
 template&lt;class InOutMat , class OutIPiv &gt; </td></tr>
 <tr class="memitem:ga8ad83e9fe6d1b5b0b8877268f9441ee8"><td class="memTemplItemLeft" align="right" valign="top">int&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__linalg.html#ga8ad83e9fe6d1b5b0b8877268f9441ee8">kspc::lu_factor</a> (InOutMat &amp;A, OutIPiv &amp;ipiv)</td></tr>
 <tr class="memdesc:ga8ad83e9fe6d1b5b0b8877268f9441ee8"><td class="mdescLeft">&#160;</td><td class="mdescRight">LU factorization. <br /></td></tr>
 <tr class="separator:ga8ad83e9fe6d1b5b0b8877268f9441ee8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga82a2b20a5bef9ce0922339ccc71e9fb3"><td class="memTemplParams" colspan="2"><a id="ga82a2b20a5bef9ce0922339ccc71e9fb3"></a>
+<tr class="memitem:ga82a2b20a5bef9ce0922339ccc71e9fb3"><td class="memTemplParams" colspan="2">
 template&lt;class InMat , class InIPiv , class InOutVec &gt; </td></tr>
 <tr class="memitem:ga82a2b20a5bef9ce0922339ccc71e9fb3"><td class="memTemplItemLeft" align="right" valign="top">int&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__linalg.html#ga82a2b20a5bef9ce0922339ccc71e9fb3">kspc::matrix_vector_solve_with_lu_factor</a> (const InMat &amp;A, const InIPiv &amp;ipiv, InOutVec &amp;b)</td></tr>
 <tr class="memdesc:ga82a2b20a5bef9ce0922339ccc71e9fb3"><td class="mdescLeft">&#160;</td><td class="mdescRight">solve Ax = b with a general matrix A using LU factorization <br /></td></tr>
 <tr class="separator:ga82a2b20a5bef9ce0922339ccc71e9fb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga663b4c51d296f9b35597dd1f8c1abcb1"><td class="memTemplParams" colspan="2"><a id="ga663b4c51d296f9b35597dd1f8c1abcb1"></a>
+<tr class="memitem:ga663b4c51d296f9b35597dd1f8c1abcb1"><td class="memTemplParams" colspan="2">
 template&lt;class InOutMat , class OutIPiv , class InOutVec &gt; </td></tr>
-<tr class="memitem:ga663b4c51d296f9b35597dd1f8c1abcb1"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if_t&lt; std::conjunction_v&lt; <a class="el" href="structkspc_1_1is__range.html">is_range</a>&lt; InOutMat &gt;, <a class="el" href="structkspc_1_1is__range.html">is_range</a>&lt; OutIPiv &gt;, <a class="el" href="structkspc_1_1is__range.html">is_range</a>&lt; InOutVec &gt; &gt;, int &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__linalg.html#ga663b4c51d296f9b35597dd1f8c1abcb1">kspc::matrix_vector_solve</a> (InOutMat &amp;A, OutIPiv &amp;ipiv, InOutVec &amp;b)</td></tr>
+<tr class="memitem:ga663b4c51d296f9b35597dd1f8c1abcb1"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if_t&lt; std::conjunction_v&lt; is_range&lt; InOutMat &gt;, is_range&lt; OutIPiv &gt;, is_range&lt; InOutVec &gt; &gt;, int &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__linalg.html#ga663b4c51d296f9b35597dd1f8c1abcb1">kspc::matrix_vector_solve</a> (InOutMat &amp;A, OutIPiv &amp;ipiv, InOutVec &amp;b)</td></tr>
 <tr class="memdesc:ga663b4c51d296f9b35597dd1f8c1abcb1"><td class="mdescLeft">&#160;</td><td class="mdescRight">solve Ax = b with a general matrix A <br /></td></tr>
 <tr class="separator:ga663b4c51d296f9b35597dd1f8c1abcb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga4ab67842f4653a397aceacf9d458e41a"><td class="memTemplParams" colspan="2"><a id="ga4ab67842f4653a397aceacf9d458e41a"></a>
+<tr class="memitem:ga4ab67842f4653a397aceacf9d458e41a"><td class="memTemplParams" colspan="2">
 template&lt;class InMat , class InOutVec , class M , class P  = identity_fn&gt; </td></tr>
 <tr class="memitem:ga4ab67842f4653a397aceacf9d458e41a"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if_t&lt; is_range_v&lt; InMat &gt; and is_range_v&lt; InOutVec &gt; and(not is_range_v&lt; M &gt;) and(not is_range_v&lt; P &gt;), int &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__linalg.html#ga4ab67842f4653a397aceacf9d458e41a">kspc::matrix_vector_solve</a> (const InMat &amp;A, InOutVec &amp;b, M &amp;&amp;map, P &amp;&amp;proj={})</td></tr>
 <tr class="memdesc:ga4ab67842f4653a397aceacf9d458e41a"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. <br /></td></tr>
 <tr class="separator:ga4ab67842f4653a397aceacf9d458e41a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga01c576c424aa679b295d19a8d3a51c07"><td class="memTemplParams" colspan="2"><a id="ga01c576c424aa679b295d19a8d3a51c07"></a>
+<tr class="memitem:ga01c576c424aa679b295d19a8d3a51c07"><td class="memTemplParams" colspan="2">
 template&lt;class InOutMat , class OutVec , class Work &gt; </td></tr>
-<tr class="memitem:ga01c576c424aa679b295d19a8d3a51c07"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if_t&lt; std::conjunction_v&lt; <a class="el" href="structkspc_1_1is__range.html">is_range</a>&lt; InOutMat &gt;, <a class="el" href="structkspc_1_1is__range.html">is_range</a>&lt; OutVec &gt;, <a class="el" href="structkspc_1_1is__range.html">is_range</a>&lt; Work &gt; &gt;, int &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__linalg.html#ga01c576c424aa679b295d19a8d3a51c07">kspc::hermitian::eigen_solve</a> (InOutMat &amp;A, OutVec &amp;w, Work &amp;work)</td></tr>
+<tr class="memitem:ga01c576c424aa679b295d19a8d3a51c07"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if_t&lt; std::conjunction_v&lt; is_range&lt; InOutMat &gt;, is_range&lt; OutVec &gt;, is_range&lt; Work &gt; &gt;, int &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__linalg.html#ga01c576c424aa679b295d19a8d3a51c07">kspc::hermitian::eigen_solve</a> (InOutMat &amp;A, OutVec &amp;w, Work &amp;work)</td></tr>
 <tr class="memdesc:ga01c576c424aa679b295d19a8d3a51c07"><td class="mdescLeft">&#160;</td><td class="mdescRight">solve Ax = λx with a symmetric matrix A <br /></td></tr>
 <tr class="separator:ga01c576c424aa679b295d19a8d3a51c07"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga2ecba22c7effce9d2446e9803c4149f4"><td class="memTemplParams" colspan="2"><a id="ga2ecba22c7effce9d2446e9803c4149f4"></a>
+<tr class="memitem:ga2ecba22c7effce9d2446e9803c4149f4"><td class="memTemplParams" colspan="2">
 template&lt;class InOutMat , class OutVec , class Work , class RWork &gt; </td></tr>
-<tr class="memitem:ga2ecba22c7effce9d2446e9803c4149f4"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if_t&lt; std::conjunction_v&lt; <a class="el" href="structkspc_1_1is__range.html">is_range</a>&lt; InOutMat &gt;, <a class="el" href="structkspc_1_1is__range.html">is_range</a>&lt; OutVec &gt;, <a class="el" href="structkspc_1_1is__range.html">is_range</a>&lt; Work &gt;, <a class="el" href="structkspc_1_1is__range.html">is_range</a>&lt; RWork &gt; &gt;, int &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__linalg.html#ga2ecba22c7effce9d2446e9803c4149f4">kspc::hermitian::eigen_solve</a> (InOutMat &amp;A, OutVec &amp;w, Work &amp;work, RWork &amp;rwork)</td></tr>
+<tr class="memitem:ga2ecba22c7effce9d2446e9803c4149f4"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if_t&lt; std::conjunction_v&lt; is_range&lt; InOutMat &gt;, is_range&lt; OutVec &gt;, is_range&lt; Work &gt;, is_range&lt; RWork &gt; &gt;, int &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__linalg.html#ga2ecba22c7effce9d2446e9803c4149f4">kspc::hermitian::eigen_solve</a> (InOutMat &amp;A, OutVec &amp;w, Work &amp;work, RWork &amp;rwork)</td></tr>
 <tr class="memdesc:ga2ecba22c7effce9d2446e9803c4149f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">solve Ax = λx with a hermitian matrix A <br /></td></tr>
 <tr class="separator:ga2ecba22c7effce9d2446e9803c4149f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga860bb409a166a97ea7426a98a520170d"><td class="memTemplParams" colspan="2"><a id="ga860bb409a166a97ea7426a98a520170d"></a>
+<tr class="memitem:ga860bb409a166a97ea7426a98a520170d"><td class="memTemplParams" colspan="2">
 template&lt;class InOutMat , class OutVec , class M , class P  = identity_fn&gt; </td></tr>
 <tr class="memitem:ga860bb409a166a97ea7426a98a520170d"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if_t&lt; is_range_v&lt; InOutMat &gt; and is_range_v&lt; OutVec &gt; and(not is_range_v&lt; M &gt;) and(not is_range_v&lt; P &gt;), int &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__linalg.html#ga860bb409a166a97ea7426a98a520170d">kspc::hermitian::eigen_solve</a> (InOutMat &amp;A, OutVec &amp;w, M &amp;&amp;map, P &amp;&amp;proj={})</td></tr>
 <tr class="memdesc:ga860bb409a166a97ea7426a98a520170d"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. <br /></td></tr>
 <tr class="separator:ga860bb409a166a97ea7426a98a520170d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
