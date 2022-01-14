@@ -66,6 +66,7 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
 <a href="#func-members">Functions</a> &#124;
 <a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
@@ -73,52 +74,40 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;algorithm&gt;</code><br />
-<code>#include &lt;array&gt;</code><br />
 <code>#include &lt;cmath&gt;</code><br />
 <code>#include &lt;complex&gt;</code><br />
-<code>#include &lt;functional&gt;</code><br />
-<code>#include &lt;vector&gt;</code><br />
-<code>#include &lt;<a class="el" href="math__basics_8hpp_source.html">kspc/math_basics.hpp</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="core_8hpp_source.html">kspc/core.hpp</a>&gt;</code><br />
 </div>
 <p><a href="math_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkspc_1_1in__brillouin__zone.html">kspc::in_brillouin_zone&lt; Bs &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">in_brillouin_zone  <a href="structkspc_1_1in__brillouin__zone.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:abe3298b1461d2583211f6a073c7366be"><td class="memTemplParams" colspan="2"><a id="abe3298b1461d2583211f6a073c7366be"></a>
-template&lt;typename L , typename Vs , std::enable_if_t&lt; std::conjunction_v&lt; is_sized_range&lt; L &gt;, is_range&lt; Vs &gt;, is_range&lt; range_reference_t&lt; Vs &gt;&gt;, detail::fixed_mel_constraints&lt; L, Vs &gt;&gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
-<tr class="memitem:abe3298b1461d2583211f6a073c7366be"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="math_8hpp.html#abe3298b1461d2583211f6a073c7366be">kspc::mel</a> (const L &amp;op, const Vs &amp;vs)</td></tr>
-<tr class="memdesc:abe3298b1461d2583211f6a073c7366be"><td class="mdescLeft">&#160;</td><td class="mdescRight">mel <br /></td></tr>
-<tr class="separator:abe3298b1461d2583211f6a073c7366be"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a90634ed5d1f881771d66e09414f4ebd1"><td class="memTemplParams" colspan="2"><a id="a90634ed5d1f881771d66e09414f4ebd1"></a>
-template&lt;typename M , typename Vs , std::enable_if_t&lt; std::conjunction_v&lt; is_sized_range&lt; M &gt;, is_range&lt; Vs &gt;, is_range&lt; range_reference_t&lt; Vs &gt;&gt;, std::negation&lt; detail::fixed_mel_constraints&lt; M, Vs &gt;&gt;&gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
-<tr class="memitem:a90634ed5d1f881771d66e09414f4ebd1"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="math_8hpp.html#a90634ed5d1f881771d66e09414f4ebd1">kspc::mel</a> (const M &amp;op, const Vs &amp;vs)</td></tr>
-<tr class="memdesc:a90634ed5d1f881771d66e09414f4ebd1"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. <br /></td></tr>
-<tr class="separator:a90634ed5d1f881771d66e09414f4ebd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gac70951d996f93955adbfbf35ce55f717"><td class="memTemplParams" colspan="2">
+<tr class="memitem:ga50f5e2ace6254187bafe2ff0d07a5ed7"><td class="memTemplParams" colspan="2">
 template&lt;typename T &gt; </td></tr>
-<tr class="memitem:gac70951d996f93955adbfbf35ce55f717"><td class="memTemplItemLeft" align="right" valign="top">detail::enable_if_floating&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__math__functions.html#gac70951d996f93955adbfbf35ce55f717">kspc::f_FD</a> (const T ene, const T beta, const T mu)</td></tr>
-<tr class="memdesc:gac70951d996f93955adbfbf35ce55f717"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Fermi distribution. <br /></td></tr>
-<tr class="separator:gac70951d996f93955adbfbf35ce55f717"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga92fcfacb33197ef110afa0c6882cb532"><td class="memTemplParams" colspan="2">
+<tr class="memitem:ga50f5e2ace6254187bafe2ff0d07a5ed7"><td class="memTemplItemLeft" align="right" valign="top">detail::enable_if_floating&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__math__functions.html#ga50f5e2ace6254187bafe2ff0d07a5ed7">kspc::ffermi</a> (const T ene, const T beta, const T mu)</td></tr>
+<tr class="memdesc:ga50f5e2ace6254187bafe2ff0d07a5ed7"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Fermi distribution. <br /></td></tr>
+<tr class="separator:ga50f5e2ace6254187bafe2ff0d07a5ed7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga18755790032872eb6bca18f2e93951db"><td class="memTemplParams" colspan="2">
 template&lt;typename T &gt; </td></tr>
-<tr class="memitem:ga92fcfacb33197ef110afa0c6882cb532"><td class="memTemplItemLeft" align="right" valign="top">detail::enable_if_floating&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__math__functions.html#ga92fcfacb33197ef110afa0c6882cb532">kspc::Df_FD</a> (const T ene, const T beta, const T mu)</td></tr>
-<tr class="memdesc:ga92fcfacb33197ef110afa0c6882cb532"><td class="mdescLeft">&#160;</td><td class="mdescRight">Derivative of the Fermi distribution. <br /></td></tr>
-<tr class="separator:ga92fcfacb33197ef110afa0c6882cb532"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga33b9e068cd0b45648cf06e5be9165e78"><td class="memTemplParams" colspan="2">
+<tr class="memitem:ga18755790032872eb6bca18f2e93951db"><td class="memTemplItemLeft" align="right" valign="top">detail::enable_if_floating&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__math__functions.html#ga18755790032872eb6bca18f2e93951db">kspc::dffermi</a> (const T ene, const T beta, const T mu)</td></tr>
+<tr class="memdesc:ga18755790032872eb6bca18f2e93951db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Derivative of the Fermi distribution. <br /></td></tr>
+<tr class="separator:ga18755790032872eb6bca18f2e93951db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf94a5948eba4d41bc22684174e7ef3b4"><td class="memTemplParams" colspan="2">
 template&lt;typename T &gt; </td></tr>
-<tr class="memitem:ga33b9e068cd0b45648cf06e5be9165e78"><td class="memTemplItemLeft" align="right" valign="top">detail::enable_if_floating&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__math__functions.html#ga33b9e068cd0b45648cf06e5be9165e78">kspc::f_BE</a> (const T ene, const T beta, const T mu)</td></tr>
-<tr class="memdesc:ga33b9e068cd0b45648cf06e5be9165e78"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Bose distribution. <br /></td></tr>
-<tr class="separator:ga33b9e068cd0b45648cf06e5be9165e78"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gae8b17736f5161c2b1fc2a87050cba4a7"><td class="memTemplParams" colspan="2">
+<tr class="memitem:gaf94a5948eba4d41bc22684174e7ef3b4"><td class="memTemplItemLeft" align="right" valign="top">detail::enable_if_floating&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__math__functions.html#gaf94a5948eba4d41bc22684174e7ef3b4">kspc::fbose</a> (const T ene, const T beta, const T mu)</td></tr>
+<tr class="memdesc:gaf94a5948eba4d41bc22684174e7ef3b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Bose distribution. <br /></td></tr>
+<tr class="separator:gaf94a5948eba4d41bc22684174e7ef3b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab981af24d8634b6122f2d853e4d355d8"><td class="memTemplParams" colspan="2">
 template&lt;typename T &gt; </td></tr>
-<tr class="memitem:gae8b17736f5161c2b1fc2a87050cba4a7"><td class="memTemplItemLeft" align="right" valign="top">detail::enable_if_floating&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__math__functions.html#gae8b17736f5161c2b1fc2a87050cba4a7">kspc::Df_BE</a> (const T ene, const T beta, const T mu)</td></tr>
-<tr class="memdesc:gae8b17736f5161c2b1fc2a87050cba4a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Derivative of the Bose distribution. <br /></td></tr>
-<tr class="separator:gae8b17736f5161c2b1fc2a87050cba4a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gabcd97296f6dce7f6888a1cd8c156e2f5"><td class="memTemplParams" colspan="2">
-template&lt;typename T , typename U &gt; </td></tr>
-<tr class="memitem:gabcd97296f6dce7f6888a1cd8c156e2f5"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__math__functions.html#gabcd97296f6dce7f6888a1cd8c156e2f5">kspc::lerp</a> (const T &amp;a, const T &amp;b, const U &amp;t) noexcept(noexcept(a+t *(b - a))) -&gt; decltype(a+t *(b - a))</td></tr>
-<tr class="memdesc:gabcd97296f6dce7f6888a1cd8c156e2f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">lerp (C++20) <br /></td></tr>
-<tr class="separator:gabcd97296f6dce7f6888a1cd8c156e2f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab981af24d8634b6122f2d853e4d355d8"><td class="memTemplItemLeft" align="right" valign="top">detail::enable_if_floating&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__math__functions.html#gab981af24d8634b6122f2d853e4d355d8">kspc::dfbose</a> (const T ene, const T beta, const T mu)</td></tr>
+<tr class="memdesc:gab981af24d8634b6122f2d853e4d355d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Derivative of the Bose distribution. <br /></td></tr>
+<tr class="separator:gab981af24d8634b6122f2d853e4d355d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga7b3b51148ec88ed4105859112b15ea5e"><td class="memTemplParams" colspan="2">
 template&lt;typename T &gt; </td></tr>
 <tr class="memitem:ga7b3b51148ec88ed4105859112b15ea5e"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__math__functions.html#ga7b3b51148ec88ed4105859112b15ea5e">kspc::squared</a> (const T &amp;x) noexcept(noexcept(x *x)) -&gt; decltype(x *x)</td></tr>
@@ -129,14 +118,11 @@ template&lt;typename T &gt; </td></tr>
 <tr class="memitem:ga8ed7e245b64e513f1a9569a7ce730a02"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__math__functions.html#ga8ed7e245b64e513f1a9569a7ce730a02">kspc::cubed</a> (const T &amp;x) noexcept(noexcept(x *x *x)) -&gt; decltype(x *x *x)</td></tr>
 <tr class="memdesc:ga8ed7e245b64e513f1a9569a7ce730a02"><td class="mdescLeft">&#160;</td><td class="mdescRight">cubed <br /></td></tr>
 <tr class="separator:ga8ed7e245b64e513f1a9569a7ce730a02"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga8ee299167025f64055db5800d1b1a3cb"><td class="memTemplParams" colspan="2">
-template&lt;typename K , typename B , std::enable_if_t&lt; is_range_v&lt; K &gt; &amp;&amp;is_range_v&lt; B &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
-<tr class="memitem:ga8ee299167025f64055db5800d1b1a3cb"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::in_BZ</b> (const K &amp;k, const B &amp;b)</td></tr>
-<tr class="separator:ga8ee299167025f64055db5800d1b1a3cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga374fd73dc5afb5f9f393ea1bcdcf8a7d"><td class="memTemplParams" colspan="2">
-template&lt;typename Bs , std::enable_if_t&lt; is_range_v&lt; Bs &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
-<tr class="memitem:ga374fd73dc5afb5f9f393ea1bcdcf8a7d"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::make_in_BZ</b> (const Bs &amp;bs)</td></tr>
-<tr class="separator:ga374fd73dc5afb5f9f393ea1bcdcf8a7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6a923b5cab9583c56f42403b60382eef"><td class="memTemplParams" colspan="2">
+template&lt;typename Bs &gt; </td></tr>
+<tr class="memitem:ga6a923b5cab9583c56f42403b60382eef"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__physics.html#ga6a923b5cab9583c56f42403b60382eef">kspc::in_brillouin_zone</a> (Bs) -&gt; in_brillouin_zone&lt; Bs &gt;</td></tr>
+<tr class="memdesc:ga6a923b5cab9583c56f42403b60382eef"><td class="mdescLeft">&#160;</td><td class="mdescRight">deduction guide for <a class="el" href="structkspc_1_1in__brillouin__zone.html">in_brillouin_zone </a> <br /></td></tr>
+<tr class="separator:ga6a923b5cab9583c56f42403b60382eef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
@@ -145,66 +131,66 @@ template&lt;typename T &gt; </td></tr>
 <tr class="memitem:ga1361ffbf229a8d1e67163f7c506f1aad"><td class="memTemplItemLeft" align="right" valign="top">constexpr std::enable_if_t&lt; std::is_arithmetic_v&lt; T &gt;, std::complex&lt; T &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__math__constants.html#ga1361ffbf229a8d1e67163f7c506f1aad">kspc::i_v</a> {0, 1}</td></tr>
 <tr class="memdesc:ga1361ffbf229a8d1e67163f7c506f1aad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Imaginary unit. <br /></td></tr>
 <tr class="separator:ga1361ffbf229a8d1e67163f7c506f1aad"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga4f61c75bc4a432ec3268c22913f65c6e"><td class="memTemplParams" colspan="2">
+<tr class="memitem:ga88ff752425133187f83a53562c6f01df"><td class="memTemplParams" colspan="2">
 template&lt;typename T &gt; </td></tr>
-<tr class="memitem:ga4f61c75bc4a432ec3268c22913f65c6e"><td class="memTemplItemLeft" align="right" valign="top">constexpr T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__math__constants.html#ga4f61c75bc4a432ec3268c22913f65c6e">kspc::e_v</a> = detail::enable_if_floating&lt;T&gt;(2.718281828459045235360287471352662498L)</td></tr>
-<tr class="memdesc:ga4f61c75bc4a432ec3268c22913f65c6e"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Euler's number. <br /></td></tr>
-<tr class="separator:ga4f61c75bc4a432ec3268c22913f65c6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga7bbf4bf2826a14150c2f1de8bf740c32"><td class="memTemplParams" colspan="2">
+<tr class="memitem:ga88ff752425133187f83a53562c6f01df"><td class="memTemplItemLeft" align="right" valign="top">constexpr detail::enable_if_floating&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__math__constants.html#ga88ff752425133187f83a53562c6f01df">kspc::e_v</a> = T(2.718281828459045235360287471352662498L)</td></tr>
+<tr class="memdesc:ga88ff752425133187f83a53562c6f01df"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Euler's number. <br /></td></tr>
+<tr class="separator:ga88ff752425133187f83a53562c6f01df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0f2359654a43f0939491777d76ff7006"><td class="memTemplParams" colspan="2">
 template&lt;typename T &gt; </td></tr>
-<tr class="memitem:ga7bbf4bf2826a14150c2f1de8bf740c32"><td class="memTemplItemLeft" align="right" valign="top">constexpr T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__math__constants.html#ga7bbf4bf2826a14150c2f1de8bf740c32">kspc::log2e_v</a> = detail::enable_if_floating&lt;T&gt;(1.442695040888963407359924681001892137L)</td></tr>
-<tr class="memdesc:ga7bbf4bf2826a14150c2f1de8bf740c32"><td class="mdescLeft">&#160;</td><td class="mdescRight">log_2 e <br /></td></tr>
-<tr class="separator:ga7bbf4bf2826a14150c2f1de8bf740c32"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaf4c24bd3792563ecb4f6e92cab89a744"><td class="memTemplParams" colspan="2">
+<tr class="memitem:ga0f2359654a43f0939491777d76ff7006"><td class="memTemplItemLeft" align="right" valign="top">constexpr detail::enable_if_floating&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__math__constants.html#ga0f2359654a43f0939491777d76ff7006">kspc::log2e_v</a> = T(1.442695040888963407359924681001892137L)</td></tr>
+<tr class="memdesc:ga0f2359654a43f0939491777d76ff7006"><td class="mdescLeft">&#160;</td><td class="mdescRight">log_2 e <br /></td></tr>
+<tr class="separator:ga0f2359654a43f0939491777d76ff7006"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0967f35b99ebc363aa1b1388d4341dab"><td class="memTemplParams" colspan="2">
 template&lt;typename T &gt; </td></tr>
-<tr class="memitem:gaf4c24bd3792563ecb4f6e92cab89a744"><td class="memTemplItemLeft" align="right" valign="top">constexpr T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__math__constants.html#gaf4c24bd3792563ecb4f6e92cab89a744">kspc::log10e_v</a> = detail::enable_if_floating&lt;T&gt;(0.434294481903251827651128918916605082L)</td></tr>
-<tr class="memdesc:gaf4c24bd3792563ecb4f6e92cab89a744"><td class="mdescLeft">&#160;</td><td class="mdescRight">log_10 e <br /></td></tr>
-<tr class="separator:gaf4c24bd3792563ecb4f6e92cab89a744"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga45a293f1e65e53c63faca2d95448652f"><td class="memTemplParams" colspan="2">
+<tr class="memitem:ga0967f35b99ebc363aa1b1388d4341dab"><td class="memTemplItemLeft" align="right" valign="top">constexpr detail::enable_if_floating&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__math__constants.html#ga0967f35b99ebc363aa1b1388d4341dab">kspc::log10e_v</a> = T(0.434294481903251827651128918916605082L)</td></tr>
+<tr class="memdesc:ga0967f35b99ebc363aa1b1388d4341dab"><td class="mdescLeft">&#160;</td><td class="mdescRight">log_10 e <br /></td></tr>
+<tr class="separator:ga0967f35b99ebc363aa1b1388d4341dab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga694cc18fc5ade8311c287323ebc2301c"><td class="memTemplParams" colspan="2">
 template&lt;typename T &gt; </td></tr>
-<tr class="memitem:ga45a293f1e65e53c63faca2d95448652f"><td class="memTemplItemLeft" align="right" valign="top">constexpr T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__math__constants.html#ga45a293f1e65e53c63faca2d95448652f">kspc::ln2_v</a> = detail::enable_if_floating&lt;T&gt;(0.693147180559945309417232121458176568L)</td></tr>
-<tr class="memdesc:ga45a293f1e65e53c63faca2d95448652f"><td class="mdescLeft">&#160;</td><td class="mdescRight">log_e 2 <br /></td></tr>
-<tr class="separator:ga45a293f1e65e53c63faca2d95448652f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga69125ae7ba71facf844e24bacddece19"><td class="memTemplParams" colspan="2">
+<tr class="memitem:ga694cc18fc5ade8311c287323ebc2301c"><td class="memTemplItemLeft" align="right" valign="top">constexpr detail::enable_if_floating&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__math__constants.html#ga694cc18fc5ade8311c287323ebc2301c">kspc::ln2_v</a> = T(0.693147180559945309417232121458176568L)</td></tr>
+<tr class="memdesc:ga694cc18fc5ade8311c287323ebc2301c"><td class="mdescLeft">&#160;</td><td class="mdescRight">log_e 2 <br /></td></tr>
+<tr class="separator:ga694cc18fc5ade8311c287323ebc2301c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga37836cab268d2962f729ceed9df36d6f"><td class="memTemplParams" colspan="2">
 template&lt;typename T &gt; </td></tr>
-<tr class="memitem:ga69125ae7ba71facf844e24bacddece19"><td class="memTemplItemLeft" align="right" valign="top">constexpr T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__math__constants.html#ga69125ae7ba71facf844e24bacddece19">kspc::ln10_v</a> = detail::enable_if_floating&lt;T&gt;(2.302585092994045684017991454684364208L)</td></tr>
-<tr class="memdesc:ga69125ae7ba71facf844e24bacddece19"><td class="mdescLeft">&#160;</td><td class="mdescRight">log_e 10 <br /></td></tr>
-<tr class="separator:ga69125ae7ba71facf844e24bacddece19"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gac064953c48dff58b031b5dd55370722a"><td class="memTemplParams" colspan="2">
+<tr class="memitem:ga37836cab268d2962f729ceed9df36d6f"><td class="memTemplItemLeft" align="right" valign="top">constexpr detail::enable_if_floating&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__math__constants.html#ga37836cab268d2962f729ceed9df36d6f">kspc::ln10_v</a> = T(2.302585092994045684017991454684364208L)</td></tr>
+<tr class="memdesc:ga37836cab268d2962f729ceed9df36d6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">log_e 10 <br /></td></tr>
+<tr class="separator:ga37836cab268d2962f729ceed9df36d6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaae8d8ed2c257c0dd2296c2f7e912320f"><td class="memTemplParams" colspan="2">
 template&lt;typename T &gt; </td></tr>
-<tr class="memitem:gac064953c48dff58b031b5dd55370722a"><td class="memTemplItemLeft" align="right" valign="top">constexpr T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__math__constants.html#gac064953c48dff58b031b5dd55370722a">kspc::pi_v</a> = detail::enable_if_floating&lt;T&gt;(3.141592653589793238462643383279502884L)</td></tr>
-<tr class="memdesc:gac064953c48dff58b031b5dd55370722a"><td class="mdescLeft">&#160;</td><td class="mdescRight">pi <br /></td></tr>
-<tr class="separator:gac064953c48dff58b031b5dd55370722a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaa033619324e979675d05f3942c847588"><td class="memTemplParams" colspan="2">
+<tr class="memitem:gaae8d8ed2c257c0dd2296c2f7e912320f"><td class="memTemplItemLeft" align="right" valign="top">constexpr detail::enable_if_floating&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__math__constants.html#gaae8d8ed2c257c0dd2296c2f7e912320f">kspc::pi_v</a> = T(3.141592653589793238462643383279502884L)</td></tr>
+<tr class="memdesc:gaae8d8ed2c257c0dd2296c2f7e912320f"><td class="mdescLeft">&#160;</td><td class="mdescRight">pi <br /></td></tr>
+<tr class="separator:gaae8d8ed2c257c0dd2296c2f7e912320f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabd2b63bce87d7b8248dcb5cff5cf78fe"><td class="memTemplParams" colspan="2">
 template&lt;typename T &gt; </td></tr>
-<tr class="memitem:gaa033619324e979675d05f3942c847588"><td class="memTemplItemLeft" align="right" valign="top">constexpr T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__math__constants.html#gaa033619324e979675d05f3942c847588">kspc::tau_v</a> = detail::enable_if_floating&lt;T&gt;(6.283185307179586476925286766559005768L)</td></tr>
-<tr class="memdesc:gaa033619324e979675d05f3942c847588"><td class="mdescLeft">&#160;</td><td class="mdescRight">tau <br /></td></tr>
-<tr class="separator:gaa033619324e979675d05f3942c847588"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga91599209edcccbc4c93977a0579ecc1e"><td class="memTemplParams" colspan="2">
+<tr class="memitem:gabd2b63bce87d7b8248dcb5cff5cf78fe"><td class="memTemplItemLeft" align="right" valign="top">constexpr detail::enable_if_floating&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__math__constants.html#gabd2b63bce87d7b8248dcb5cff5cf78fe">kspc::tau_v</a> = T(6.283185307179586476925286766559005768L)</td></tr>
+<tr class="memdesc:gabd2b63bce87d7b8248dcb5cff5cf78fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">tau <br /></td></tr>
+<tr class="separator:gabd2b63bce87d7b8248dcb5cff5cf78fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga13495c68cdf4ee306d82c684a32835d6"><td class="memTemplParams" colspan="2">
 template&lt;typename T &gt; </td></tr>
-<tr class="memitem:ga91599209edcccbc4c93977a0579ecc1e"><td class="memTemplItemLeft" align="right" valign="top">constexpr T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__math__constants.html#ga91599209edcccbc4c93977a0579ecc1e">kspc::sqrt2_v</a> = detail::enable_if_floating&lt;T&gt;(1.414213562373095048801688724209698079L)</td></tr>
-<tr class="memdesc:ga91599209edcccbc4c93977a0579ecc1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">sqrt 2 <br /></td></tr>
-<tr class="separator:ga91599209edcccbc4c93977a0579ecc1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga4f252d6a31ef5c7b7d78ac0bc9b73135"><td class="memTemplParams" colspan="2">
+<tr class="memitem:ga13495c68cdf4ee306d82c684a32835d6"><td class="memTemplItemLeft" align="right" valign="top">constexpr detail::enable_if_floating&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__math__constants.html#ga13495c68cdf4ee306d82c684a32835d6">kspc::sqrt2_v</a> = T(1.414213562373095048801688724209698079L)</td></tr>
+<tr class="memdesc:ga13495c68cdf4ee306d82c684a32835d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">sqrt 2 <br /></td></tr>
+<tr class="separator:ga13495c68cdf4ee306d82c684a32835d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf16e42785ec8af1e4056fc435a2d6b6d"><td class="memTemplParams" colspan="2">
 template&lt;typename T &gt; </td></tr>
-<tr class="memitem:ga4f252d6a31ef5c7b7d78ac0bc9b73135"><td class="memTemplItemLeft" align="right" valign="top">constexpr T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__math__constants.html#ga4f252d6a31ef5c7b7d78ac0bc9b73135">kspc::sqrt3_v</a> = detail::enable_if_floating&lt;T&gt;(1.732050807568877293527446341505872367L)</td></tr>
-<tr class="memdesc:ga4f252d6a31ef5c7b7d78ac0bc9b73135"><td class="mdescLeft">&#160;</td><td class="mdescRight">sqrt 3 <br /></td></tr>
-<tr class="separator:ga4f252d6a31ef5c7b7d78ac0bc9b73135"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gab698889c92061d346e9012884237ae10"><td class="memTemplParams" colspan="2">
+<tr class="memitem:gaf16e42785ec8af1e4056fc435a2d6b6d"><td class="memTemplItemLeft" align="right" valign="top">constexpr detail::enable_if_floating&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__math__constants.html#gaf16e42785ec8af1e4056fc435a2d6b6d">kspc::sqrt3_v</a> = T(1.732050807568877293527446341505872367L)</td></tr>
+<tr class="memdesc:gaf16e42785ec8af1e4056fc435a2d6b6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">sqrt 3 <br /></td></tr>
+<tr class="separator:gaf16e42785ec8af1e4056fc435a2d6b6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabc71a557d06205d0dfebf889277de653"><td class="memTemplParams" colspan="2">
 template&lt;typename T &gt; </td></tr>
-<tr class="memitem:gab698889c92061d346e9012884237ae10"><td class="memTemplItemLeft" align="right" valign="top">constexpr T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__math__constants.html#gab698889c92061d346e9012884237ae10">kspc::sqrt5_v</a> = detail::enable_if_floating&lt;T&gt;(2.236067977499789696409173668731276235L)</td></tr>
-<tr class="memdesc:gab698889c92061d346e9012884237ae10"><td class="mdescLeft">&#160;</td><td class="mdescRight">sqrt 5 <br /></td></tr>
-<tr class="separator:gab698889c92061d346e9012884237ae10"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga6181999853bc561185beba67827a81ad"><td class="memTemplParams" colspan="2">
+<tr class="memitem:gabc71a557d06205d0dfebf889277de653"><td class="memTemplItemLeft" align="right" valign="top">constexpr detail::enable_if_floating&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__math__constants.html#gabc71a557d06205d0dfebf889277de653">kspc::sqrt5_v</a> = T(2.236067977499789696409173668731276235L)</td></tr>
+<tr class="memdesc:gabc71a557d06205d0dfebf889277de653"><td class="mdescLeft">&#160;</td><td class="mdescRight">sqrt 5 <br /></td></tr>
+<tr class="separator:gabc71a557d06205d0dfebf889277de653"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaca4c7db9eee8148fa9f9a368f7c43fad"><td class="memTemplParams" colspan="2">
 template&lt;typename T &gt; </td></tr>
-<tr class="memitem:ga6181999853bc561185beba67827a81ad"><td class="memTemplItemLeft" align="right" valign="top">constexpr T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__math__constants.html#ga6181999853bc561185beba67827a81ad">kspc::egamma_v</a> = detail::enable_if_floating&lt;T&gt;(0.577215664901532860606512090082402431L)</td></tr>
-<tr class="memdesc:ga6181999853bc561185beba67827a81ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Euler-Mascheroni constant. <br /></td></tr>
-<tr class="separator:ga6181999853bc561185beba67827a81ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga84a53330b2a37e0e4ad642f72f0d059d"><td class="memTemplParams" colspan="2">
+<tr class="memitem:gaca4c7db9eee8148fa9f9a368f7c43fad"><td class="memTemplItemLeft" align="right" valign="top">constexpr detail::enable_if_floating&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__math__constants.html#gaca4c7db9eee8148fa9f9a368f7c43fad">kspc::egamma_v</a> = T(0.577215664901532860606512090082402431L)</td></tr>
+<tr class="memdesc:gaca4c7db9eee8148fa9f9a368f7c43fad"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Euler-Mascheroni constant. <br /></td></tr>
+<tr class="separator:gaca4c7db9eee8148fa9f9a368f7c43fad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaea990ceb26d0d6139d42ab011c2b4627"><td class="memTemplParams" colspan="2">
 template&lt;typename T &gt; </td></tr>
-<tr class="memitem:ga84a53330b2a37e0e4ad642f72f0d059d"><td class="memTemplItemLeft" align="right" valign="top">constexpr T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__math__constants.html#ga84a53330b2a37e0e4ad642f72f0d059d">kspc::exp_egamma_v</a> = detail::enable_if_floating&lt;T&gt;(1.781072417990197985236504103107179549L)</td></tr>
-<tr class="memdesc:ga84a53330b2a37e0e4ad642f72f0d059d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exponential of the Euler-Mascheroni constant. <br /></td></tr>
-<tr class="separator:ga84a53330b2a37e0e4ad642f72f0d059d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaea990ceb26d0d6139d42ab011c2b4627"><td class="memTemplItemLeft" align="right" valign="top">constexpr detail::enable_if_floating&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__math__constants.html#gaea990ceb26d0d6139d42ab011c2b4627">kspc::exp_egamma_v</a> = T(1.781072417990197985236504103107179549L)</td></tr>
+<tr class="memdesc:gaea990ceb26d0d6139d42ab011c2b4627"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exponential of the Euler-Mascheroni constant. <br /></td></tr>
+<tr class="separator:gaea990ceb26d0d6139d42ab011c2b4627"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga89addcbe8fa6c91e5c8a634636a41e28"><td class="memItemLeft" align="right" valign="top">
 constexpr std::complex&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__math__constants.html#ga89addcbe8fa6c91e5c8a634636a41e28">kspc::i</a> = i_v&lt;double&gt;</td></tr>
 <tr class="memdesc:ga89addcbe8fa6c91e5c8a634636a41e28"><td class="mdescLeft">&#160;</td><td class="mdescRight">alias for <code>i_v&lt;double&gt;</code> <br /></td></tr>

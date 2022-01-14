@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['f_5fbe_176',['f_BE',['../group__math__functions.html#ga33b9e068cd0b45648cf06e5be9165e78',1,'kspc']]],
-  ['f_5ffd_177',['f_FD',['../group__math__functions.html#gac70951d996f93955adbfbf35ce55f717',1,'kspc']]]
+  ['fbose_178',['fbose',['../group__math__functions.html#gaf94a5948eba4d41bc22684174e7ef3b4',1,'kspc']]],
+  ['ffermi_179',['ffermi',['../group__math__functions.html#ga50f5e2ace6254187bafe2ff0d07a5ed7',1,'kspc']]]
 ];

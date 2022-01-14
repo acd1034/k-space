@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['df_5fbe_173',['Df_BE',['../group__math__functions.html#gae8b17736f5161c2b1fc2a87050cba4a7',1,'kspc']]],
-  ['df_5ffd_174',['Df_FD',['../group__math__functions.html#ga92fcfacb33197ef110afa0c6882cb532',1,'kspc']]],
-  ['dim_175',['dim',['../group__matrix.html#gae7b6563c4857cb1c71c129b4a64282ae',1,'kspc']]]
+  ['dfbose_175',['dfbose',['../group__math__functions.html#gab981af24d8634b6122f2d853e4d355d8',1,'kspc']]],
+  ['dffermi_176',['dffermi',['../group__math__functions.html#ga18755790032872eb6bca18f2e93951db',1,'kspc']]],
+  ['dim_177',['dim',['../group__matrix.html#ga5fba16981a66e5c8e66c9f0f3f19bd5e',1,'kspc']]]
 ];

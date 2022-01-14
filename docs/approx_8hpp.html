@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>k-space: Approximate comparison</title>
+<title>k-space: include/kspc/approx.hpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -45,7 +45,6 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
-</div><!-- top -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -60,54 +59,62 @@ $(function() {
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_919b91d53b27d7e6df05f777d27efdcc.html">kspc</a></li>  </ul>
+</div>
+</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">Approximate comparison<div class="ingroups"><a class="el" href="group__math.html">Math</a></div></div>  </div>
+<div class="title">approx.hpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+<div class="textblock"><code>#include &lt;complex&gt;</code><br />
+<code>#include &lt;<a class="el" href="core_8hpp_source.html">kspc/core.hpp</a>&gt;</code><br />
+</div>
+<p><a href="approx_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:gaffb629aec19fca26f1732fce948a4b20"><td class="memTemplParams" colspan="2"><a id="gaffb629aec19fca26f1732fce948a4b20"></a>
+<tr class="memitem:gaffb629aec19fca26f1732fce948a4b20"><td class="memTemplParams" colspan="2">
 template&lt;typename T1 , typename T2 , typename U &gt; </td></tr>
 <tr class="memitem:gaffb629aec19fca26f1732fce948a4b20"><td class="memTemplItemLeft" align="right" valign="top">constexpr std::enable_if_t&lt; std::conjunction_v&lt; std::is_arithmetic&lt; T1 &gt;, std::is_arithmetic&lt; T2 &gt;, std::is_arithmetic&lt; U &gt; &gt;, bool &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::approx::less</b> (const T1 &amp;t1, const T2 &amp;t2, const U &amp;eps) noexcept</td></tr>
 <tr class="separator:gaffb629aec19fca26f1732fce948a4b20"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga03c5362e2b70ae4a8da7cac9e05a75c3"><td class="memTemplParams" colspan="2"><a id="ga03c5362e2b70ae4a8da7cac9e05a75c3"></a>
+<tr class="memitem:ga03c5362e2b70ae4a8da7cac9e05a75c3"><td class="memTemplParams" colspan="2">
 template&lt;typename T1 , typename T2 , typename U &gt; </td></tr>
 <tr class="memitem:ga03c5362e2b70ae4a8da7cac9e05a75c3"><td class="memTemplItemLeft" align="right" valign="top">constexpr std::enable_if_t&lt; std::conjunction_v&lt; std::is_arithmetic&lt; T1 &gt;, std::is_arithmetic&lt; T2 &gt;, std::is_arithmetic&lt; U &gt; &gt;, bool &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::approx::greater</b> (const T1 &amp;t1, const T2 &amp;t2, const U &amp;eps) noexcept</td></tr>
 <tr class="separator:ga03c5362e2b70ae4a8da7cac9e05a75c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga6adef865ac23653707d91074fc032440"><td class="memTemplParams" colspan="2"><a id="ga6adef865ac23653707d91074fc032440"></a>
+<tr class="memitem:ga6adef865ac23653707d91074fc032440"><td class="memTemplParams" colspan="2">
 template&lt;typename T1 , typename T2 , typename U &gt; </td></tr>
 <tr class="memitem:ga6adef865ac23653707d91074fc032440"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::approx::less_equal</b> (const T1 &amp;t1, const T2 &amp;t2, const U &amp;eps) noexcept -&gt; decltype(!greater(t1, t2, eps))</td></tr>
 <tr class="separator:ga6adef865ac23653707d91074fc032440"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaa8f72a10180b1f2a27eb56acf5d165c6"><td class="memTemplParams" colspan="2"><a id="gaa8f72a10180b1f2a27eb56acf5d165c6"></a>
+<tr class="memitem:gaa8f72a10180b1f2a27eb56acf5d165c6"><td class="memTemplParams" colspan="2">
 template&lt;typename T1 , typename T2 , typename U &gt; </td></tr>
 <tr class="memitem:gaa8f72a10180b1f2a27eb56acf5d165c6"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::approx::greater_equal</b> (const T1 &amp;t1, const T2 &amp;t2, const U &amp;eps) noexcept -&gt; decltype(!less(t1, t2, eps))</td></tr>
 <tr class="separator:gaa8f72a10180b1f2a27eb56acf5d165c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gac856b4fa7a2e00d6bdb1a955b41eece4"><td class="memTemplParams" colspan="2"><a id="gac856b4fa7a2e00d6bdb1a955b41eece4"></a>
+<tr class="memitem:gac856b4fa7a2e00d6bdb1a955b41eece4"><td class="memTemplParams" colspan="2">
 template&lt;typename T1 , typename T2 , typename U &gt; </td></tr>
 <tr class="memitem:gac856b4fa7a2e00d6bdb1a955b41eece4"><td class="memTemplItemLeft" align="right" valign="top">constexpr std::enable_if_t&lt; std::conjunction_v&lt; std::is_arithmetic&lt; T1 &gt;, std::is_arithmetic&lt; T2 &gt;, std::is_arithmetic&lt; U &gt; &gt;, bool &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::approx::not_equal_to</b> (const T1 &amp;t1, const T2 &amp;t2, const U &amp;eps) noexcept</td></tr>
 <tr class="separator:gac856b4fa7a2e00d6bdb1a955b41eece4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga5122842b46ea0866ff262f865656aa84"><td class="memTemplParams" colspan="2"><a id="ga5122842b46ea0866ff262f865656aa84"></a>
+<tr class="memitem:ga5122842b46ea0866ff262f865656aa84"><td class="memTemplParams" colspan="2">
 template&lt;typename T , typename U &gt; </td></tr>
 <tr class="memitem:ga5122842b46ea0866ff262f865656aa84"><td class="memTemplItemLeft" align="right" valign="top">constexpr std::enable_if_t&lt; std::conjunction_v&lt; std::is_arithmetic&lt; T &gt;, std::is_arithmetic&lt; U &gt; &gt;, bool &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::approx::not_equal_to</b> (const std::complex&lt; T &gt; &amp;t1, const std::complex&lt; T &gt; &amp;t2, const U &amp;eps) noexcept</td></tr>
 <tr class="separator:ga5122842b46ea0866ff262f865656aa84"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaa2bc31411fd910285eb6d750b3ebf537"><td class="memTemplParams" colspan="2"><a id="gaa2bc31411fd910285eb6d750b3ebf537"></a>
+<tr class="memitem:gaa2bc31411fd910285eb6d750b3ebf537"><td class="memTemplParams" colspan="2">
 template&lt;typename T , typename U &gt; </td></tr>
 <tr class="memitem:gaa2bc31411fd910285eb6d750b3ebf537"><td class="memTemplItemLeft" align="right" valign="top">constexpr std::enable_if_t&lt; std::conjunction_v&lt; std::is_arithmetic&lt; T &gt;, std::is_arithmetic&lt; U &gt; &gt;, bool &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::approx::not_equal_to</b> (const std::complex&lt; T &gt; &amp;t1, const T &amp;t2, const U &amp;eps) noexcept</td></tr>
 <tr class="separator:gaa2bc31411fd910285eb6d750b3ebf537"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga9e1230a731d42f6eaf459e505ba629dd"><td class="memTemplParams" colspan="2"><a id="ga9e1230a731d42f6eaf459e505ba629dd"></a>
+<tr class="memitem:ga9e1230a731d42f6eaf459e505ba629dd"><td class="memTemplParams" colspan="2">
 template&lt;typename T , typename U &gt; </td></tr>
 <tr class="memitem:ga9e1230a731d42f6eaf459e505ba629dd"><td class="memTemplItemLeft" align="right" valign="top">constexpr std::enable_if_t&lt; std::conjunction_v&lt; std::is_arithmetic&lt; T &gt;, std::is_arithmetic&lt; U &gt; &gt;, bool &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::approx::not_equal_to</b> (const T &amp;t1, const std::complex&lt; T &gt; &amp;t2, const U &amp;eps) noexcept</td></tr>
 <tr class="separator:ga9e1230a731d42f6eaf459e505ba629dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaa4fd49dee670081dd1883a5a98e3ab8e"><td class="memTemplParams" colspan="2"><a id="gaa4fd49dee670081dd1883a5a98e3ab8e"></a>
+<tr class="memitem:gaa4fd49dee670081dd1883a5a98e3ab8e"><td class="memTemplParams" colspan="2">
 template&lt;typename T1 , typename T2 , typename U &gt; </td></tr>
 <tr class="memitem:gaa4fd49dee670081dd1883a5a98e3ab8e"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::approx::equal_to</b> (const T1 &amp;t1, const T2 &amp;t2, const U &amp;eps) noexcept -&gt; decltype(!not_equal_to(t1, t2, eps))</td></tr>
 <tr class="separator:gaa4fd49dee670081dd1883a5a98e3ab8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

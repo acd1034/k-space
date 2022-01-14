@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['core_2ehpp_167',['core.hpp',['../core_8hpp.html',1,'']]]
+  ['approx_2ehpp_168',['approx.hpp',['../approx_8hpp.html',1,'']]]
 ];

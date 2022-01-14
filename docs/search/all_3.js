@@ -1,9 +1,9 @@
 var searchData=
 [
-  ['e_15',['e',['../group__math__constants.html#gab283bf7abbd1672477fa1d0583a0d6f9',1,'kspc']]],
-  ['e_5fv_16',['e_v',['../group__math__constants.html#ga4f61c75bc4a432ec3268c22913f65c6e',1,'kspc']]],
-  ['egamma_17',['egamma',['../group__math__constants.html#ga12b9efc407d99803680f37d5564825cb',1,'kspc']]],
-  ['egamma_5fv_18',['egamma_v',['../group__math__constants.html#ga6181999853bc561185beba67827a81ad',1,'kspc']]],
-  ['exp_5fegamma_19',['exp_egamma',['../group__math__constants.html#ga3774d2b5c3e5379899a1da8eeaf55643',1,'kspc']]],
-  ['exp_5fegamma_5fv_20',['exp_egamma_v',['../group__math__constants.html#ga84a53330b2a37e0e4ad642f72f0d059d',1,'kspc']]]
+  ['e_16',['e',['../group__math__constants.html#gab283bf7abbd1672477fa1d0583a0d6f9',1,'kspc']]],
+  ['e_5fv_17',['e_v',['../group__math__constants.html#ga88ff752425133187f83a53562c6f01df',1,'kspc']]],
+  ['egamma_18',['egamma',['../group__math__constants.html#ga12b9efc407d99803680f37d5564825cb',1,'kspc']]],
+  ['egamma_5fv_19',['egamma_v',['../group__math__constants.html#gaca4c7db9eee8148fa9f9a368f7c43fad',1,'kspc']]],
+  ['exp_5fegamma_20',['exp_egamma',['../group__math__constants.html#ga3774d2b5c3e5379899a1da8eeaf55643',1,'kspc']]],
+  ['exp_5fegamma_5fv_21',['exp_egamma_v',['../group__math__constants.html#gaea990ceb26d0d6139d42ab011c2b4627',1,'kspc']]]
 ];

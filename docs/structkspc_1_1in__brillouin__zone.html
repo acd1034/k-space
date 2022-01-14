@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>k-space: include/kspc Directory Reference</title>
+<title>k-space: kspc::in_brillouin_zone&lt; Bs &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -61,28 +61,44 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_919b91d53b27d7e6df05f777d27efdcc.html">kspc</a></li>  </ul>
+<li class="navelem"><b>kspc</b></li><li class="navelem"><a class="el" href="structkspc_1_1in__brillouin__zone.html">in_brillouin_zone</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="structkspc_1_1in__brillouin__zone-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">kspc Directory Reference</div>  </div>
+<div class="title">kspc::in_brillouin_zone&lt; Bs &gt; Struct Template Reference<div class="ingroups"><a class="el" href="group__physics.html">Physics</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>in_brillouin_zone  
+ <a href="structkspc_1_1in__brillouin__zone.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="math_8hpp_source.html">math.hpp</a>&gt;</code></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="files"></a>
-Files</h2></td></tr>
-<tr class="memitem:approx_8hpp"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="approx_8hpp.html">approx.hpp</a> <a href="approx_8hpp_source.html">[code]</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:core_8hpp"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="core_8hpp.html">core.hpp</a> <a href="core_8hpp_source.html">[code]</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:integration_8hpp"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="integration_8hpp.html">integration.hpp</a> <a href="integration_8hpp_source.html">[code]</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:math_8hpp"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8hpp.html">math.hpp</a> <a href="math_8hpp_source.html">[code]</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:math__basics_8hpp"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math__basics_8hpp.html">math_basics.hpp</a> <a href="math__basics_8hpp_source.html">[code]</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a191dd6d29fdfd84d87a405cea237a24d"><td class="memItemLeft" align="right" valign="top"><a id="a191dd6d29fdfd84d87a405cea237a24d"></a>
+constexpr&#160;</td><td class="memItemRight" valign="bottom"><b>in_brillouin_zone</b> (const Bs &amp;bs)</td></tr>
+<tr class="separator:a191dd6d29fdfd84d87a405cea237a24d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad37a1ea96fbf730943d288bb00521ef7"><td class="memItemLeft" align="right" valign="top"><a id="ad37a1ea96fbf730943d288bb00521ef7"></a>
+constexpr&#160;</td><td class="memItemRight" valign="bottom"><b>in_brillouin_zone</b> (Bs &amp;&amp;bs)</td></tr>
+<tr class="separator:ad37a1ea96fbf730943d288bb00521ef7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ef775f341d8aa2f97e91eadc5b68d38"><td class="memTemplParams" colspan="2"><a id="a4ef775f341d8aa2f97e91eadc5b68d38"></a>
+template&lt;typename K &gt; </td></tr>
+<tr class="memitem:a4ef775f341d8aa2f97e91eadc5b68d38"><td class="memTemplItemLeft" align="right" valign="top">constexpr std::enable_if_t&lt; std::conjunction_v&lt; <a class="el" href="structkspc_1_1is__range.html">is_range</a>&lt; K &gt;, <a class="el" href="structkspc_1_1is__range.html">is_range</a>&lt; Bs &gt; &gt;, bool &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator()</b> (const K &amp;k) const</td></tr>
+<tr class="separator:a4ef775f341d8aa2f97e91eadc5b68d38"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><h3>template&lt;typename Bs&gt;<br />
+struct kspc::in_brillouin_zone&lt; Bs &gt;</h3>
+
+<p>in_brillouin_zone </p>
+</div><hr/>The documentation for this struct was generated from the following file:<ul>
+<li>include/kspc/<a class="el" href="math_8hpp_source.html">math.hpp</a></li>
+</ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

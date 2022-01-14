@@ -83,7 +83,7 @@ $(function() {
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;  <span class="keyword">template</span> &lt;<span class="keyword">class</span> InMat, <span class="keyword">class</span> OutMat, <span class="keyword">class</span> M1, <span class="keyword">class</span> M2, <span class="keyword">class</span> P1 = <span class="keywordtype">id</span>entity_fn&gt;</div>
 <div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="group__linalg.html#ga4b012f86c9d63060537f10b86917d905">   16</a></span>&#160;  <span class="keywordtype">void</span> <a class="code" href="group__linalg.html#ga4b012f86c9d63060537f10b86917d905">matrix_copy</a>(<span class="keyword">const</span> InMat&amp; A, OutMat&amp; B, M1&amp;&amp; map1, M2&amp;&amp; map2, P1&amp;&amp; proj1 = {}) {</div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="keyword">using</span> std::size;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keyword">const</span> std::size_t n = <a class="code" href="group__matrix.html#gae7b6563c4857cb1c71c129b4a64282ae">kspc::dim</a>(A);</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keyword">const</span> std::size_t n = <a class="code" href="group__matrix.html#ga5fba16981a66e5c8e66c9f0f3f19bd5e">kspc::dim</a>(A);</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    assert(size(A) == n * n);</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    assert(size(B) == n * n);</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
@@ -145,7 +145,7 @@ $(function() {
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;  <span class="keyword">template</span> &lt;<span class="keyword">class</span> InOutMat, <span class="keyword">class</span> OutIPiv&gt;</div>
 <div class="line"><a name="l00081"></a><span class="lineno"><a class="line" href="group__linalg.html#ga8ad83e9fe6d1b5b0b8877268f9441ee8">   81</a></span>&#160;  <span class="keywordtype">int</span> <a class="code" href="group__linalg.html#ga8ad83e9fe6d1b5b0b8877268f9441ee8">lu_factor</a>(InOutMat&amp; A, OutIPiv&amp; ipiv) {</div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keyword">using</span> std::size, std::data;</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keyword">const</span> std::size_t n = <a class="code" href="group__matrix.html#gae7b6563c4857cb1c71c129b4a64282ae">kspc::dim</a>(A);</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keyword">const</span> std::size_t n = <a class="code" href="group__matrix.html#ga5fba16981a66e5c8e66c9f0f3f19bd5e">kspc::dim</a>(A);</div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="comment">// std::cout &lt;&lt; n &lt;&lt; std::endl;</span></div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    assert(size(A) == n * n);</div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    assert(size(ipiv) == n);</div>
@@ -164,7 +164,7 @@ $(function() {
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;  <span class="keyword">template</span> &lt;<span class="keyword">class</span> InMat, <span class="keyword">class</span> InIPiv, <span class="keyword">class</span> InOutVec&gt;</div>
 <div class="line"><a name="l00101"></a><span class="lineno"><a class="line" href="group__linalg.html#ga82a2b20a5bef9ce0922339ccc71e9fb3">  101</a></span>&#160;  <span class="keywordtype">int</span> <a class="code" href="group__linalg.html#ga82a2b20a5bef9ce0922339ccc71e9fb3">matrix_vector_solve_with_lu_factor</a>(<span class="keyword">const</span> InMat&amp; A, <span class="keyword">const</span> InIPiv&amp; ipiv, InOutVec&amp; b) {</div>
 <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    <span class="keyword">using</span> std::size, std::data;</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <span class="keyword">const</span> std::size_t n = <a class="code" href="group__matrix.html#gae7b6563c4857cb1c71c129b4a64282ae">kspc::dim</a>(A);</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <span class="keyword">const</span> std::size_t n = <a class="code" href="group__matrix.html#ga5fba16981a66e5c8e66c9f0f3f19bd5e">kspc::dim</a>(A);</div>
 <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <span class="comment">// std::cout &lt;&lt; n &lt;&lt; std::endl;</span></div>
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    assert(size(A) == n * n);</div>
 <div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    assert(size(ipiv) == n);</div>
@@ -208,7 +208,7 @@ $(function() {
 <div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160; </div>
 <div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;      info = <a class="code" href="group__linalg.html#ga4ab67842f4653a397aceacf9d458e41a">matrix_vector_solve</a>(B, ipiv, b);</div>
 <div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;      <span class="keyword">const</span> std::size_t n = <a class="code" href="group__matrix.html#gae7b6563c4857cb1c71c129b4a64282ae">kspc::dim</a>(A);</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;      <span class="keyword">const</span> std::size_t n = <a class="code" href="group__matrix.html#ga5fba16981a66e5c8e66c9f0f3f19bd5e">kspc::dim</a>(A);</div>
 <div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;      std::vector&lt;T&gt; B(n * n);</div>
 <div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;      <span class="keyword">const</span> <span class="keyword">auto</span> column_major = <a class="code" href="group__matrix.html#ga555eff80d62690b8de72d5fd1b936716">mapping_column_major</a>(n);</div>
 <div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;      <a class="code" href="group__linalg.html#ga4b012f86c9d63060537f10b86917d905">matrix_copy</a>(A, B, map, column_major, proj);</div>
@@ -261,7 +261,7 @@ $(function() {
 <div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;    is_range&lt;InOutMat&gt;, is_range&lt;OutVec&gt;, is_range&lt;Work&gt;, is_range&lt;RWork&gt;&gt;, <span class="keywordtype">int</span>&gt;</div>
 <div class="line"><a name="l00206"></a><span class="lineno"><a class="line" href="group__linalg.html#ga7bf3dd7aabcf144d5156248b899bfbdb">  206</a></span>&#160;  <a class="code" href="group__linalg.html#gaac4c15148c636bbe4149599d0d49786e">hermitian_matrix_eigen_solve</a>(InOutMat&amp; A, OutVec&amp; w, Work&amp; work, RWork&amp; rwork) {</div>
 <div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;    <span class="keyword">using</span> std::size, std::data;</div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;    <span class="keyword">const</span> std::size_t n = <a class="code" href="group__matrix.html#gae7b6563c4857cb1c71c129b4a64282ae">kspc::dim</a>(A);</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;    <span class="keyword">const</span> std::size_t n = <a class="code" href="group__matrix.html#ga5fba16981a66e5c8e66c9f0f3f19bd5e">kspc::dim</a>(A);</div>
 <div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;    <span class="comment">// std::cout &lt;&lt; n &lt;&lt; std::endl;</span></div>
 <div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;    assert(size(A) == n * n);</div>
 <div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;    assert(size(w) == n);</div>
@@ -279,7 +279,7 @@ $(function() {
 <div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;    is_range&lt;InOutMat&gt;, is_range&lt;OutVec&gt;, is_range&lt;Work&gt;&gt;, <span class="keywordtype">int</span>&gt;</div>
 <div class="line"><a name="l00225"></a><span class="lineno"><a class="line" href="group__linalg.html#gaf0f2b9cf58f53ef35ba28e6941495bf3">  225</a></span>&#160;  <a class="code" href="group__linalg.html#gaf0f2b9cf58f53ef35ba28e6941495bf3">symmetric_matrix_eigen_solve</a>(InOutMat&amp; A, OutVec&amp; w, Work&amp; work) {</div>
 <div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;    <span class="keyword">using</span> std::size, std::data;</div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;    <span class="keyword">const</span> std::size_t n = <a class="code" href="group__matrix.html#gae7b6563c4857cb1c71c129b4a64282ae">kspc::dim</a>(A);</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;    <span class="keyword">const</span> std::size_t n = <a class="code" href="group__matrix.html#ga5fba16981a66e5c8e66c9f0f3f19bd5e">kspc::dim</a>(A);</div>
 <div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;    <span class="comment">// std::cout &lt;&lt; n &lt;&lt; std::endl;</span></div>
 <div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;    assert(size(A) == n * n);</div>
 <div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;    assert(size(w) == n);</div>
@@ -306,7 +306,7 @@ $(function() {
 <div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160; </div>
 <div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;      <span class="keywordflow">if</span> constexpr (is_complex_v&lt;T&gt;) {</div>
 <div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;        <span class="keyword">static</span> std::array&lt;T, 4 * N&gt; work;</div>
-<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;        <span class="keyword">static</span> std::array&lt;complex_value_t&lt;T&gt;, 3 * N - 2&gt; rwork;</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;        <span class="keyword">static</span> std::array&lt;complex_value_t&lt;T&gt;, N == 0 ? 0 : 3 * N - 2&gt; rwork;</div>
 <div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;        info = <a class="code" href="group__linalg.html#gaac4c15148c636bbe4149599d0d49786e">hermitian_matrix_eigen_solve</a>(B, w, work, rwork);</div>
 <div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;      } <span class="keywordflow">else</span> {</div>
 <div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;        <span class="keyword">static</span> std::array&lt;T, 6 * N&gt; work;</div>
@@ -315,14 +315,14 @@ $(function() {
 <div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160; </div>
 <div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;      <a class="code" href="group__linalg.html#ga4b012f86c9d63060537f10b86917d905">matrix_copy</a>(B, A, column_major, map);</div>
 <div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;      <span class="keyword">const</span> std::size_t n = <a class="code" href="group__matrix.html#gae7b6563c4857cb1c71c129b4a64282ae">kspc::dim</a>(A);</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;      <span class="keyword">const</span> std::size_t n = <a class="code" href="group__matrix.html#ga5fba16981a66e5c8e66c9f0f3f19bd5e">kspc::dim</a>(A);</div>
 <div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;      std::vector&lt;T&gt; B(n * n);</div>
 <div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;      <span class="keyword">const</span> <span class="keyword">auto</span> column_major = <a class="code" href="group__matrix.html#ga555eff80d62690b8de72d5fd1b936716">mapping_column_major</a>(n);</div>
 <div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;      <a class="code" href="group__linalg.html#ga4b012f86c9d63060537f10b86917d905">matrix_copy</a>(A, B, map, column_major, proj);</div>
 <div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160; </div>
 <div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;      <span class="keywordflow">if</span> constexpr (is_complex_v&lt;T&gt;) {</div>
 <div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;        std::vector&lt;T&gt; work(4 * n);</div>
-<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;        std::vector&lt;complex_value_t&lt;T&gt;&gt; rwork(3 * n - 2);</div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;        std::vector&lt;complex_value_t&lt;T&gt;&gt; rwork(n == 0 ? 0 : 3 * n - 2);</div>
 <div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;        info = <a class="code" href="group__linalg.html#gaac4c15148c636bbe4149599d0d49786e">hermitian_matrix_eigen_solve</a>(B, w, work, rwork);</div>
 <div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;      } <span class="keywordflow">else</span> {</div>
 <div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;        std::vector&lt;T&gt; work(6 * n);</div>
@@ -345,9 +345,9 @@ $(function() {
 <div class="ttc" id="agroup__linalg_html_gaac4c15148c636bbe4149599d0d49786e"><div class="ttname"><a href="group__linalg.html#gaac4c15148c636bbe4149599d0d49786e">kspc::hermitian_matrix_eigen_solve</a></div><div class="ttdeci">std::enable_if_t&lt; is_range_v&lt; InOutMat &gt; and is_range_v&lt; OutVec &gt; and(not is_range_v&lt; M &gt;) and(not is_range_v&lt; P &gt;), int &gt; hermitian_matrix_eigen_solve(InOutMat &amp;A, OutVec &amp;w, M &amp;&amp;map, P &amp;&amp;proj={})</div><div class="ttdoc">This is an overloaded member function, provided for convenience. It differs from the above function o...</div><div class="ttdef"><b>Definition:</b> linalg.hpp:243</div></div>
 <div class="ttc" id="agroup__linalg_html_gaf0f2b9cf58f53ef35ba28e6941495bf3"><div class="ttname"><a href="group__linalg.html#gaf0f2b9cf58f53ef35ba28e6941495bf3">kspc::symmetric_matrix_eigen_solve</a></div><div class="ttdeci">std::enable_if_t&lt; std::conjunction_v&lt; is_range&lt; InOutMat &gt;, is_range&lt; OutVec &gt;, is_range&lt; Work &gt; &gt;, int &gt; symmetric_matrix_eigen_solve(InOutMat &amp;A, OutVec &amp;w, Work &amp;work)</div><div class="ttdoc">solve Ax = λx with a symmetric matrix A</div><div class="ttdef"><b>Definition:</b> linalg.hpp:225</div></div>
 <div class="ttc" id="agroup__matrix_html_ga555eff80d62690b8de72d5fd1b936716"><div class="ttname"><a href="group__matrix.html#ga555eff80d62690b8de72d5fd1b936716">kspc::mapping_column_major</a></div><div class="ttdeci">constexpr auto mapping_column_major(const std::size_t lda)</div><div class="ttdoc">mapping_column_major</div><div class="ttdef"><b>Definition:</b> math_basics.hpp:118</div></div>
+<div class="ttc" id="agroup__matrix_html_ga5fba16981a66e5c8e66c9f0f3f19bd5e"><div class="ttname"><a href="group__matrix.html#ga5fba16981a66e5c8e66c9f0f3f19bd5e">kspc::dim</a></div><div class="ttdeci">auto dim(const M &amp;m)</div><div class="ttdoc">dim</div><div class="ttdef"><b>Definition:</b> math_basics.hpp:69</div></div>
 <div class="ttc" id="agroup__matrix_html_ga689b2a2abfa8dabacc5f91bab321529e"><div class="ttname"><a href="group__matrix.html#ga689b2a2abfa8dabacc5f91bab321529e">kspc::is_complex_v</a></div><div class="ttdeci">constexpr bool is_complex_v</div><div class="ttdoc">helper variable template for is_complex</div><div class="ttdef"><b>Definition:</b> math_basics.hpp:159</div></div>
 <div class="ttc" id="agroup__matrix_html_ga6b72a099d95086e568320bed273f4969"><div class="ttname"><a href="group__matrix.html#ga6b72a099d95086e568320bed273f4969">kspc::is_fixed_size_array_v</a></div><div class="ttdeci">constexpr bool is_fixed_size_array_v</div><div class="ttdoc">helper variable template for is_fixed_size_array</div><div class="ttdef"><b>Definition:</b> math_basics.hpp:44</div></div>
-<div class="ttc" id="agroup__matrix_html_gae7b6563c4857cb1c71c129b4a64282ae"><div class="ttname"><a href="group__matrix.html#gae7b6563c4857cb1c71c129b4a64282ae">kspc::dim</a></div><div class="ttdeci">auto dim(const M &amp;m) noexcept(noexcept(std::round(std::sqrt(adl_size(m)))))</div><div class="ttdoc">dim</div><div class="ttdef"><b>Definition:</b> math_basics.hpp:69</div></div>
 <div class="ttc" id="agroup__range_html_gaa37e5148fdcaf719fe194b676309adc4"><div class="ttname"><a href="group__range.html#gaa37e5148fdcaf719fe194b676309adc4">kspc::range_value_t</a></div><div class="ttdeci">iter_value_t&lt; iterator_t&lt; R &gt; &gt; range_value_t</div><div class="ttdoc">range_value_t</div><div class="ttdef"><b>Definition:</b> core.hpp:530</div></div>
 <div class="ttc" id="amath__basics_8hpp_html"><div class="ttname"><a href="math__basics_8hpp.html">math_basics.hpp</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
