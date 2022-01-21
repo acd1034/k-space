@@ -3,7 +3,7 @@
 #include <algorithm> // all_of
 #include <cmath>     // abs, exp, pow, cosh, sinh, etc.
 #include <complex>
-#include <kspc/core.hpp>
+#include <kspc/core.hpp> // is_range
 
 // Mathematical constants
 namespace kspc {

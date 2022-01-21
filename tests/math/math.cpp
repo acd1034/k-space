@@ -10,7 +10,6 @@
 #include <kspc/core.hpp>
 #include <kspc/linalg.hpp>
 #include <kspc/math.hpp>
-#include <kspc/math_basics.hpp>
 #include <kspc/numeric.hpp>
 
 inline constexpr auto equal_to = [](const auto& x, const auto& y) {
