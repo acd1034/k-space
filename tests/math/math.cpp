@@ -10,7 +10,6 @@
 #include <kspc/core.hpp>
 #include <kspc/linalg.hpp>
 #include <kspc/math.hpp>
-#include <kspc/math_basics.hpp>
 #include <kspc/numeric.hpp>
 
 inline constexpr auto equal_to = [](const auto& x, const auto& y) {
@@ -198,6 +197,41 @@ TEST_CASE("approx", "[math][approx]") {
 }
 
 TEST_CASE("linalg", "[math][linalg]") {
+  { // unitary_transform with row-major dynamic matrix
+    using namespace std::complex_literals;
+    // clang-format off
+    std::vector<std::complex<double>> A{
+      2.0i, 4.0 + 4.0i,
+      -4.0 + 4.0i, -2.0i,
+    };
+    constexpr double sqrt3 = kspc::sqrt3;
+    std::vector<std::complex<double>> U{
+      -1.0 / sqrt3, (1.0 - 1.0i) / sqrt3,
+      (1.0 + 1.0i) / sqrt3, 1.0 / sqrt3,
+    };
+    // clang-format on
+    const auto row_major = kspc::mapping_row_major(kspc::dim(A));
+    kspc::unitary_transform(A, U, row_major, row_major);
+    CHECK(equal(A, std::vector<std::complex<double>>{-6.0i, 0.0, 0.0, 6.0i}));
+  }
+  { // unitary_transform with row-major static matrix
+    using namespace std::complex_literals;
+    constexpr std::size_t N = 2;
+    // clang-format off
+    std::array<std::complex<double>, N * N> A{
+      2.0i, 4.0 + 4.0i,
+      -4.0 + 4.0i, -2.0i,
+    };
+    constexpr double sqrt3 = kspc::sqrt3;
+    std::array<std::complex<double>, N * N> U{
+      -1.0 / sqrt3, (1.0 - 1.0i) / sqrt3,
+      (1.0 + 1.0i) / sqrt3, 1.0 / sqrt3,
+    };
+    // clang-format on
+    constexpr auto row_major = kspc::mapping_row_major(N);
+    kspc::unitary_transform(A, U, row_major, row_major);
+    CHECK(equal(A, std::array<std::complex<double>, N * N>{-6.0i, 0.0, 0.0, 6.0i}));
+  }
   { // matrix_vector_solve with column-major dynamic matrix
     // clang-format off
     // NOTE: A is column-major

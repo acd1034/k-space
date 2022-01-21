@@ -8,6 +8,7 @@
 #include <type_traits>      // enable_if_t, void_t, true_type, invoke_result, etc.
 #include <utility>          // move, forward, pair, swap, exchange, declval
 
+#include <complex>
 #include <iosfwd>   // basic_ostream
 #include <iterator> // begin, end, size, data
 #include <limits>   // numeric_limits
@@ -566,7 +567,10 @@ namespace kspc {
   }
 
   /// @}
+} // namespace kspc
 
+// IO
+namespace kspc {
   /// @addtogroup io
   /// @{
 
@@ -580,6 +584,88 @@ namespace kspc {
       return os;
     }
   } // namespace io
+
+  /// @}
+} // namespace kspc
+
+// projection
+namespace kspc {
+  /// @addtogroup math
+  /// @{
+
+  // identity function
+
+  /// %identity_fn
+  struct identity_fn {
+    using is_transparent = void;
+
+    template <typename T>
+    constexpr T&& operator()(T&& t) const noexcept {
+      return std::forward<T>(t);
+    }
+  }; // struct identity_fn
+
+  inline namespace cpo {
+    /// identity
+    inline constexpr identity_fn identity{};
+  } // namespace cpo
+
+  // consistent complex access
+
+  /// %is_complex
+  template <typename T>
+  struct is_complex : std::false_type {};
+
+  /// partial specialization of `is_complex`
+  template <typename T>
+  struct is_complex<std::complex<T>> : std::true_type {};
+
+  /// helper variable template for `is_complex`
+  template <typename T>
+  inline constexpr bool is_complex_v = is_complex<T>::value;
+
+  /// %complex_traits
+  template <typename T>
+  struct complex_traits {
+    using value_type = T;
+  };
+
+  /// partial specialization of `complex_traits`
+  template <typename T>
+  struct complex_traits<std::complex<T>> {
+    using value_type = T;
+  };
+
+  /// partial specialization of `complex_traits`
+  template <typename T>
+  struct complex_traits<const T> : complex_traits<T> {};
+
+  /// complex_value_t
+  template <typename T>
+  using complex_value_t = typename complex_traits<remove_cvref_t<T>>::value_type;
+
+  /// %conj_fn
+  struct conj_fn {
+    using is_transparent = void;
+
+    template <typename T, std::enable_if_t<is_complex_v<std::decay_t<T>>, std::nullptr_t> = nullptr>
+    constexpr auto operator()(T&& x) const noexcept(noexcept(std::conj(std::forward<T>(x))))
+      -> decltype(std::conj(std::forward<T>(x))) {
+      return std::conj(std::forward<T>(x));
+    }
+
+    // same as `identity`
+    template <typename T,
+              std::enable_if_t<!is_complex_v<std::decay_t<T>>, std::nullptr_t> = nullptr>
+    constexpr T&& operator()(T&& x) const noexcept {
+      return std::forward<T>(x);
+    }
+  }; // struct conj_fn
+
+  inline namespace cpo {
+    /// conj
+    inline constexpr conj_fn conj{};
+  } // namespace cpo
 
   /// @}
 } // namespace kspc

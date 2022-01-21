@@ -1,13 +1,130 @@
 /// @file linalg.hpp
 #pragma once
+#include <algorithm> // fill
 #include <array>
+#include <cmath>      // sqrt, round
 #include <functional> // invoke
 #include <vector>
-#include <kspc/math_basics.hpp>
+#include <kspc/core.hpp> // is_range, identity_fu, conj_fn
+
+// dim
+namespace kspc {
+  /// @addtogroup matrix
+  /// @{
+
+  // fixed-size array support
+
+  /// %fixed_size_array_size
+  template <typename>
+  struct fixed_size_array_size {};
+
+  /// partial specialization of `fixed_size_array_size`
+  template <typename T, std::size_t N>
+  struct fixed_size_array_size<T[N]> : std::integral_constant<std::size_t, N> {};
+
+  /// partial specialization of `fixed_size_array_size`
+  template <typename T, std::size_t N>
+  struct fixed_size_array_size<std::array<T, N>> : std::integral_constant<std::size_t, N> {};
+
+  /// helper variable template for `fixed_size_array_size`
+  template <typename T>
+  inline constexpr auto fixed_size_array_size_v = fixed_size_array_size<T>::value;
+
+  /// %is_fixed_size_array
+  template <typename T, typename = void>
+  struct is_fixed_size_array : std::false_type {};
+
+  /// partial specialization of `is_fixed_size_array`
+  template <typename T>
+  struct is_fixed_size_array<T, std::void_t<decltype(fixed_size_array_size<T>::value)>>
+    : std::true_type {};
+
+  /// @brief helper variable template for `is_fixed_size_array`
+  /// @details To make this true, partially/fully specialize `fixed_size_array_size`.
+  template <typename T>
+  inline constexpr bool is_fixed_size_array_v = is_fixed_size_array<T>::value;
+
+  // matrix dimension
+
+  /// compile-time sqrt for unsigned integer
+  inline constexpr std::size_t isqrt(const std::size_t n) noexcept {
+    std::size_t l = 0, r = n;
+    while (r - l > 1) {
+      const std::size_t mid = l + (r - l) / 2;
+      if (mid * mid <= n) {
+        l = mid;
+      } else {
+        r = mid;
+      }
+    }
+    return l;
+  }
+
+  /// fixed_size_matrix_dim_v
+  template <typename T>
+  inline constexpr auto fixed_size_matrix_dim_v = isqrt(fixed_size_array_size<T>::value);
+
+  /// dim
+  template <typename M, std::enable_if_t<is_sized_range_v<M>, std::nullptr_t> = nullptr>
+  inline auto dim(const M& m) {
+    return static_cast<decltype(adl_size(m))>(std::round(std::sqrt(adl_size(m))));
+  }
+
+  /// @}
+} // namespace kspc
+
+// mapping
+namespace kspc {
+  /// @addtogroup matrix
+  /// @{
+
+  /// %mapping_row_major
+  struct mapping_row_major {
+  private:
+    std::size_t lda_{};
+
+  public:
+    using size_type = std::size_t;
+    constexpr mapping_row_major() = default;
+    constexpr explicit mapping_row_major(const size_type lda) : lda_(lda) {}
+
+    constexpr size_type operator()(const size_type i, const size_type j) const noexcept {
+      return lda_ * i + j;
+    }
+  }; // struct mapping_row_major
+
+  /// %mapping_transpose
+  template <typename Mapping>
+  struct mapping_transpose {
+  private:
+    Mapping mapping_{};
+
+  public:
+    using size_type = std::size_t;
+    constexpr mapping_transpose() = default;
+    constexpr explicit mapping_transpose(const Mapping& mapping) : mapping_(mapping) {}
+    constexpr explicit mapping_transpose(Mapping&& mapping) : mapping_(std::move(mapping)) {}
+
+    constexpr size_type operator()(const size_type i, const size_type j) const noexcept {
+      return mapping_(j, i);
+    }
+  }; // struct mapping_transpose
+
+  /// deduction guide for @link mapping_transpose mapping_transpose @endlink
+  template <typename Mapping>
+  mapping_transpose(Mapping) -> mapping_transpose<Mapping>;
+
+  /// mapping_column_major
+  inline constexpr auto mapping_column_major(const std::size_t lda) {
+    return mapping_transpose(mapping_row_major(lda));
+  }
+
+  /// @}
+} // namespace kspc
 
 // clang-format off
 
-// general matrix linear solve
+// matrix_copy
 namespace kspc {
   /// @addtogroup linalg
   /// @{
@@ -15,17 +132,80 @@ namespace kspc {
   /// matrix_copy
   template <class InMat, class OutMat, class M1, class M2, class P1 = identity_fn>
   void matrix_copy(const InMat& A, OutMat& B, M1&& map1, M2&& map2, P1&& proj1 = {}) {
-    using std::size;
+    using std::size; // for ADL
     const std::size_t n = kspc::dim(A);
     assert(size(A) == n * n);
     assert(size(B) == n * n);
 
-    for (std::size_t j = 0; j < n; ++j) {
-      for (std::size_t k = 0; k < n; ++k) {
+    for (std::size_t k = 0; k < n; ++k) {
+      for (std::size_t j = 0; j < n; ++j) {
         B[map2(j, k)] = std::invoke(proj1, A[map1(j, k)]);
       }
     }
   }
+
+  /// @}
+} // namespace kspc
+
+// unitary_transform
+namespace kspc {
+  /// @addtogroup linalg
+  /// @{
+
+  /// matrix_product
+  template <class InMat1, class InMat2, class OutMat, class M1, class M2, class M3, class P1 = identity_fn, class P2 = identity_fn>
+  void matrix_product(const InMat1& A, const InMat2& B, OutMat& C, M1&& map1, M2&& map2, M3&& map3, P1&& proj1 = {}, P2&& proj2 = {}) {
+    using std::size; // for ADL
+    const std::size_t n = kspc::dim(A);
+    assert(size(A) == n * n);
+    assert(size(B) == n * n);
+    assert(size(C) == n * n);
+
+    for (std::size_t j = 0; j < n; ++j) {
+      for (std::size_t l = 0; l < n; ++l) {
+        for (std::size_t k = 0; k < n; ++k) {
+          C[map3(j, k)] += std::invoke(proj1, A[map1(j, l)]) * std::invoke(proj2, B[map2(l, k)]);
+        }
+      }
+    }
+  }
+
+  /// unitary_transform
+  template <class InOutMat, class InMat, class Work, class M2, class M3, class P1 = conj_fn, class P2 = identity_fn, class P3 = identity_fn>
+  std::enable_if_t<std::conjunction_v<is_range<InOutMat>, is_range<InMat>, is_range<Work>>>
+  unitary_transform(InOutMat& A, const InMat& B, Work& C, M2&& map2, M3&& map3, P1&& proj1 = {}, P2&& proj2 = {}, P3&& proj3 = {}) {
+    using std::begin, std::end; // for ADL
+    std::fill(begin(C), end(C), 0);
+    const auto map1 = mapping_transpose(map3);
+    matrix_product(B, A, C, map1, map2, map2, proj1, proj2);
+    std::fill(begin(A), end(A), 0);
+    matrix_product(C, B, A, map2, map3, map2, identity, proj3);
+  }
+
+  /// @overload
+  template <class InOutMat, class InMat, class M2, class M3, class P1 = conj_fn, class P2 = identity_fn, class P3 = identity_fn>
+  std::enable_if_t<is_range_v<InOutMat> and is_range_v<InMat> and !is_range_v<M2>>
+  unitary_transform(InOutMat& A, const InMat& B, M2&& map2, M3&& map3, P1&& proj1 = {}, P2&& proj2 = {}, P3&& proj3 = {}) {
+    using T = remove_cvref_t<std::invoke_result_t<P2&, range_reference_t<InOutMat>>>;
+
+    if constexpr (is_fixed_size_array_v<remove_cvref_t<InOutMat>>) {
+      constexpr std::size_t N = fixed_size_matrix_dim_v<remove_cvref_t<InOutMat>>;
+      static std::array<T, N * N> C;
+      unitary_transform(A, B, C, map2, map3, proj1, proj2, proj3);
+    } else {
+      const std::size_t n = kspc::dim(A);
+      std::vector<T> C(n * n);
+      unitary_transform(A, B, C, map2, map3, proj1, proj2, proj3);
+    }
+  }
+
+  /// @}
+} // namespace kspc
+
+// general matrix linear solve
+namespace kspc {
+  /// @addtogroup linalg
+  /// @{
 
   /// @cond
   namespace detail {
@@ -80,7 +260,7 @@ namespace kspc {
   /// LU factorization
   template <class InOutMat, class OutIPiv>
   int lu_factor(InOutMat& A, OutIPiv& ipiv) {
-    using std::size, std::data;
+    using std::size, std::data; // for ADL
     const std::size_t n = kspc::dim(A);
     // std::cout << n << std::endl;
     assert(size(A) == n * n);
@@ -100,7 +280,7 @@ namespace kspc {
   /// solve Ax = b with a general matrix A using LU factorization
   template <class InMat, class InIPiv, class InOutVec>
   int matrix_vector_solve_with_lu_factor(const InMat& A, const InIPiv& ipiv, InOutVec& b) {
-    using std::size, std::data;
+    using std::size, std::data; // for ADL
     const std::size_t n = kspc::dim(A);
     // std::cout << n << std::endl;
     assert(size(A) == n * n);
@@ -205,7 +385,7 @@ namespace kspc::hermitian {
   std::enable_if_t<std::conjunction_v<
     is_range<InOutMat>, is_range<OutVec>, is_range<Work>>, int>
   eigen_solve(InOutMat& A, OutVec& w, Work& work) {
-    using std::size, std::data;
+    using std::size, std::data; // for ADL
     const std::size_t n = kspc::dim(A);
     // std::cout << n << std::endl;
     assert(size(A) == n * n);
@@ -223,7 +403,7 @@ namespace kspc::hermitian {
   std::enable_if_t<std::conjunction_v<
     is_range<InOutMat>, is_range<OutVec>, is_range<Work>, is_range<RWork>>, int>
   eigen_solve(InOutMat& A, OutVec& w, Work& work, RWork& rwork) {
-    using std::size, std::data;
+    using std::size, std::data; // for ADL
     const std::size_t n = kspc::dim(A);
     // std::cout << n << std::endl;
     assert(size(A) == n * n);
