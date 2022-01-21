@@ -1,8 +1,14 @@
 var searchData=
 [
-  ['tau_130',['tau',['../group__math__constants.html#ga2c933e2a32e66c2bad4f2189ff734f4e',1,'kspc']]],
-  ['tau_5fv_131',['tau_v',['../group__math__constants.html#gabd2b63bce87d7b8248dcb5cff5cf78fe',1,'kspc']]],
-  ['to_5faddress_132',['to_address',['../group__range.html#gaea3cc0697472dcbe97a6a549214ae7a8',1,'kspc::to_address(T *p) noexcept'],['../group__range.html#gafeb1b0d13131e285bbbe164bcf4c4e37',1,'kspc::to_address(const P &amp;p) noexcept']]],
-  ['type_5fidentity_133',['type_identity',['../structkspc_1_1type__identity.html',1,'kspc']]],
-  ['type_5fidentity_5ft_134',['type_identity_t',['../group__utility.html#gaded1ea76309ffc8cac73aad8d7455125',1,'kspc']]]
+  ['sentinel_5ft_119',['sentinel_t',['../group__range.html#gac4d071ef8f90947000e98f35fa370f31',1,'kspc']]],
+  ['set_5ferror_5fhandler_120',['set_error_handler',['../group__integration.html#ga000d6f3d7844359d5f17b96d44610828',1,'kspc']]],
+  ['sqrt2_121',['sqrt2',['../group__math__constants.html#ga40b92fd047ea0344da972a415e2fc57d',1,'kspc']]],
+  ['sqrt2_5fv_122',['sqrt2_v',['../group__math__constants.html#ga13495c68cdf4ee306d82c684a32835d6',1,'kspc']]],
+  ['sqrt3_123',['sqrt3',['../group__math__constants.html#ga9f5eb29f175060f10338ee159422c987',1,'kspc']]],
+  ['sqrt3_5fv_124',['sqrt3_v',['../group__math__constants.html#gaf16e42785ec8af1e4056fc435a2d6b6d',1,'kspc']]],
+  ['sqrt5_125',['sqrt5',['../group__math__constants.html#gad878f4f124754abd263e32d85618f0a8',1,'kspc']]],
+  ['sqrt5_5fv_126',['sqrt5_v',['../group__math__constants.html#gabc71a557d06205d0dfebf889277de653',1,'kspc']]],
+  ['squared_127',['squared',['../group__math__functions.html#ga7b3b51148ec88ed4105859112b15ea5e',1,'kspc']]],
+  ['ssize_128',['ssize',['../group__range.html#gaae414289ef2b3c1a41b14b0062a059a8',1,'kspc::ssize(const C &amp;c) noexcept(noexcept(static_cast&lt; std::common_type_t&lt; std::ptrdiff_t, std::make_signed_t&lt; decltype(c.size())&gt;&gt;&gt;(c.size()))) -&gt; std::common_type_t&lt; std::ptrdiff_t, std::make_signed_t&lt; decltype(c.size())&gt;&gt;'],['../group__range.html#ga5bc2cc72d192708158fd8ffc95d86a79',1,'kspc::ssize(std::add_lvalue_reference_t&lt; const T[N]&gt;) noexcept']]],
+  ['sum_129',['sum',['../group__numeric.html#gaf68d059d849df50b608442c0068014cf',1,'kspc']]]
 ];

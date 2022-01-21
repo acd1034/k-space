@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['utility_276',['Utility',['../group__utility.html',1,'']]]
+  ['range_275',['Range',['../group__range.html',1,'']]]
 ];

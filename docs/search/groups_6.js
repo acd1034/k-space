@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['range_275',['Range',['../group__range.html',1,'']]]
+  ['quadrature_20routines_274',['Quadrature routines',['../group__integration.html',1,'']]]
 ];
