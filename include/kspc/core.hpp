@@ -39,10 +39,10 @@
 /// @defgroup math_functions Mathematical functions
 /// @ingroup math
 
-/// @defgroup integration Integration
+/// @defgroup linalg Linear algorithms
 /// @ingroup math
 
-/// @defgroup linalg Linear algorithms
+/// @defgroup integration Quadrature routines
 /// @ingroup math
 
 /// @defgroup physics Physics
