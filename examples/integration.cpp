@@ -18,8 +18,11 @@ int main() {
   params.epsabs = 0.0;
   params.epsrel = 1e-7;
   params.alpha = 1.0;
+  kspc::set_error_handler();
 
-  using kspc::cquad::integrate;
+  using kspc::qng::integrate;
+  // using kspc::qag::integrate;
+  // using kspc::cquad::integrate;
   const auto [result, abserr] = integrate<1>(&f, &params);
   const double expected = -4.0;
 
