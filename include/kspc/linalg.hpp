@@ -5,7 +5,7 @@
 #include <cmath>      // sqrt, round
 #include <functional> // invoke
 #include <vector>
-#include <kspc/core.hpp>
+#include <kspc/core.hpp> // is_range, identity_fu, conj_fn
 
 // dim
 namespace kspc {
@@ -124,6 +124,30 @@ namespace kspc {
 
 // clang-format off
 
+// matrix_copy
+namespace kspc {
+  /// @addtogroup linalg
+  /// @{
+
+  /// matrix_copy
+  template <class InMat, class OutMat, class M1, class M2, class P1 = identity_fn>
+  void matrix_copy(const InMat& A, OutMat& B, M1&& map1, M2&& map2, P1&& proj1 = {}) {
+    using std::size; // for ADL
+    const std::size_t n = kspc::dim(A);
+    assert(size(A) == n * n);
+    assert(size(B) == n * n);
+
+    for (std::size_t k = 0; k < n; ++k) {
+      for (std::size_t j = 0; j < n; ++j) {
+        B[map2(j, k)] = std::invoke(proj1, A[map1(j, k)]);
+      }
+    }
+  }
+
+  /// @}
+} // namespace kspc
+
+// unitary_transform
 namespace kspc {
   /// @addtogroup linalg
   /// @{
@@ -172,21 +196,6 @@ namespace kspc {
       const std::size_t n = kspc::dim(A);
       std::vector<T> C(n * n);
       unitary_transform(A, B, C, map2, map3, proj1, proj2, proj3);
-    }
-  }
-
-  /// matrix_copy
-  template <class InMat, class OutMat, class M1, class M2, class P1 = identity_fn>
-  void matrix_copy(const InMat& A, OutMat& B, M1&& map1, M2&& map2, P1&& proj1 = {}) {
-    using std::size; // for ADL
-    const std::size_t n = kspc::dim(A);
-    assert(size(A) == n * n);
-    assert(size(B) == n * n);
-
-    for (std::size_t k = 0; k < n; ++k) {
-      for (std::size_t j = 0; j < n; ++j) {
-        B[map2(j, k)] = std::invoke(proj1, A[map1(j, k)]);
-      }
     }
   }
 
