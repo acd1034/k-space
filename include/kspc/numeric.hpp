@@ -4,12 +4,12 @@
 #include <kspc/core.hpp>
 #include <kspc/math_basics.hpp> // identity_fn, conj_fn
 
-// Numerical calculations
+// clang-format off
+
+// Numerical algorithms
 namespace kspc {
   /// @addtogroup numeric
   /// @{
-
-  // clang-format off
 
   // sum
 
@@ -139,7 +139,7 @@ namespace kspc {
              std::move(proj2));
   }
 
-  // clang-format on
-
   /// @}
 } // namespace kspc
+
+// clang-format on
