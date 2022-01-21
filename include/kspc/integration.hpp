@@ -1,10 +1,10 @@
 /// @file integration.hpp
 #pragma once
-#include <cstdio>
+#include <cstdlib> // abort
 #include <vector>
-#include <gsl/gsl_errno.h>
+#include <gsl/gsl_errno.h> // GSL_ETOL, GSL_EDIVERGE, gsl_stream_printf, gsl_set_error_handler
 #include <gsl/gsl_integration.h>
-#include <kspc/math_basics.hpp>
+#include <kspc/core.hpp>
 
 /// @addtogroup integration
 /// @{
@@ -202,6 +202,7 @@ namespace kspc::cquad {
       auto* params = (params_t*)void_params;
       auto* workspace = gsl_integration_cquad_workspace_alloc(workspace_size);
       double result, abserr;
+      std::size_t nevals;
 
       // clang-format off
       gsl_integration_cquad(&function,
@@ -212,7 +213,7 @@ namespace kspc::cquad {
                             workspace,
                             &result,
                             &abserr,
-                            /* &nevals */ nullptr);
+                            &nevals);
       // clang-format on
 
       gsl_integration_cquad_workspace_free(workspace);
