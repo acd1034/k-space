@@ -6,10 +6,10 @@
 #include <gsl/gsl_integration.h>
 #include <kspc/core.hpp>
 
-/// @addtogroup integration
-/// @{
-
 namespace kspc {
+  /// @addtogroup integration
+  /// @{
+
   /// @brief custom gsl error handler ignoring GSL_ETOL and GSL_EDIVERGE
   /// @details
   /// GSL_ETOL     = 14, failed to reach the specified tolerance
@@ -41,10 +41,15 @@ namespace kspc {
     function_t* workspace_function;
     std::vector<double> workspace_x;
   }; // struct params_t
+
+  /// @}
 } // namespace kspc
 
 // non-adaptive Gauss-Kronrod integration
 namespace kspc::qng {
+  /// @addtogroup integration
+  /// @{
+
   /// @cond
   namespace detail {
     /// integrate with gsl_integration_qng
@@ -102,10 +107,15 @@ namespace kspc::qng {
     params->workspace_x.resize(D);
     return detail::integrate_impl<D>(void_params);
   }
+
+  /// @}
 } // namespace kspc::qng
 
 // adaptive integration
 namespace kspc::qag {
+  /// @addtogroup integration
+  /// @{
+
   /// @cond
   namespace detail {
     /// integrate with gsl_integration_qag
@@ -169,10 +179,15 @@ namespace kspc::qag {
     params->workspace_x.resize(D);
     return detail::integrate_impl<D>(void_params);
   }
+
+  /// @}
 } // namespace kspc::qag
 
 // doubly-adaptive integration
 namespace kspc::cquad {
+  /// @addtogroup integration
+  /// @{
+
   /// @cond
   namespace detail {
     /// integrate with gsl_integration_cquad
@@ -233,6 +248,6 @@ namespace kspc::cquad {
     params->workspace_x.resize(D);
     return detail::integrate_impl<D>(void_params);
   }
-} // namespace kspc::cquad
 
-/// @}
+  /// @}
+} // namespace kspc::cquad
