@@ -566,7 +566,10 @@ namespace kspc {
   }
 
   /// @}
+} // namespace kspc
 
+// IO
+namespace kspc {
   /// @addtogroup io
   /// @{
 
@@ -582,4 +585,4 @@ namespace kspc {
   } // namespace io
 
   /// @}
-} // namespace kspc
+}
