@@ -90,87 +90,43 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:a1467eb11f5f418b30a78c1af6013dbea"><td class="memItemLeft" align="right" valign="top"><a id="a1467eb11f5f418b30a78c1af6013dbea"></a>
-using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="integration_8hpp.html#a1467eb11f5f418b30a78c1af6013dbea">kspc::function_t</a> = double(const std::vector&lt; double &gt; &amp;, void *)</td></tr>
-<tr class="memdesc:a1467eb11f5f418b30a78c1af6013dbea"><td class="mdescLeft">&#160;</td><td class="mdescRight">type of function to be handled in this library <br /></td></tr>
-<tr class="separator:a1467eb11f5f418b30a78c1af6013dbea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1467eb11f5f418b30a78c1af6013dbea"><td class="memItemLeft" align="right" valign="top">
+using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__integration.html#ga1467eb11f5f418b30a78c1af6013dbea">kspc::function_t</a> = double(const std::vector&lt; double &gt; &amp;, void *)</td></tr>
+<tr class="memdesc:ga1467eb11f5f418b30a78c1af6013dbea"><td class="mdescLeft">&#160;</td><td class="mdescRight">type of function to be handled in this library <br /></td></tr>
+<tr class="separator:ga1467eb11f5f418b30a78c1af6013dbea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:affa71433ad7177bf5c38422b22ff546f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="integration_8hpp.html#affa71433ad7177bf5c38422b22ff546f">kspc::error_handler</a> (const char *reason, const char *file, int line, int gsl_errno)</td></tr>
-<tr class="memdesc:affa71433ad7177bf5c38422b22ff546f"><td class="mdescLeft">&#160;</td><td class="mdescRight">custom gsl error handler ignoring GSL_ETOL and GSL_EDIVERGE  <a href="integration_8hpp.html#affa71433ad7177bf5c38422b22ff546f">More...</a><br /></td></tr>
-<tr class="separator:affa71433ad7177bf5c38422b22ff546f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a000d6f3d7844359d5f17b96d44610828"><td class="memItemLeft" align="right" valign="top"><a id="a000d6f3d7844359d5f17b96d44610828"></a>
-auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="integration_8hpp.html#a000d6f3d7844359d5f17b96d44610828">kspc::set_error_handler</a> ()</td></tr>
-<tr class="memdesc:a000d6f3d7844359d5f17b96d44610828"><td class="mdescLeft">&#160;</td><td class="mdescRight">set custom gsl error handler <br /></td></tr>
-<tr class="separator:a000d6f3d7844359d5f17b96d44610828"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0d04da99457348658c9e020b0c25da4c"><td class="memTemplParams" colspan="2"><a id="a0d04da99457348658c9e020b0c25da4c"></a>
+<tr class="memitem:gaffa71433ad7177bf5c38422b22ff546f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__integration.html#gaffa71433ad7177bf5c38422b22ff546f">kspc::error_handler</a> (const char *reason, const char *file, int line, int gsl_errno)</td></tr>
+<tr class="memdesc:gaffa71433ad7177bf5c38422b22ff546f"><td class="mdescLeft">&#160;</td><td class="mdescRight">custom gsl error handler ignoring GSL_ETOL and GSL_EDIVERGE  <a href="group__integration.html#gaffa71433ad7177bf5c38422b22ff546f">More...</a><br /></td></tr>
+<tr class="separator:gaffa71433ad7177bf5c38422b22ff546f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga000d6f3d7844359d5f17b96d44610828"><td class="memItemLeft" align="right" valign="top">
+auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__integration.html#ga000d6f3d7844359d5f17b96d44610828">kspc::set_error_handler</a> ()</td></tr>
+<tr class="memdesc:ga000d6f3d7844359d5f17b96d44610828"><td class="mdescLeft">&#160;</td><td class="mdescRight">set custom gsl error handler <br /></td></tr>
+<tr class="separator:ga000d6f3d7844359d5f17b96d44610828"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0d04da99457348658c9e020b0c25da4c"><td class="memTemplParams" colspan="2">
 template&lt;std::size_t D&gt; </td></tr>
-<tr class="memitem:a0d04da99457348658c9e020b0c25da4c"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="integration_8hpp.html#a0d04da99457348658c9e020b0c25da4c">kspc::qng::integrate</a> (function_t *function, void *void_params)</td></tr>
-<tr class="memdesc:a0d04da99457348658c9e020b0c25da4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">non-adaptive Gauss-Kronrod integration <br /></td></tr>
-<tr class="separator:a0d04da99457348658c9e020b0c25da4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad395a406bc2f1b0af3f8d657e388ae41"><td class="memTemplParams" colspan="2"><a id="ad395a406bc2f1b0af3f8d657e388ae41"></a>
+<tr class="memitem:ga0d04da99457348658c9e020b0c25da4c"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__integration.html#ga0d04da99457348658c9e020b0c25da4c">kspc::qng::integrate</a> (function_t *function, void *void_params)</td></tr>
+<tr class="memdesc:ga0d04da99457348658c9e020b0c25da4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">non-adaptive Gauss-Kronrod integration <br /></td></tr>
+<tr class="separator:ga0d04da99457348658c9e020b0c25da4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad395a406bc2f1b0af3f8d657e388ae41"><td class="memTemplParams" colspan="2">
 template&lt;std::size_t D&gt; </td></tr>
-<tr class="memitem:ad395a406bc2f1b0af3f8d657e388ae41"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="integration_8hpp.html#ad395a406bc2f1b0af3f8d657e388ae41">kspc::qag::integrate</a> (function_t *function, void *void_params)</td></tr>
-<tr class="memdesc:ad395a406bc2f1b0af3f8d657e388ae41"><td class="mdescLeft">&#160;</td><td class="mdescRight">adaptive integration <br /></td></tr>
-<tr class="separator:ad395a406bc2f1b0af3f8d657e388ae41"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2e5db4e7f5c1094792b58850ebc4b5c9"><td class="memTemplParams" colspan="2"><a id="a2e5db4e7f5c1094792b58850ebc4b5c9"></a>
+<tr class="memitem:gad395a406bc2f1b0af3f8d657e388ae41"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__integration.html#gad395a406bc2f1b0af3f8d657e388ae41">kspc::qag::integrate</a> (function_t *function, void *void_params)</td></tr>
+<tr class="memdesc:gad395a406bc2f1b0af3f8d657e388ae41"><td class="mdescLeft">&#160;</td><td class="mdescRight">adaptive integration <br /></td></tr>
+<tr class="separator:gad395a406bc2f1b0af3f8d657e388ae41"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2e5db4e7f5c1094792b58850ebc4b5c9"><td class="memTemplParams" colspan="2">
 template&lt;std::size_t D&gt; </td></tr>
-<tr class="memitem:a2e5db4e7f5c1094792b58850ebc4b5c9"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="integration_8hpp.html#a2e5db4e7f5c1094792b58850ebc4b5c9">kspc::cquad::integrate</a> (function_t *function, void *void_params)</td></tr>
-<tr class="memdesc:a2e5db4e7f5c1094792b58850ebc4b5c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">doubly-adaptive integration <br /></td></tr>
-<tr class="separator:a2e5db4e7f5c1094792b58850ebc4b5c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2e5db4e7f5c1094792b58850ebc4b5c9"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__integration.html#ga2e5db4e7f5c1094792b58850ebc4b5c9">kspc::cquad::integrate</a> (function_t *function, void *void_params)</td></tr>
+<tr class="memdesc:ga2e5db4e7f5c1094792b58850ebc4b5c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">doubly-adaptive integration <br /></td></tr>
+<tr class="separator:ga2e5db4e7f5c1094792b58850ebc4b5c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a2891d989f90f944f1b8be64ddeb95761"><td class="memItemLeft" align="right" valign="top"><a id="a2891d989f90f944f1b8be64ddeb95761"></a>
-constexpr std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="integration_8hpp.html#a2891d989f90f944f1b8be64ddeb95761">kspc::workspace_size</a> = 1000</td></tr>
-<tr class="memdesc:a2891d989f90f944f1b8be64ddeb95761"><td class="mdescLeft">&#160;</td><td class="mdescRight">size of workspace <br /></td></tr>
-<tr class="separator:a2891d989f90f944f1b8be64ddeb95761"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2891d989f90f944f1b8be64ddeb95761"><td class="memItemLeft" align="right" valign="top">
+constexpr std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__integration.html#ga2891d989f90f944f1b8be64ddeb95761">kspc::workspace_size</a> = 1000</td></tr>
+<tr class="memdesc:ga2891d989f90f944f1b8be64ddeb95761"><td class="mdescLeft">&#160;</td><td class="mdescRight">size of workspace <br /></td></tr>
+<tr class="separator:ga2891d989f90f944f1b8be64ddeb95761"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Function Documentation</h2>
-<a id="affa71433ad7177bf5c38422b22ff546f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#affa71433ad7177bf5c38422b22ff546f">&#9670;&nbsp;</a></span>error_handler()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void kspc::error_handler </td>
-          <td>(</td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>reason</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>file</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>line</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>gsl_errno</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>custom gsl error handler ignoring GSL_ETOL and GSL_EDIVERGE </p>
-<p>GSL_ETOL = 14, failed to reach the specified tolerance GSL_EDIVERGE = 22, integral or series is divergent </p>
-
-</div>
-</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

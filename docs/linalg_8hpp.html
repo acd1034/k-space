@@ -66,25 +66,86 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#func-members">Functions</a>  </div>
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">linalg.hpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;array&gt;</code><br />
+<div class="textblock"><code>#include &lt;algorithm&gt;</code><br />
+<code>#include &lt;array&gt;</code><br />
+<code>#include &lt;cmath&gt;</code><br />
 <code>#include &lt;functional&gt;</code><br />
 <code>#include &lt;vector&gt;</code><br />
-<code>#include &lt;<a class="el" href="math__basics_8hpp_source.html">kspc/math_basics.hpp</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="core_8hpp_source.html">kspc/core.hpp</a>&gt;</code><br />
 </div>
 <p><a href="linalg_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkspc_1_1fixed__size__array__size.html">kspc::fixed_size_array_size&lt; typename &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">fixed_size_array_size  <a href="structkspc_1_1fixed__size__array__size.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkspc_1_1fixed__size__array__size_3_01_t_0f_n_0e_4.html">kspc::fixed_size_array_size&lt; T[N]&gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">partial specialization of <code><a class="el" href="structkspc_1_1fixed__size__array__size.html" title="fixed_size_array_size">fixed_size_array_size</a></code>  <a href="structkspc_1_1fixed__size__array__size_3_01_t_0f_n_0e_4.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkspc_1_1fixed__size__array__size_3_01std_1_1array_3_01_t_00_01_n_01_4_01_4.html">kspc::fixed_size_array_size&lt; std::array&lt; T, N &gt; &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">partial specialization of <code><a class="el" href="structkspc_1_1fixed__size__array__size.html" title="fixed_size_array_size">fixed_size_array_size</a></code>  <a href="structkspc_1_1fixed__size__array__size_3_01std_1_1array_3_01_t_00_01_n_01_4_01_4.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkspc_1_1is__fixed__size__array.html">kspc::is_fixed_size_array&lt; T, typename &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">is_fixed_size_array  <a href="structkspc_1_1is__fixed__size__array.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkspc_1_1is__fixed__size__array_3_01_t_00_01std_1_1void__t_3_01decltype_07fixed__size__arra4dc6dd664bb681c1da3a8a67ce28aebe.html">kspc::is_fixed_size_array&lt; T, std::void_t&lt; decltype(fixed_size_array_size&lt; T &gt;::value)&gt; &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">partial specialization of <code><a class="el" href="structkspc_1_1is__fixed__size__array.html" title="is_fixed_size_array">is_fixed_size_array</a></code>  <a href="structkspc_1_1is__fixed__size__array_3_01_t_00_01std_1_1void__t_3_01decltype_07fixed__size__arra4dc6dd664bb681c1da3a8a67ce28aebe.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkspc_1_1mapping__row__major.html">kspc::mapping_row_major</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">mapping_row_major  <a href="structkspc_1_1mapping__row__major.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkspc_1_1mapping__transpose.html">kspc::mapping_transpose&lt; Mapping &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">mapping_transpose  <a href="structkspc_1_1mapping__transpose.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:ga43868c18ecfcdefd942b777ed870eb35"><td class="memItemLeft" align="right" valign="top">
+constexpr std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__matrix.html#ga43868c18ecfcdefd942b777ed870eb35">kspc::isqrt</a> (const std::size_t n) noexcept</td></tr>
+<tr class="memdesc:ga43868c18ecfcdefd942b777ed870eb35"><td class="mdescLeft">&#160;</td><td class="mdescRight">compile-time sqrt for unsigned integer <br /></td></tr>
+<tr class="separator:ga43868c18ecfcdefd942b777ed870eb35"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5fba16981a66e5c8e66c9f0f3f19bd5e"><td class="memTemplParams" colspan="2">
+template&lt;typename M , std::enable_if_t&lt; is_sized_range_v&lt; M &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
+<tr class="memitem:ga5fba16981a66e5c8e66c9f0f3f19bd5e"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__matrix.html#ga5fba16981a66e5c8e66c9f0f3f19bd5e">kspc::dim</a> (const M &amp;m)</td></tr>
+<tr class="memdesc:ga5fba16981a66e5c8e66c9f0f3f19bd5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">dim <br /></td></tr>
+<tr class="separator:ga5fba16981a66e5c8e66c9f0f3f19bd5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaaebb5dbdfbb8b1d567dbdc55f4e7f2dc"><td class="memTemplParams" colspan="2">
+template&lt;typename Mapping &gt; </td></tr>
+<tr class="memitem:gaaebb5dbdfbb8b1d567dbdc55f4e7f2dc"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__matrix.html#gaaebb5dbdfbb8b1d567dbdc55f4e7f2dc">kspc::mapping_transpose</a> (Mapping) -&gt; mapping_transpose&lt; Mapping &gt;</td></tr>
+<tr class="memdesc:gaaebb5dbdfbb8b1d567dbdc55f4e7f2dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">deduction guide for <a class="el" href="structkspc_1_1mapping__transpose.html">mapping_transpose </a> <br /></td></tr>
+<tr class="separator:gaaebb5dbdfbb8b1d567dbdc55f4e7f2dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga555eff80d62690b8de72d5fd1b936716"><td class="memItemLeft" align="right" valign="top">
+constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__matrix.html#ga555eff80d62690b8de72d5fd1b936716">kspc::mapping_column_major</a> (const std::size_t lda)</td></tr>
+<tr class="memdesc:ga555eff80d62690b8de72d5fd1b936716"><td class="mdescLeft">&#160;</td><td class="mdescRight">mapping_column_major <br /></td></tr>
+<tr class="separator:ga555eff80d62690b8de72d5fd1b936716"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga4b012f86c9d63060537f10b86917d905"><td class="memTemplParams" colspan="2">
 template&lt;class InMat , class OutMat , class M1 , class M2 , class P1  = identity_fn&gt; </td></tr>
 <tr class="memitem:ga4b012f86c9d63060537f10b86917d905"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__linalg.html#ga4b012f86c9d63060537f10b86917d905">kspc::matrix_copy</a> (const InMat &amp;A, OutMat &amp;B, M1 &amp;&amp;map1, M2 &amp;&amp;map2, P1 &amp;&amp;proj1={})</td></tr>
 <tr class="memdesc:ga4b012f86c9d63060537f10b86917d905"><td class="mdescLeft">&#160;</td><td class="mdescRight">matrix_copy <br /></td></tr>
 <tr class="separator:ga4b012f86c9d63060537f10b86917d905"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga13440f6f7cbb11256fb7794331c5d62e"><td class="memTemplParams" colspan="2">
+template&lt;class InMat1 , class InMat2 , class OutMat , class M1 , class M2 , class M3 , class P1  = identity_fn, class P2  = identity_fn&gt; </td></tr>
+<tr class="memitem:ga13440f6f7cbb11256fb7794331c5d62e"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__linalg.html#ga13440f6f7cbb11256fb7794331c5d62e">kspc::matrix_product</a> (const InMat1 &amp;A, const InMat2 &amp;B, OutMat &amp;C, M1 &amp;&amp;map1, M2 &amp;&amp;map2, M3 &amp;&amp;map3, P1 &amp;&amp;proj1={}, P2 &amp;&amp;proj2={})</td></tr>
+<tr class="memdesc:ga13440f6f7cbb11256fb7794331c5d62e"><td class="mdescLeft">&#160;</td><td class="mdescRight">matrix_product <br /></td></tr>
+<tr class="separator:ga13440f6f7cbb11256fb7794331c5d62e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga793cf5cc358b2914170e4b4bedc17879"><td class="memTemplParams" colspan="2">
+template&lt;class InOutMat , class InMat , class Work , class M2 , class M3 , class P1  = conj_fn, class P2  = identity_fn, class P3  = identity_fn&gt; </td></tr>
+<tr class="memitem:ga793cf5cc358b2914170e4b4bedc17879"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if_t&lt; std::conjunction_v&lt; is_range&lt; InOutMat &gt;, is_range&lt; InMat &gt;, is_range&lt; Work &gt; &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__linalg.html#ga793cf5cc358b2914170e4b4bedc17879">kspc::unitary_transform</a> (InOutMat &amp;A, const InMat &amp;B, Work &amp;C, M2 &amp;&amp;map2, M3 &amp;&amp;map3, P1 &amp;&amp;proj1={}, P2 &amp;&amp;proj2={}, P3 &amp;&amp;proj3={})</td></tr>
+<tr class="memdesc:ga793cf5cc358b2914170e4b4bedc17879"><td class="mdescLeft">&#160;</td><td class="mdescRight">unitary_transform <br /></td></tr>
+<tr class="separator:ga793cf5cc358b2914170e4b4bedc17879"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga021f58151fd46c693c7940d687c2d0ce"><td class="memTemplParams" colspan="2">
+template&lt;class InOutMat , class InMat , class M2 , class M3 , class P1  = conj_fn, class P2  = identity_fn, class P3  = identity_fn&gt; </td></tr>
+<tr class="memitem:ga021f58151fd46c693c7940d687c2d0ce"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if_t&lt; is_range_v&lt; InOutMat &gt; and is_range_v&lt; InMat &gt; and !is_range_v&lt; M2 &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__linalg.html#ga021f58151fd46c693c7940d687c2d0ce">kspc::unitary_transform</a> (InOutMat &amp;A, const InMat &amp;B, M2 &amp;&amp;map2, M3 &amp;&amp;map3, P1 &amp;&amp;proj1={}, P2 &amp;&amp;proj2={}, P3 &amp;&amp;proj3={})</td></tr>
+<tr class="memdesc:ga021f58151fd46c693c7940d687c2d0ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. <br /></td></tr>
+<tr class="separator:ga021f58151fd46c693c7940d687c2d0ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga8ad83e9fe6d1b5b0b8877268f9441ee8"><td class="memTemplParams" colspan="2">
 template&lt;class InOutMat , class OutIPiv &gt; </td></tr>
 <tr class="memitem:ga8ad83e9fe6d1b5b0b8877268f9441ee8"><td class="memTemplItemLeft" align="right" valign="top">int&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__linalg.html#ga8ad83e9fe6d1b5b0b8877268f9441ee8">kspc::lu_factor</a> (InOutMat &amp;A, OutIPiv &amp;ipiv)</td></tr>
@@ -120,6 +181,23 @@ template&lt;class InOutMat , class OutVec , class M , class P  = identity_fn&gt;
 <tr class="memitem:ga860bb409a166a97ea7426a98a520170d"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if_t&lt; is_range_v&lt; InOutMat &gt; and is_range_v&lt; OutVec &gt; and(not is_range_v&lt; M &gt;) and(not is_range_v&lt; P &gt;), int &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__linalg.html#ga860bb409a166a97ea7426a98a520170d">kspc::hermitian::eigen_solve</a> (InOutMat &amp;A, OutVec &amp;w, M &amp;&amp;map, P &amp;&amp;proj={})</td></tr>
 <tr class="memdesc:ga860bb409a166a97ea7426a98a520170d"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. <br /></td></tr>
 <tr class="separator:ga860bb409a166a97ea7426a98a520170d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:gae7f353485d3376ea5593b5550a00c772"><td class="memTemplParams" colspan="2">
+template&lt;typename T &gt; </td></tr>
+<tr class="memitem:gae7f353485d3376ea5593b5550a00c772"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__matrix.html#gae7f353485d3376ea5593b5550a00c772">kspc::fixed_size_array_size_v</a> = fixed_size_array_size&lt;T&gt;::value</td></tr>
+<tr class="memdesc:gae7f353485d3376ea5593b5550a00c772"><td class="mdescLeft">&#160;</td><td class="mdescRight">helper variable template for <code><a class="el" href="structkspc_1_1fixed__size__array__size.html" title="fixed_size_array_size">fixed_size_array_size</a></code> <br /></td></tr>
+<tr class="separator:gae7f353485d3376ea5593b5550a00c772"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6b72a099d95086e568320bed273f4969"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:ga6b72a099d95086e568320bed273f4969"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__matrix.html#ga6b72a099d95086e568320bed273f4969">kspc::is_fixed_size_array_v</a> = is_fixed_size_array&lt;T&gt;::value</td></tr>
+<tr class="memdesc:ga6b72a099d95086e568320bed273f4969"><td class="mdescLeft">&#160;</td><td class="mdescRight">helper variable template for <code><a class="el" href="structkspc_1_1is__fixed__size__array.html" title="is_fixed_size_array">is_fixed_size_array</a></code>  <a href="group__matrix.html#ga6b72a099d95086e568320bed273f4969">More...</a><br /></td></tr>
+<tr class="separator:ga6b72a099d95086e568320bed273f4969"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga23876907d282054775d34cc16b2f3405"><td class="memTemplParams" colspan="2">
+template&lt;typename T &gt; </td></tr>
+<tr class="memitem:ga23876907d282054775d34cc16b2f3405"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__matrix.html#ga23876907d282054775d34cc16b2f3405">kspc::fixed_size_matrix_dim_v</a> = isqrt(fixed_size_array_size&lt;T&gt;::value)</td></tr>
+<tr class="memdesc:ga23876907d282054775d34cc16b2f3405"><td class="mdescLeft">&#160;</td><td class="mdescRight">fixed_size_matrix_dim_v <br /></td></tr>
+<tr class="separator:ga23876907d282054775d34cc16b2f3405"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 <!-- start footer part -->

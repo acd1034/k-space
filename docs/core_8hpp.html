@@ -81,6 +81,7 @@ $(function() {
 <code>#include &lt;tuple&gt;</code><br />
 <code>#include &lt;type_traits&gt;</code><br />
 <code>#include &lt;utility&gt;</code><br />
+<code>#include &lt;complex&gt;</code><br />
 <code>#include &lt;iosfwd&gt;</code><br />
 <code>#include &lt;iterator&gt;</code><br />
 <code>#include &lt;limits&gt;</code><br />
@@ -149,6 +150,27 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkspc_1_1is__sized__range.html">kspc::is_sized_range&lt; R &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">is_sized_range  <a href="structkspc_1_1is__sized__range.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkspc_1_1identity__fn.html">kspc::identity_fn</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">identity_fn  <a href="structkspc_1_1identity__fn.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkspc_1_1is__complex.html">kspc::is_complex&lt; T &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">is_complex  <a href="structkspc_1_1is__complex.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkspc_1_1is__complex_3_01std_1_1complex_3_01_t_01_4_01_4.html">kspc::is_complex&lt; std::complex&lt; T &gt; &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">partial specialization of <code><a class="el" href="structkspc_1_1is__complex.html" title="is_complex">is_complex</a></code>  <a href="structkspc_1_1is__complex_3_01std_1_1complex_3_01_t_01_4_01_4.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkspc_1_1complex__traits.html">kspc::complex_traits&lt; T &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">complex_traits  <a href="structkspc_1_1complex__traits.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkspc_1_1complex__traits_3_01std_1_1complex_3_01_t_01_4_01_4.html">kspc::complex_traits&lt; std::complex&lt; T &gt; &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">partial specialization of <code><a class="el" href="structkspc_1_1complex__traits.html" title="complex_traits">complex_traits</a></code>  <a href="structkspc_1_1complex__traits_3_01std_1_1complex_3_01_t_01_4_01_4.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkspc_1_1complex__traits_3_01const_01_t_01_4.html">kspc::complex_traits&lt; const T &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">partial specialization of <code><a class="el" href="structkspc_1_1complex__traits.html" title="complex_traits">complex_traits</a></code>  <a href="structkspc_1_1complex__traits_3_01const_01_t_01_4.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkspc_1_1conj__fn.html">kspc::conj_fn</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">conj_fn  <a href="structkspc_1_1conj__fn.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
@@ -210,6 +232,11 @@ template&lt;typename R , std::enable_if_t&lt; is_range_v&lt; R &gt;, std::nullpt
 <tr class="memitem:ga206f6e863c3cf8b6107f81e2f44acb5a"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__range.html#ga206f6e863c3cf8b6107f81e2f44acb5a">kspc::range_reference_t</a> = iter_reference_t&lt; iterator_t&lt; R &gt; &gt;</td></tr>
 <tr class="memdesc:ga206f6e863c3cf8b6107f81e2f44acb5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">range_reference_t <br /></td></tr>
 <tr class="separator:ga206f6e863c3cf8b6107f81e2f44acb5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga454ac6c4cbe075972757c42e2027867b"><td class="memTemplParams" colspan="2">
+template&lt;typename T &gt; </td></tr>
+<tr class="memitem:ga454ac6c4cbe075972757c42e2027867b"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__math.html#ga454ac6c4cbe075972757c42e2027867b">kspc::complex_value_t</a> = typename complex_traits&lt; remove_cvref_t&lt; T &gt; &gt;::value_type</td></tr>
+<tr class="memdesc:ga454ac6c4cbe075972757c42e2027867b"><td class="mdescLeft">&#160;</td><td class="mdescRight">complex_value_t <br /></td></tr>
+<tr class="separator:ga454ac6c4cbe075972757c42e2027867b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
@@ -306,6 +333,19 @@ template&lt;typename R &gt; </td></tr>
 <tr class="memitem:gaf4bf00febada81338666676554c286a1"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__range.html#gaf4bf00febada81338666676554c286a1">kspc::is_sized_range_v</a> = is_sized_range&lt;R&gt;::value</td></tr>
 <tr class="memdesc:gaf4bf00febada81338666676554c286a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">helper variable template for <code><a class="el" href="structkspc_1_1is__sized__range.html" title="is_sized_range">is_sized_range</a></code> <br /></td></tr>
 <tr class="separator:gaf4bf00febada81338666676554c286a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c27a8c08877f4fcf0ac19da0ec62126"><td class="memItemLeft" align="right" valign="top"><a id="a2c27a8c08877f4fcf0ac19da0ec62126"></a>
+constexpr identity_fn&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="core_8hpp.html#a2c27a8c08877f4fcf0ac19da0ec62126">kspc::identity</a> {}</td></tr>
+<tr class="memdesc:a2c27a8c08877f4fcf0ac19da0ec62126"><td class="mdescLeft">&#160;</td><td class="mdescRight">identity <br /></td></tr>
+<tr class="separator:a2c27a8c08877f4fcf0ac19da0ec62126"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga689b2a2abfa8dabacc5f91bab321529e"><td class="memTemplParams" colspan="2">
+template&lt;typename T &gt; </td></tr>
+<tr class="memitem:ga689b2a2abfa8dabacc5f91bab321529e"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__math.html#ga689b2a2abfa8dabacc5f91bab321529e">kspc::is_complex_v</a> = is_complex&lt;T&gt;::value</td></tr>
+<tr class="memdesc:ga689b2a2abfa8dabacc5f91bab321529e"><td class="mdescLeft">&#160;</td><td class="mdescRight">helper variable template for <code><a class="el" href="structkspc_1_1is__complex.html" title="is_complex">is_complex</a></code> <br /></td></tr>
+<tr class="separator:ga689b2a2abfa8dabacc5f91bab321529e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab6d24386e9bd69a952d04adca8f9cf86"><td class="memItemLeft" align="right" valign="top"><a id="ab6d24386e9bd69a952d04adca8f9cf86"></a>
+constexpr conj_fn&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="core_8hpp.html#ab6d24386e9bd69a952d04adca8f9cf86">kspc::conj</a> {}</td></tr>
+<tr class="memdesc:ab6d24386e9bd69a952d04adca8f9cf86"><td class="mdescLeft">&#160;</td><td class="mdescRight">conj <br /></td></tr>
+<tr class="separator:ab6d24386e9bd69a952d04adca8f9cf86"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 <!-- start footer part -->
