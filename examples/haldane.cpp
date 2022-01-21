@@ -1,5 +1,5 @@
 /**
- * @file haldane.cpp
+ * @file haldane_fixed.cpp
  * compiler: GCC version 10.2.0
  * compiler option:
  * -O3 -std=c++17 -lm -llapack -lblas -lgsl -lgslcblas -mtune=native -march=native -mfpmath=both
@@ -9,9 +9,10 @@
 #include <kspc/integration.hpp>
 #include <kspc/linalg.hpp>
 #include <kspc/math.hpp>
+#include <kspc/numeric.hpp>
 using namespace kspc::arithmetic_ops;
 
-inline constexpr std::size_t D = 2;
+inline constexpr std::size_t Nsite = 2;
 
 // nearest neighbor lattice vectors
 inline constexpr std::array a{
@@ -40,13 +41,15 @@ struct params_t : kspc::params_t {
   double t2 = 0.0;
   double phi = 0.0;
   double delta = 0.0;
-}; // struct params_t
+};
 
 // clang-format off
+
 auto gen_hermitian_matrix(const double d0, const double dx, const double dy, const double dz) {
-  return kspc::ndmatrix<std::complex<double>>{
+  return std::array<std::complex<double>, Nsite * Nsite>{
     d0 + dz, std::complex{dx, -dy},
-    std::complex{dx, dy}, d0 - dz};
+    std::complex{dx, dy}, d0 - dz
+  };
 }
 
 auto H_(const std::vector<double>& k, void* temp_p_params) {
@@ -90,44 +93,48 @@ auto dHdky_(const std::vector<double>& k, void* temp_p_params) {
       * kspc::sum(b, [&k](const auto& bi){ return bi[1] * std::cos(kspc::innerp(k, bi)); })
   );
 }
+
 // clang-format on
 
 inline constexpr std::size_t n = 0;
-inline constexpr auto in_BZ = kspc::make_in_BZ(g);
+inline constexpr auto in_brillouin_zone = kspc::in_brillouin_zone(g);
 
 // calclate z-component of Berry curvature
 double Bz_(const std::vector<double>& k, void* temp_p_params) {
-  if (!in_BZ(k)) return 0.0;
+  if (not in_brillouin_zone(k)) return 0.0;
+
   auto H = H_(k, temp_p_params);
-  assert(kspc::hermitian(H));
-  auto [E, U] = kspc::zheev(H);
-  auto dHdkx = kspc::mel(dHdkx_(k, temp_p_params), U);
-  auto dHdky = kspc::mel(dHdky_(k, temp_p_params), U);
+  std::array<double, Nsite> E;
+  constexpr auto row_major = kspc::mapping_row_major(Nsite);
+  kspc::hermitian::eigen_solve(H, E, row_major);
+
+  auto dHdkx = dHdkx_(k, temp_p_params);
+  auto dHdky = dHdky_(k, temp_p_params);
+  kspc::unitary_transform(dHdkx, H, row_major, row_major);
+  kspc::unitary_transform(dHdky, H, row_major, row_major);
 
   double bz = 0.0;
-  for (std::size_t m = 0; m < H.dim(); ++m) {
-    if (m != n) bz -= 2.0 * std::imag(dHdkx(n, m) * dHdky(m, n)) / std::pow(E[n] - E[m], 2);
+  for (std::size_t m = 0; m < Nsite; ++m) {
+    if (m != n)
+      bz -=
+        2.0 * std::imag(dHdkx[row_major(n, m)] * dHdky[row_major(m, n)]) / std::pow(E[n] - E[m], 2);
   }
   return bz;
 }
 
 int main() {
   params_t params;
-  params.p_fn = &Bz_;
   params.b = std::vector{kspc::pi, kspc::pi};
   params.a = -params.b;
   params.epsabs = 1e-4;
   params.epsrel = 1e-4;
   params.t2 = 1.0;
   std::array phi_arr{-kspc::pi / 2, 0.0, kspc::pi / 2};
+  kspc::set_error_handler();
 
   for (const auto& phi : phi_arr) {
     params.phi = phi;
-    const auto [value, error] = kspc::cquad<D>(&params);
-    // clang-format off
-    std::cout
-      << "phi: " << phi
-      << ", chern #: " << value / 2.0 / kspc::pi << std::endl;
-    // clang-format on
+    const auto [result, abserr] = kspc::cquad::integrate<2>(&Bz_, &params);
+    std::cout << "phi: " << phi << ", chern #: " << result / 2.0 / kspc::pi << std::endl;
   }
 }
