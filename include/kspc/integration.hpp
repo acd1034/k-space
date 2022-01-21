@@ -4,90 +4,89 @@
 #include <gsl/gsl_integration.h>
 #include <kspc/math_basics.hpp>
 
-namespace kspc {
-  /// @addtogroup integration
-  /// @{
+/// @addtogroup integration
+/// @{
 
-  /// helper class for defining parameters of integrand
+namespace kspc {
+  /// size of workspace
+  inline constexpr std::size_t workspace_size = 1000;
+
+  /// type of function to be handled in this library
+  using function_t = double(const std::vector<double>&, void*);
+
+  /// helper class to set parameters of integrand
   struct params_t {
-    // double (*p_fn)(const std::vector<double>& x, void* p_params);
-    // builtin_function<double, const std::vector<double>&, void*>* p_fn;
-    std::add_pointer_t<double(const std::vector<double>&, void*)> p_fn;
     std::vector<double> a;
     std::vector<double> b;
     double epsabs;
     double epsrel;
-    // internal variable to hold values to evaluate a function
-    std::vector<double> temp_x;
+    // workspace
+    function_t* workspace_function;
+    std::vector<double> workspace_x;
   }; // struct params_t
+} // namespace kspc
 
+// doubly-adaptive integration
+namespace kspc::cquad {
   /// @cond
   namespace detail {
-    /// size of workspace
-    inline constexpr std::size_t wssize = 1000;
-
-    /// integrand for cquad
+    /// integrate with gsl_integration_cquad
     template <std::size_t D>
-    double cquad_integrand(double x, void* temp_p_params) {
-      auto* p_params = (params_t*)temp_p_params;
-      p_params->temp_x[D] = x;
-      gsl_function F{&cquad_integrand<D - 1>, temp_p_params};
-      double result, error;
-      std::size_t nevals;
+    std::pair<double, double> integrate_impl(void* void_params);
 
-      gsl_integration_cquad_workspace* ws = gsl_integration_cquad_workspace_alloc(wssize);
-      // clang-format off
-      gsl_integration_cquad(&F,
-                            p_params->a[D - 1],
-                            p_params->b[D - 1],
-                            p_params->epsabs,
-                            p_params->epsrel,
-                            ws,
-                            &result,
-                            &error,
-                            &nevals);
-      // clang-format on
-      gsl_integration_cquad_workspace_free(ws);
-      return result;
+    /// integrand for gsl_integration_cquad
+    template <std::size_t D>
+    double integrand(double x, void* void_params) {
+      auto* params = (params_t*)void_params;
+      params->workspace_x[D] = x;
+      return std::get<0>(integrate_impl<D>(void_params));
     }
 
-    /// full specialization of `cquad_integrand`
+    /// full specialization of integrand
     template <>
-    double cquad_integrand<0>(double x, void* temp_p_params) {
-      auto* p_params = (params_t*)temp_p_params;
-      p_params->temp_x[0] = x;
-      return (*p_params->p_fn)(p_params->temp_x, temp_p_params);
+    double integrand<0>(double x, void* void_params) {
+      auto* params = (params_t*)void_params;
+      params->workspace_x[0] = x;
+      return (params->workspace_function)(params->workspace_x, void_params);
+    }
+
+    template <std::size_t D>
+    std::pair<double, double> integrate_impl(void* void_params) {
+      static_assert(D > 0);
+      gsl_function function{&integrand<D - 1>, void_params};
+      auto* params = (params_t*)void_params;
+      auto* workspace = gsl_integration_cquad_workspace_alloc(workspace_size);
+      double result, abserr;
+
+      // clang-format off
+      gsl_integration_cquad(&function,
+                            params->a[D - 1],
+                            params->b[D - 1],
+                            params->epsabs,
+                            params->epsrel,
+                            workspace,
+                            &result,
+                            &abserr,
+                            /* &nevals */ nullptr);
+      // clang-format on
+
+      gsl_integration_cquad_workspace_free(workspace);
+      return {result, abserr};
     }
   } // namespace detail
   /// @endcond
 
-  /// D-dimensional integral
+  /// doubly-adaptive integration
   template <std::size_t D>
-  auto cquad(void* temp_p_params) {
-    auto* p_params = (params_t*)temp_p_params;
-    assert(std::size(p_params->a) >= D);
-    assert(std::size(p_params->b) >= D);
-
-    p_params->temp_x.resize(D);
-    gsl_function F{&detail::cquad_integrand<D - 1>, temp_p_params};
-    double result, error;
-    std::size_t nevals;
-
-    gsl_integration_cquad_workspace* ws = gsl_integration_cquad_workspace_alloc(detail::wssize);
-    // clang-format off
-    gsl_integration_cquad(&F,
-                          p_params->a[D - 1],
-                          p_params->b[D - 1],
-                          p_params->epsabs,
-                          p_params->epsrel,
-                          ws,
-                          &result,
-                          &error,
-                          &nevals);
-    // clang-format on
-    gsl_integration_cquad_workspace_free(ws);
-    return std::make_pair(result, error);
+  auto integrate(function_t* function, void* void_params) {
+    static_assert(D > 0);
+    auto* params = (params_t*)void_params;
+    assert(std::size(params->a) == D);
+    assert(std::size(params->b) == D);
+    params->workspace_function = function;
+    params->workspace_x.resize(D);
+    return detail::integrate_impl<D>(void_params);
   }
+} // namespace kspc::cquad
 
-  /// @}
-} // namespace kspc
+/// @}
