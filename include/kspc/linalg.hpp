@@ -7,7 +7,6 @@
 
 // clang-format off
 
-// general matrix linear solve
 namespace kspc {
   /// @addtogroup linalg
   /// @{
@@ -20,12 +19,20 @@ namespace kspc {
     assert(size(A) == n * n);
     assert(size(B) == n * n);
 
-    for (std::size_t j = 0; j < n; ++j) {
-      for (std::size_t k = 0; k < n; ++k) {
+    for (std::size_t k = 0; k < n; ++k) {
+      for (std::size_t j = 0; j < n; ++j) {
         B[map2(j, k)] = std::invoke(proj1, A[map1(j, k)]);
       }
     }
   }
+
+  /// @}
+} // namespace kspc
+
+// general matrix linear solve
+namespace kspc {
+  /// @addtogroup linalg
+  /// @{
 
   /// @cond
   namespace detail {
