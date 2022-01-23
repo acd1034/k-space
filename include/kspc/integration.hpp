@@ -61,7 +61,7 @@ namespace kspc::qng {
     double integrand(double x, void* void_params) {
       auto* params = (params_t*)void_params;
       params->workspace_x[D] = x;
-      return std::get<0>(integrate_impl<D>(void_params));
+      return std::get<0>(integrate_impl<D - 1>(void_params));
     }
 
     /// full specialization of `integrand`
@@ -74,16 +74,15 @@ namespace kspc::qng {
 
     template <std::size_t D>
     std::pair<double, double> integrate_impl(void* void_params) {
-      static_assert(D > 0);
-      gsl_function function{&integrand<D - 1>, void_params};
+      gsl_function function{&integrand<D>, void_params};
       auto* params = (params_t*)void_params;
       double result, abserr;
       std::size_t nevals;
 
       // clang-format off
       gsl_integration_qng(&function,
-                          params->a[D - 1],
-                          params->b[D - 1],
+                          params->a[D],
+                          params->b[D],
                           params->epsabs,
                           params->epsrel,
                           &result,
@@ -105,7 +104,7 @@ namespace kspc::qng {
     assert(std::size(params->b) == D);
     params->workspace_function = function;
     params->workspace_x.resize(D);
-    return detail::integrate_impl<D>(void_params);
+    return detail::integrate_impl<D - 1>(void_params);
   }
 
   /// @}
@@ -127,7 +126,7 @@ namespace kspc::qag {
     double integrand(double x, void* void_params) {
       auto* params = (params_t*)void_params;
       params->workspace_x[D] = x;
-      return std::get<0>(integrate_impl<D>(void_params));
+      return std::get<0>(integrate_impl<D - 1>(void_params));
     }
 
     /// full specialization of `integrand`
@@ -142,17 +141,16 @@ namespace kspc::qag {
 
     template <std::size_t D>
     std::pair<double, double> integrate_impl(void* void_params) {
-      static_assert(D > 0);
       assert(workspace_size > 1); // `limit` should be larger that 1
-      gsl_function function{&integrand<D - 1>, void_params};
+      gsl_function function{&integrand<D>, void_params};
       auto* params = (params_t*)void_params;
       auto* workspace = gsl_integration_workspace_alloc(workspace_size);
       double result, abserr;
 
       // clang-format off
       gsl_integration_qag(&function,
-                          params->a[D - 1],
-                          params->b[D - 1],
+                          params->a[D],
+                          params->b[D],
                           params->epsabs,
                           params->epsrel,
                           /* limit */ workspace_size,
@@ -177,7 +175,7 @@ namespace kspc::qag {
     assert(std::size(params->b) == D);
     params->workspace_function = function;
     params->workspace_x.resize(D);
-    return detail::integrate_impl<D>(void_params);
+    return detail::integrate_impl<D - 1>(void_params);
   }
 
   /// @}
@@ -199,7 +197,7 @@ namespace kspc::cquad {
     double integrand(double x, void* void_params) {
       auto* params = (params_t*)void_params;
       params->workspace_x[D] = x;
-      return std::get<0>(integrate_impl<D>(void_params));
+      return std::get<0>(integrate_impl<D - 1>(void_params));
     }
 
     /// full specialization of `integrand`
@@ -212,8 +210,7 @@ namespace kspc::cquad {
 
     template <std::size_t D>
     std::pair<double, double> integrate_impl(void* void_params) {
-      static_assert(D > 0);
-      gsl_function function{&integrand<D - 1>, void_params};
+      gsl_function function{&integrand<D>, void_params};
       auto* params = (params_t*)void_params;
       auto* workspace = gsl_integration_cquad_workspace_alloc(workspace_size);
       double result, abserr;
@@ -221,8 +218,8 @@ namespace kspc::cquad {
 
       // clang-format off
       gsl_integration_cquad(&function,
-                            params->a[D - 1],
-                            params->b[D - 1],
+                            params->a[D],
+                            params->b[D],
                             params->epsabs,
                             params->epsrel,
                             workspace,
@@ -246,7 +243,7 @@ namespace kspc::cquad {
     assert(std::size(params->b) == D);
     params->workspace_function = function;
     params->workspace_x.resize(D);
-    return detail::integrate_impl<D>(void_params);
+    return detail::integrate_impl<D - 1>(void_params);
   }
 
   /// @}
