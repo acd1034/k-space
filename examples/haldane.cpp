@@ -124,17 +124,21 @@ double Bz_(const std::vector<double>& k, void* temp_p_params) {
 
 int main() {
   params_t params;
-  params.b = std::vector{kspc::pi, kspc::pi};
-  params.a = -params.b;
+  params.listb = std::vector{kspc::pi, kspc::pi};
+  params.lista = -params.listb;
   params.epsabs = 1e-4;
   params.epsrel = 1e-4;
+  params.workspace_size = 100;
   params.t2 = 1.0;
-  std::array phi_arr{-kspc::pi / 2, 0.0, kspc::pi / 2};
   kspc::set_error_handler();
+  std::array phi_arr{-kspc::pi / 2, 0.0, kspc::pi / 2};
 
   for (const auto& phi : phi_arr) {
     params.phi = phi;
-    const auto [result, abserr] = kspc::cquad::integrate<2>(&Bz_, &params);
+    // using kspc::qng::integrate;
+    using kspc::qag::integrate;
+    // using kspc::cquad::integrate;
+    const auto [result, abserr] = integrate<2>(&Bz_, &params);
     std::cout << "phi: " << phi << ", chern #: " << result / 2.0 / kspc::pi << std::endl;
   }
 }

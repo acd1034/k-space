@@ -17,6 +17,7 @@ int main() {
   params.listb = std::vector{1.0};
   params.epsabs = 0.0;
   params.epsrel = 1e-7;
+  params.workspace_size = 100;
   params.alpha = 1.0;
   kspc::set_error_handler();
 

@@ -3,7 +3,7 @@
 #include <array>
 #include <cstdlib> // abort
 #include <vector>
-#include <gsl/gsl_errno.h> // GSL_ETOL, GSL_EDIVERGE, gsl_stream_printf, gsl_set_error_handler
+#include <gsl/gsl_errno.h> // GSL_ETOL, GSL_EMAXITER, gsl_stream_printf, gsl_set_error_handler
 #include <gsl/gsl_integration.h>
 #include <kspc/core.hpp>
 
@@ -11,12 +11,12 @@ namespace kspc {
   /// @addtogroup integration
   /// @{
 
-  /// @brief custom gsl error handler ignoring GSL_ETOL and GSL_EDIVERGE
+  /// @brief custom gsl error handler ignoring GSL_ETOL and GSL_EMAXITER
   /// @details
   /// GSL_ETOL     = 14, failed to reach the specified tolerance
-  /// GSL_EDIVERGE = 22, integral or series is divergent
+  /// GSL_EMAXITER = 11, exceeded max number of iterations
   void error_handler(const char* reason, const char* file, int line, int gsl_errno) {
-    if (gsl_errno == GSL_ETOL or gsl_errno == GSL_EDIVERGE) return;
+    if (gsl_errno == GSL_ETOL or gsl_errno == GSL_EMAXITER) return;
     gsl_stream_printf("ERROR", file, line, reason);
     std::abort();
   }
@@ -102,8 +102,10 @@ namespace kspc::qng {
     auto* params = (params_t*)void_params;
     assert(std::size(params->lista) == D);
     assert(std::size(params->listb) == D);
+
     params->workspace_function = function;
     params->workspace_listx.resize(D);
+
     return detail::integrate_impl<D - 1>(void_params);
   }
 
@@ -141,10 +143,10 @@ namespace kspc::qag {
 
     template <std::size_t D>
     std::pair<double, double> integrate_impl(void* void_params) {
-      assert(workspace_size > 1); // `limit` should be larger that 1
       gsl_function function{&integrand<D>, void_params};
       auto* params = (params_t*)void_params;
-      auto* workspace = gsl_integration_workspace_alloc(workspace_size);
+      assert(params->workspace_size > 1);
+      auto** ws = (gsl_integration_workspace**)params->workspace;
       double result, abserr;
 
       // clang-format off
@@ -153,14 +155,13 @@ namespace kspc::qag {
                           params->listb[D],
                           params->epsabs,
                           params->epsrel,
-                          /* limit */ workspace_size,
+                          params->workspace_size,
                           key,
-                          workspace,
+                          ws[D],
                           &result,
                           &abserr);
       // clang-format on
 
-      gsl_integration_workspace_free(workspace);
       return {result, abserr};
     }
   } // namespace detail
@@ -173,9 +174,16 @@ namespace kspc::qag {
     auto* params = (params_t*)void_params;
     assert(std::size(params->lista) == D);
     assert(std::size(params->listb) == D);
+
     params->workspace_function = function;
+    std::array<gsl_integration_workspace*, D> workspace{};
+    for (auto& w : workspace) w = gsl_integration_workspace_alloc(params->workspace_size);
+    params->workspace = std::data(workspace);
     params->workspace_listx.resize(D);
-    return detail::integrate_impl<D - 1>(void_params);
+
+    auto ret = detail::integrate_impl<D - 1>(void_params);
+    for (auto& w : workspace) gsl_integration_workspace_free(w);
+    return ret;
   }
 
   /// @}
