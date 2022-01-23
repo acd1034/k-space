@@ -47,7 +47,7 @@ namespace kspc {
   // matrix dimension
 
   /// compile-time sqrt for unsigned integer
-  inline constexpr std::size_t isqrt(const std::size_t n) noexcept {
+  constexpr std::size_t isqrt(const std::size_t n) noexcept {
     std::size_t l = 0, r = n;
     while (r - l > 1) {
       const std::size_t mid = l + (r - l) / 2;
@@ -66,7 +66,7 @@ namespace kspc {
 
   /// dim
   template <typename M, std::enable_if_t<is_sized_range_v<M>, std::nullptr_t> = nullptr>
-  inline auto dim(const M& m) {
+  auto dim(const M& m) -> decltype(adl_size(m)) {
     return static_cast<decltype(adl_size(m))>(std::round(std::sqrt(adl_size(m))));
   }
 
