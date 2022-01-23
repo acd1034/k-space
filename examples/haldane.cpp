@@ -4,7 +4,6 @@
  * compiler option:
  * -O3 -std=c++17 -lm -llapack -lblas -lgsl -lgslcblas -mtune=native -march=native -mfpmath=both
  */
-#include <fstream>
 #include <iostream>
 #include <kspc/integration.hpp>
 #include <kspc/linalg.hpp>
@@ -45,7 +44,7 @@ struct params_t : kspc::params_t {
 
 // clang-format off
 
-auto gen_hermitian_matrix(const double d0, const double dx, const double dy, const double dz) {
+auto gen_hamiltonian(const double d0, const double dx, const double dy, const double dz) {
   return std::array<std::complex<double>, Nsite * Nsite>{
     d0 + dz, std::complex{dx, -dy},
     std::complex{dx, dy}, d0 - dz
@@ -54,7 +53,7 @@ auto gen_hermitian_matrix(const double d0, const double dx, const double dy, con
 
 auto H_(const std::vector<double>& k, void* temp_p_params) {
   auto* p = (params_t*)temp_p_params;
-  return gen_hermitian_matrix(
+  return gen_hamiltonian(
     2.0 * p->t2 * std::cos(p->phi)
       * kspc::sum(b, [&k](const auto& bi){ return std::cos(kspc::innerp(k, bi)); }),
     p->t
@@ -68,7 +67,7 @@ auto H_(const std::vector<double>& k, void* temp_p_params) {
 
 auto dHdkx_(const std::vector<double>& k, void* temp_p_params) {
   auto* p = (params_t*)temp_p_params;
-  return gen_hermitian_matrix(
+  return gen_hamiltonian(
     -2.0 * p->t2 * std::cos(p->phi)
       * kspc::sum(b, [&k](const auto& bi){ return bi[0] * std::sin(kspc::innerp(k, bi)); }),
     -p->t
@@ -82,7 +81,7 @@ auto dHdkx_(const std::vector<double>& k, void* temp_p_params) {
 
 auto dHdky_(const std::vector<double>& k, void* temp_p_params) {
   auto* p = (params_t*)temp_p_params;
-  return gen_hermitian_matrix(
+  return gen_hamiltonian(
     -2.0 * p->t2 * std::cos(p->phi)
       * kspc::sum(b, [&k](const auto& bi){ return bi[1] * std::sin(kspc::innerp(k, bi)); }),
     -p->t
@@ -96,10 +95,9 @@ auto dHdky_(const std::vector<double>& k, void* temp_p_params) {
 
 // clang-format on
 
-inline constexpr std::size_t n = 0;
 inline constexpr auto in_brillouin_zone = kspc::in_brillouin_zone(g);
 
-// calclate z-component of Berry curvature
+// calculate z-component of Berry curvature
 double Bz_(const std::vector<double>& k, void* temp_p_params) {
   if (not in_brillouin_zone(k)) return 0.0;
 
@@ -114,6 +112,7 @@ double Bz_(const std::vector<double>& k, void* temp_p_params) {
   kspc::unitary_transform(dHdky, H, row_major, row_major);
 
   double bz = 0.0;
+  constexpr std::size_t n = 0;
   for (std::size_t m = 0; m < Nsite; ++m) {
     if (m != n)
       bz -=

@@ -3,7 +3,7 @@
 #include <array>
 #include <cstdlib> // abort
 #include <vector>
-#include <gsl/gsl_errno.h> // GSL_ETOL, GSL_EMAXITER, gsl_stream_printf, gsl_set_error_handler
+#include <gsl/gsl_errno.h> // GSL_EMAXITER, GSL_ETOL, gsl_stream_printf, gsl_set_error_handler
 #include <gsl/gsl_integration.h>
 #include <kspc/core.hpp>
 
@@ -11,12 +11,12 @@ namespace kspc {
   /// @addtogroup integration
   /// @{
 
-  /// @brief custom gsl error handler ignoring GSL_ETOL and GSL_EMAXITER
+  /// @brief custom gsl error handler ignoring GSL_EMAXITER and GSL_ETOL
   /// @details
-  /// GSL_ETOL     = 14, failed to reach the specified tolerance
   /// GSL_EMAXITER = 11, exceeded max number of iterations
+  /// GSL_ETOL     = 14, failed to reach the specified tolerance
   void error_handler(const char* reason, const char* file, int line, int gsl_errno) {
-    if (gsl_errno == GSL_ETOL or gsl_errno == GSL_EMAXITER) return;
+    if (gsl_errno == GSL_EMAXITER or gsl_errno == GSL_ETOL) return;
     gsl_stream_printf("ERROR", file, line, reason);
     std::abort();
   }
@@ -87,7 +87,7 @@ namespace kspc::qng {
                           params->epsrel,
                           &result,
                           &abserr,
-                          &nevals /* nullptr */);
+                          &nevals);
       // clang-format on
 
       return {result, abserr};
