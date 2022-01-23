@@ -1,5 +1,6 @@
 /// @file numeric.hpp
 #pragma once
+#include <algorithm> // min
 #include <array>
 #include <functional> // invoke
 #include <vector>
@@ -155,13 +156,13 @@ namespace kspc {
 
     template <typename T, std::size_t N,
               std::enable_if_t<std::is_arithmetic_v<T>, std::nullptr_t> = nullptr>
-    inline constexpr auto& operator+(const std::array<T, N>& x) {
+    constexpr auto& operator+(const std::array<T, N>& x) {
       return x;
     }
 
     template <typename T, std::size_t N,
               std::enable_if_t<std::is_arithmetic_v<T>, std::nullptr_t> = nullptr>
-    inline constexpr auto operator-(const std::array<T, N>& x) {
+    constexpr auto operator-(const std::array<T, N>& x) {
       std::array<T, N> ret{};
       for (std::size_t i = 0; i < N; ++i) ret[i] = -x[i];
       return ret;
@@ -169,7 +170,14 @@ namespace kspc {
 
     template <typename T, std::size_t N,
               std::enable_if_t<std::is_arithmetic_v<T>, std::nullptr_t> = nullptr>
-    inline constexpr auto operator+(const std::array<T, N>& x, const std::array<T, N>& y) {
+    constexpr auto operator-(std::array<T, N>&& x) {
+      for (std::size_t i = 0; i < N; ++i) x[i] = -x[i];
+      return std::move(x);
+    }
+
+    template <typename T, std::size_t N,
+              std::enable_if_t<std::is_arithmetic_v<T>, std::nullptr_t> = nullptr>
+    constexpr auto operator+(const std::array<T, N>& x, const std::array<T, N>& y) {
       std::array<T, N> ret{};
       for (std::size_t i = 0; i < N; ++i) ret[i] = x[i] + y[i];
       return ret;
@@ -177,7 +185,7 @@ namespace kspc {
 
     template <typename T, std::size_t N,
               std::enable_if_t<std::is_arithmetic_v<T>, std::nullptr_t> = nullptr>
-    inline constexpr auto operator-(const std::array<T, N>& x, const std::array<T, N>& y) {
+    constexpr auto operator-(const std::array<T, N>& x, const std::array<T, N>& y) {
       std::array<T, N> ret{};
       for (std::size_t i = 0; i < N; ++i) ret[i] = x[i] - y[i];
       return ret;
@@ -185,7 +193,7 @@ namespace kspc {
 
     template <typename T, std::size_t N,
               std::enable_if_t<std::is_arithmetic_v<T>, std::nullptr_t> = nullptr>
-    inline constexpr auto operator*(T val, const std::array<T, N>& x) {
+    constexpr auto operator*(const T& val, const std::array<T, N>& x) {
       std::array<T, N> ret{};
       for (std::size_t i = 0; i < N; ++i) ret[i] = val * x[i];
       return ret;
@@ -193,7 +201,14 @@ namespace kspc {
 
     template <typename T, std::size_t N,
               std::enable_if_t<std::is_arithmetic_v<T>, std::nullptr_t> = nullptr>
-    inline constexpr auto operator*(const std::array<T, N>& x, T val) {
+    constexpr auto operator*(const T& val, std::array<T, N>&& x) {
+      for (std::size_t i = 0; i < N; ++i) x[i] = val * x[i];
+      return std::move(x);
+    }
+
+    template <typename T, std::size_t N,
+              std::enable_if_t<std::is_arithmetic_v<T>, std::nullptr_t> = nullptr>
+    constexpr auto operator*(const std::array<T, N>& x, const T& val) {
       std::array<T, N> ret{};
       for (std::size_t i = 0; i < N; ++i) ret[i] = x[i] * val;
       return ret;
@@ -201,21 +216,35 @@ namespace kspc {
 
     template <typename T, std::size_t N,
               std::enable_if_t<std::is_arithmetic_v<T>, std::nullptr_t> = nullptr>
-    inline constexpr auto operator/(const std::array<T, N>& x, T val) {
+    constexpr auto operator*(std::array<T, N>&& x, const T& val) {
+      for (std::size_t i = 0; i < N; ++i) x[i] = x[i] * val;
+      return std::move(x);
+    }
+
+    template <typename T, std::size_t N,
+              std::enable_if_t<std::is_arithmetic_v<T>, std::nullptr_t> = nullptr>
+    constexpr auto operator/(const std::array<T, N>& x, const T& val) {
       std::array<T, N> ret{};
       for (std::size_t i = 0; i < N; ++i) ret[i] = x[i] / val;
       return ret;
     }
 
+    template <typename T, std::size_t N,
+              std::enable_if_t<std::is_arithmetic_v<T>, std::nullptr_t> = nullptr>
+    constexpr auto operator/(std::array<T, N>&& x, const T& val) {
+      for (std::size_t i = 0; i < N; ++i) x[i] = x[i] / val;
+      return std::move(x);
+    }
+
     // std::vector
 
     template <typename T, std::enable_if_t<std::is_arithmetic_v<T>, std::nullptr_t> = nullptr>
-    inline constexpr auto& operator+(const std::vector<T>& x) {
+    constexpr auto& operator+(const std::vector<T>& x) {
       return x;
     }
 
     template <typename T, std::enable_if_t<std::is_arithmetic_v<T>, std::nullptr_t> = nullptr>
-    inline constexpr auto operator-(const std::vector<T>& x) {
+    constexpr auto operator-(const std::vector<T>& x) {
       const auto n = std::size(x);
       std::vector<T> ret(n);
       for (std::size_t i = 0; i < n; ++i) ret[i] = -x[i];
@@ -223,7 +252,14 @@ namespace kspc {
     }
 
     template <typename T, std::enable_if_t<std::is_arithmetic_v<T>, std::nullptr_t> = nullptr>
-    inline constexpr auto operator+(const std::vector<T>& x, const std::vector<T>& y) {
+    constexpr auto operator-(std::vector<T>&& x) {
+      const auto n = std::size(x);
+      for (std::size_t i = 0; i < n; ++i) x[i] = -x[i];
+      return std::move(x);
+    }
+
+    template <typename T, std::enable_if_t<std::is_arithmetic_v<T>, std::nullptr_t> = nullptr>
+    constexpr auto operator+(const std::vector<T>& x, const std::vector<T>& y) {
       const auto n = std::min(std::size(x), std::size(y));
       std::vector<T> ret(n);
       for (std::size_t i = 0; i < n; ++i) ret[i] = x[i] + y[i];
@@ -231,7 +267,7 @@ namespace kspc {
     }
 
     template <typename T, std::enable_if_t<std::is_arithmetic_v<T>, std::nullptr_t> = nullptr>
-    inline constexpr auto operator-(const std::vector<T>& x, const std::vector<T>& y) {
+    constexpr auto operator-(const std::vector<T>& x, const std::vector<T>& y) {
       const auto n = std::min(std::size(x), std::size(y));
       std::vector<T> ret(n);
       for (std::size_t i = 0; i < n; ++i) ret[i] = x[i] - y[i];
@@ -239,7 +275,7 @@ namespace kspc {
     }
 
     template <typename T, std::enable_if_t<std::is_arithmetic_v<T>, std::nullptr_t> = nullptr>
-    inline constexpr auto operator*(T val, const std::vector<T>& x) {
+    constexpr auto operator*(const T& val, const std::vector<T>& x) {
       const auto n = std::size(x);
       std::vector<T> ret(n);
       for (std::size_t i = 0; i < n; ++i) ret[i] = val * x[i];
@@ -247,7 +283,14 @@ namespace kspc {
     }
 
     template <typename T, std::enable_if_t<std::is_arithmetic_v<T>, std::nullptr_t> = nullptr>
-    inline constexpr auto operator*(const std::vector<T>& x, T val) {
+    constexpr auto operator*(const T& val, std::vector<T>&& x) {
+      const auto n = std::size(x);
+      for (std::size_t i = 0; i < n; ++i) x[i] = val * x[i];
+      return std::move(x);
+    }
+
+    template <typename T, std::enable_if_t<std::is_arithmetic_v<T>, std::nullptr_t> = nullptr>
+    constexpr auto operator*(const std::vector<T>& x, const T& val) {
       const auto n = std::size(x);
       std::vector<T> ret(n);
       for (std::size_t i = 0; i < n; ++i) ret[i] = x[i] * val;
@@ -255,11 +298,25 @@ namespace kspc {
     }
 
     template <typename T, std::enable_if_t<std::is_arithmetic_v<T>, std::nullptr_t> = nullptr>
-    inline constexpr auto operator/(const std::vector<T>& x, T val) {
+    constexpr auto operator*(std::vector<T>&& x, const T& val) {
+      const auto n = std::size(x);
+      for (std::size_t i = 0; i < n; ++i) x[i] = x[i] * val;
+      return std::move(x);
+    }
+
+    template <typename T, std::enable_if_t<std::is_arithmetic_v<T>, std::nullptr_t> = nullptr>
+    constexpr auto operator/(const std::vector<T>& x, const T& val) {
       const auto n = std::size(x);
       std::vector<T> ret(n);
       for (std::size_t i = 0; i < n; ++i) ret[i] = x[i] / val;
       return ret;
+    }
+
+    template <typename T, std::enable_if_t<std::is_arithmetic_v<T>, std::nullptr_t> = nullptr>
+    constexpr auto operator/(std::vector<T>&& x, const T& val) {
+      const auto n = std::size(x);
+      for (std::size_t i = 0; i < n; ++i) x[i] = x[i] / val;
+      return std::move(x);
     }
   } // namespace arithmetic_ops
 

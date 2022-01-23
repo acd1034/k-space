@@ -47,7 +47,7 @@ namespace kspc {
   // matrix dimension
 
   /// compile-time sqrt for unsigned integer
-  inline constexpr std::size_t isqrt(const std::size_t n) noexcept {
+  constexpr std::size_t isqrt(const std::size_t n) noexcept {
     std::size_t l = 0, r = n;
     while (r - l > 1) {
       const std::size_t mid = l + (r - l) / 2;
@@ -66,7 +66,7 @@ namespace kspc {
 
   /// dim
   template <typename M, std::enable_if_t<is_sized_range_v<M>, std::nullptr_t> = nullptr>
-  inline auto dim(const M& m) {
+  auto dim(const M& m) -> decltype(adl_size(m)) {
     return static_cast<decltype(adl_size(m))>(std::round(std::sqrt(adl_size(m))));
   }
 
@@ -93,6 +93,21 @@ namespace kspc {
     }
   }; // struct mapping_row_major
 
+  /// %mapping_column_major
+  struct mapping_column_major {
+  private:
+    std::size_t lda_{};
+
+  public:
+    using size_type = std::size_t;
+    constexpr mapping_column_major() = default;
+    constexpr explicit mapping_column_major(const size_type lda) : lda_(lda) {}
+
+    constexpr size_type operator()(const size_type i, const size_type j) const noexcept {
+      return i + j * lda_;
+    }
+  }; // struct mapping_column_major
+
   /// %mapping_transpose
   template <typename Mapping>
   struct mapping_transpose {
@@ -113,11 +128,6 @@ namespace kspc {
   /// deduction guide for @link mapping_transpose mapping_transpose @endlink
   template <typename Mapping>
   mapping_transpose(Mapping) -> mapping_transpose<Mapping>;
-
-  /// mapping_column_major
-  inline constexpr auto mapping_column_major(const std::size_t lda) {
-    return mapping_transpose(mapping_row_major(lda));
-  }
 
   /// @}
 } // namespace kspc

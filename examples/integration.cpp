@@ -13,15 +13,16 @@ double f(const std::vector<double>& x, void* void_params) {
 
 int main() {
   params_t params;
-  params.a = std::vector{0.0};
-  params.b = std::vector{1.0};
+  params.lista = std::vector{0.0};
+  params.listb = std::vector{1.0};
   params.epsabs = 0.0;
   params.epsrel = 1e-7;
+  params.workspace_size = 100;
   params.alpha = 1.0;
   kspc::set_error_handler();
 
-  using kspc::qng::integrate;
-  // using kspc::qag::integrate;
+  // using kspc::qng::integrate;
+  using kspc::qag::integrate;
   // using kspc::cquad::integrate;
   const auto [result, abserr] = integrate<1>(&f, &params);
   const double expected = -4.0;

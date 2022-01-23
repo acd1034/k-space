@@ -155,6 +155,44 @@ TEST_CASE("numeric", "[numeric]") {
   //   CHECK(kspc::innerp(std::vector{1, 2}, std::array{1, 0, 0, 1}, std::vector{1, 2}) == 5);
   //   CHECK(kspc::innerp(std::vector{1, 2}, std::array{0, 1, 1, 0}, std::vector{1, 2}) == 4);
   // }
+  { // arithmetic operators for std::array
+    using namespace kspc::arithmetic_ops;
+    constexpr std::array a1{1, 2, 3};
+    constexpr std::array a2{2, 4, 6};
+    CHECK(equal(+a1, std::array{1, 2, 3}));
+    CHECK(equal(-a1, std::array{-1, -2, -3}));
+    CHECK(equal(a1 + a2, std::array{3, 6, 9}));
+    CHECK(equal(a2 - a1, std::array{1, 2, 3}));
+    CHECK(equal(2 * a1, std::array{2, 4, 6}));
+    CHECK(equal(a1 * 2, std::array{2, 4, 6}));
+    CHECK(equal(a2 / 2, std::array{1, 2, 3}));
+    CHECK(equal(+std::array{1, 2, 3}, std::array{1, 2, 3}));
+    CHECK(equal(-std::array{1, 2, 3}, std::array{-1, -2, -3}));
+    CHECK(equal(std::array{1, 2, 3} + std::array{2, 4, 6}, std::array{3, 6, 9}));
+    CHECK(equal(std::array{2, 4, 6} - std::array{1, 2, 3}, std::array{1, 2, 3}));
+    CHECK(equal(2 * std::array{1, 2, 3}, std::array{2, 4, 6}));
+    CHECK(equal(std::array{1, 2, 3} * 2, std::array{2, 4, 6}));
+    CHECK(equal(std::array{2, 4, 6} / 2, std::array{1, 2, 3}));
+  }
+  { // arithmetic operators for std::vector
+    using namespace kspc::arithmetic_ops;
+    const std::vector v1{1, 2, 3};
+    const std::vector v2{2, 4, 6};
+    CHECK(equal(+v1, std::vector{1, 2, 3}));
+    CHECK(equal(-v1, std::vector{-1, -2, -3}));
+    CHECK(equal(v1 + v2, std::vector{3, 6, 9}));
+    CHECK(equal(v2 - v1, std::vector{1, 2, 3}));
+    CHECK(equal(2 * v1, std::vector{2, 4, 6}));
+    CHECK(equal(v1 * 2, std::vector{2, 4, 6}));
+    CHECK(equal(v2 / 2, std::vector{1, 2, 3}));
+    CHECK(equal(+std::vector{1, 2, 3}, std::vector{1, 2, 3}));
+    CHECK(equal(-std::vector{1, 2, 3}, std::vector{-1, -2, -3}));
+    CHECK(equal(std::vector{1, 2, 3} + std::vector{2, 4, 6}, std::vector{3, 6, 9}));
+    CHECK(equal(std::vector{2, 4, 6} - std::vector{1, 2, 3}, std::vector{1, 2, 3}));
+    CHECK(equal(2 * std::vector{1, 2, 3}, std::vector{2, 4, 6}));
+    CHECK(equal(std::vector{1, 2, 3} * 2, std::vector{2, 4, 6}));
+    CHECK(equal(std::vector{2, 4, 6} / 2, std::vector{1, 2, 3}));
+  }
 }
 
 TEST_CASE("approx", "[math][approx]") {

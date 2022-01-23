@@ -1,8 +1,9 @@
 /// @file integration.hpp
 #pragma once
+#include <array>
 #include <cstdlib> // abort
 #include <vector>
-#include <gsl/gsl_errno.h> // GSL_ETOL, GSL_EDIVERGE, gsl_stream_printf, gsl_set_error_handler
+#include <gsl/gsl_errno.h> // GSL_EMAXITER, GSL_ETOL, gsl_stream_printf, gsl_set_error_handler
 #include <gsl/gsl_integration.h>
 #include <kspc/core.hpp>
 
@@ -10,12 +11,12 @@ namespace kspc {
   /// @addtogroup integration
   /// @{
 
-  /// @brief custom gsl error handler ignoring GSL_ETOL and GSL_EDIVERGE
+  /// @brief custom gsl error handler ignoring GSL_EMAXITER and GSL_ETOL
   /// @details
+  /// GSL_EMAXITER = 11, exceeded max number of iterations
   /// GSL_ETOL     = 14, failed to reach the specified tolerance
-  /// GSL_EDIVERGE = 22, integral or series is divergent
   void error_handler(const char* reason, const char* file, int line, int gsl_errno) {
-    if (gsl_errno == GSL_ETOL or gsl_errno == GSL_EDIVERGE) return;
+    if (gsl_errno == GSL_EMAXITER or gsl_errno == GSL_ETOL) return;
     gsl_stream_printf("ERROR", file, line, reason);
     std::abort();
   }
@@ -25,21 +26,20 @@ namespace kspc {
     return gsl_set_error_handler(&error_handler);
   }
 
-  /// size of workspace
-  inline constexpr std::size_t workspace_size = 1000;
-
   /// type of function to be handled in this library
   using function_t = double(const std::vector<double>&, void*);
 
   /// helper class to set parameters of integrand
   struct params_t {
-    std::vector<double> a;
-    std::vector<double> b;
+    std::vector<double> lista;
+    std::vector<double> listb;
     double epsabs;
     double epsrel;
+    std::size_t workspace_size = 1000;
     // workspace
     function_t* workspace_function;
-    std::vector<double> workspace_x;
+    void* workspace; // instance is `gsl_integration_workspace**` etc.
+    std::vector<double> workspace_listx;
   }; // struct params_t
 
   /// @}
@@ -60,35 +60,34 @@ namespace kspc::qng {
     template <std::size_t D>
     double integrand(double x, void* void_params) {
       auto* params = (params_t*)void_params;
-      params->workspace_x[D] = x;
-      return std::get<0>(integrate_impl<D>(void_params));
+      params->workspace_listx[D] = x;
+      return std::get<0>(integrate_impl<D - 1>(void_params));
     }
 
     /// full specialization of `integrand`
     template <>
     double integrand<0>(double x, void* void_params) {
       auto* params = (params_t*)void_params;
-      params->workspace_x[0] = x;
-      return (params->workspace_function)(params->workspace_x, void_params);
+      params->workspace_listx[0] = x;
+      return (params->workspace_function)(params->workspace_listx, void_params);
     }
 
     template <std::size_t D>
     std::pair<double, double> integrate_impl(void* void_params) {
-      static_assert(D > 0);
-      gsl_function function{&integrand<D - 1>, void_params};
+      gsl_function function{&integrand<D>, void_params};
       auto* params = (params_t*)void_params;
       double result, abserr;
       std::size_t nevals;
 
       // clang-format off
       gsl_integration_qng(&function,
-                          params->a[D - 1],
-                          params->b[D - 1],
+                          params->lista[D],
+                          params->listb[D],
                           params->epsabs,
                           params->epsrel,
                           &result,
                           &abserr,
-                          &nevals /* nullptr */);
+                          &nevals);
       // clang-format on
 
       return {result, abserr};
@@ -101,11 +100,13 @@ namespace kspc::qng {
   auto integrate(function_t* function, void* void_params) {
     static_assert(D > 0);
     auto* params = (params_t*)void_params;
-    assert(std::size(params->a) == D);
-    assert(std::size(params->b) == D);
+    assert(std::size(params->lista) == D);
+    assert(std::size(params->listb) == D);
+
     params->workspace_function = function;
-    params->workspace_x.resize(D);
-    return detail::integrate_impl<D>(void_params);
+    params->workspace_listx.resize(D);
+
+    return detail::integrate_impl<D - 1>(void_params);
   }
 
   /// @}
@@ -126,43 +127,41 @@ namespace kspc::qag {
     template <std::size_t D>
     double integrand(double x, void* void_params) {
       auto* params = (params_t*)void_params;
-      params->workspace_x[D] = x;
-      return std::get<0>(integrate_impl<D>(void_params));
+      params->workspace_listx[D] = x;
+      return std::get<0>(integrate_impl<D - 1>(void_params));
     }
 
     /// full specialization of `integrand`
     template <>
     double integrand<0>(double x, void* void_params) {
       auto* params = (params_t*)void_params;
-      params->workspace_x[0] = x;
-      return (params->workspace_function)(params->workspace_x, void_params);
+      params->workspace_listx[0] = x;
+      return (params->workspace_function)(params->workspace_listx, void_params);
     }
 
     inline constexpr int key = 6;
 
     template <std::size_t D>
     std::pair<double, double> integrate_impl(void* void_params) {
-      static_assert(D > 0);
-      assert(workspace_size > 1); // `limit` should be larger that 1
-      gsl_function function{&integrand<D - 1>, void_params};
+      gsl_function function{&integrand<D>, void_params};
       auto* params = (params_t*)void_params;
-      auto* workspace = gsl_integration_workspace_alloc(workspace_size);
+      assert(params->workspace_size > 1);
+      auto** ws = (gsl_integration_workspace**)params->workspace;
       double result, abserr;
 
       // clang-format off
       gsl_integration_qag(&function,
-                          params->a[D - 1],
-                          params->b[D - 1],
+                          params->lista[D],
+                          params->listb[D],
                           params->epsabs,
                           params->epsrel,
-                          /* limit */ workspace_size,
+                          params->workspace_size,
                           key,
-                          workspace,
+                          ws[D],
                           &result,
                           &abserr);
       // clang-format on
 
-      gsl_integration_workspace_free(workspace);
       return {result, abserr};
     }
   } // namespace detail
@@ -173,11 +172,18 @@ namespace kspc::qag {
   auto integrate(function_t* function, void* void_params) {
     static_assert(D > 0);
     auto* params = (params_t*)void_params;
-    assert(std::size(params->a) == D);
-    assert(std::size(params->b) == D);
+    assert(std::size(params->lista) == D);
+    assert(std::size(params->listb) == D);
+
     params->workspace_function = function;
-    params->workspace_x.resize(D);
-    return detail::integrate_impl<D>(void_params);
+    std::array<gsl_integration_workspace*, D> workspace{};
+    for (auto& w : workspace) w = gsl_integration_workspace_alloc(params->workspace_size);
+    params->workspace = std::data(workspace);
+    params->workspace_listx.resize(D);
+
+    auto ret = detail::integrate_impl<D - 1>(void_params);
+    for (auto& w : workspace) gsl_integration_workspace_free(w);
+    return ret;
   }
 
   /// @}
@@ -198,40 +204,38 @@ namespace kspc::cquad {
     template <std::size_t D>
     double integrand(double x, void* void_params) {
       auto* params = (params_t*)void_params;
-      params->workspace_x[D] = x;
-      return std::get<0>(integrate_impl<D>(void_params));
+      params->workspace_listx[D] = x;
+      return std::get<0>(integrate_impl<D - 1>(void_params));
     }
 
     /// full specialization of `integrand`
     template <>
     double integrand<0>(double x, void* void_params) {
       auto* params = (params_t*)void_params;
-      params->workspace_x[0] = x;
-      return (params->workspace_function)(params->workspace_x, void_params);
+      params->workspace_listx[0] = x;
+      return (params->workspace_function)(params->workspace_listx, void_params);
     }
 
     template <std::size_t D>
     std::pair<double, double> integrate_impl(void* void_params) {
-      static_assert(D > 0);
-      gsl_function function{&integrand<D - 1>, void_params};
+      gsl_function function{&integrand<D>, void_params};
       auto* params = (params_t*)void_params;
-      auto* workspace = gsl_integration_cquad_workspace_alloc(workspace_size);
+      auto** ws = (gsl_integration_cquad_workspace**)params->workspace;
       double result, abserr;
       std::size_t nevals;
 
       // clang-format off
       gsl_integration_cquad(&function,
-                            params->a[D - 1],
-                            params->b[D - 1],
+                            params->lista[D],
+                            params->listb[D],
                             params->epsabs,
                             params->epsrel,
-                            workspace,
+                            ws[D],
                             &result,
                             &abserr,
                             &nevals);
       // clang-format on
 
-      gsl_integration_cquad_workspace_free(workspace);
       return {result, abserr};
     }
   } // namespace detail
@@ -242,11 +246,18 @@ namespace kspc::cquad {
   auto integrate(function_t* function, void* void_params) {
     static_assert(D > 0);
     auto* params = (params_t*)void_params;
-    assert(std::size(params->a) == D);
-    assert(std::size(params->b) == D);
+    assert(std::size(params->lista) == D);
+    assert(std::size(params->listb) == D);
+
     params->workspace_function = function;
-    params->workspace_x.resize(D);
-    return detail::integrate_impl<D>(void_params);
+    std::array<gsl_integration_cquad_workspace*, D> workspace{};
+    for (auto& w : workspace) w = gsl_integration_cquad_workspace_alloc(params->workspace_size);
+    params->workspace = std::data(workspace);
+    params->workspace_listx.resize(D);
+
+    auto ret = detail::integrate_impl<D - 1>(void_params);
+    for (auto& w : workspace) gsl_integration_cquad_workspace_free(w);
+    return ret;
   }
 
   /// @}

@@ -82,7 +82,7 @@ namespace kspc {
 
   /// make_signed_v
   template <typename T, std::enable_if_t<std::is_unsigned_v<T>, std::nullptr_t> = nullptr>
-  inline constexpr auto
+  constexpr auto
   make_signed_v(const T& x) noexcept(noexcept(static_cast<std::make_signed_t<T>>(x))) {
     using U = std::make_signed_t<T>;
     assert(x <= static_cast<T>(std::numeric_limits<U>::max()));
@@ -98,7 +98,7 @@ namespace kspc {
 
   /// make_unsigned_v
   template <typename T, std::enable_if_t<std::is_signed_v<T>, std::nullptr_t> = nullptr>
-  inline constexpr auto
+  constexpr auto
   make_unsigned_v(const T& x) noexcept(noexcept(static_cast<std::make_unsigned_t<T>>(x))) {
     assert(x >= static_cast<T>(0));
     return static_cast<std::make_unsigned_t<T>>(x);
@@ -539,7 +539,7 @@ namespace kspc {
   /// ssize
   // clang-format off
   template <typename C>
-  inline constexpr auto ssize(const C& c) noexcept(
+  constexpr auto ssize(const C& c) noexcept(
     noexcept(static_cast<std::common_type_t<std::ptrdiff_t, std::make_signed_t<decltype(c.size())>>>(c.size())))
     ->                   std::common_type_t<std::ptrdiff_t, std::make_signed_t<decltype(c.size())>> {
     return   static_cast<std::common_type_t<std::ptrdiff_t, std::make_signed_t<decltype(c.size())>>>(c.size());
@@ -548,7 +548,7 @@ namespace kspc {
 
   /// @overload
   template <typename T, std::size_t N>
-  inline constexpr std::ptrdiff_t ssize(std::add_lvalue_reference_t<const T[N]>) noexcept {
+  constexpr std::ptrdiff_t ssize(std::add_lvalue_reference_t<const T[N]>) noexcept {
     return N;
   }
 
