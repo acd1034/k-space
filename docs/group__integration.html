@@ -64,8 +64,7 @@ $(function() {
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#typedef-members">Typedefs</a> &#124;
-<a href="#func-members">Functions</a> &#124;
-<a href="#var-members">Variables</a>  </div>
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">Quadrature routines<div class="ingroups"><a class="el" href="group__math.html">Math</a></div></div>  </div>
 </div><!--header-->
@@ -87,7 +86,7 @@ using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gro
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:gaffa71433ad7177bf5c38422b22ff546f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__integration.html#gaffa71433ad7177bf5c38422b22ff546f">kspc::error_handler</a> (const char *reason, const char *file, int line, int gsl_errno)</td></tr>
-<tr class="memdesc:gaffa71433ad7177bf5c38422b22ff546f"><td class="mdescLeft">&#160;</td><td class="mdescRight">custom gsl error handler ignoring GSL_ETOL and GSL_EDIVERGE  <a href="group__integration.html#gaffa71433ad7177bf5c38422b22ff546f">More...</a><br /></td></tr>
+<tr class="memdesc:gaffa71433ad7177bf5c38422b22ff546f"><td class="mdescLeft">&#160;</td><td class="mdescRight">custom gsl error handler ignoring GSL_EMAXITER and GSL_ETOL  <a href="group__integration.html#gaffa71433ad7177bf5c38422b22ff546f">More...</a><br /></td></tr>
 <tr class="separator:gaffa71433ad7177bf5c38422b22ff546f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga000d6f3d7844359d5f17b96d44610828"><td class="memItemLeft" align="right" valign="top"><a id="ga000d6f3d7844359d5f17b96d44610828"></a>
 auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__integration.html#ga000d6f3d7844359d5f17b96d44610828">kspc::set_error_handler</a> ()</td></tr>
@@ -108,13 +107,6 @@ template&lt;std::size_t D&gt; </td></tr>
 <tr class="memitem:ga2e5db4e7f5c1094792b58850ebc4b5c9"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__integration.html#ga2e5db4e7f5c1094792b58850ebc4b5c9">kspc::cquad::integrate</a> (<a class="el" href="group__integration.html#ga1467eb11f5f418b30a78c1af6013dbea">function_t</a> *function, void *void_params)</td></tr>
 <tr class="memdesc:ga2e5db4e7f5c1094792b58850ebc4b5c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">doubly-adaptive integration <br /></td></tr>
 <tr class="separator:ga2e5db4e7f5c1094792b58850ebc4b5c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
-Variables</h2></td></tr>
-<tr class="memitem:ga2891d989f90f944f1b8be64ddeb95761"><td class="memItemLeft" align="right" valign="top"><a id="ga2891d989f90f944f1b8be64ddeb95761"></a>
-constexpr std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__integration.html#ga2891d989f90f944f1b8be64ddeb95761">kspc::workspace_size</a> = 1000</td></tr>
-<tr class="memdesc:ga2891d989f90f944f1b8be64ddeb95761"><td class="mdescLeft">&#160;</td><td class="mdescRight">size of workspace <br /></td></tr>
-<tr class="separator:ga2891d989f90f944f1b8be64ddeb95761"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <h2 class="groupheader">Function Documentation</h2>
@@ -156,8 +148,8 @@ constexpr std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a clas
       </table>
 </div><div class="memdoc">
 
-<p>custom gsl error handler ignoring GSL_ETOL and GSL_EDIVERGE </p>
-<p>GSL_ETOL = 14, failed to reach the specified tolerance GSL_EDIVERGE = 22, integral or series is divergent </p>
+<p>custom gsl error handler ignoring GSL_EMAXITER and GSL_ETOL </p>
+<p>GSL_EMAXITER = 11, exceeded max number of iterations GSL_ETOL = 14, failed to reach the specified tolerance </p>
 
 </div>
 </div>

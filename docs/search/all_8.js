@@ -2,7 +2,7 @@ var searchData=
 [
   ['make_5fsigned_5fv_90',['make_signed_v',['../group__utility.html#ga09d760d9c47c778498c3e521373cbc12',1,'kspc::make_signed_v(const T &amp;x) noexcept(noexcept(static_cast&lt; std::make_signed_t&lt; T &gt;&gt;(x)))'],['../group__utility.html#ga50e89aa824d65865fd209cf75f4d082f',1,'kspc::make_signed_v(T &amp;&amp;x) noexcept(noexcept(std::forward&lt; T &gt;(x)))']]],
   ['make_5funsigned_5fv_91',['make_unsigned_v',['../group__utility.html#ga8f5dc460d06df63e1f97b43136442278',1,'kspc::make_unsigned_v(const T &amp;x) noexcept(noexcept(static_cast&lt; std::make_unsigned_t&lt; T &gt;&gt;(x)))'],['../group__utility.html#ga4f440561437f86c59c9db0bca5137017',1,'kspc::make_unsigned_v(T &amp;&amp;x) noexcept(noexcept(std::forward&lt; T &gt;(x)))']]],
-  ['mapping_5fcolumn_5fmajor_92',['mapping_column_major',['../group__matrix.html#ga555eff80d62690b8de72d5fd1b936716',1,'kspc']]],
+  ['mapping_5fcolumn_5fmajor_92',['mapping_column_major',['../structkspc_1_1mapping__column__major.html',1,'kspc']]],
   ['mapping_5frow_5fmajor_93',['mapping_row_major',['../structkspc_1_1mapping__row__major.html',1,'kspc']]],
   ['mapping_5ftranspose_94',['mapping_transpose',['../structkspc_1_1mapping__transpose.html',1,'kspc::mapping_transpose&lt; Mapping &gt;'],['../group__matrix.html#gaaebb5dbdfbb8b1d567dbdc55f4e7f2dc',1,'kspc::mapping_transpose(Mapping) -&gt; mapping_transpose&lt; Mapping &gt;']]],
   ['math_95',['Math',['../group__math.html',1,'']]],
