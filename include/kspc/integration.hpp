@@ -1,5 +1,6 @@
 /// @file integration.hpp
 #pragma once
+#include <array>
 #include <cstdlib> // abort
 #include <vector>
 #include <gsl/gsl_errno.h> // GSL_ETOL, GSL_EDIVERGE, gsl_stream_printf, gsl_set_error_handler
@@ -25,9 +26,6 @@ namespace kspc {
     return gsl_set_error_handler(&error_handler);
   }
 
-  /// size of workspace
-  inline constexpr std::size_t workspace_size = 1000;
-
   /// type of function to be handled in this library
   using function_t = double(const std::vector<double>&, void*);
 
@@ -37,8 +35,10 @@ namespace kspc {
     std::vector<double> listb;
     double epsabs;
     double epsrel;
+    std::size_t workspace_size = 1000;
     // workspace
     function_t* workspace_function;
+    void* workspace; // instance is `gsl_integration_workspace**` etc.
     std::vector<double> workspace_listx;
   }; // struct params_t
 
@@ -212,7 +212,7 @@ namespace kspc::cquad {
     std::pair<double, double> integrate_impl(void* void_params) {
       gsl_function function{&integrand<D>, void_params};
       auto* params = (params_t*)void_params;
-      auto* workspace = gsl_integration_cquad_workspace_alloc(workspace_size);
+      auto** ws = (gsl_integration_cquad_workspace**)params->workspace;
       double result, abserr;
       std::size_t nevals;
 
@@ -222,13 +222,12 @@ namespace kspc::cquad {
                             params->listb[D],
                             params->epsabs,
                             params->epsrel,
-                            workspace,
+                            ws[D],
                             &result,
                             &abserr,
                             &nevals);
       // clang-format on
 
-      gsl_integration_cquad_workspace_free(workspace);
       return {result, abserr};
     }
   } // namespace detail
@@ -241,9 +240,16 @@ namespace kspc::cquad {
     auto* params = (params_t*)void_params;
     assert(std::size(params->lista) == D);
     assert(std::size(params->listb) == D);
+
     params->workspace_function = function;
+    std::array<gsl_integration_cquad_workspace*, D> workspace{};
+    for (auto& w : workspace) w = gsl_integration_cquad_workspace_alloc(params->workspace_size);
+    params->workspace = std::data(workspace);
     params->workspace_listx.resize(D);
-    return detail::integrate_impl<D - 1>(void_params);
+
+    auto ret = detail::integrate_impl<D - 1>(void_params);
+    for (auto& w : workspace) gsl_integration_cquad_workspace_free(w);
+    return ret;
   }
 
   /// @}
