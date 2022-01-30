@@ -180,6 +180,21 @@ template&lt;class InOutMat , class OutVec , class M , class P  = identity_fn&gt;
 <tr class="memitem:ga860bb409a166a97ea7426a98a520170d"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if_t&lt; is_range_v&lt; InOutMat &gt; and is_range_v&lt; OutVec &gt; and(not is_range_v&lt; M &gt;) and(not is_range_v&lt; P &gt;), int &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__linalg.html#ga860bb409a166a97ea7426a98a520170d">kspc::hermitian::eigen_solve</a> (InOutMat &amp;A, OutVec &amp;w, M &amp;&amp;map, P &amp;&amp;proj={})</td></tr>
 <tr class="memdesc:ga860bb409a166a97ea7426a98a520170d"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. <br /></td></tr>
 <tr class="separator:ga860bb409a166a97ea7426a98a520170d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaeb103a3f7ad2bf80570c06d65739b721"><td class="memTemplParams" colspan="2">
+template&lt;class InOutMat , class OutVec , class Work &gt; </td></tr>
+<tr class="memitem:gaeb103a3f7ad2bf80570c06d65739b721"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if_t&lt; std::conjunction_v&lt; is_range&lt; InOutMat &gt;, is_range&lt; OutVec &gt;, is_range&lt; Work &gt; &gt;, int &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__linalg.html#gaeb103a3f7ad2bf80570c06d65739b721">kspc::hermitian::eigen_solve_no_evec</a> (InOutMat &amp;A, OutVec &amp;w, Work &amp;work)</td></tr>
+<tr class="memdesc:gaeb103a3f7ad2bf80570c06d65739b721"><td class="mdescLeft">&#160;</td><td class="mdescRight">solve Ax = λx with a symmetric matrix A without eigenvectors <br /></td></tr>
+<tr class="separator:gaeb103a3f7ad2bf80570c06d65739b721"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4d57ea7a9a13a04bd130dbb32b1d3bb0"><td class="memTemplParams" colspan="2">
+template&lt;class InOutMat , class OutVec , class Work , class RWork &gt; </td></tr>
+<tr class="memitem:ga4d57ea7a9a13a04bd130dbb32b1d3bb0"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if_t&lt; std::conjunction_v&lt; is_range&lt; InOutMat &gt;, is_range&lt; OutVec &gt;, is_range&lt; Work &gt;, is_range&lt; RWork &gt; &gt;, int &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__linalg.html#ga4d57ea7a9a13a04bd130dbb32b1d3bb0">kspc::hermitian::eigen_solve_no_evec</a> (InOutMat &amp;A, OutVec &amp;w, Work &amp;work, RWork &amp;rwork)</td></tr>
+<tr class="memdesc:ga4d57ea7a9a13a04bd130dbb32b1d3bb0"><td class="mdescLeft">&#160;</td><td class="mdescRight">solve Ax = λx with a hermitian matrix A without eigenvectors <br /></td></tr>
+<tr class="separator:ga4d57ea7a9a13a04bd130dbb32b1d3bb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac394bd3803cf0c624e4abf08fa679435"><td class="memTemplParams" colspan="2">
+template&lt;class InOutMat , class OutVec , class M , class P  = identity_fn&gt; </td></tr>
+<tr class="memitem:gac394bd3803cf0c624e4abf08fa679435"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if_t&lt; is_range_v&lt; InOutMat &gt; and is_range_v&lt; OutVec &gt; and(not is_range_v&lt; M &gt;) and(not is_range_v&lt; P &gt;), int &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__linalg.html#gac394bd3803cf0c624e4abf08fa679435">kspc::hermitian::eigen_solve_no_evec</a> (InOutMat &amp;A, OutVec &amp;w, M &amp;&amp;map, P &amp;&amp;proj={})</td></tr>
+<tr class="memdesc:gac394bd3803cf0c624e4abf08fa679435"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. <br /></td></tr>
+<tr class="separator:gac394bd3803cf0c624e4abf08fa679435"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>

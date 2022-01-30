@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['approximate_20comparison_262',['Approximate comparison',['../group__approx.html',1,'']]]
+  ['approximate_20comparison_264',['Approximate comparison',['../group__approx.html',1,'']]]
 ];
