@@ -408,7 +408,8 @@ namespace kspc::hermitian {
     return info;
   }
 
-  /// solve Ax = λx with a hermitian matrix A
+  /// @brief solve Ax = λx with a hermitian matrix A
+  /// @example haldane.cpp
   template <class InOutMat, class OutVec, class Work, class RWork>
   std::enable_if_t<std::conjunction_v<
     is_range<InOutMat>, is_range<OutVec>, is_range<Work>, is_range<RWork>>, int>
