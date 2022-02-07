@@ -95,7 +95,8 @@ namespace kspc::qng {
   } // namespace detail
   /// @endcond
 
-  /// non-adaptive Gauss-Kronrod integration
+  /// @brief non-adaptive Gauss-Kronrod integration
+  /// @example integration.cpp
   template <std::size_t D>
   auto integrate(function_t* function, void* void_params) {
     static_assert(D > 0);
