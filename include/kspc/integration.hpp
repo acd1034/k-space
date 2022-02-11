@@ -15,8 +15,9 @@ namespace kspc {
   /// @details
   /// GSL_EMAXITER = 11, exceeded max number of iterations
   /// GSL_ETOL     = 14, failed to reach the specified tolerance
+  /// GSL_EROUND   = 18, failed because of roundoff error
   void error_handler(const char* reason, const char* file, int line, int gsl_errno) {
-    if (gsl_errno == GSL_EMAXITER or gsl_errno == GSL_ETOL) return;
+    if (gsl_errno == GSL_EMAXITER or gsl_errno == GSL_ETOL or gsl_errno == GSL_EROUND) return;
     gsl_stream_printf("ERROR", file, line, reason);
     std::abort();
   }
