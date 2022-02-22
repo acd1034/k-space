@@ -91,6 +91,12 @@ namespace kspc {
     constexpr size_type operator()(const size_type i, const size_type j) const noexcept {
       return lda_ * i + j;
     }
+    template <typename R>
+    constexpr auto operator()(R&& r, const size_type i, const size_type j) const
+      noexcept(noexcept(std::forward<R>(r)[operator()(i, j)]))
+        -> decltype(std::forward<R>(r)[operator()(i, j)]) {
+      return std::forward<R>(r)[operator()(i, j)];
+    }
   }; // struct mapping_row_major
 
   /// %mapping_column_major
@@ -105,6 +111,12 @@ namespace kspc {
 
     constexpr size_type operator()(const size_type i, const size_type j) const noexcept {
       return i + j * lda_;
+    }
+    template <typename R>
+    constexpr auto operator()(R&& r, const size_type i, const size_type j) const
+      noexcept(noexcept(std::forward<R>(r)[operator()(i, j)]))
+        -> decltype(std::forward<R>(r)[operator()(i, j)]) {
+      return std::forward<R>(r)[operator()(i, j)];
     }
   }; // struct mapping_column_major
 
@@ -122,6 +134,12 @@ namespace kspc {
 
     constexpr size_type operator()(const size_type i, const size_type j) const noexcept {
       return mapping_(j, i);
+    }
+    template <typename R>
+    constexpr auto operator()(R&& r, const size_type i, const size_type j) const
+      noexcept(noexcept(std::forward<R>(r)[operator()(i, j)]))
+        -> decltype(std::forward<R>(r)[operator()(i, j)]) {
+      return std::forward<R>(r)[operator()(i, j)];
     }
   }; // struct mapping_transpose
 
