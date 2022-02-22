@@ -1,4 +1,4 @@
-# kspc: tools for numerical calculation
+# k-space: tools for numerical calculation
 <!--
 [![Linux build status](https://github.com/acd1034/iris/actions/workflows/linux-build.yml/badge.svg)](https://github.com/acd1034/iris/actions/workflows/linux-build.yml)
 [![macOS build status](https://github.com/acd1034/iris/actions/workflows/macos-build.yml/badge.svg)](https://github.com/acd1034/iris/actions/workflows/macos-build.yml)
