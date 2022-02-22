@@ -18,19 +18,19 @@ namespace kspc {
   /// @cond
   namespace detail {
     // NOTE: irrelevant to `std::projected`
-    template <typename P, typename I>
+    template <class P, class I>
     using projected_t = std::invoke_result_t<P&, iter_reference_t<I>>;
 
-    template <typename I, typename T,
-              typename BOp = std::plus<>,
-              typename P = identity_fn>
+    template <class I, class T,
+              class BOp = std::plus<>,
+              class P = identity_fn>
     struct sum_constraints : std::conjunction<
       std::is_invocable<P&, iter_reference_t<I>>,
       std::is_invocable<BOp&, T, projected_t<P, I>>> {};
 
-    template <typename I, typename S, typename T,
-              typename BOp = std::plus<>,
-              typename P = identity_fn,
+    template <class I, class S, class T,
+              class BOp = std::plus<>,
+              class P = identity_fn,
               std::enable_if_t<std::conjunction_v<
                 is_sentinel_for<S, I>,
                 is_input_iterator<I>,
@@ -48,9 +48,9 @@ namespace kspc {
 
   /// @brief `std::accumulate` without the initial value
   /// @note The order of the arguments `P`, `BOp` is different from range-v3.
-  template <typename R,
-            typename P = identity_fn,
-            typename BOp = std::plus<>,
+  template <class R,
+            class P = identity_fn,
+            class BOp = std::plus<>,
             std::enable_if_t<is_range_v<R>, std::nullptr_t> = nullptr>
   constexpr auto sum(R&& r, P proj = {}, BOp bop = {}) {
     using std::begin, std::end, std::empty; // for ADL
@@ -65,11 +65,11 @@ namespace kspc {
 
   /// @cond
   namespace detail {
-    template <typename I1, typename I2, typename T,
-              typename BOp1 = std::plus<>,
-              typename BOp2 = std::multiplies<>,
-              typename P1 = conj_fn,
-              typename P2 = identity_fn>
+    template <class I1, class I2, class T,
+              class BOp1 = std::plus<>,
+              class BOp2 = std::multiplies<>,
+              class P1 = conj_fn,
+              class P2 = identity_fn>
     struct innerp_constraints : std::conjunction<
       std::is_invocable<P1&, iter_value_t<I1>>,
       std::is_invocable<P2&, iter_value_t<I2>>,
@@ -79,11 +79,11 @@ namespace kspc {
         T,
         std::invoke_result_t<BOp2&, projected_t<P1, I1>, projected_t<P2, I2>>>> {};
 
-    template <typename I1, typename S1, typename I2, typename S2, typename T,
-              typename BOp1 = std::plus<>,
-              typename BOp2 = std::multiplies<>,
-              typename P1 = conj_fn,
-              typename P2 = identity_fn,
+    template <class I1, class S1, class I2, class S2, class T,
+              class BOp1 = std::plus<>,
+              class BOp2 = std::multiplies<>,
+              class P1 = conj_fn,
+              class P2 = identity_fn,
               std::enable_if_t<std::conjunction_v<
                 is_sentinel_for<S1, I1>,
                 is_sentinel_for<S2, I2>,
@@ -112,11 +112,11 @@ namespace kspc {
 
   /// @brief `std::inner_product` without the initial value
   /// @note The order of the arguments `P#`, `BOp#` is different from range-v3.
-  template <typename R1, typename R2,
-            typename P1 = conj_fn,
-            typename P2 = identity_fn,
-            typename BOp1 = std::plus<>,
-            typename BOp2 = std::multiplies<>,
+  template <class R1, class R2,
+            class P1 = conj_fn,
+            class P2 = identity_fn,
+            class BOp1 = std::plus<>,
+            class BOp2 = std::multiplies<>,
             std::enable_if_t<std::conjunction_v<
               is_range<R1>,
               is_range<R2>,
@@ -154,168 +154,168 @@ namespace kspc {
   inline namespace arithmetic_ops {
     // std::array
 
-    template <typename T, std::size_t N,
+    template <class T, std::size_t N,
               std::enable_if_t<std::is_arithmetic_v<T>, std::nullptr_t> = nullptr>
     constexpr auto& operator+(const std::array<T, N>& x) {
       return x;
     }
 
-    template <typename T, std::size_t N,
+    template <class T, std::size_t N,
               std::enable_if_t<std::is_arithmetic_v<T>, std::nullptr_t> = nullptr>
     constexpr auto operator-(const std::array<T, N>& x) {
       std::array<T, N> ret{};
-      for (std::size_t i = 0; i < N; ++i) ret[i] = -x[i];
+      for (std::size_t j = 0; j < N; ++j) ret[j] = -x[j];
       return ret;
     }
 
-    template <typename T, std::size_t N,
+    template <class T, std::size_t N,
               std::enable_if_t<std::is_arithmetic_v<T>, std::nullptr_t> = nullptr>
     constexpr auto operator-(std::array<T, N>&& x) {
-      for (std::size_t i = 0; i < N; ++i) x[i] = -x[i];
+      for (std::size_t j = 0; j < N; ++j) x[j] = -x[j];
       return std::move(x);
     }
 
-    template <typename T, std::size_t N,
+    template <class T, std::size_t N,
               std::enable_if_t<std::is_arithmetic_v<T>, std::nullptr_t> = nullptr>
     constexpr auto operator+(const std::array<T, N>& x, const std::array<T, N>& y) {
       std::array<T, N> ret{};
-      for (std::size_t i = 0; i < N; ++i) ret[i] = x[i] + y[i];
+      for (std::size_t j = 0; j < N; ++j) ret[j] = x[j] + y[j];
       return ret;
     }
 
-    template <typename T, std::size_t N,
+    template <class T, std::size_t N,
               std::enable_if_t<std::is_arithmetic_v<T>, std::nullptr_t> = nullptr>
     constexpr auto operator-(const std::array<T, N>& x, const std::array<T, N>& y) {
       std::array<T, N> ret{};
-      for (std::size_t i = 0; i < N; ++i) ret[i] = x[i] - y[i];
+      for (std::size_t j = 0; j < N; ++j) ret[j] = x[j] - y[j];
       return ret;
     }
 
-    template <typename T, std::size_t N,
+    template <class T, std::size_t N,
               std::enable_if_t<std::is_arithmetic_v<T>, std::nullptr_t> = nullptr>
     constexpr auto operator*(const T& val, const std::array<T, N>& x) {
       std::array<T, N> ret{};
-      for (std::size_t i = 0; i < N; ++i) ret[i] = val * x[i];
+      for (std::size_t j = 0; j < N; ++j) ret[j] = val * x[j];
       return ret;
     }
 
-    template <typename T, std::size_t N,
+    template <class T, std::size_t N,
               std::enable_if_t<std::is_arithmetic_v<T>, std::nullptr_t> = nullptr>
     constexpr auto operator*(const T& val, std::array<T, N>&& x) {
-      for (std::size_t i = 0; i < N; ++i) x[i] = val * x[i];
+      for (std::size_t j = 0; j < N; ++j) x[j] = val * x[j];
       return std::move(x);
     }
 
-    template <typename T, std::size_t N,
+    template <class T, std::size_t N,
               std::enable_if_t<std::is_arithmetic_v<T>, std::nullptr_t> = nullptr>
     constexpr auto operator*(const std::array<T, N>& x, const T& val) {
       std::array<T, N> ret{};
-      for (std::size_t i = 0; i < N; ++i) ret[i] = x[i] * val;
+      for (std::size_t j = 0; j < N; ++j) ret[j] = x[j] * val;
       return ret;
     }
 
-    template <typename T, std::size_t N,
+    template <class T, std::size_t N,
               std::enable_if_t<std::is_arithmetic_v<T>, std::nullptr_t> = nullptr>
     constexpr auto operator*(std::array<T, N>&& x, const T& val) {
-      for (std::size_t i = 0; i < N; ++i) x[i] = x[i] * val;
+      for (std::size_t j = 0; j < N; ++j) x[j] = x[j] * val;
       return std::move(x);
     }
 
-    template <typename T, std::size_t N,
+    template <class T, std::size_t N,
               std::enable_if_t<std::is_arithmetic_v<T>, std::nullptr_t> = nullptr>
     constexpr auto operator/(const std::array<T, N>& x, const T& val) {
       std::array<T, N> ret{};
-      for (std::size_t i = 0; i < N; ++i) ret[i] = x[i] / val;
+      for (std::size_t j = 0; j < N; ++j) ret[j] = x[j] / val;
       return ret;
     }
 
-    template <typename T, std::size_t N,
+    template <class T, std::size_t N,
               std::enable_if_t<std::is_arithmetic_v<T>, std::nullptr_t> = nullptr>
     constexpr auto operator/(std::array<T, N>&& x, const T& val) {
-      for (std::size_t i = 0; i < N; ++i) x[i] = x[i] / val;
+      for (std::size_t j = 0; j < N; ++j) x[j] = x[j] / val;
       return std::move(x);
     }
 
     // std::vector
 
-    template <typename T, std::enable_if_t<std::is_arithmetic_v<T>, std::nullptr_t> = nullptr>
+    template <class T, std::enable_if_t<std::is_arithmetic_v<T>, std::nullptr_t> = nullptr>
     constexpr auto& operator+(const std::vector<T>& x) {
       return x;
     }
 
-    template <typename T, std::enable_if_t<std::is_arithmetic_v<T>, std::nullptr_t> = nullptr>
+    template <class T, std::enable_if_t<std::is_arithmetic_v<T>, std::nullptr_t> = nullptr>
     constexpr auto operator-(const std::vector<T>& x) {
       const auto n = std::size(x);
       std::vector<T> ret(n);
-      for (std::size_t i = 0; i < n; ++i) ret[i] = -x[i];
+      for (std::size_t j = 0; j < n; ++j) ret[j] = -x[j];
       return ret;
     }
 
-    template <typename T, std::enable_if_t<std::is_arithmetic_v<T>, std::nullptr_t> = nullptr>
+    template <class T, std::enable_if_t<std::is_arithmetic_v<T>, std::nullptr_t> = nullptr>
     constexpr auto operator-(std::vector<T>&& x) {
       const auto n = std::size(x);
-      for (std::size_t i = 0; i < n; ++i) x[i] = -x[i];
+      for (std::size_t j = 0; j < n; ++j) x[j] = -x[j];
       return std::move(x);
     }
 
-    template <typename T, std::enable_if_t<std::is_arithmetic_v<T>, std::nullptr_t> = nullptr>
+    template <class T, std::enable_if_t<std::is_arithmetic_v<T>, std::nullptr_t> = nullptr>
     constexpr auto operator+(const std::vector<T>& x, const std::vector<T>& y) {
       const auto n = std::min(std::size(x), std::size(y));
       std::vector<T> ret(n);
-      for (std::size_t i = 0; i < n; ++i) ret[i] = x[i] + y[i];
+      for (std::size_t j = 0; j < n; ++j) ret[j] = x[j] + y[j];
       return ret;
     }
 
-    template <typename T, std::enable_if_t<std::is_arithmetic_v<T>, std::nullptr_t> = nullptr>
+    template <class T, std::enable_if_t<std::is_arithmetic_v<T>, std::nullptr_t> = nullptr>
     constexpr auto operator-(const std::vector<T>& x, const std::vector<T>& y) {
       const auto n = std::min(std::size(x), std::size(y));
       std::vector<T> ret(n);
-      for (std::size_t i = 0; i < n; ++i) ret[i] = x[i] - y[i];
+      for (std::size_t j = 0; j < n; ++j) ret[j] = x[j] - y[j];
       return ret;
     }
 
-    template <typename T, std::enable_if_t<std::is_arithmetic_v<T>, std::nullptr_t> = nullptr>
+    template <class T, std::enable_if_t<std::is_arithmetic_v<T>, std::nullptr_t> = nullptr>
     constexpr auto operator*(const T& val, const std::vector<T>& x) {
       const auto n = std::size(x);
       std::vector<T> ret(n);
-      for (std::size_t i = 0; i < n; ++i) ret[i] = val * x[i];
+      for (std::size_t j = 0; j < n; ++j) ret[j] = val * x[j];
       return ret;
     }
 
-    template <typename T, std::enable_if_t<std::is_arithmetic_v<T>, std::nullptr_t> = nullptr>
+    template <class T, std::enable_if_t<std::is_arithmetic_v<T>, std::nullptr_t> = nullptr>
     constexpr auto operator*(const T& val, std::vector<T>&& x) {
       const auto n = std::size(x);
-      for (std::size_t i = 0; i < n; ++i) x[i] = val * x[i];
+      for (std::size_t j = 0; j < n; ++j) x[j] = val * x[j];
       return std::move(x);
     }
 
-    template <typename T, std::enable_if_t<std::is_arithmetic_v<T>, std::nullptr_t> = nullptr>
+    template <class T, std::enable_if_t<std::is_arithmetic_v<T>, std::nullptr_t> = nullptr>
     constexpr auto operator*(const std::vector<T>& x, const T& val) {
       const auto n = std::size(x);
       std::vector<T> ret(n);
-      for (std::size_t i = 0; i < n; ++i) ret[i] = x[i] * val;
+      for (std::size_t j = 0; j < n; ++j) ret[j] = x[j] * val;
       return ret;
     }
 
-    template <typename T, std::enable_if_t<std::is_arithmetic_v<T>, std::nullptr_t> = nullptr>
+    template <class T, std::enable_if_t<std::is_arithmetic_v<T>, std::nullptr_t> = nullptr>
     constexpr auto operator*(std::vector<T>&& x, const T& val) {
       const auto n = std::size(x);
-      for (std::size_t i = 0; i < n; ++i) x[i] = x[i] * val;
+      for (std::size_t j = 0; j < n; ++j) x[j] = x[j] * val;
       return std::move(x);
     }
 
-    template <typename T, std::enable_if_t<std::is_arithmetic_v<T>, std::nullptr_t> = nullptr>
+    template <class T, std::enable_if_t<std::is_arithmetic_v<T>, std::nullptr_t> = nullptr>
     constexpr auto operator/(const std::vector<T>& x, const T& val) {
       const auto n = std::size(x);
       std::vector<T> ret(n);
-      for (std::size_t i = 0; i < n; ++i) ret[i] = x[i] / val;
+      for (std::size_t j = 0; j < n; ++j) ret[j] = x[j] / val;
       return ret;
     }
 
-    template <typename T, std::enable_if_t<std::is_arithmetic_v<T>, std::nullptr_t> = nullptr>
+    template <class T, std::enable_if_t<std::is_arithmetic_v<T>, std::nullptr_t> = nullptr>
     constexpr auto operator/(std::vector<T>&& x, const T& val) {
       const auto n = std::size(x);
-      for (std::size_t i = 0; i < n; ++i) x[i] = x[i] / val;
+      for (std::size_t j = 0; j < n; ++j) x[j] = x[j] / val;
       return std::move(x);
     }
   } // namespace arithmetic_ops
