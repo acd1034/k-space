@@ -4,7 +4,7 @@
 #include <array>
 #include <functional> // invoke
 #include <vector>
-#include <kspc/core.hpp> // is_range, identity_fn, conj_fn
+#include <kspc/core.hpp> // is_input_range, identity_fn, conj_fn
 
 // clang-format off
 
