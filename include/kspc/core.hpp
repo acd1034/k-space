@@ -163,7 +163,7 @@ namespace kspc {
   /// @addtogroup iterator
   /// @{
 
-  // iterator associated types (one part):
+  // iterator associated types (first half):
   // [x] incrementable_traits
   // [x] indirectly_readable_traits
   // [x] iter_value_t
@@ -399,7 +399,7 @@ namespace kspc {
   inline constexpr bool is_sentinel_for_v = is_sentinel_for<S, I>::value;
   // clang-format on
 
-  // iterator associated types (remaining):
+  // iterator associated types (second half):
   // [x] iter_reference_t
   // [ ] iter_rvalue_reference_t (need `iter_move`)
   // [ ] iter_common_reference_t (need `common_reference_t`)
