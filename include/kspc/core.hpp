@@ -174,7 +174,7 @@ namespace kspc {
   // clang-format off
   /// @cond
   namespace detail {
-    template <class, typename = void>
+    template <class, class = void>
     struct incrementable_traits_impl {};
 
     template <class T>
@@ -220,7 +220,7 @@ namespace kspc {
 
   /// @cond
   namespace detail {
-    template <class, typename = void>
+    template <class, class = void>
     struct indirectly_readable_traits_impl {};
 
     template <class T>
