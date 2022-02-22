@@ -82,100 +82,100 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:gaf68d059d849df50b608442c0068014cf"><td class="memTemplParams" colspan="2">template&lt;typename R , typename P  = identity_fn, typename BOp  = std::plus&lt;&gt;, std::enable_if_t&lt; is_range_v&lt; R &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
-<tr class="memitem:gaf68d059d849df50b608442c0068014cf"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__numeric.html#gaf68d059d849df50b608442c0068014cf">kspc::sum</a> (R &amp;&amp;r, P proj={}, BOp bop={})</td></tr>
-<tr class="memdesc:gaf68d059d849df50b608442c0068014cf"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>std::accumulate</code> without the initial value  <a href="group__numeric.html#gaf68d059d849df50b608442c0068014cf">More...</a><br /></td></tr>
-<tr class="separator:gaf68d059d849df50b608442c0068014cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga3332d85228da007f0095334443521c3a"><td class="memTemplParams" colspan="2">template&lt;typename R1 , typename R2 , typename P1  = conj_fn, typename P2  = identity_fn, typename BOp1  = std::plus&lt;&gt;, typename BOp2  = std::multiplies&lt;&gt;, std::enable_if_t&lt; std::conjunction_v&lt; is_range&lt; R1 &gt;, is_range&lt; R2 &gt;, std::negation&lt; is_range&lt; P1 &gt; &gt; &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
-<tr class="memitem:ga3332d85228da007f0095334443521c3a"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__numeric.html#ga3332d85228da007f0095334443521c3a">kspc::innerp</a> (R1 &amp;&amp;r1, R2 &amp;&amp;r2, P1 proj1={}, P2 proj2={}, BOp1 bop1={}, BOp2 bop2={})</td></tr>
-<tr class="memdesc:ga3332d85228da007f0095334443521c3a"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>std::inner_product</code> without the initial value  <a href="group__numeric.html#ga3332d85228da007f0095334443521c3a">More...</a><br /></td></tr>
-<tr class="separator:ga3332d85228da007f0095334443521c3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa8b3c40d4799f00bb0762e388184fda5"><td class="memTemplParams" colspan="2">template&lt;class R , class P  = identity_fn, class Op  = std::plus&lt;&gt;, std::enable_if_t&lt; is_input_range_v&lt; R &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
+<tr class="memitem:gaa8b3c40d4799f00bb0762e388184fda5"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__numeric.html#gaa8b3c40d4799f00bb0762e388184fda5">kspc::sum</a> (R &amp;&amp;r, P proj={}, Op op={})</td></tr>
+<tr class="memdesc:gaa8b3c40d4799f00bb0762e388184fda5"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>std::accumulate</code> without the initial value  <a href="group__numeric.html#gaa8b3c40d4799f00bb0762e388184fda5">More...</a><br /></td></tr>
+<tr class="separator:gaa8b3c40d4799f00bb0762e388184fda5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2b3840c00748bc71e812b25c83683fdd"><td class="memTemplParams" colspan="2">template&lt;class R1 , class R2 , class P1  = conj_fn, class P2  = identity_fn, class Op1  = std::plus&lt;&gt;, class Op2  = std::multiplies&lt;&gt;, std::enable_if_t&lt; std::conjunction_v&lt; is_input_range&lt; R1 &gt;, is_input_range&lt; R2 &gt; &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
+<tr class="memitem:ga2b3840c00748bc71e812b25c83683fdd"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__numeric.html#ga2b3840c00748bc71e812b25c83683fdd">kspc::innerp</a> (R1 &amp;&amp;r1, R2 &amp;&amp;r2, P1 proj1={}, P2 proj2={}, Op1 op1={}, Op2 op2={})</td></tr>
+<tr class="memdesc:ga2b3840c00748bc71e812b25c83683fdd"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>std::inner_product</code> without the initial value  <a href="group__numeric.html#ga2b3840c00748bc71e812b25c83683fdd">More...</a><br /></td></tr>
+<tr class="separator:ga2b3840c00748bc71e812b25c83683fdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad2947ca35f78722264745dcd49346154"><td class="memTemplParams" colspan="2"><a id="ad2947ca35f78722264745dcd49346154" name="ad2947ca35f78722264745dcd49346154"></a>
-template&lt;typename T , std::size_t N, std::enable_if_t&lt; std::is_arithmetic_v&lt; T &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
+template&lt;class T , std::size_t N, std::enable_if_t&lt; std::is_arithmetic_v&lt; T &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
 <tr class="memitem:ad2947ca35f78722264745dcd49346154"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::operator+</b> (const std::array&lt; T, N &gt; &amp;x)</td></tr>
 <tr class="separator:ad2947ca35f78722264745dcd49346154"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a814439e25a3c5d1c8d746514407d0f8a"><td class="memTemplParams" colspan="2"><a id="a814439e25a3c5d1c8d746514407d0f8a" name="a814439e25a3c5d1c8d746514407d0f8a"></a>
-template&lt;typename T , std::size_t N, std::enable_if_t&lt; std::is_arithmetic_v&lt; T &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
+template&lt;class T , std::size_t N, std::enable_if_t&lt; std::is_arithmetic_v&lt; T &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
 <tr class="memitem:a814439e25a3c5d1c8d746514407d0f8a"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::operator-</b> (const std::array&lt; T, N &gt; &amp;x)</td></tr>
 <tr class="separator:a814439e25a3c5d1c8d746514407d0f8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa26cd6af16e01d98a8c58c0c720adaac"><td class="memTemplParams" colspan="2"><a id="aa26cd6af16e01d98a8c58c0c720adaac" name="aa26cd6af16e01d98a8c58c0c720adaac"></a>
-template&lt;typename T , std::size_t N, std::enable_if_t&lt; std::is_arithmetic_v&lt; T &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
+template&lt;class T , std::size_t N, std::enable_if_t&lt; std::is_arithmetic_v&lt; T &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
 <tr class="memitem:aa26cd6af16e01d98a8c58c0c720adaac"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::operator-</b> (std::array&lt; T, N &gt; &amp;&amp;x)</td></tr>
 <tr class="separator:aa26cd6af16e01d98a8c58c0c720adaac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9dd3d42d518431fd8a56649bb7b55321"><td class="memTemplParams" colspan="2"><a id="a9dd3d42d518431fd8a56649bb7b55321" name="a9dd3d42d518431fd8a56649bb7b55321"></a>
-template&lt;typename T , std::size_t N, std::enable_if_t&lt; std::is_arithmetic_v&lt; T &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
+template&lt;class T , std::size_t N, std::enable_if_t&lt; std::is_arithmetic_v&lt; T &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
 <tr class="memitem:a9dd3d42d518431fd8a56649bb7b55321"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::operator+</b> (const std::array&lt; T, N &gt; &amp;x, const std::array&lt; T, N &gt; &amp;y)</td></tr>
 <tr class="separator:a9dd3d42d518431fd8a56649bb7b55321"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a01d88e75fef2b06e19dd6261b30c5925"><td class="memTemplParams" colspan="2"><a id="a01d88e75fef2b06e19dd6261b30c5925" name="a01d88e75fef2b06e19dd6261b30c5925"></a>
-template&lt;typename T , std::size_t N, std::enable_if_t&lt; std::is_arithmetic_v&lt; T &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
+template&lt;class T , std::size_t N, std::enable_if_t&lt; std::is_arithmetic_v&lt; T &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
 <tr class="memitem:a01d88e75fef2b06e19dd6261b30c5925"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::operator-</b> (const std::array&lt; T, N &gt; &amp;x, const std::array&lt; T, N &gt; &amp;y)</td></tr>
 <tr class="separator:a01d88e75fef2b06e19dd6261b30c5925"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4c335f32081dce0f2f05c9774dbdf199"><td class="memTemplParams" colspan="2"><a id="a4c335f32081dce0f2f05c9774dbdf199" name="a4c335f32081dce0f2f05c9774dbdf199"></a>
-template&lt;typename T , std::size_t N, std::enable_if_t&lt; std::is_arithmetic_v&lt; T &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
+template&lt;class T , std::size_t N, std::enable_if_t&lt; std::is_arithmetic_v&lt; T &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
 <tr class="memitem:a4c335f32081dce0f2f05c9774dbdf199"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::operator*</b> (const T &amp;val, const std::array&lt; T, N &gt; &amp;x)</td></tr>
 <tr class="separator:a4c335f32081dce0f2f05c9774dbdf199"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaec5f5a1999bb861016228246b8fcf99"><td class="memTemplParams" colspan="2"><a id="aaec5f5a1999bb861016228246b8fcf99" name="aaec5f5a1999bb861016228246b8fcf99"></a>
-template&lt;typename T , std::size_t N, std::enable_if_t&lt; std::is_arithmetic_v&lt; T &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
+template&lt;class T , std::size_t N, std::enable_if_t&lt; std::is_arithmetic_v&lt; T &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
 <tr class="memitem:aaec5f5a1999bb861016228246b8fcf99"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::operator*</b> (const T &amp;val, std::array&lt; T, N &gt; &amp;&amp;x)</td></tr>
 <tr class="separator:aaec5f5a1999bb861016228246b8fcf99"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae4ff4558a718c3633cf0fefe5c07ea89"><td class="memTemplParams" colspan="2"><a id="ae4ff4558a718c3633cf0fefe5c07ea89" name="ae4ff4558a718c3633cf0fefe5c07ea89"></a>
-template&lt;typename T , std::size_t N, std::enable_if_t&lt; std::is_arithmetic_v&lt; T &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
+template&lt;class T , std::size_t N, std::enable_if_t&lt; std::is_arithmetic_v&lt; T &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
 <tr class="memitem:ae4ff4558a718c3633cf0fefe5c07ea89"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::operator*</b> (const std::array&lt; T, N &gt; &amp;x, const T &amp;val)</td></tr>
 <tr class="separator:ae4ff4558a718c3633cf0fefe5c07ea89"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5f41ce53cc9125c2cf26354bc5595c76"><td class="memTemplParams" colspan="2"><a id="a5f41ce53cc9125c2cf26354bc5595c76" name="a5f41ce53cc9125c2cf26354bc5595c76"></a>
-template&lt;typename T , std::size_t N, std::enable_if_t&lt; std::is_arithmetic_v&lt; T &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
+template&lt;class T , std::size_t N, std::enable_if_t&lt; std::is_arithmetic_v&lt; T &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
 <tr class="memitem:a5f41ce53cc9125c2cf26354bc5595c76"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::operator*</b> (std::array&lt; T, N &gt; &amp;&amp;x, const T &amp;val)</td></tr>
 <tr class="separator:a5f41ce53cc9125c2cf26354bc5595c76"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad003dfa12688934a22cb083182751867"><td class="memTemplParams" colspan="2"><a id="ad003dfa12688934a22cb083182751867" name="ad003dfa12688934a22cb083182751867"></a>
-template&lt;typename T , std::size_t N, std::enable_if_t&lt; std::is_arithmetic_v&lt; T &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
+template&lt;class T , std::size_t N, std::enable_if_t&lt; std::is_arithmetic_v&lt; T &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
 <tr class="memitem:ad003dfa12688934a22cb083182751867"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::operator/</b> (const std::array&lt; T, N &gt; &amp;x, const T &amp;val)</td></tr>
 <tr class="separator:ad003dfa12688934a22cb083182751867"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a216c67e79f68ddccb9457aba6612bb28"><td class="memTemplParams" colspan="2"><a id="a216c67e79f68ddccb9457aba6612bb28" name="a216c67e79f68ddccb9457aba6612bb28"></a>
-template&lt;typename T , std::size_t N, std::enable_if_t&lt; std::is_arithmetic_v&lt; T &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
+template&lt;class T , std::size_t N, std::enable_if_t&lt; std::is_arithmetic_v&lt; T &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
 <tr class="memitem:a216c67e79f68ddccb9457aba6612bb28"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::operator/</b> (std::array&lt; T, N &gt; &amp;&amp;x, const T &amp;val)</td></tr>
 <tr class="separator:a216c67e79f68ddccb9457aba6612bb28"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a82d9381db86a42347618b1aed8657e37"><td class="memTemplParams" colspan="2"><a id="a82d9381db86a42347618b1aed8657e37" name="a82d9381db86a42347618b1aed8657e37"></a>
-template&lt;typename T , std::enable_if_t&lt; std::is_arithmetic_v&lt; T &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
+template&lt;class T , std::enable_if_t&lt; std::is_arithmetic_v&lt; T &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
 <tr class="memitem:a82d9381db86a42347618b1aed8657e37"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::operator+</b> (const std::vector&lt; T &gt; &amp;x)</td></tr>
 <tr class="separator:a82d9381db86a42347618b1aed8657e37"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6c5abaff1ad2a357a57529cf2867fb24"><td class="memTemplParams" colspan="2"><a id="a6c5abaff1ad2a357a57529cf2867fb24" name="a6c5abaff1ad2a357a57529cf2867fb24"></a>
-template&lt;typename T , std::enable_if_t&lt; std::is_arithmetic_v&lt; T &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
+template&lt;class T , std::enable_if_t&lt; std::is_arithmetic_v&lt; T &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
 <tr class="memitem:a6c5abaff1ad2a357a57529cf2867fb24"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::operator-</b> (const std::vector&lt; T &gt; &amp;x)</td></tr>
 <tr class="separator:a6c5abaff1ad2a357a57529cf2867fb24"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa93e844ac8ef2e995fb71d0584c92b1c"><td class="memTemplParams" colspan="2"><a id="aa93e844ac8ef2e995fb71d0584c92b1c" name="aa93e844ac8ef2e995fb71d0584c92b1c"></a>
-template&lt;typename T , std::enable_if_t&lt; std::is_arithmetic_v&lt; T &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
+template&lt;class T , std::enable_if_t&lt; std::is_arithmetic_v&lt; T &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
 <tr class="memitem:aa93e844ac8ef2e995fb71d0584c92b1c"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::operator-</b> (std::vector&lt; T &gt; &amp;&amp;x)</td></tr>
 <tr class="separator:aa93e844ac8ef2e995fb71d0584c92b1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa9f8f25deacf455a338cb633d869140c"><td class="memTemplParams" colspan="2"><a id="aa9f8f25deacf455a338cb633d869140c" name="aa9f8f25deacf455a338cb633d869140c"></a>
-template&lt;typename T , std::enable_if_t&lt; std::is_arithmetic_v&lt; T &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
+template&lt;class T , std::enable_if_t&lt; std::is_arithmetic_v&lt; T &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
 <tr class="memitem:aa9f8f25deacf455a338cb633d869140c"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::operator+</b> (const std::vector&lt; T &gt; &amp;x, const std::vector&lt; T &gt; &amp;y)</td></tr>
 <tr class="separator:aa9f8f25deacf455a338cb633d869140c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7c9dc2a06f3b22b18432ab399a69f5c1"><td class="memTemplParams" colspan="2"><a id="a7c9dc2a06f3b22b18432ab399a69f5c1" name="a7c9dc2a06f3b22b18432ab399a69f5c1"></a>
-template&lt;typename T , std::enable_if_t&lt; std::is_arithmetic_v&lt; T &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
+template&lt;class T , std::enable_if_t&lt; std::is_arithmetic_v&lt; T &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
 <tr class="memitem:a7c9dc2a06f3b22b18432ab399a69f5c1"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::operator-</b> (const std::vector&lt; T &gt; &amp;x, const std::vector&lt; T &gt; &amp;y)</td></tr>
 <tr class="separator:a7c9dc2a06f3b22b18432ab399a69f5c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3a862ea4c36e35ea23fc89caecfca09e"><td class="memTemplParams" colspan="2"><a id="a3a862ea4c36e35ea23fc89caecfca09e" name="a3a862ea4c36e35ea23fc89caecfca09e"></a>
-template&lt;typename T , std::enable_if_t&lt; std::is_arithmetic_v&lt; T &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
+template&lt;class T , std::enable_if_t&lt; std::is_arithmetic_v&lt; T &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
 <tr class="memitem:a3a862ea4c36e35ea23fc89caecfca09e"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::operator*</b> (const T &amp;val, const std::vector&lt; T &gt; &amp;x)</td></tr>
 <tr class="separator:a3a862ea4c36e35ea23fc89caecfca09e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a542c720bcc2899ba19c5fca7b6505260"><td class="memTemplParams" colspan="2"><a id="a542c720bcc2899ba19c5fca7b6505260" name="a542c720bcc2899ba19c5fca7b6505260"></a>
-template&lt;typename T , std::enable_if_t&lt; std::is_arithmetic_v&lt; T &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
+template&lt;class T , std::enable_if_t&lt; std::is_arithmetic_v&lt; T &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
 <tr class="memitem:a542c720bcc2899ba19c5fca7b6505260"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::operator*</b> (const T &amp;val, std::vector&lt; T &gt; &amp;&amp;x)</td></tr>
 <tr class="separator:a542c720bcc2899ba19c5fca7b6505260"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0edf7bd4db0c052802bb0baf6351939c"><td class="memTemplParams" colspan="2"><a id="a0edf7bd4db0c052802bb0baf6351939c" name="a0edf7bd4db0c052802bb0baf6351939c"></a>
-template&lt;typename T , std::enable_if_t&lt; std::is_arithmetic_v&lt; T &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
+template&lt;class T , std::enable_if_t&lt; std::is_arithmetic_v&lt; T &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
 <tr class="memitem:a0edf7bd4db0c052802bb0baf6351939c"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::operator*</b> (const std::vector&lt; T &gt; &amp;x, const T &amp;val)</td></tr>
 <tr class="separator:a0edf7bd4db0c052802bb0baf6351939c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a072e3cd37c05511117af5bf10f9cad46"><td class="memTemplParams" colspan="2"><a id="a072e3cd37c05511117af5bf10f9cad46" name="a072e3cd37c05511117af5bf10f9cad46"></a>
-template&lt;typename T , std::enable_if_t&lt; std::is_arithmetic_v&lt; T &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
+template&lt;class T , std::enable_if_t&lt; std::is_arithmetic_v&lt; T &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
 <tr class="memitem:a072e3cd37c05511117af5bf10f9cad46"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::operator*</b> (std::vector&lt; T &gt; &amp;&amp;x, const T &amp;val)</td></tr>
 <tr class="separator:a072e3cd37c05511117af5bf10f9cad46"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0bd09d5a80a1c80d67bb857086e716a3"><td class="memTemplParams" colspan="2"><a id="a0bd09d5a80a1c80d67bb857086e716a3" name="a0bd09d5a80a1c80d67bb857086e716a3"></a>
-template&lt;typename T , std::enable_if_t&lt; std::is_arithmetic_v&lt; T &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
+template&lt;class T , std::enable_if_t&lt; std::is_arithmetic_v&lt; T &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
 <tr class="memitem:a0bd09d5a80a1c80d67bb857086e716a3"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::operator/</b> (const std::vector&lt; T &gt; &amp;x, const T &amp;val)</td></tr>
 <tr class="separator:a0bd09d5a80a1c80d67bb857086e716a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aec49baf24c44185724d6dc1ae445e6ed"><td class="memTemplParams" colspan="2"><a id="aec49baf24c44185724d6dc1ae445e6ed" name="aec49baf24c44185724d6dc1ae445e6ed"></a>
-template&lt;typename T , std::enable_if_t&lt; std::is_arithmetic_v&lt; T &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
+template&lt;class T , std::enable_if_t&lt; std::is_arithmetic_v&lt; T &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
 <tr class="memitem:aec49baf24c44185724d6dc1ae445e6ed"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::operator/</b> (std::vector&lt; T &gt; &amp;&amp;x, const T &amp;val)</td></tr>
 <tr class="separator:aec49baf24c44185724d6dc1ae445e6ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>

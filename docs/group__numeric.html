@@ -71,24 +71,24 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:gaf68d059d849df50b608442c0068014cf"><td class="memTemplParams" colspan="2">template&lt;typename R , typename P  = identity_fn, typename BOp  = std::plus&lt;&gt;, std::enable_if_t&lt; is_range_v&lt; R &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
-<tr class="memitem:gaf68d059d849df50b608442c0068014cf"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__numeric.html#gaf68d059d849df50b608442c0068014cf">kspc::sum</a> (R &amp;&amp;r, P proj={}, BOp bop={})</td></tr>
-<tr class="memdesc:gaf68d059d849df50b608442c0068014cf"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>std::accumulate</code> without the initial value  <a href="group__numeric.html#gaf68d059d849df50b608442c0068014cf">More...</a><br /></td></tr>
-<tr class="separator:gaf68d059d849df50b608442c0068014cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga3332d85228da007f0095334443521c3a"><td class="memTemplParams" colspan="2">template&lt;typename R1 , typename R2 , typename P1  = conj_fn, typename P2  = identity_fn, typename BOp1  = std::plus&lt;&gt;, typename BOp2  = std::multiplies&lt;&gt;, std::enable_if_t&lt; std::conjunction_v&lt; <a class="el" href="structkspc_1_1is__range.html">is_range</a>&lt; R1 &gt;, <a class="el" href="structkspc_1_1is__range.html">is_range</a>&lt; R2 &gt;, std::negation&lt; <a class="el" href="structkspc_1_1is__range.html">is_range</a>&lt; P1 &gt; &gt; &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
-<tr class="memitem:ga3332d85228da007f0095334443521c3a"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__numeric.html#ga3332d85228da007f0095334443521c3a">kspc::innerp</a> (R1 &amp;&amp;r1, R2 &amp;&amp;r2, P1 proj1={}, P2 proj2={}, BOp1 bop1={}, BOp2 bop2={})</td></tr>
-<tr class="memdesc:ga3332d85228da007f0095334443521c3a"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>std::inner_product</code> without the initial value  <a href="group__numeric.html#ga3332d85228da007f0095334443521c3a">More...</a><br /></td></tr>
-<tr class="separator:ga3332d85228da007f0095334443521c3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa8b3c40d4799f00bb0762e388184fda5"><td class="memTemplParams" colspan="2">template&lt;class R , class P  = identity_fn, class Op  = std::plus&lt;&gt;, std::enable_if_t&lt; is_input_range_v&lt; R &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
+<tr class="memitem:gaa8b3c40d4799f00bb0762e388184fda5"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__numeric.html#gaa8b3c40d4799f00bb0762e388184fda5">kspc::sum</a> (R &amp;&amp;r, P proj={}, Op op={})</td></tr>
+<tr class="memdesc:gaa8b3c40d4799f00bb0762e388184fda5"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>std::accumulate</code> without the initial value  <a href="group__numeric.html#gaa8b3c40d4799f00bb0762e388184fda5">More...</a><br /></td></tr>
+<tr class="separator:gaa8b3c40d4799f00bb0762e388184fda5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2b3840c00748bc71e812b25c83683fdd"><td class="memTemplParams" colspan="2">template&lt;class R1 , class R2 , class P1  = conj_fn, class P2  = identity_fn, class Op1  = std::plus&lt;&gt;, class Op2  = std::multiplies&lt;&gt;, std::enable_if_t&lt; std::conjunction_v&lt; <a class="el" href="structkspc_1_1is__input__range.html">is_input_range</a>&lt; R1 &gt;, <a class="el" href="structkspc_1_1is__input__range.html">is_input_range</a>&lt; R2 &gt; &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
+<tr class="memitem:ga2b3840c00748bc71e812b25c83683fdd"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__numeric.html#ga2b3840c00748bc71e812b25c83683fdd">kspc::innerp</a> (R1 &amp;&amp;r1, R2 &amp;&amp;r2, P1 proj1={}, P2 proj2={}, Op1 op1={}, Op2 op2={})</td></tr>
+<tr class="memdesc:ga2b3840c00748bc71e812b25c83683fdd"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>std::inner_product</code> without the initial value  <a href="group__numeric.html#ga2b3840c00748bc71e812b25c83683fdd">More...</a><br /></td></tr>
+<tr class="separator:ga2b3840c00748bc71e812b25c83683fdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="ga3332d85228da007f0095334443521c3a" name="ga3332d85228da007f0095334443521c3a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga3332d85228da007f0095334443521c3a">&#9670;&nbsp;</a></span>innerp()</h2>
+<a id="ga2b3840c00748bc71e812b25c83683fdd" name="ga2b3840c00748bc71e812b25c83683fdd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga2b3840c00748bc71e812b25c83683fdd">&#9670;&nbsp;</a></span>innerp()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename R1 , typename R2 , typename P1  = conj_fn, typename P2  = identity_fn, typename BOp1  = std::plus&lt;&gt;, typename BOp2  = std::multiplies&lt;&gt;, std::enable_if_t&lt; std::conjunction_v&lt; <a class="el" href="structkspc_1_1is__range.html">is_range</a>&lt; R1 &gt;, <a class="el" href="structkspc_1_1is__range.html">is_range</a>&lt; R2 &gt;, std::negation&lt; <a class="el" href="structkspc_1_1is__range.html">is_range</a>&lt; P1 &gt; &gt; &gt;, std::nullptr_t &gt;  = nullptr&gt; </div>
+template&lt;class R1 , class R2 , class P1  = conj_fn, class P2  = identity_fn, class Op1  = std::plus&lt;&gt;, class Op2  = std::multiplies&lt;&gt;, std::enable_if_t&lt; std::conjunction_v&lt; <a class="el" href="structkspc_1_1is__input__range.html">is_input_range</a>&lt; R1 &gt;, <a class="el" href="structkspc_1_1is__input__range.html">is_input_range</a>&lt; R2 &gt; &gt;, std::nullptr_t &gt;  = nullptr&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -120,14 +120,14 @@ template&lt;typename R1 , typename R2 , typename P1  = conj_fn, typename P2  = i
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">BOp1&#160;</td>
-          <td class="paramname"><em>bop1</em> = <code>{}</code>, </td>
+          <td class="paramtype">Op1&#160;</td>
+          <td class="paramname"><em>op1</em> = <code>{}</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">BOp2&#160;</td>
-          <td class="paramname"><em>bop2</em> = <code>{}</code>&#160;</td>
+          <td class="paramtype">Op2&#160;</td>
+          <td class="paramname"><em>op2</em> = <code>{}</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -143,17 +143,17 @@ template&lt;typename R1 , typename R2 , typename P1  = conj_fn, typename P2  = i
 </div><div class="memdoc">
 
 <p><code>std::inner_product</code> without the initial value </p>
-<dl class="section note"><dt>Note</dt><dd>The order of the arguments <code>P#</code>, <code>BOp#</code> is different from range-v3. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>The order of the arguments <code>P#</code>, <code>Op#</code> is different from range-v3. </dd></dl>
 
 </div>
 </div>
-<a id="gaf68d059d849df50b608442c0068014cf" name="gaf68d059d849df50b608442c0068014cf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaf68d059d849df50b608442c0068014cf">&#9670;&nbsp;</a></span>sum()</h2>
+<a id="gaa8b3c40d4799f00bb0762e388184fda5" name="gaa8b3c40d4799f00bb0762e388184fda5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa8b3c40d4799f00bb0762e388184fda5">&#9670;&nbsp;</a></span>sum()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename R , typename P  = identity_fn, typename BOp  = std::plus&lt;&gt;, std::enable_if_t&lt; is_range_v&lt; R &gt;, std::nullptr_t &gt;  = nullptr&gt; </div>
+template&lt;class R , class P  = identity_fn, class Op  = std::plus&lt;&gt;, std::enable_if_t&lt; is_input_range_v&lt; R &gt;, std::nullptr_t &gt;  = nullptr&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -173,8 +173,8 @@ template&lt;typename R , typename P  = identity_fn, typename BOp  = std::plus&lt
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">BOp&#160;</td>
-          <td class="paramname"><em>bop</em> = <code>{}</code>&#160;</td>
+          <td class="paramtype">Op&#160;</td>
+          <td class="paramname"><em>op</em> = <code>{}</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -190,7 +190,7 @@ template&lt;typename R , typename P  = identity_fn, typename BOp  = std::plus&lt
 </div><div class="memdoc">
 
 <p><code>std::accumulate</code> without the initial value </p>
-<dl class="section note"><dt>Note</dt><dd>The order of the arguments <code>P</code>, <code>BOp</code> is different from range-v3. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>The order of the arguments <code>P</code>, <code>Op</code> is different from range-v3. </dd></dl>
 <dl class="section examples"><dt>Examples</dt><dd><a class="el" href="haldane_8cpp-example.html#a3">haldane.cpp</a>.</dd>
 </dl>
 
