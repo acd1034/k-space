@@ -455,7 +455,7 @@ namespace kspc {
   using detail_adl::adl_begin, detail_adl::adl_end, detail_adl::adl_size, detail_adl::adl_data,
     detail_adl::adl_swap;
 
-  // range concepts:
+  // range concepts (first half):
   // [x] is_range
   // [x] is_sized_range
 
@@ -533,6 +533,21 @@ namespace kspc {
   /// range_reference_t
   template <typename R, std::enable_if_t<is_range_v<R>, std::nullptr_t> = nullptr>
   using range_reference_t = iter_reference_t<iterator_t<R>>;
+
+  // range concepts (second half):
+  // [x] is_input_range<R> = is_range<R> && is_input_iterator<iterator_t<R>>
+
+  /// %is_input_range
+  template <typename R>
+  struct is_input_range
+    : std::conjunction<
+        is_range<R>,
+        is_input_iterator<iterator_t<R>>
+        > {};
+
+  /// helper variable template for `is_input_range`
+  template <typename R>
+  inline constexpr bool is_input_range_v = is_input_range<R>::value;
 
   // range access
 
