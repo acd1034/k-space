@@ -4,7 +4,8 @@
 #include <algorithm> // equal
 #include <array>
 #include <complex>
-#include <memory> // shared_ptr
+#include <memory>  // shared_ptr
+#include <numeric> // iota
 #include <vector>
 #include <kspc/approx.hpp>
 #include <kspc/core.hpp>
@@ -96,13 +97,20 @@ TEST_CASE("dim", "[math][dim]") {
 }
 
 TEST_CASE("mapping", "[math][mapping]") {
-  { // mapping_row_major
-    constexpr auto mapping = kspc::mapping_row_major(5);
-    CHECK(mapping(1, 2) == 7);
+  std::array<int, 25> a{};
+  std::iota(std::begin(a), end(a), 0);
+  { // mapping_row_major, mapping_transpose
+    constexpr auto map = kspc::mapping_row_major(5);
+    CHECK(map(1, 2) == 7);
+    CHECK(map(a, 1, 2) == 7);
+    constexpr auto map2 = kspc::mapping_transpose(map);
+    CHECK(map2(1, 2) == 11);
+    CHECK(map2(a, 1, 2) == 11);
   }
   { // mapping_column_major
-    constexpr auto mapping = kspc::mapping_column_major(5);
-    CHECK(mapping(1, 2) == 11);
+    constexpr auto map = kspc::mapping_column_major(5);
+    CHECK(map(1, 2) == 11);
+    CHECK(map(a, 1, 2) == 11);
   }
 }
 
