@@ -97,6 +97,10 @@ constexpr&#160;</td><td class="memItemRight" valign="bottom"><b>mapping_transpos
 <tr class="memitem:a0d67aeaa94c4c70869f0cfd120339366"><td class="memItemLeft" align="right" valign="top"><a id="a0d67aeaa94c4c70869f0cfd120339366" name="a0d67aeaa94c4c70869f0cfd120339366"></a>
 constexpr size_type&#160;</td><td class="memItemRight" valign="bottom"><b>operator()</b> (const size_type i, const size_type j) const noexcept</td></tr>
 <tr class="separator:a0d67aeaa94c4c70869f0cfd120339366"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8afe18c03462a3f9d7df8727d49656f"><td class="memTemplParams" colspan="2"><a id="aa8afe18c03462a3f9d7df8727d49656f" name="aa8afe18c03462a3f9d7df8727d49656f"></a>
+template&lt;typename R &gt; </td></tr>
+<tr class="memitem:aa8afe18c03462a3f9d7df8727d49656f"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator()</b> (R &amp;&amp;r, const size_type i, const size_type j) const noexcept(noexcept(std::forward&lt; R &gt;(r)[operator()(i, j)])) -&gt; decltype(std::forward&lt; R &gt;(r)[operator()(i, j)])</td></tr>
+<tr class="separator:aa8afe18c03462a3f9d7df8727d49656f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename Mapping&gt;<br />
