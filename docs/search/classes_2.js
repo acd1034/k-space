@@ -20,8 +20,9 @@ var searchData=
   ['is_5findirectly_5freadable_17',['is_indirectly_readable',['../structkspc_1_1is__indirectly__readable.html',1,'kspc']]],
   ['is_5finput_5fiterator_18',['is_input_iterator',['../structkspc_1_1is__input__iterator.html',1,'kspc']]],
   ['is_5finput_5for_5foutput_5fiterator_19',['is_input_or_output_iterator',['../structkspc_1_1is__input__or__output__iterator.html',1,'kspc']]],
-  ['is_5frange_20',['is_range',['../structkspc_1_1is__range.html',1,'kspc']]],
-  ['is_5fsentinel_5ffor_21',['is_sentinel_for',['../structkspc_1_1is__sentinel__for.html',1,'kspc']]],
-  ['is_5fsized_5frange_22',['is_sized_range',['../structkspc_1_1is__sized__range.html',1,'kspc']]],
-  ['is_5fweakly_5fincrementable_23',['is_weakly_incrementable',['../structkspc_1_1is__weakly__incrementable.html',1,'kspc']]]
+  ['is_5finput_5frange_20',['is_input_range',['../structkspc_1_1is__input__range.html',1,'kspc']]],
+  ['is_5frange_21',['is_range',['../structkspc_1_1is__range.html',1,'kspc']]],
+  ['is_5fsentinel_5ffor_22',['is_sentinel_for',['../structkspc_1_1is__sentinel__for.html',1,'kspc']]],
+  ['is_5fsized_5frange_23',['is_sized_range',['../structkspc_1_1is__sized__range.html',1,'kspc']]],
+  ['is_5fweakly_5fincrementable_24',['is_weakly_incrementable',['../structkspc_1_1is__weakly__incrementable.html',1,'kspc']]]
 ];
