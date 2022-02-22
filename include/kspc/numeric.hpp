@@ -20,16 +20,12 @@ namespace kspc {
     template <class P, class I>
     using projected_t = std::invoke_result_t<P&, iter_reference_t<I>>;
 
-    template <class I, class T,
-              class Op = std::plus<>,
-              class P = identity_fn>
+    template <class I, class T, class Op = std::plus<>, class P = identity_fn>
     struct sum_constraints : std::conjunction<
       std::is_invocable<P&, iter_reference_t<I>>,
       std::is_invocable<Op&, T, projected_t<P, I>>> {};
 
-    template <class I, class S, class T,
-              class Op = std::plus<>,
-              class P = identity_fn,
+    template <class I, class S, class T, class Op = std::plus<>, class P = identity_fn,
               std::enable_if_t<std::conjunction_v<
                 is_sentinel_for<S, I>,
                 is_input_iterator<I>,
@@ -47,10 +43,8 @@ namespace kspc {
 
   /// @brief `std::accumulate` without the initial value
   /// @note The order of the arguments `P`, `Op` is different from range-v3.
-  template <class R,
-            class P = identity_fn,
-            class Op = std::plus<>,
-            std::enable_if_t<is_range_v<R>, std::nullptr_t> = nullptr>
+  template <class R, class P = identity_fn, class Op = std::plus<>,
+            std::enable_if_t<is_input_range_v<R>, std::nullptr_t> = nullptr>
   constexpr auto sum(R&& r, P proj = {}, Op op = {}) {
     using std::begin, std::end, std::empty; // for ADL
     assert(!empty(r));
@@ -73,10 +67,7 @@ namespace kspc {
       std::is_invocable<P1&, iter_value_t<I1>>,
       std::is_invocable<P2&, iter_value_t<I2>>,
       std::is_invocable<Op2&, projected_t<P1, I1>, projected_t<P2, I2>>,
-      std::is_invocable<
-        Op1&,
-        T,
-        std::invoke_result_t<Op2&, projected_t<P1, I1>, projected_t<P2, I2>>>> {};
+      std::is_invocable<Op1&, T, std::invoke_result_t<Op2&, projected_t<P1, I1>, projected_t<P2, I2>>>> {};
 
     template <class I1, class S1, class I2, class S2, class T,
               class Op1 = std::plus<>,
@@ -90,19 +81,26 @@ namespace kspc {
                 is_input_iterator<I2>,
                 innerp_constraints<I1, I2, T, Op1, Op2, P1, P2>>, std::nullptr_t> = nullptr>
     constexpr auto innerp(I1 first1, S1 last1, I2 first2, S2 last2, T init,
-                          Op1 op1 = {}, Op2 op2 = {}, P1 proj1 = {}, P2 proj2 = {}) {
-      using U = remove_cvref_t<
-        std::invoke_result_t<
-          Op1&,
-          T,
-          std::invoke_result_t<Op2&, projected_t<P1, I1>, projected_t<P2, I2>>>>;
+                          Op1 op1 = {},
+                          Op2 op2 = {},
+                          P1 proj1 = {},
+                          P2 proj2 = {}) {
+      using U = remove_cvref_t<std::invoke_result_t<
+                  Op1&,
+                  T,
+                  std::invoke_result_t<
+                    Op2&,
+                    projected_t<P1, I1>,
+                    projected_t<P2, I2>>>>;
       U ret = std::move(init);
       for (; first1 != last1 && first2 != last2; ++first1, ++first2) {
-        ret =
-          std::invoke(
-            op1,
-            std::move(ret),
-            std::invoke(op2, std::invoke(proj1, *first1), std::invoke(proj2, *first2)));
+        ret = std::invoke(
+                op1,
+                std::move(ret),
+                std::invoke(
+                  op2,
+                  std::invoke(proj1, *first1),
+                  std::invoke(proj2, *first2)));
       }
       return ret;
     }
@@ -117,11 +115,13 @@ namespace kspc {
             class Op1 = std::plus<>,
             class Op2 = std::multiplies<>,
             std::enable_if_t<std::conjunction_v<
-              is_range<R1>,
-              is_range<R2>,
-              std::negation<is_range<P1>>>, std::nullptr_t> = nullptr>
+              is_input_range<R1>,
+              is_input_range<R2>>, std::nullptr_t> = nullptr>
   constexpr auto innerp(R1&& r1, R2&& r2,
-                        P1 proj1 = {}, P2 proj2 = {}, Op1 op1 = {}, Op2 op2 = {}) {
+                        P1 proj1 = {},
+                        P2 proj2 = {},
+                        Op1 op1 = {},
+                        Op2 op2 = {}) {
     using std::begin, std::end, std::empty; // for ADL
     assert(!empty(r1));
     assert(!empty(r2));
