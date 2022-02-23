@@ -24,7 +24,7 @@ int main() {
   // using kspc::qng::integrate;
   using kspc::qag::integrate;
   // using kspc::cquad::integrate;
-  const auto [result, abserr] = integrate<1>(&f, &params);
+  const auto [result, abserr, info] = integrate<1>(&f, &params);
   const double expected = -4.0;
 
   printf("result          = % .18f\n", result);

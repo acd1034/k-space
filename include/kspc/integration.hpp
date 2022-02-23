@@ -2,6 +2,7 @@
 #pragma once
 #include <array>
 #include <cstdlib> // abort
+#include <tuple>
 #include <vector>
 #include <gsl/gsl_errno.h> // GSL_EMAXITER, GSL_ETOL, gsl_stream_printf, gsl_set_error_handler
 #include <gsl/gsl_integration.h>
@@ -55,7 +56,7 @@ namespace kspc::qng {
   namespace detail {
     /// integrate with gsl_integration_qng
     template <std::size_t D>
-    std::pair<double, double> integrate_impl(void* void_params);
+    std::tuple<double, double, int> integrate_impl(void* void_params);
 
     /// integrand for gsl_integration_qng
     template <std::size_t D>
@@ -74,24 +75,24 @@ namespace kspc::qng {
     }
 
     template <std::size_t D>
-    std::pair<double, double> integrate_impl(void* void_params) {
+    std::tuple<double, double, int> integrate_impl(void* void_params) {
       gsl_function function{&integrand<D>, void_params};
       auto* params = (params_t*)void_params;
       double result, abserr;
       std::size_t nevals;
 
       // clang-format off
-      gsl_integration_qng(&function,
-                          params->lista[D],
-                          params->listb[D],
-                          params->epsabs,
-                          params->epsrel,
-                          &result,
-                          &abserr,
-                          &nevals);
+      int info = gsl_integration_qng(&function,
+                                     params->lista[D],
+                                     params->listb[D],
+                                     params->epsabs,
+                                     params->epsrel,
+                                     &result,
+                                     &abserr,
+                                     &nevals);
       // clang-format on
 
-      return {result, abserr};
+      return {result, abserr, info};
     }
   } // namespace detail
   /// @endcond
@@ -123,7 +124,7 @@ namespace kspc::qag {
   namespace detail {
     /// integrate with gsl_integration_qag
     template <std::size_t D>
-    std::pair<double, double> integrate_impl(void* void_params);
+    std::tuple<double, double, int> integrate_impl(void* void_params);
 
     /// integrand for gsl_integration_qag
     template <std::size_t D>
@@ -144,7 +145,7 @@ namespace kspc::qag {
     inline constexpr int key = 6;
 
     template <std::size_t D>
-    std::pair<double, double> integrate_impl(void* void_params) {
+    std::tuple<double, double, int> integrate_impl(void* void_params) {
       gsl_function function{&integrand<D>, void_params};
       auto* params = (params_t*)void_params;
       assert(params->workspace_size > 1);
@@ -152,19 +153,19 @@ namespace kspc::qag {
       double result, abserr;
 
       // clang-format off
-      gsl_integration_qag(&function,
-                          params->lista[D],
-                          params->listb[D],
-                          params->epsabs,
-                          params->epsrel,
-                          params->workspace_size,
-                          key,
-                          ws[D],
-                          &result,
-                          &abserr);
+      int info = gsl_integration_qag(&function,
+                                     params->lista[D],
+                                     params->listb[D],
+                                     params->epsabs,
+                                     params->epsrel,
+                                     params->workspace_size,
+                                     key,
+                                     ws[D],
+                                     &result,
+                                     &abserr);
       // clang-format on
 
-      return {result, abserr};
+      return {result, abserr, info};
     }
   } // namespace detail
   /// @endcond
@@ -200,7 +201,7 @@ namespace kspc::cquad {
   namespace detail {
     /// integrate with gsl_integration_cquad
     template <std::size_t D>
-    std::pair<double, double> integrate_impl(void* void_params);
+    std::tuple<double, double, int> integrate_impl(void* void_params);
 
     /// integrand for gsl_integration_cquad
     template <std::size_t D>
@@ -219,7 +220,7 @@ namespace kspc::cquad {
     }
 
     template <std::size_t D>
-    std::pair<double, double> integrate_impl(void* void_params) {
+    std::tuple<double, double, int> integrate_impl(void* void_params) {
       gsl_function function{&integrand<D>, void_params};
       auto* params = (params_t*)void_params;
       auto** ws = (gsl_integration_cquad_workspace**)params->workspace;
@@ -227,18 +228,18 @@ namespace kspc::cquad {
       std::size_t nevals;
 
       // clang-format off
-      gsl_integration_cquad(&function,
-                            params->lista[D],
-                            params->listb[D],
-                            params->epsabs,
-                            params->epsrel,
-                            ws[D],
-                            &result,
-                            &abserr,
-                            &nevals);
+      int info = gsl_integration_cquad(&function,
+                                       params->lista[D],
+                                       params->listb[D],
+                                       params->epsabs,
+                                       params->epsrel,
+                                       ws[D],
+                                       &result,
+                                       &abserr,
+                                       &nevals);
       // clang-format on
 
-      return {result, abserr};
+      return {result, abserr, info};
     }
   } // namespace detail
   /// @endcond
