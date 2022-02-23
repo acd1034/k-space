@@ -113,7 +113,7 @@ namespace kspc {
 
   /// @overload
   template <typename T,
-            std::enable_if_t<!std::is_unsigned_v<std::decay_t<T>>, std::nullptr_t> = nullptr>
+            std::enable_if_t<!std::is_unsigned_v<remove_cvref_t<T>>, std::nullptr_t> = nullptr>
   inline constexpr T&& make_signed_v(T&& x) noexcept {
     return std::forward<T>(x);
   }
@@ -128,7 +128,7 @@ namespace kspc {
 
   /// @overload
   template <typename T,
-            std::enable_if_t<!std::is_signed_v<std::decay_t<T>>, std::nullptr_t> = nullptr>
+            std::enable_if_t<!std::is_signed_v<remove_cvref_t<T>>, std::nullptr_t> = nullptr>
   inline constexpr T&& make_unsigned_v(T&& x) noexcept {
     return std::forward<T>(x);
   }
@@ -661,15 +661,14 @@ namespace kspc {
   struct conj_fn {
     using is_transparent = void;
 
-    template <typename T, std::enable_if_t<is_complex_v<std::decay_t<T>>, std::nullptr_t> = nullptr>
-    constexpr auto operator()(T&& x) const noexcept(noexcept(std::conj(std::forward<T>(x))))
-      -> decltype(std::conj(std::forward<T>(x))) {
-      return std::conj(std::forward<T>(x));
+    template <typename T, std::enable_if_t<is_complex_v<T>, std::nullptr_t> = nullptr>
+    constexpr T operator()(const T& x) const noexcept(noexcept(real(x), -imag(x))) {
+      return {real(x), -imag(x)};
     }
 
     // same as `identity`
     template <typename T,
-              std::enable_if_t<!is_complex_v<std::decay_t<T>>, std::nullptr_t> = nullptr>
+              std::enable_if_t<!is_complex_v<remove_cvref_t<T>>, std::nullptr_t> = nullptr>
     constexpr T&& operator()(T&& x) const noexcept {
       return std::forward<T>(x);
     }

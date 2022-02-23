@@ -170,7 +170,7 @@ TEST_CASE("numeric", "[numeric]") {
     constexpr std::array a{1.0, 2.0, 3.0};
     constexpr std::array ca{1.0i, 2.0i, 3.0i};
     static_assert(equal_to(kspc::innerp(a, a), 14.0));
-    CHECK(equal_to(kspc::innerp(ca, ca), 14.0)); // because `std::complex` is constexpr after C++20
+    CHECK(equal_to(kspc::innerp(ca, ca), 14.0)); // because `operator*(std::complex, std::complex)` is constexpr after C++20
   }
   // { // innerp with op
   //   CHECK(kspc::innerp(std::vector{1, 2}, std::vector{1, 0, 0, 1}, std::vector{1, 2}) == 5);
