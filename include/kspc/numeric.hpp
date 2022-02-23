@@ -96,7 +96,7 @@ namespace kspc {
 
     auto first = begin(r);
     auto init = kspc::invoke(proj, *first++);
-    return kspc::detail::sum(first, end(r), init, std::move(op), std::move(proj));
+    return detail::sum(first, end(r), init, std::move(op), std::move(proj));
   }
 
   /// @}
@@ -183,7 +183,7 @@ namespace kspc {
                   op2,
                   kspc::invoke(proj1, *first1++),
                   kspc::invoke(proj2, *first2++));
-    return kspc::detail::innerp(
+    return detail::innerp(
              first1, end(r1), first2, end(r2), init,
              std::move(op1),
              std::move(op2),
