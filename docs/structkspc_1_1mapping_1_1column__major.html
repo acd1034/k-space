@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.3"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>k-space: kspc::mapping_row_major Struct Reference</title>
+<title>k-space: kspc::mapping::column_major Struct Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -63,46 +63,44 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><b>kspc</b></li><li class="navelem"><a class="el" href="structkspc_1_1mapping__row__major.html">mapping_row_major</a></li>  </ul>
+<li class="navelem"><b>kspc</b></li><li class="navelem"><b>mapping</b></li><li class="navelem"><a class="el" href="structkspc_1_1mapping_1_1column__major.html">column_major</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="structkspc_1_1mapping__row__major-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">kspc::mapping_row_major Struct Reference<div class="ingroups"><a class="el" href="group__math.html">Math</a> &raquo; <a class="el" href="group__matrix.html">Matrix</a></div></div></div>
+<a href="structkspc_1_1mapping_1_1column__major-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">kspc::mapping::column_major Struct Reference<div class="ingroups"><a class="el" href="group__math.html">Math</a> &raquo; <a class="el" href="group__matrix.html">Matrix</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>mapping_row_major  
- <a href="structkspc_1_1mapping__row__major.html#details">More...</a></p>
+<p>column_major  
+ <a href="structkspc_1_1mapping_1_1column__major.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="linalg_8hpp_source.html">linalg.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:aa0f3c50201194add383c17c8a19a5def"><td class="memItemLeft" align="right" valign="top"><a id="aa0f3c50201194add383c17c8a19a5def" name="aa0f3c50201194add383c17c8a19a5def"></a>
+<tr class="memitem:ae68b287b42377c5119b3cfef312d6f30"><td class="memItemLeft" align="right" valign="top"><a id="ae68b287b42377c5119b3cfef312d6f30" name="ae68b287b42377c5119b3cfef312d6f30"></a>
 using&#160;</td><td class="memItemRight" valign="bottom"><b>size_type</b> = std::size_t</td></tr>
-<tr class="separator:aa0f3c50201194add383c17c8a19a5def"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:ae68b287b42377c5119b3cfef312d6f30"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a7e7904b9d2a18c33685798fbce5bef31"><td class="memItemLeft" align="right" valign="top"><a id="a7e7904b9d2a18c33685798fbce5bef31" name="a7e7904b9d2a18c33685798fbce5bef31"></a>
-constexpr&#160;</td><td class="memItemRight" valign="bottom"><b>mapping_row_major</b> (const size_type lda)</td></tr>
-<tr class="separator:a7e7904b9d2a18c33685798fbce5bef31"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af1a564342d55abc9bb349ca27b834df7"><td class="memItemLeft" align="right" valign="top"><a id="af1a564342d55abc9bb349ca27b834df7" name="af1a564342d55abc9bb349ca27b834df7"></a>
+<tr class="memitem:a03dfedfe9edda8d3df54741afe01ce74"><td class="memItemLeft" align="right" valign="top"><a id="a03dfedfe9edda8d3df54741afe01ce74" name="a03dfedfe9edda8d3df54741afe01ce74"></a>
+constexpr&#160;</td><td class="memItemRight" valign="bottom"><b>column_major</b> (const size_type lda)</td></tr>
+<tr class="separator:a03dfedfe9edda8d3df54741afe01ce74"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8babe5857803afb26df063a10e3fa7ec"><td class="memItemLeft" align="right" valign="top"><a id="a8babe5857803afb26df063a10e3fa7ec" name="a8babe5857803afb26df063a10e3fa7ec"></a>
 constexpr size_type&#160;</td><td class="memItemRight" valign="bottom"><b>operator()</b> (const size_type i, const size_type j) const noexcept</td></tr>
-<tr class="separator:af1a564342d55abc9bb349ca27b834df7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5744ff68b7415de28d471936b65aa3d7"><td class="memTemplParams" colspan="2"><a id="a5744ff68b7415de28d471936b65aa3d7" name="a5744ff68b7415de28d471936b65aa3d7"></a>
+<tr class="separator:a8babe5857803afb26df063a10e3fa7ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab176c85054257655b64c045ce27af5c7"><td class="memTemplParams" colspan="2"><a id="ab176c85054257655b64c045ce27af5c7" name="ab176c85054257655b64c045ce27af5c7"></a>
 template&lt;typename R &gt; </td></tr>
-<tr class="memitem:a5744ff68b7415de28d471936b65aa3d7"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator()</b> (R &amp;&amp;r, const size_type i, const size_type j) const noexcept(noexcept(std::forward&lt; R &gt;(r)[operator()(i, j)])) -&gt; decltype(std::forward&lt; R &gt;(r)[operator()(i, j)])</td></tr>
-<tr class="separator:a5744ff68b7415de28d471936b65aa3d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab176c85054257655b64c045ce27af5c7"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator()</b> (R &amp;&amp;r, const size_type i, const size_type j) const noexcept(noexcept(std::forward&lt; R &gt;(r)[operator()(i, j)])) -&gt; decltype(std::forward&lt; R &gt;(r)[operator()(i, j)])</td></tr>
+<tr class="separator:ab176c85054257655b64c045ce27af5c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p >mapping_row_major </p>
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="haldane_8cpp-example.html#_a5">haldane.cpp</a>.</dd>
-</dl>
+<div class="textblock"><p >column_major </p>
 </div><hr/>The documentation for this struct was generated from the following file:<ul>
 <li>include/kspc/<a class="el" href="linalg_8hpp_source.html">linalg.hpp</a></li>
 </ul>

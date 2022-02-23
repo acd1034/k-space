@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['remove_5fcvref_0',['remove_cvref',['../structkspc_1_1remove__cvref.html',1,'kspc']]]
+  ['transpose_0',['transpose',['../structkspc_1_1mapping_1_1transpose.html',1,'kspc::mapping']]],
+  ['type_5fidentity_1',['type_identity',['../structkspc_1_1type__identity.html',1,'kspc']]]
 ];

@@ -88,14 +88,14 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkspc_1_1is__fixed__size__array_3_01_t_00_01std_1_1void__t_3_01decltype_07fixed__size__arra4dc6dd664bb681c1da3a8a67ce28aebe.html">kspc::is_fixed_size_array&lt; T, std::void_t&lt; decltype(fixed_size_array_size&lt; T &gt;::value)&gt; &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">partial specialization of <code><a class="el" href="structkspc_1_1is__fixed__size__array.html" title="is_fixed_size_array">is_fixed_size_array</a></code>  <a href="structkspc_1_1is__fixed__size__array_3_01_t_00_01std_1_1void__t_3_01decltype_07fixed__size__arra4dc6dd664bb681c1da3a8a67ce28aebe.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkspc_1_1mapping__row__major.html">kspc::mapping_row_major</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">mapping_row_major  <a href="structkspc_1_1mapping__row__major.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkspc_1_1mapping_1_1row__major.html">kspc::mapping::row_major</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">row_major  <a href="structkspc_1_1mapping_1_1row__major.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkspc_1_1mapping__column__major.html">kspc::mapping_column_major</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">mapping_column_major  <a href="structkspc_1_1mapping__column__major.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkspc_1_1mapping_1_1column__major.html">kspc::mapping::column_major</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">column_major  <a href="structkspc_1_1mapping_1_1column__major.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkspc_1_1mapping__transpose.html">kspc::mapping_transpose&lt; Mapping &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">mapping_transpose  <a href="structkspc_1_1mapping__transpose.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkspc_1_1mapping_1_1transpose.html">kspc::mapping::transpose&lt; Mapping &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">transpose  <a href="structkspc_1_1mapping_1_1transpose.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
@@ -109,11 +109,11 @@ template&lt;typename M , std::enable_if_t&lt; is_sized_range_v&lt; M &gt;, std::
 <tr class="memitem:gacc3b5242b7b07ff94c099631213dec9b"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::dim</b> (const M &amp;m) -&gt; decltype(adl_size(m))</td></tr>
 <tr class="memdesc:gacc3b5242b7b07ff94c099631213dec9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">dim <br /></td></tr>
 <tr class="separator:gacc3b5242b7b07ff94c099631213dec9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaaebb5dbdfbb8b1d567dbdc55f4e7f2dc"><td class="memTemplParams" colspan="2"><a id="gaaebb5dbdfbb8b1d567dbdc55f4e7f2dc" name="gaaebb5dbdfbb8b1d567dbdc55f4e7f2dc"></a>
+<tr class="memitem:gaa93bed1866df29175a7e842735c6f3f5"><td class="memTemplParams" colspan="2"><a id="gaa93bed1866df29175a7e842735c6f3f5" name="gaa93bed1866df29175a7e842735c6f3f5"></a>
 template&lt;typename Mapping &gt; </td></tr>
-<tr class="memitem:gaaebb5dbdfbb8b1d567dbdc55f4e7f2dc"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::mapping_transpose</b> (Mapping) -&gt; <a class="el" href="structkspc_1_1mapping__transpose.html">mapping_transpose</a>&lt; Mapping &gt;</td></tr>
-<tr class="memdesc:gaaebb5dbdfbb8b1d567dbdc55f4e7f2dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">deduction guide for <a class="el" href="structkspc_1_1mapping__transpose.html">mapping_transpose </a> <br /></td></tr>
-<tr class="separator:gaaebb5dbdfbb8b1d567dbdc55f4e7f2dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa93bed1866df29175a7e842735c6f3f5"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::mapping::transpose</b> (Mapping) -&gt; <a class="el" href="structkspc_1_1mapping_1_1transpose.html">transpose</a>&lt; Mapping &gt;</td></tr>
+<tr class="memdesc:gaa93bed1866df29175a7e842735c6f3f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">deduction guide for <a class="el" href="structkspc_1_1mapping_1_1transpose.html">transpose </a> <br /></td></tr>
+<tr class="separator:gaa93bed1866df29175a7e842735c6f3f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
