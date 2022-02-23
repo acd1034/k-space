@@ -2,18 +2,60 @@
 #pragma once
 #include <algorithm> // min
 #include <array>
-#include <functional> // invoke
 #include <vector>
 #include <kspc/core.hpp> // is_input_range, identity_fn, conj_fn
 
+// constexpr invoke (invoke is constexpr after C++20)
+// https://en.cppreference.com/w/cpp/utility/functional/invoke
+namespace kspc {
+  /// @addtogroup utility
+  /// @{
+
+  namespace detail {
+    template <class>
+    constexpr bool is_reference_wrapper_v = false;
+
+    template <class U>
+    constexpr bool is_reference_wrapper_v<std::reference_wrapper<U>> = true;
+
+    template <class C, class Pointed, class T1, class... Args>
+    constexpr decltype(auto) invoke_memptr(Pointed C::*f, T1&& t1, Args&&... args) {
+      if constexpr (std::is_function_v<Pointed>) {
+        if constexpr (std::is_base_of_v<C, std::decay_t<T1>>)
+          return (std::forward<T1>(t1).*f)(std::forward<Args>(args)...);
+        else if constexpr (is_reference_wrapper_v<std::decay_t<T1>>)
+          return (t1.get().*f)(std::forward<Args>(args)...);
+        else
+          return ((*std::forward<T1>(t1)).*f)(std::forward<Args>(args)...);
+      } else {
+        static_assert(std::is_object_v<Pointed> && sizeof...(args) == 0);
+        if constexpr (std::is_base_of_v<C, std::decay_t<T1>>) return std::forward<T1>(t1).*f;
+        else if constexpr (is_reference_wrapper_v<std::decay_t<T1>>)
+          return t1.get().*f;
+        else
+          return (*std::forward<T1>(t1)).*f;
+      }
+    }
+  } // namespace detail
+
+  template <class F, class... Args>
+  constexpr std::invoke_result_t<F, Args...>
+  invoke(F&& f, Args&&... args) noexcept(std::is_nothrow_invocable_v<F, Args...>) {
+    if constexpr (std::is_member_pointer_v<std::decay_t<F>>)
+      return detail::invoke_memptr(f, std::forward<Args>(args)...);
+    else
+      return std::forward<F>(f)(std::forward<Args>(args)...);
+  }
+
+  /// @}
+} // namespace kspc
+
 // clang-format off
 
-// Numerical algorithms
+// sum
 namespace kspc {
   /// @addtogroup numeric
   /// @{
-
-  // sum
 
   /// @cond
   namespace detail {
@@ -34,7 +76,7 @@ namespace kspc {
       using U = remove_cvref_t<std::invoke_result_t<Op&, T, projected_t<P, I>>>;
       U ret = std::move(init);
       for (; first != last; ++first) {
-        ret = std::invoke(op, std::move(ret), std::invoke(proj, *first));
+        ret = kspc::invoke(op, std::move(ret), kspc::invoke(proj, *first));
       }
       return ret;
     }
@@ -50,11 +92,17 @@ namespace kspc {
     assert(!empty(r));
 
     auto first = begin(r);
-    auto init = std::invoke(proj, *first++);
-    return detail::sum(first, end(r), init, std::move(op), std::move(proj));
+    auto init = kspc::invoke(proj, *first++);
+    return kspc::detail::sum(first, end(r), init, std::move(op), std::move(proj));
   }
 
-  // innerp
+  /// @}
+} // namespace kspc
+
+// innerp
+namespace kspc {
+  /// @addtogroup numeric
+  /// @{
 
   /// @cond
   namespace detail {
@@ -94,13 +142,13 @@ namespace kspc {
                     projected_t<P2, I2>>>>;
       U ret = std::move(init);
       for (; first1 != last1 && first2 != last2; ++first1, ++first2) {
-        ret = std::invoke(
+        ret = kspc::invoke(
                 op1,
                 std::move(ret),
-                std::invoke(
+                kspc::invoke(
                   op2,
-                  std::invoke(proj1, *first1),
-                  std::invoke(proj2, *first2)));
+                  kspc::invoke(proj1, *first1),
+                  kspc::invoke(proj2, *first2)));
       }
       return ret;
     }
@@ -128,11 +176,11 @@ namespace kspc {
 
     auto first1 = begin(r1);
     auto first2 = begin(r2);
-    auto init = std::invoke(
+    auto init = kspc::invoke(
                   op2,
-                  std::invoke(proj1, *first1++),
-                  std::invoke(proj2, *first2++));
-    return detail::innerp(
+                  kspc::invoke(proj1, *first1++),
+                  kspc::invoke(proj2, *first2++));
+    return kspc::detail::innerp(
              first1, end(r1), first2, end(r2), init,
              std::move(op1),
              std::move(op2),

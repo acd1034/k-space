@@ -162,9 +162,22 @@ TEST_CASE("numeric", "[numeric]") {
   { // innerp
     using namespace std::complex_literals;
     const std::vector v{1.0, 2.0, 3.0};
-    const std::vector vc{1.0i, 2.0i, 3.0i};
+    const std::vector cv{1.0i, 2.0i, 3.0i};
     CHECK(equal_to(kspc::innerp(v, v), 14.0));
-    CHECK(equal_to(kspc::innerp(vc, vc), 14.0));
+    CHECK(equal_to(kspc::innerp(cv, cv), 14.0));
+  }
+  { // constexpr sum
+    constexpr auto twice = [](const auto& x) { return 2 * x; };
+    constexpr std::array a{1, 2, 3};
+    static_assert(kspc::sum(a) == 6);
+    static_assert(kspc::sum(a, twice) == 12);
+  }
+  { // constexpr innerp
+    using namespace std::complex_literals;
+    constexpr std::array a{1.0, 2.0, 3.0};
+    constexpr std::array ca{1.0i, 2.0i, 3.0i};
+    static_assert(equal_to(kspc::innerp(a, a), 14.0));
+    CHECK(equal_to(kspc::innerp(ca, ca), 14.0)); // because `std::complex` is constexpr after C++20
   }
   // { // innerp with op
   //   CHECK(kspc::innerp(std::vector{1, 2}, std::vector{1, 0, 0, 1}, std::vector{1, 2}) == 5);
