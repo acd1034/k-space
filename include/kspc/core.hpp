@@ -657,26 +657,6 @@ namespace kspc {
   template <typename T>
   inline constexpr bool is_complex_v = is_complex<T>::value;
 
-  /// %complex_traits
-  template <typename T>
-  struct complex_traits {
-    using value_type = T;
-  };
-
-  /// partial specialization of `complex_traits`
-  template <typename T>
-  struct complex_traits<std::complex<T>> {
-    using value_type = T;
-  };
-
-  /// partial specialization of `complex_traits`
-  template <typename T>
-  struct complex_traits<const T> : complex_traits<T> {};
-
-  /// complex_value_t
-  template <typename T>
-  using complex_value_t = typename complex_traits<remove_cvref_t<T>>::value_type;
-
   /// %conj_fn
   struct conj_fn {
     using is_transparent = void;
