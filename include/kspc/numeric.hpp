@@ -53,12 +53,10 @@ namespace kspc {
 
 // clang-format off
 
-// Numerical algorithms
+// sum
 namespace kspc {
   /// @addtogroup numeric
   /// @{
-
-  // sum
 
   /// @cond
   namespace detail {
@@ -79,7 +77,7 @@ namespace kspc {
       using U = remove_cvref_t<std::invoke_result_t<Op&, T, projected_t<P, I>>>;
       U ret = std::move(init);
       for (; first != last; ++first) {
-        ret = std::invoke(op, std::move(ret), std::invoke(proj, *first));
+        ret = kspc::invoke(op, std::move(ret), kspc::invoke(proj, *first));
       }
       return ret;
     }
@@ -95,11 +93,17 @@ namespace kspc {
     assert(!empty(r));
 
     auto first = begin(r);
-    auto init = std::invoke(proj, *first++);
-    return detail::sum(first, end(r), init, std::move(op), std::move(proj));
+    auto init = kspc::invoke(proj, *first++);
+    return kspc::detail::sum(first, end(r), init, std::move(op), std::move(proj));
   }
 
-  // innerp
+  /// @}
+} // namespace kspc
+
+// innerp
+namespace kspc {
+  /// @addtogroup numeric
+  /// @{
 
   /// @cond
   namespace detail {
@@ -139,13 +143,13 @@ namespace kspc {
                     projected_t<P2, I2>>>>;
       U ret = std::move(init);
       for (; first1 != last1 && first2 != last2; ++first1, ++first2) {
-        ret = std::invoke(
+        ret = kspc::invoke(
                 op1,
                 std::move(ret),
-                std::invoke(
+                kspc::invoke(
                   op2,
-                  std::invoke(proj1, *first1),
-                  std::invoke(proj2, *first2)));
+                  kspc::invoke(proj1, *first1),
+                  kspc::invoke(proj2, *first2)));
       }
       return ret;
     }
@@ -173,11 +177,11 @@ namespace kspc {
 
     auto first1 = begin(r1);
     auto first2 = begin(r2);
-    auto init = std::invoke(
+    auto init = kspc::invoke(
                   op2,
-                  std::invoke(proj1, *first1++),
-                  std::invoke(proj2, *first2++));
-    return detail::innerp(
+                  kspc::invoke(proj1, *first1++),
+                  kspc::invoke(proj2, *first2++));
+    return kspc::detail::innerp(
              first1, end(r1), first2, end(r2), init,
              std::move(op1),
              std::move(op2),
