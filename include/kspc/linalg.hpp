@@ -5,7 +5,7 @@
 #include <cmath>      // sqrt, round
 #include <functional> // invoke
 #include <vector>
-#include <kspc/core.hpp> // is_range, identity_fu, conj_fn
+#include <kspc/core.hpp> // is_sized_range, identity_fn, conj_fn
 
 // dim
 namespace kspc {
@@ -200,7 +200,7 @@ namespace kspc {
 
   /// unitary_transform
   template <class InOutMat, class InMat, class Work, class M2, class M3, class P1 = conj_fn, class P2 = identity_fn, class P3 = identity_fn>
-  std::enable_if_t<std::conjunction_v<is_range<InOutMat>, is_range<InMat>, is_range<Work>>>
+  std::enable_if_t<std::conjunction_v<is_sized_range<InOutMat>, is_sized_range<InMat>, is_sized_range<Work>>>
   unitary_transform(InOutMat& A, const InMat& B, Work& C, M2&& map2, M3&& map3, P1&& proj1 = {}, P2&& proj2 = {}, P3&& proj3 = {}) {
     using std::begin, std::end; // for ADL
     std::fill(begin(C), end(C), 0);
@@ -212,7 +212,7 @@ namespace kspc {
 
   /// @overload
   template <class InOutMat, class InMat, class M2, class M3, class P1 = conj_fn, class P2 = identity_fn, class P3 = identity_fn>
-  std::enable_if_t<is_range_v<InOutMat> and is_range_v<InMat> and !is_range_v<M2>>
+  std::enable_if_t<is_sized_range_v<InOutMat> and is_sized_range_v<InMat> and (not is_sized_range_v<M2>)>
   unitary_transform(InOutMat& A, const InMat& B, M2&& map2, M3&& map3, P1&& proj1 = {}, P2&& proj2 = {}, P3&& proj3 = {}) {
     using T = remove_cvref_t<std::invoke_result_t<P2&, range_reference_t<InOutMat>>>;
 
@@ -329,7 +329,7 @@ namespace kspc {
   /// solve Ax = b with a general matrix A
   template <class InOutMat, class OutIPiv, class InOutVec>
   std::enable_if_t<std::conjunction_v<
-    is_range<InOutMat>, is_range<OutIPiv>, is_range<InOutVec>>, int>
+    is_sized_range<InOutMat>, is_sized_range<OutIPiv>, is_sized_range<InOutVec>>, int>
   matrix_vector_solve(InOutMat& A, OutIPiv& ipiv, InOutVec& b) {
     int info;
     info = lu_factor(A, ipiv);
@@ -341,7 +341,7 @@ namespace kspc {
   /// @overload
   template <class InMat, class InOutVec, class M, class P = identity_fn>
   std::enable_if_t<
-    is_range_v<InMat> and is_range_v<InOutVec> and (not is_range_v<M>) and (not is_range_v<P>), int>
+    is_sized_range_v<InMat> and is_sized_range_v<InOutVec> and (not is_sized_range_v<M>) and (not is_sized_range_v<P>), int>
   matrix_vector_solve(const InMat& A, InOutVec& b, M&& map, P&& proj = {}) {
     using T = remove_cvref_t<std::invoke_result_t<P&, range_reference_t<InMat>>>;
     int info;
@@ -411,7 +411,7 @@ namespace kspc::hermitian {
   /// solve Ax = λx with a symmetric matrix A
   template <class InOutMat, class OutVec, class Work>
   std::enable_if_t<std::conjunction_v<
-    is_range<InOutMat>, is_range<OutVec>, is_range<Work>>, int>
+    is_sized_range<InOutMat>, is_sized_range<OutVec>, is_sized_range<Work>>, int>
   eigen_solve(InOutMat& A, OutVec& w, Work& work) {
     using std::size, std::data; // for ADL
     const std::size_t n = kspc::dim(A);
@@ -430,7 +430,7 @@ namespace kspc::hermitian {
   /// @example haldane.cpp
   template <class InOutMat, class OutVec, class Work, class RWork>
   std::enable_if_t<std::conjunction_v<
-    is_range<InOutMat>, is_range<OutVec>, is_range<Work>, is_range<RWork>>, int>
+    is_sized_range<InOutMat>, is_sized_range<OutVec>, is_sized_range<Work>, is_sized_range<RWork>>, int>
   eigen_solve(InOutMat& A, OutVec& w, Work& work, RWork& rwork) {
     using std::size, std::data; // for ADL
     const std::size_t n = kspc::dim(A);
@@ -449,7 +449,7 @@ namespace kspc::hermitian {
   /// @overload
   template <class InOutMat, class OutVec, class M, class P = identity_fn>
   std::enable_if_t<
-    is_range_v<InOutMat> and is_range_v<OutVec> and (not is_range_v<M>) and (not is_range_v<P>), int>
+    is_sized_range_v<InOutMat> and is_sized_range_v<OutVec> and (not is_sized_range_v<M>) and (not is_sized_range_v<P>), int>
   eigen_solve(InOutMat& A, OutVec& w, M&& map, P&& proj = {}) {
     using T = remove_cvref_t<std::invoke_result_t<P&, range_reference_t<InOutMat>>>;
     int info;
@@ -502,7 +502,7 @@ namespace kspc::hermitian {
   /// solve Ax = λx with a symmetric matrix A without eigenvectors
   template <class InOutMat, class OutVec, class Work>
   std::enable_if_t<std::conjunction_v<
-    is_range<InOutMat>, is_range<OutVec>, is_range<Work>>, int>
+    is_sized_range<InOutMat>, is_sized_range<OutVec>, is_sized_range<Work>>, int>
   eigen_solve_no_evec(InOutMat& A, OutVec& w, Work& work) {
     using std::size, std::data; // for ADL
     const std::size_t n = kspc::dim(A);
@@ -520,7 +520,7 @@ namespace kspc::hermitian {
   /// solve Ax = λx with a hermitian matrix A without eigenvectors
   template <class InOutMat, class OutVec, class Work, class RWork>
   std::enable_if_t<std::conjunction_v<
-    is_range<InOutMat>, is_range<OutVec>, is_range<Work>, is_range<RWork>>, int>
+    is_sized_range<InOutMat>, is_sized_range<OutVec>, is_sized_range<Work>, is_sized_range<RWork>>, int>
   eigen_solve_no_evec(InOutMat& A, OutVec& w, Work& work, RWork& rwork) {
     using std::size, std::data; // for ADL
     const std::size_t n = kspc::dim(A);
@@ -539,7 +539,7 @@ namespace kspc::hermitian {
   /// @overload
   template <class InOutMat, class OutVec, class M, class P = identity_fn>
   std::enable_if_t<
-    is_range_v<InOutMat> and is_range_v<OutVec> and (not is_range_v<M>) and (not is_range_v<P>), int>
+    is_sized_range_v<InOutMat> and is_sized_range_v<OutVec> and (not is_sized_range_v<M>) and (not is_sized_range_v<P>), int>
   eigen_solve_no_evec(InOutMat& A, OutVec& w, M&& map, P&& proj = {}) {
     using T = remove_cvref_t<std::invoke_result_t<P&, range_reference_t<InOutMat>>>;
     int info;
