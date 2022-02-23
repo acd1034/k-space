@@ -66,7 +66,6 @@ $(function() {
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#typedef-members">Typedefs</a> &#124;
-<a href="#func-members">Functions</a> &#124;
 <a href="#var-members">Variables</a>  </div>
   <div class="headertitle"><div class="title">Range</div></div>
 </div><!--header-->
@@ -116,29 +115,6 @@ template&lt;typename R , std::enable_if_t&lt; is_range_v&lt; R &gt;, std::nullpt
 <tr class="memitem:ga206f6e863c3cf8b6107f81e2f44acb5a"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::range_reference_t</b> = <a class="el" href="group__iterator.html#ga7cb2ffb8dd2a5e23587da31cbad10338">iter_reference_t</a>&lt; <a class="el" href="group__range.html#ga3be24a14599c3f616882c2ca86534d21">iterator_t</a>&lt; R &gt; &gt;</td></tr>
 <tr class="memdesc:ga206f6e863c3cf8b6107f81e2f44acb5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">range_reference_t <br /></td></tr>
 <tr class="separator:ga206f6e863c3cf8b6107f81e2f44acb5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
-Functions</h2></td></tr>
-<tr class="memitem:gaff2ab568e213b532a06f967595865bf1"><td class="memTemplParams" colspan="2"><a id="gaff2ab568e213b532a06f967595865bf1" name="gaff2ab568e213b532a06f967595865bf1"></a>
-template&lt;typename C &gt; </td></tr>
-<tr class="memitem:gaff2ab568e213b532a06f967595865bf1"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::ssize</b> (const C &amp;c) noexcept(noexcept(static_cast&lt; std::common_type_t&lt; std::ptrdiff_t, std::make_signed_t&lt; decltype(c.size())&gt; &gt; &gt;(c.size()))) -&gt; std::common_type_t&lt; std::ptrdiff_t, std::make_signed_t&lt; decltype(c.size())&gt; &gt;</td></tr>
-<tr class="memdesc:gaff2ab568e213b532a06f967595865bf1"><td class="mdescLeft">&#160;</td><td class="mdescRight">ssize <br /></td></tr>
-<tr class="separator:gaff2ab568e213b532a06f967595865bf1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga5bc2cc72d192708158fd8ffc95d86a79"><td class="memTemplParams" colspan="2"><a id="ga5bc2cc72d192708158fd8ffc95d86a79" name="ga5bc2cc72d192708158fd8ffc95d86a79"></a>
-template&lt;typename T , std::size_t N&gt; </td></tr>
-<tr class="memitem:ga5bc2cc72d192708158fd8ffc95d86a79"><td class="memTemplItemLeft" align="right" valign="top">constexpr std::ptrdiff_t&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::ssize</b> (std::add_lvalue_reference_t&lt; const T[N]&gt;) noexcept</td></tr>
-<tr class="memdesc:ga5bc2cc72d192708158fd8ffc95d86a79"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. <br /></td></tr>
-<tr class="separator:ga5bc2cc72d192708158fd8ffc95d86a79"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaff24f9800cb8865ba33697540f84664c"><td class="memTemplParams" colspan="2"><a id="gaff24f9800cb8865ba33697540f84664c" name="gaff24f9800cb8865ba33697540f84664c"></a>
-template&lt;typename T &gt; </td></tr>
-<tr class="memitem:gaff24f9800cb8865ba33697540f84664c"><td class="memTemplItemLeft" align="right" valign="top">constexpr T *&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::to_address</b> (T *p) noexcept</td></tr>
-<tr class="memdesc:gaff24f9800cb8865ba33697540f84664c"><td class="mdescLeft">&#160;</td><td class="mdescRight">to_address <br /></td></tr>
-<tr class="separator:gaff24f9800cb8865ba33697540f84664c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gafeb1b0d13131e285bbbe164bcf4c4e37"><td class="memTemplParams" colspan="2"><a id="gafeb1b0d13131e285bbbe164bcf4c4e37" name="gafeb1b0d13131e285bbbe164bcf4c4e37"></a>
-template&lt;typename P &gt; </td></tr>
-<tr class="memitem:gafeb1b0d13131e285bbbe164bcf4c4e37"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::to_address</b> (const P &amp;p) noexcept</td></tr>
-<tr class="memdesc:gafeb1b0d13131e285bbbe164bcf4c4e37"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. <br /></td></tr>
-<tr class="separator:gafeb1b0d13131e285bbbe164bcf4c4e37"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>

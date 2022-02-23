@@ -263,26 +263,6 @@ template&lt;typename T , std::enable_if_t&lt;!std::is_signed_v&lt; remove_cvref_
 <tr class="memitem:gab061462b00be6107b566d2749aa77394"><td class="memTemplItemLeft" align="right" valign="top">constexpr T &amp;&amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::make_unsigned_v</b> (T &amp;&amp;x) noexcept</td></tr>
 <tr class="memdesc:gab061462b00be6107b566d2749aa77394"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. <br /></td></tr>
 <tr class="separator:gab061462b00be6107b566d2749aa77394"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaff2ab568e213b532a06f967595865bf1"><td class="memTemplParams" colspan="2">
-template&lt;typename C &gt; </td></tr>
-<tr class="memitem:gaff2ab568e213b532a06f967595865bf1"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::ssize</b> (const C &amp;c) noexcept(noexcept(static_cast&lt; std::common_type_t&lt; std::ptrdiff_t, std::make_signed_t&lt; decltype(c.size())&gt; &gt; &gt;(c.size()))) -&gt; std::common_type_t&lt; std::ptrdiff_t, std::make_signed_t&lt; decltype(c.size())&gt; &gt;</td></tr>
-<tr class="memdesc:gaff2ab568e213b532a06f967595865bf1"><td class="mdescLeft">&#160;</td><td class="mdescRight">ssize <br /></td></tr>
-<tr class="separator:gaff2ab568e213b532a06f967595865bf1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga5bc2cc72d192708158fd8ffc95d86a79"><td class="memTemplParams" colspan="2">
-template&lt;typename T , std::size_t N&gt; </td></tr>
-<tr class="memitem:ga5bc2cc72d192708158fd8ffc95d86a79"><td class="memTemplItemLeft" align="right" valign="top">constexpr std::ptrdiff_t&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::ssize</b> (std::add_lvalue_reference_t&lt; const T[N]&gt;) noexcept</td></tr>
-<tr class="memdesc:ga5bc2cc72d192708158fd8ffc95d86a79"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. <br /></td></tr>
-<tr class="separator:ga5bc2cc72d192708158fd8ffc95d86a79"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaff24f9800cb8865ba33697540f84664c"><td class="memTemplParams" colspan="2">
-template&lt;typename T &gt; </td></tr>
-<tr class="memitem:gaff24f9800cb8865ba33697540f84664c"><td class="memTemplItemLeft" align="right" valign="top">constexpr T *&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::to_address</b> (T *p) noexcept</td></tr>
-<tr class="memdesc:gaff24f9800cb8865ba33697540f84664c"><td class="mdescLeft">&#160;</td><td class="mdescRight">to_address <br /></td></tr>
-<tr class="separator:gaff24f9800cb8865ba33697540f84664c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gafeb1b0d13131e285bbbe164bcf4c4e37"><td class="memTemplParams" colspan="2">
-template&lt;typename P &gt; </td></tr>
-<tr class="memitem:gafeb1b0d13131e285bbbe164bcf4c4e37"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::to_address</b> (const P &amp;p) noexcept</td></tr>
-<tr class="memdesc:gafeb1b0d13131e285bbbe164bcf4c4e37"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. <br /></td></tr>
-<tr class="separator:gafeb1b0d13131e285bbbe164bcf4c4e37"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac8f91dad4e1b4bf9c94485f65066debe"><td class="memTemplParams" colspan="2"><a id="ac8f91dad4e1b4bf9c94485f65066debe" name="ac8f91dad4e1b4bf9c94485f65066debe"></a>
 template&lt;typename CharT , typename Traits , typename R , std::enable_if_t&lt; is_range_v&lt; R &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
 <tr class="memitem:ac8f91dad4e1b4bf9c94485f65066debe"><td class="memTemplItemLeft" align="right" valign="top">auto &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::operator&lt;&lt;</b> (std::basic_ostream&lt; CharT, Traits &gt; &amp;os, const R &amp;r)</td></tr>
