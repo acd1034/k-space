@@ -68,13 +68,13 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#func-members">Functions</a>  </div>
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle"><div class="title">numeric.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;algorithm&gt;</code><br />
 <code>#include &lt;array&gt;</code><br />
-<code>#include &lt;functional&gt;</code><br />
 <code>#include &lt;vector&gt;</code><br />
 <code>#include &lt;<a class="el" href="core_8hpp_source.html">kspc/core.hpp</a>&gt;</code><br />
 </div>
@@ -82,6 +82,14 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:aefd8f78c955677961c959675c9709166"><td class="memTemplParams" colspan="2"><a id="aefd8f78c955677961c959675c9709166" name="aefd8f78c955677961c959675c9709166"></a>
+template&lt;class C , class Pointed , class T1 , class... Args&gt; </td></tr>
+<tr class="memitem:aefd8f78c955677961c959675c9709166"><td class="memTemplItemLeft" align="right" valign="top">constexpr decltype(auto)&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::detail::invoke_memptr</b> (Pointed C::*f, T1 &amp;&amp;t1, Args &amp;&amp;... args)</td></tr>
+<tr class="separator:aefd8f78c955677961c959675c9709166"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaaf58d90fe3dcd12e6efb88b4dbd6366c"><td class="memTemplParams" colspan="2">
+template&lt;class F , class... Args&gt; </td></tr>
+<tr class="memitem:gaaf58d90fe3dcd12e6efb88b4dbd6366c"><td class="memTemplItemLeft" align="right" valign="top">constexpr std::invoke_result_t&lt; F, Args... &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::invoke</b> (F &amp;&amp;f, Args &amp;&amp;... args) noexcept(std::is_nothrow_invocable_v&lt; F, Args... &gt;)</td></tr>
+<tr class="separator:gaaf58d90fe3dcd12e6efb88b4dbd6366c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaa8b3c40d4799f00bb0762e388184fda5"><td class="memTemplParams" colspan="2">template&lt;class R , class P  = identity_fn, class Op  = std::plus&lt;&gt;, std::enable_if_t&lt; is_input_range_v&lt; R &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
 <tr class="memitem:gaa8b3c40d4799f00bb0762e388184fda5"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__numeric.html#gaa8b3c40d4799f00bb0762e388184fda5">kspc::sum</a> (R &amp;&amp;r, P proj={}, Op op={})</td></tr>
 <tr class="memdesc:gaa8b3c40d4799f00bb0762e388184fda5"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>std::accumulate</code> without the initial value  <a href="group__numeric.html#gaa8b3c40d4799f00bb0762e388184fda5">More...</a><br /></td></tr>
@@ -178,6 +186,13 @@ template&lt;class T , std::enable_if_t&lt; std::is_arithmetic_v&lt; T &gt;, std:
 template&lt;class T , std::enable_if_t&lt; std::is_arithmetic_v&lt; T &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
 <tr class="memitem:aec49baf24c44185724d6dc1ae445e6ed"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::operator/</b> (std::vector&lt; T &gt; &amp;&amp;x, const T &amp;val)</td></tr>
 <tr class="separator:aec49baf24c44185724d6dc1ae445e6ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a92ea86edaaa2d4d3e5e4775e6111c2f7"><td class="memTemplParams" colspan="2"><a id="a92ea86edaaa2d4d3e5e4775e6111c2f7" name="a92ea86edaaa2d4d3e5e4775e6111c2f7"></a>
+template&lt;class &gt; </td></tr>
+<tr class="memitem:a92ea86edaaa2d4d3e5e4775e6111c2f7"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::detail::is_reference_wrapper_v</b> = false</td></tr>
+<tr class="separator:a92ea86edaaa2d4d3e5e4775e6111c2f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 <!-- start footer part -->
