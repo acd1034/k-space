@@ -11,12 +11,13 @@ namespace kspc {
   /// @addtogroup utility
   /// @{
 
+  /// @cond
   namespace detail {
     template <class>
-    constexpr bool is_reference_wrapper_v = false;
+    inline constexpr bool is_reference_wrapper_v = false;
 
     template <class U>
-    constexpr bool is_reference_wrapper_v<std::reference_wrapper<U>> = true;
+    inline constexpr bool is_reference_wrapper_v<std::reference_wrapper<U>> = true;
 
     template <class C, class Pointed, class T1, class... Args>
     constexpr decltype(auto) invoke_memptr(Pointed C::*f, T1&& t1, Args&&... args) {
@@ -37,7 +38,9 @@ namespace kspc {
       }
     }
   } // namespace detail
+  /// @endcond
 
+  /// invoke
   template <class F, class... Args>
   constexpr std::invoke_result_t<F, Args...>
   invoke(F&& f, Args&&... args) noexcept(std::is_nothrow_invocable_v<F, Args...>) {
