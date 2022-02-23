@@ -1,7 +1,7 @@
 /// @file approx.hpp
 #pragma once
-#include <complex> // abs
-#include <kspc/core.hpp>
+#include <complex>       // abs
+#include <kspc/core.hpp> // cast_if_needed
 
 namespace kspc::approx {
   /// @addtogroup approx
@@ -36,7 +36,7 @@ namespace kspc::approx {
     std::conjunction_v<std::is_arithmetic<T1>, std::is_arithmetic<T2>, std::is_arithmetic<U>>, bool>
   less(const T1& t1, const T2& t2, const U& eps) noexcept {
     using V = std::common_type_t<T1, T2>;
-    return detail::less(V(t1), V(t2), V(eps));
+    return detail::less(cast_if_needed<V>(t1), cast_if_needed<V>(t2), cast_if_needed<V>(eps));
   }
 
   template <typename T1, typename T2, typename U>
@@ -44,7 +44,7 @@ namespace kspc::approx {
     std::conjunction_v<std::is_arithmetic<T1>, std::is_arithmetic<T2>, std::is_arithmetic<U>>, bool>
   greater(const T1& t1, const T2& t2, const U& eps) noexcept {
     using V = std::common_type_t<T1, T2>;
-    return detail::greater(V(t1), V(t2), V(eps));
+    return detail::greater(cast_if_needed<V>(t1), cast_if_needed<V>(t2), cast_if_needed<V>(eps));
   }
 
   template <typename T1, typename T2, typename U>
@@ -64,7 +64,8 @@ namespace kspc::approx {
     std::conjunction_v<std::is_arithmetic<T1>, std::is_arithmetic<T2>, std::is_arithmetic<U>>, bool>
   not_equal_to(const T1& t1, const T2& t2, const U& eps) noexcept {
     using V = std::common_type_t<T1, T2>;
-    return detail::not_equal_to(V(t1), V(t2), V(eps));
+    return detail::not_equal_to(cast_if_needed<V>(t1), cast_if_needed<V>(t2),
+                                cast_if_needed<V>(eps));
   }
 
   template <typename T, typename U>
@@ -90,5 +91,6 @@ namespace kspc::approx {
     -> decltype(!not_equal_to(t1, t2, eps)) {
     return !not_equal_to(t1, t2, eps);
   }
+
   /// @}
-} // namespace kspc
+} // namespace kspc::approx

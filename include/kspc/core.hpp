@@ -80,6 +80,28 @@ namespace kspc {
   template <class T>
   using type_identity_t = typename type_identity<T>::type;
 
+  /// %is_same_uncvref
+  template <typename T, typename U>
+  struct is_same_uncvref : std::is_same<remove_cvref_t<T>, remove_cvref_t<U>> {};
+
+  /// helper variable template for `is_same_uncvref`
+  template <typename T, typename U>
+  inline constexpr bool is_same_uncvref_v = is_same_uncvref<T, U>::value;
+
+  /// cast_if_needed
+  template <typename U, typename T,
+            std::enable_if_t<!is_same_uncvref_v<T, U>, std::nullptr_t> = nullptr>
+  constexpr U cast_if_needed(T x) noexcept(noexcept(static_cast<U>(x))) {
+    return static_cast<U>(x);
+  }
+
+  /// @overload
+  template <typename U, typename T,
+            std::enable_if_t<is_same_uncvref_v<T, U>, std::nullptr_t> = nullptr>
+  constexpr T&& cast_if_needed(T&& x) noexcept {
+    return std::forward<T>(x);
+  }
+
   /// make_signed_v
   template <typename T, std::enable_if_t<std::is_unsigned_v<T>, std::nullptr_t> = nullptr>
   constexpr std::make_signed_t<T>
@@ -92,7 +114,7 @@ namespace kspc {
   /// @overload
   template <typename T,
             std::enable_if_t<!std::is_unsigned_v<std::decay_t<T>>, std::nullptr_t> = nullptr>
-  inline constexpr T&& make_signed_v(T&& x) noexcept(noexcept(std::forward<T>(x))) {
+  inline constexpr T&& make_signed_v(T&& x) noexcept {
     return std::forward<T>(x);
   }
 
@@ -107,7 +129,7 @@ namespace kspc {
   /// @overload
   template <typename T,
             std::enable_if_t<!std::is_signed_v<std::decay_t<T>>, std::nullptr_t> = nullptr>
-  inline constexpr T&& make_unsigned_v(T&& x) noexcept(noexcept(std::forward<T>(x))) {
+  inline constexpr T&& make_unsigned_v(T&& x) noexcept {
     return std::forward<T>(x);
   }
 
