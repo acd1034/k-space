@@ -135,13 +135,6 @@ TEST_CASE("projection", "[math][projection]") {
   // is_complex_v
   static_assert(kspc::is_complex_v<std::complex<double>>);
   static_assert(not kspc::is_complex_v<double>);
-  // complex_value_t
-  static_assert(std::is_same_v<kspc::complex_value_t<std::complex<double>>, double>);
-  static_assert(std::is_same_v<kspc::complex_value_t<const std::complex<double>>, double>);
-  static_assert(std::is_same_v<kspc::complex_value_t<const std::complex<double>&>, double>);
-  static_assert(std::is_same_v<kspc::complex_value_t<double>, double>);
-  static_assert(std::is_same_v<kspc::complex_value_t<const double>, double>);
-  static_assert(std::is_same_v<kspc::complex_value_t<const double&>, double>);
   { // conj
     std::complex c{1.0, 1.0};
     CHECK(equal_to(kspc::conj(c), std::complex{1.0, -1.0}));
@@ -177,7 +170,7 @@ TEST_CASE("numeric", "[numeric]") {
     constexpr std::array a{1.0, 2.0, 3.0};
     constexpr std::array ca{1.0i, 2.0i, 3.0i};
     static_assert(equal_to(kspc::innerp(a, a), 14.0));
-    CHECK(equal_to(kspc::innerp(ca, ca), 14.0)); // because `std::complex` is constexpr after C++20
+    CHECK(equal_to(kspc::innerp(ca, ca), 14.0)); // because `operator*(std::complex, std::complex)` is constexpr after C++20
   }
   // { // innerp with op
   //   CHECK(kspc::innerp(std::vector{1, 2}, std::vector{1, 0, 0, 1}, std::vector{1, 2}) == 5);
