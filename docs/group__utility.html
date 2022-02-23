@@ -123,7 +123,7 @@ template&lt;typename T , std::enable_if_t&lt; std::is_unsigned_v&lt; T &gt;, std
 <tr class="memdesc:ga0267793d1e6ec842000497ccf05c3dbd"><td class="mdescLeft">&#160;</td><td class="mdescRight">make_signed_v <br /></td></tr>
 <tr class="separator:ga0267793d1e6ec842000497ccf05c3dbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga7ee3e21e1668e9389424e58599038cc9"><td class="memTemplParams" colspan="2"><a id="ga7ee3e21e1668e9389424e58599038cc9" name="ga7ee3e21e1668e9389424e58599038cc9"></a>
-template&lt;typename T , std::enable_if_t&lt;!std::is_unsigned_v&lt; std::decay_t&lt; T &gt; &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
+template&lt;typename T , std::enable_if_t&lt;!std::is_unsigned_v&lt; <a class="el" href="group__utility.html#ga84e8e34e5d10ad3ee287dc2ca3e636c5">remove_cvref_t</a>&lt; T &gt; &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
 <tr class="memitem:ga7ee3e21e1668e9389424e58599038cc9"><td class="memTemplItemLeft" align="right" valign="top">constexpr T &amp;&amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::make_signed_v</b> (T &amp;&amp;x) noexcept</td></tr>
 <tr class="memdesc:ga7ee3e21e1668e9389424e58599038cc9"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. <br /></td></tr>
 <tr class="separator:ga7ee3e21e1668e9389424e58599038cc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -133,7 +133,7 @@ template&lt;typename T , std::enable_if_t&lt; std::is_signed_v&lt; T &gt;, std::
 <tr class="memdesc:ga4aa91f693dba8c6e194c46aeff13c2b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">make_unsigned_v <br /></td></tr>
 <tr class="separator:ga4aa91f693dba8c6e194c46aeff13c2b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gab061462b00be6107b566d2749aa77394"><td class="memTemplParams" colspan="2"><a id="gab061462b00be6107b566d2749aa77394" name="gab061462b00be6107b566d2749aa77394"></a>
-template&lt;typename T , std::enable_if_t&lt;!std::is_signed_v&lt; std::decay_t&lt; T &gt; &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
+template&lt;typename T , std::enable_if_t&lt;!std::is_signed_v&lt; <a class="el" href="group__utility.html#ga84e8e34e5d10ad3ee287dc2ca3e636c5">remove_cvref_t</a>&lt; T &gt; &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
 <tr class="memitem:gab061462b00be6107b566d2749aa77394"><td class="memTemplItemLeft" align="right" valign="top">constexpr T &amp;&amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::make_unsigned_v</b> (T &amp;&amp;x) noexcept</td></tr>
 <tr class="memdesc:gab061462b00be6107b566d2749aa77394"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. <br /></td></tr>
 <tr class="separator:gab061462b00be6107b566d2749aa77394"><td class="memSeparator" colspan="2">&#160;</td></tr>

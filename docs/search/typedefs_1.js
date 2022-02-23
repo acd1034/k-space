@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['complex_5fvalue_5ft_0',['complex_value_t',['../group__math.html#ga454ac6c4cbe075972757c42e2027867b',1,'kspc']]]
+  ['function_5ft_0',['function_t',['../group__integration.html#ga1467eb11f5f418b30a78c1af6013dbea',1,'kspc']]]
 ];
