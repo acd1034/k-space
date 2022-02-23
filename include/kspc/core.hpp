@@ -567,38 +567,6 @@ namespace kspc {
   template <typename R>
   inline constexpr bool is_input_range_v = is_input_range<R>::value;
 
-  // range access
-
-  /// ssize
-  // clang-format off
-  template <typename C>
-  constexpr auto ssize(const C& c) noexcept(
-    noexcept(static_cast<std::common_type_t<std::ptrdiff_t, std::make_signed_t<decltype(c.size())>>>(c.size())))
-    ->                   std::common_type_t<std::ptrdiff_t, std::make_signed_t<decltype(c.size())>> {
-    return   static_cast<std::common_type_t<std::ptrdiff_t, std::make_signed_t<decltype(c.size())>>>(c.size());
-  }
-  // clang-format on
-
-  /// @overload
-  template <typename T, std::size_t N>
-  constexpr std::ptrdiff_t ssize(std::add_lvalue_reference_t<const T[N]>) noexcept {
-    return N;
-  }
-
-  /// to_address
-  template <typename T>
-  constexpr T* to_address(T* p) noexcept {
-    static_assert(!std::is_function_v<T>,
-                  "Obtaining address of a function from `to_adress` is ill-formed.");
-    return p;
-  }
-
-  /// @overload
-  template <typename P>
-  constexpr auto to_address(const P& p) noexcept {
-    return kspc::to_address(p.operator->());
-  }
-
   /// @}
 } // namespace kspc
 
