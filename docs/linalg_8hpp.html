@@ -136,16 +136,16 @@ template&lt;class InMat1 , class InMat2 , class OutMat , class M1 , class M2 , c
 <tr class="memitem:ga13440f6f7cbb11256fb7794331c5d62e"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::matrix_product</b> (const InMat1 &amp;A, const InMat2 &amp;B, OutMat &amp;C, M1 &amp;&amp;map1, M2 &amp;&amp;map2, M3 &amp;&amp;map3, P1 &amp;&amp;proj1={}, P2 &amp;&amp;proj2={})</td></tr>
 <tr class="memdesc:ga13440f6f7cbb11256fb7794331c5d62e"><td class="mdescLeft">&#160;</td><td class="mdescRight">matrix_product <br /></td></tr>
 <tr class="separator:ga13440f6f7cbb11256fb7794331c5d62e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gac9c3d620de364c964fcdf36df19df98b"><td class="memTemplParams" colspan="2">
+<tr class="memitem:ga97abcc0ae5ce878c2c5252fc63800c01"><td class="memTemplParams" colspan="2">
 template&lt;class InOutMat , class InMat , class Work , class M2 , class M3 , class P1  = conj_fn, class P2  = identity_fn, class P3  = identity_fn&gt; </td></tr>
-<tr class="memitem:gac9c3d620de364c964fcdf36df19df98b"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if_t&lt; std::conjunction_v&lt; is_range&lt; InOutMat &gt;, is_range&lt; InMat &gt;, is_range&lt; Work &gt; &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::unitary_transform</b> (InOutMat &amp;A, const InMat &amp;B, Work &amp;C, M2 &amp;&amp;map2, M3 &amp;&amp;map3, P1 &amp;&amp;proj1={}, P2 &amp;&amp;proj2={}, P3 &amp;&amp;proj3={})</td></tr>
-<tr class="memdesc:gac9c3d620de364c964fcdf36df19df98b"><td class="mdescLeft">&#160;</td><td class="mdescRight">unitary_transform <br /></td></tr>
-<tr class="separator:gac9c3d620de364c964fcdf36df19df98b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaa2e26e3f9c49d24001d3ac3d98e9664a"><td class="memTemplParams" colspan="2">
+<tr class="memitem:ga97abcc0ae5ce878c2c5252fc63800c01"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if_t&lt; std::conjunction_v&lt; is_sized_range&lt; InOutMat &gt;, is_sized_range&lt; InMat &gt;, is_sized_range&lt; Work &gt; &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::unitary_transform</b> (InOutMat &amp;A, const InMat &amp;B, Work &amp;C, M2 &amp;&amp;map2, M3 &amp;&amp;map3, P1 &amp;&amp;proj1={}, P2 &amp;&amp;proj2={}, P3 &amp;&amp;proj3={})</td></tr>
+<tr class="memdesc:ga97abcc0ae5ce878c2c5252fc63800c01"><td class="mdescLeft">&#160;</td><td class="mdescRight">unitary_transform <br /></td></tr>
+<tr class="separator:ga97abcc0ae5ce878c2c5252fc63800c01"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga83b0071aaa10d2e462a1b0d94d8aab95"><td class="memTemplParams" colspan="2">
 template&lt;class InOutMat , class InMat , class M2 , class M3 , class P1  = conj_fn, class P2  = identity_fn, class P3  = identity_fn&gt; </td></tr>
-<tr class="memitem:gaa2e26e3f9c49d24001d3ac3d98e9664a"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if_t&lt; is_range_v&lt; InOutMat &gt; and is_range_v&lt; InMat &gt; and !is_range_v&lt; M2 &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::unitary_transform</b> (InOutMat &amp;A, const InMat &amp;B, M2 &amp;&amp;map2, M3 &amp;&amp;map3, P1 &amp;&amp;proj1={}, P2 &amp;&amp;proj2={}, P3 &amp;&amp;proj3={})</td></tr>
-<tr class="memdesc:gaa2e26e3f9c49d24001d3ac3d98e9664a"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. <br /></td></tr>
-<tr class="separator:gaa2e26e3f9c49d24001d3ac3d98e9664a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga83b0071aaa10d2e462a1b0d94d8aab95"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if_t&lt; is_sized_range_v&lt; InOutMat &gt; and is_sized_range_v&lt; InMat &gt; and(not is_sized_range_v&lt; M2 &gt;)&gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::unitary_transform</b> (InOutMat &amp;A, const InMat &amp;B, M2 &amp;&amp;map2, M3 &amp;&amp;map3, P1 &amp;&amp;proj1={}, P2 &amp;&amp;proj2={}, P3 &amp;&amp;proj3={})</td></tr>
+<tr class="memdesc:ga83b0071aaa10d2e462a1b0d94d8aab95"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. <br /></td></tr>
+<tr class="separator:ga83b0071aaa10d2e462a1b0d94d8aab95"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga8ad83e9fe6d1b5b0b8877268f9441ee8"><td class="memTemplParams" colspan="2">
 template&lt;class InOutMat , class OutIPiv &gt; </td></tr>
 <tr class="memitem:ga8ad83e9fe6d1b5b0b8877268f9441ee8"><td class="memTemplItemLeft" align="right" valign="top">int&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::lu_factor</b> (InOutMat &amp;A, OutIPiv &amp;ipiv)</td></tr>
@@ -156,45 +156,45 @@ template&lt;class InMat , class InIPiv , class InOutVec &gt; </td></tr>
 <tr class="memitem:ga82a2b20a5bef9ce0922339ccc71e9fb3"><td class="memTemplItemLeft" align="right" valign="top">int&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::matrix_vector_solve_with_lu_factor</b> (const InMat &amp;A, const InIPiv &amp;ipiv, InOutVec &amp;b)</td></tr>
 <tr class="memdesc:ga82a2b20a5bef9ce0922339ccc71e9fb3"><td class="mdescLeft">&#160;</td><td class="mdescRight">solve Ax = b with a general matrix A using LU factorization <br /></td></tr>
 <tr class="separator:ga82a2b20a5bef9ce0922339ccc71e9fb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga5f8c06d47398b40003eb7a365c075257"><td class="memTemplParams" colspan="2">
+<tr class="memitem:ga38a92cc455d376ad41ef1747f2260e0a"><td class="memTemplParams" colspan="2">
 template&lt;class InOutMat , class OutIPiv , class InOutVec &gt; </td></tr>
-<tr class="memitem:ga5f8c06d47398b40003eb7a365c075257"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if_t&lt; std::conjunction_v&lt; is_range&lt; InOutMat &gt;, is_range&lt; OutIPiv &gt;, is_range&lt; InOutVec &gt; &gt;, int &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::matrix_vector_solve</b> (InOutMat &amp;A, OutIPiv &amp;ipiv, InOutVec &amp;b)</td></tr>
-<tr class="memdesc:ga5f8c06d47398b40003eb7a365c075257"><td class="mdescLeft">&#160;</td><td class="mdescRight">solve Ax = b with a general matrix A <br /></td></tr>
-<tr class="separator:ga5f8c06d47398b40003eb7a365c075257"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga6d0b43df2626a8f579b23c15e9e505c9"><td class="memTemplParams" colspan="2">
+<tr class="memitem:ga38a92cc455d376ad41ef1747f2260e0a"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if_t&lt; std::conjunction_v&lt; is_sized_range&lt; InOutMat &gt;, is_sized_range&lt; OutIPiv &gt;, is_sized_range&lt; InOutVec &gt; &gt;, int &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::matrix_vector_solve</b> (InOutMat &amp;A, OutIPiv &amp;ipiv, InOutVec &amp;b)</td></tr>
+<tr class="memdesc:ga38a92cc455d376ad41ef1747f2260e0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">solve Ax = b with a general matrix A <br /></td></tr>
+<tr class="separator:ga38a92cc455d376ad41ef1747f2260e0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad514fb4fa62d4887e09c24136f256202"><td class="memTemplParams" colspan="2">
 template&lt;class InMat , class InOutVec , class M , class P  = identity_fn&gt; </td></tr>
-<tr class="memitem:ga6d0b43df2626a8f579b23c15e9e505c9"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if_t&lt; is_range_v&lt; InMat &gt; and is_range_v&lt; InOutVec &gt; and(not is_range_v&lt; M &gt;) and(not is_range_v&lt; P &gt;), int &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::matrix_vector_solve</b> (const InMat &amp;A, InOutVec &amp;b, M &amp;&amp;map, P &amp;&amp;proj={})</td></tr>
-<tr class="memdesc:ga6d0b43df2626a8f579b23c15e9e505c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. <br /></td></tr>
-<tr class="separator:ga6d0b43df2626a8f579b23c15e9e505c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga33f8123cfc5beb297fd6607d44bd7388"><td class="memTemplParams" colspan="2">
+<tr class="memitem:gad514fb4fa62d4887e09c24136f256202"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if_t&lt; is_sized_range_v&lt; InMat &gt; and is_sized_range_v&lt; InOutVec &gt; and(not is_sized_range_v&lt; M &gt;) and(not is_sized_range_v&lt; P &gt;), int &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::matrix_vector_solve</b> (const InMat &amp;A, InOutVec &amp;b, M &amp;&amp;map, P &amp;&amp;proj={})</td></tr>
+<tr class="memdesc:gad514fb4fa62d4887e09c24136f256202"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. <br /></td></tr>
+<tr class="separator:gad514fb4fa62d4887e09c24136f256202"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga840347ccf0b887c6ab8d86f738d1cd03"><td class="memTemplParams" colspan="2">
 template&lt;class InOutMat , class OutVec , class Work &gt; </td></tr>
-<tr class="memitem:ga33f8123cfc5beb297fd6607d44bd7388"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if_t&lt; std::conjunction_v&lt; is_range&lt; InOutMat &gt;, is_range&lt; OutVec &gt;, is_range&lt; Work &gt; &gt;, int &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::hermitian::eigen_solve</b> (InOutMat &amp;A, OutVec &amp;w, Work &amp;work)</td></tr>
-<tr class="memdesc:ga33f8123cfc5beb297fd6607d44bd7388"><td class="mdescLeft">&#160;</td><td class="mdescRight">solve Ax = λx with a symmetric matrix A <br /></td></tr>
-<tr class="separator:ga33f8123cfc5beb297fd6607d44bd7388"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga5635619bab343b3b38729f0cd781e356"><td class="memTemplParams" colspan="2">
+<tr class="memitem:ga840347ccf0b887c6ab8d86f738d1cd03"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if_t&lt; std::conjunction_v&lt; is_sized_range&lt; InOutMat &gt;, is_sized_range&lt; OutVec &gt;, is_sized_range&lt; Work &gt; &gt;, int &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::hermitian::eigen_solve</b> (InOutMat &amp;A, OutVec &amp;w, Work &amp;work)</td></tr>
+<tr class="memdesc:ga840347ccf0b887c6ab8d86f738d1cd03"><td class="mdescLeft">&#160;</td><td class="mdescRight">solve Ax = λx with a symmetric matrix A <br /></td></tr>
+<tr class="separator:ga840347ccf0b887c6ab8d86f738d1cd03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaef9d3f9b0240d79d25a0f397b8cac91b"><td class="memTemplParams" colspan="2">
 template&lt;class InOutMat , class OutVec , class Work , class RWork &gt; </td></tr>
-<tr class="memitem:ga5635619bab343b3b38729f0cd781e356"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if_t&lt; std::conjunction_v&lt; is_range&lt; InOutMat &gt;, is_range&lt; OutVec &gt;, is_range&lt; Work &gt;, is_range&lt; RWork &gt; &gt;, int &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::hermitian::eigen_solve</b> (InOutMat &amp;A, OutVec &amp;w, Work &amp;work, RWork &amp;rwork)</td></tr>
-<tr class="separator:ga5635619bab343b3b38729f0cd781e356"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga71a3f928acad8269497e602d1b3e0ccd"><td class="memTemplParams" colspan="2">
+<tr class="memitem:gaef9d3f9b0240d79d25a0f397b8cac91b"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if_t&lt; std::conjunction_v&lt; is_sized_range&lt; InOutMat &gt;, is_sized_range&lt; OutVec &gt;, is_sized_range&lt; Work &gt;, is_sized_range&lt; RWork &gt; &gt;, int &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::hermitian::eigen_solve</b> (InOutMat &amp;A, OutVec &amp;w, Work &amp;work, RWork &amp;rwork)</td></tr>
+<tr class="separator:gaef9d3f9b0240d79d25a0f397b8cac91b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2b0a13d61dea0dd63008c2a78c031964"><td class="memTemplParams" colspan="2">
 template&lt;class InOutMat , class OutVec , class M , class P  = identity_fn&gt; </td></tr>
-<tr class="memitem:ga71a3f928acad8269497e602d1b3e0ccd"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if_t&lt; is_range_v&lt; InOutMat &gt; and is_range_v&lt; OutVec &gt; and(not is_range_v&lt; M &gt;) and(not is_range_v&lt; P &gt;), int &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::hermitian::eigen_solve</b> (InOutMat &amp;A, OutVec &amp;w, M &amp;&amp;map, P &amp;&amp;proj={})</td></tr>
-<tr class="memdesc:ga71a3f928acad8269497e602d1b3e0ccd"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. <br /></td></tr>
-<tr class="separator:ga71a3f928acad8269497e602d1b3e0ccd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaa11380506884aba4b0b775d2474b2687"><td class="memTemplParams" colspan="2">
+<tr class="memitem:ga2b0a13d61dea0dd63008c2a78c031964"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if_t&lt; is_sized_range_v&lt; InOutMat &gt; and is_sized_range_v&lt; OutVec &gt; and(not is_sized_range_v&lt; M &gt;) and(not is_sized_range_v&lt; P &gt;), int &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::hermitian::eigen_solve</b> (InOutMat &amp;A, OutVec &amp;w, M &amp;&amp;map, P &amp;&amp;proj={})</td></tr>
+<tr class="memdesc:ga2b0a13d61dea0dd63008c2a78c031964"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. <br /></td></tr>
+<tr class="separator:ga2b0a13d61dea0dd63008c2a78c031964"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa68b6b8f7bd71f9d2550bedc9f4941f9"><td class="memTemplParams" colspan="2">
 template&lt;class InOutMat , class OutVec , class Work &gt; </td></tr>
-<tr class="memitem:gaa11380506884aba4b0b775d2474b2687"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if_t&lt; std::conjunction_v&lt; is_range&lt; InOutMat &gt;, is_range&lt; OutVec &gt;, is_range&lt; Work &gt; &gt;, int &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::hermitian::eigen_solve_no_evec</b> (InOutMat &amp;A, OutVec &amp;w, Work &amp;work)</td></tr>
-<tr class="memdesc:gaa11380506884aba4b0b775d2474b2687"><td class="mdescLeft">&#160;</td><td class="mdescRight">solve Ax = λx with a symmetric matrix A without eigenvectors <br /></td></tr>
-<tr class="separator:gaa11380506884aba4b0b775d2474b2687"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga949dd95a94b744b8484a4ec5f53731e8"><td class="memTemplParams" colspan="2">
+<tr class="memitem:gaa68b6b8f7bd71f9d2550bedc9f4941f9"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if_t&lt; std::conjunction_v&lt; is_sized_range&lt; InOutMat &gt;, is_sized_range&lt; OutVec &gt;, is_sized_range&lt; Work &gt; &gt;, int &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::hermitian::eigen_solve_no_evec</b> (InOutMat &amp;A, OutVec &amp;w, Work &amp;work)</td></tr>
+<tr class="memdesc:gaa68b6b8f7bd71f9d2550bedc9f4941f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">solve Ax = λx with a symmetric matrix A without eigenvectors <br /></td></tr>
+<tr class="separator:gaa68b6b8f7bd71f9d2550bedc9f4941f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6f3e37b01de22f550a3a14c4531ad099"><td class="memTemplParams" colspan="2">
 template&lt;class InOutMat , class OutVec , class Work , class RWork &gt; </td></tr>
-<tr class="memitem:ga949dd95a94b744b8484a4ec5f53731e8"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if_t&lt; std::conjunction_v&lt; is_range&lt; InOutMat &gt;, is_range&lt; OutVec &gt;, is_range&lt; Work &gt;, is_range&lt; RWork &gt; &gt;, int &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::hermitian::eigen_solve_no_evec</b> (InOutMat &amp;A, OutVec &amp;w, Work &amp;work, RWork &amp;rwork)</td></tr>
-<tr class="memdesc:ga949dd95a94b744b8484a4ec5f53731e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">solve Ax = λx with a hermitian matrix A without eigenvectors <br /></td></tr>
-<tr class="separator:ga949dd95a94b744b8484a4ec5f53731e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaefc18b6e4ffe5bdbf346c50fa91372a9"><td class="memTemplParams" colspan="2">
+<tr class="memitem:ga6f3e37b01de22f550a3a14c4531ad099"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if_t&lt; std::conjunction_v&lt; is_sized_range&lt; InOutMat &gt;, is_sized_range&lt; OutVec &gt;, is_sized_range&lt; Work &gt;, is_sized_range&lt; RWork &gt; &gt;, int &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::hermitian::eigen_solve_no_evec</b> (InOutMat &amp;A, OutVec &amp;w, Work &amp;work, RWork &amp;rwork)</td></tr>
+<tr class="memdesc:ga6f3e37b01de22f550a3a14c4531ad099"><td class="mdescLeft">&#160;</td><td class="mdescRight">solve Ax = λx with a hermitian matrix A without eigenvectors <br /></td></tr>
+<tr class="separator:ga6f3e37b01de22f550a3a14c4531ad099"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5bcb4057dbe96390785410f8ea1a114d"><td class="memTemplParams" colspan="2">
 template&lt;class InOutMat , class OutVec , class M , class P  = identity_fn&gt; </td></tr>
-<tr class="memitem:gaefc18b6e4ffe5bdbf346c50fa91372a9"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if_t&lt; is_range_v&lt; InOutMat &gt; and is_range_v&lt; OutVec &gt; and(not is_range_v&lt; M &gt;) and(not is_range_v&lt; P &gt;), int &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::hermitian::eigen_solve_no_evec</b> (InOutMat &amp;A, OutVec &amp;w, M &amp;&amp;map, P &amp;&amp;proj={})</td></tr>
-<tr class="memdesc:gaefc18b6e4ffe5bdbf346c50fa91372a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. <br /></td></tr>
-<tr class="separator:gaefc18b6e4ffe5bdbf346c50fa91372a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5bcb4057dbe96390785410f8ea1a114d"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if_t&lt; is_sized_range_v&lt; InOutMat &gt; and is_sized_range_v&lt; OutVec &gt; and(not is_sized_range_v&lt; M &gt;) and(not is_sized_range_v&lt; P &gt;), int &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::hermitian::eigen_solve_no_evec</b> (InOutMat &amp;A, OutVec &amp;w, M &amp;&amp;map, P &amp;&amp;proj={})</td></tr>
+<tr class="memdesc:ga5bcb4057dbe96390785410f8ea1a114d"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. <br /></td></tr>
+<tr class="separator:ga5bcb4057dbe96390785410f8ea1a114d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>

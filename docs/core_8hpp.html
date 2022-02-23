@@ -97,6 +97,9 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkspc_1_1type__identity.html">kspc::type_identity&lt; T &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">type_identity (C++20)  <a href="structkspc_1_1type__identity.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkspc_1_1is__same__uncvref.html">kspc::is_same_uncvref&lt; T, U &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">is_same_uncvref  <a href="structkspc_1_1is__same__uncvref.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkspc_1_1is__detected.html">kspc::is_detected&lt; Op, Args &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">is_detected  <a href="structkspc_1_1is__detected.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -244,26 +247,36 @@ template&lt;typename T &gt; </td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:gaf848fe4e3be5a224d16a9f740a63ade5"><td class="memTemplParams" colspan="2">
+<tr class="memitem:ga85cce96f9c5b26b91ac4218d9f9ef08d"><td class="memTemplParams" colspan="2">
+template&lt;typename U , typename T , std::enable_if_t&lt;!is_same_uncvref_v&lt; T, U &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
+<tr class="memitem:ga85cce96f9c5b26b91ac4218d9f9ef08d"><td class="memTemplItemLeft" align="right" valign="top">constexpr U&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::cast_if_needed</b> (T x) noexcept(noexcept(static_cast&lt; U &gt;(x)))</td></tr>
+<tr class="memdesc:ga85cce96f9c5b26b91ac4218d9f9ef08d"><td class="mdescLeft">&#160;</td><td class="mdescRight">cast_if_needed <br /></td></tr>
+<tr class="separator:ga85cce96f9c5b26b91ac4218d9f9ef08d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga99566156c72cbb5fefb4b324c5ab2629"><td class="memTemplParams" colspan="2">
+template&lt;typename U , typename T , std::enable_if_t&lt; is_same_uncvref_v&lt; T, U &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
+<tr class="memitem:ga99566156c72cbb5fefb4b324c5ab2629"><td class="memTemplItemLeft" align="right" valign="top">constexpr T &amp;&amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::cast_if_needed</b> (T &amp;&amp;x) noexcept</td></tr>
+<tr class="memdesc:ga99566156c72cbb5fefb4b324c5ab2629"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. <br /></td></tr>
+<tr class="separator:ga99566156c72cbb5fefb4b324c5ab2629"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0267793d1e6ec842000497ccf05c3dbd"><td class="memTemplParams" colspan="2">
 template&lt;typename T , std::enable_if_t&lt; std::is_unsigned_v&lt; T &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
-<tr class="memitem:gaf848fe4e3be5a224d16a9f740a63ade5"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::make_signed_v</b> (const T &amp;x) noexcept(noexcept(static_cast&lt; std::make_signed_t&lt; T &gt; &gt;(x)))</td></tr>
-<tr class="memdesc:gaf848fe4e3be5a224d16a9f740a63ade5"><td class="mdescLeft">&#160;</td><td class="mdescRight">make_signed_v <br /></td></tr>
-<tr class="separator:gaf848fe4e3be5a224d16a9f740a63ade5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gabb8d684ff4da420064fc19346f4a4f49"><td class="memTemplParams" colspan="2">
+<tr class="memitem:ga0267793d1e6ec842000497ccf05c3dbd"><td class="memTemplItemLeft" align="right" valign="top">constexpr std::make_signed_t&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::make_signed_v</b> (T x) noexcept(noexcept(static_cast&lt; std::make_signed_t&lt; T &gt; &gt;(x)))</td></tr>
+<tr class="memdesc:ga0267793d1e6ec842000497ccf05c3dbd"><td class="mdescLeft">&#160;</td><td class="mdescRight">make_signed_v <br /></td></tr>
+<tr class="separator:ga0267793d1e6ec842000497ccf05c3dbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7ee3e21e1668e9389424e58599038cc9"><td class="memTemplParams" colspan="2">
 template&lt;typename T , std::enable_if_t&lt;!std::is_unsigned_v&lt; std::decay_t&lt; T &gt; &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
-<tr class="memitem:gabb8d684ff4da420064fc19346f4a4f49"><td class="memTemplItemLeft" align="right" valign="top">constexpr T &amp;&amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::make_signed_v</b> (T &amp;&amp;x) noexcept(noexcept(std::forward&lt; T &gt;(x)))</td></tr>
-<tr class="memdesc:gabb8d684ff4da420064fc19346f4a4f49"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. <br /></td></tr>
-<tr class="separator:gabb8d684ff4da420064fc19346f4a4f49"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga1ce759fa8b9d5892f53b445691340215"><td class="memTemplParams" colspan="2">
+<tr class="memitem:ga7ee3e21e1668e9389424e58599038cc9"><td class="memTemplItemLeft" align="right" valign="top">constexpr T &amp;&amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::make_signed_v</b> (T &amp;&amp;x) noexcept</td></tr>
+<tr class="memdesc:ga7ee3e21e1668e9389424e58599038cc9"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. <br /></td></tr>
+<tr class="separator:ga7ee3e21e1668e9389424e58599038cc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4aa91f693dba8c6e194c46aeff13c2b6"><td class="memTemplParams" colspan="2">
 template&lt;typename T , std::enable_if_t&lt; std::is_signed_v&lt; T &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
-<tr class="memitem:ga1ce759fa8b9d5892f53b445691340215"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::make_unsigned_v</b> (const T &amp;x) noexcept(noexcept(static_cast&lt; std::make_unsigned_t&lt; T &gt; &gt;(x)))</td></tr>
-<tr class="memdesc:ga1ce759fa8b9d5892f53b445691340215"><td class="mdescLeft">&#160;</td><td class="mdescRight">make_unsigned_v <br /></td></tr>
-<tr class="separator:ga1ce759fa8b9d5892f53b445691340215"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga8a3fac170ac19084dfd9e66acc39ce78"><td class="memTemplParams" colspan="2">
+<tr class="memitem:ga4aa91f693dba8c6e194c46aeff13c2b6"><td class="memTemplItemLeft" align="right" valign="top">constexpr std::make_unsigned_t&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::make_unsigned_v</b> (T x) noexcept(noexcept(static_cast&lt; std::make_unsigned_t&lt; T &gt; &gt;(x)))</td></tr>
+<tr class="memdesc:ga4aa91f693dba8c6e194c46aeff13c2b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">make_unsigned_v <br /></td></tr>
+<tr class="separator:ga4aa91f693dba8c6e194c46aeff13c2b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab061462b00be6107b566d2749aa77394"><td class="memTemplParams" colspan="2">
 template&lt;typename T , std::enable_if_t&lt;!std::is_signed_v&lt; std::decay_t&lt; T &gt; &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
-<tr class="memitem:ga8a3fac170ac19084dfd9e66acc39ce78"><td class="memTemplItemLeft" align="right" valign="top">constexpr T &amp;&amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::make_unsigned_v</b> (T &amp;&amp;x) noexcept(noexcept(std::forward&lt; T &gt;(x)))</td></tr>
-<tr class="memdesc:ga8a3fac170ac19084dfd9e66acc39ce78"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. <br /></td></tr>
-<tr class="separator:ga8a3fac170ac19084dfd9e66acc39ce78"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab061462b00be6107b566d2749aa77394"><td class="memTemplItemLeft" align="right" valign="top">constexpr T &amp;&amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::make_unsigned_v</b> (T &amp;&amp;x) noexcept</td></tr>
+<tr class="memdesc:gab061462b00be6107b566d2749aa77394"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. <br /></td></tr>
+<tr class="separator:gab061462b00be6107b566d2749aa77394"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaff2ab568e213b532a06f967595865bf1"><td class="memTemplParams" colspan="2">
 template&lt;typename C &gt; </td></tr>
 <tr class="memitem:gaff2ab568e213b532a06f967595865bf1"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::ssize</b> (const C &amp;c) noexcept(noexcept(static_cast&lt; std::common_type_t&lt; std::ptrdiff_t, std::make_signed_t&lt; decltype(c.size())&gt; &gt; &gt;(c.size()))) -&gt; std::common_type_t&lt; std::ptrdiff_t, std::make_signed_t&lt; decltype(c.size())&gt; &gt;</td></tr>
@@ -297,6 +310,11 @@ template&lt;typename... &gt; </td></tr>
 <tr class="memitem:ga0e0be584ecf2502487b2528b4137aeb8"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::always_false</b> = false</td></tr>
 <tr class="memdesc:ga0e0be584ecf2502487b2528b4137aeb8"><td class="mdescLeft">&#160;</td><td class="mdescRight">always_false <br /></td></tr>
 <tr class="separator:ga0e0be584ecf2502487b2528b4137aeb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga076f001523eb3d011e0ff3b4e0c74e71"><td class="memTemplParams" colspan="2">
+template&lt;typename T , typename U &gt; </td></tr>
+<tr class="memitem:ga076f001523eb3d011e0ff3b4e0c74e71"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::is_same_uncvref_v</b> = is_same_uncvref&lt;T, U&gt;::value</td></tr>
+<tr class="memdesc:ga076f001523eb3d011e0ff3b4e0c74e71"><td class="mdescLeft">&#160;</td><td class="mdescRight">helper variable template for <code><a class="el" href="structkspc_1_1is__same__uncvref.html" title="is_same_uncvref">is_same_uncvref</a></code> <br /></td></tr>
+<tr class="separator:ga076f001523eb3d011e0ff3b4e0c74e71"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga44228db2bf9c0b4baeaaf635b6a6ceff"><td class="memTemplParams" colspan="2">
 template&lt;template&lt; typename... &gt; typename Op, typename... Args&gt; </td></tr>
 <tr class="memitem:ga44228db2bf9c0b4baeaaf635b6a6ceff"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::is_detected_v</b> = is_detected&lt;Op, Args...&gt;::value</td></tr>
