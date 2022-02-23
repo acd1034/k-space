@@ -180,6 +180,8 @@ namespace kspc {
   /// @}
 } // namespace kspc
 
+// clang-format off
+
 // Iterator
 namespace kspc {
   /// @addtogroup iterator
@@ -193,7 +195,6 @@ namespace kspc {
 
   // incrementable_traits
 
-  // clang-format off
   /// @cond
   namespace detail {
     template <class, class = void>
@@ -419,7 +420,6 @@ namespace kspc {
   /// helper variable template for `is_sentinel_for`
   template <typename S, typename I>
   inline constexpr bool is_sentinel_for_v = is_sentinel_for<S, I>::value;
-  // clang-format on
 
   // iterator associated types (second half):
   // [x] iter_reference_t
@@ -474,14 +474,12 @@ namespace kspc {
   } // namespace detail_adl
   /// @endcond
 
-  using detail_adl::adl_begin, detail_adl::adl_end, detail_adl::adl_size, detail_adl::adl_data,
-    detail_adl::adl_swap;
+  using detail_adl::adl_begin, detail_adl::adl_end, detail_adl::adl_size, detail_adl::adl_data, detail_adl::adl_swap;
 
   // range concepts (first half):
   // [x] is_range
   // [x] is_sized_range
 
-  // clang-format off
   /// @cond
   namespace detail {
     template <typename T>
@@ -521,7 +519,6 @@ namespace kspc {
   /// helper variable template for `is_sized_range`
   template <typename R>
   inline constexpr bool is_sized_range_v = is_sized_range<R>::value;
-  // clang-format on
 
   // range associated types:
   // [x] iterator_t
@@ -569,6 +566,8 @@ namespace kspc {
 
   /// @}
 } // namespace kspc
+
+// clang-format on
 
 // IO
 namespace kspc {
