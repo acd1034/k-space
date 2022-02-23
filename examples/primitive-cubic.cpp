@@ -56,7 +56,7 @@ int main() {
     // using kspc::qng::integrate;
     using kspc::qag::integrate;
     // using kspc::cquad::integrate;
-    const auto [result, abserr] = integrate<3>(&f, &params);
+    const auto [result, abserr, info] = integrate<3>(&f, &params);
 
     printf("result          = % .6f\n", result);
     printf("estimated error = % .6f\n", abserr);

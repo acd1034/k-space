@@ -137,7 +137,7 @@ int main() {
     // using kspc::qng::integrate;
     using kspc::qag::integrate;
     // using kspc::cquad::integrate;
-    const auto [result, abserr] = integrate<2>(&Bz_, &params);
+    const auto [result, abserr, info] = integrate<2>(&Bz_, &params);
     std::cout << "phi: " << phi << ", chern #: " << result / 2.0 / kspc::pi << std::endl;
   }
 }
