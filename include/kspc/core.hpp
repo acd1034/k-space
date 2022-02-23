@@ -82,8 +82,8 @@ namespace kspc {
 
   /// make_signed_v
   template <typename T, std::enable_if_t<std::is_unsigned_v<T>, std::nullptr_t> = nullptr>
-  constexpr auto
-  make_signed_v(const T& x) noexcept(noexcept(static_cast<std::make_signed_t<T>>(x))) {
+  constexpr std::make_signed_t<T>
+  make_signed_v(T x) noexcept(noexcept(static_cast<std::make_signed_t<T>>(x))) {
     using U = std::make_signed_t<T>;
     assert(x <= static_cast<T>(std::numeric_limits<U>::max()));
     return static_cast<U>(x);
@@ -98,8 +98,8 @@ namespace kspc {
 
   /// make_unsigned_v
   template <typename T, std::enable_if_t<std::is_signed_v<T>, std::nullptr_t> = nullptr>
-  constexpr auto
-  make_unsigned_v(const T& x) noexcept(noexcept(static_cast<std::make_unsigned_t<T>>(x))) {
+  constexpr std::make_unsigned_t<T>
+  make_unsigned_v(T x) noexcept(noexcept(static_cast<std::make_unsigned_t<T>>(x))) {
     assert(x >= static_cast<T>(0));
     return static_cast<std::make_unsigned_t<T>>(x);
   }
@@ -539,11 +539,7 @@ namespace kspc {
 
   /// %is_input_range
   template <typename R>
-  struct is_input_range
-    : std::conjunction<
-        is_range<R>,
-        is_input_iterator<iterator_t<R>>
-        > {};
+  struct is_input_range : std::conjunction<is_range<R>, is_input_iterator<iterator_t<R>>> {};
 
   /// helper variable template for `is_input_range`
   template <typename R>
