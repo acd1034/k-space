@@ -99,18 +99,27 @@ TEST_CASE("dim", "[math][dim]") {
 TEST_CASE("mapping", "[math][mapping]") {
   std::array<int, 25> a{};
   std::iota(std::begin(a), end(a), 0);
-  { // mapping_row_major, mapping_transpose
-    constexpr auto map = kspc::mapping_row_major(5);
+  { // row_major
+    constexpr auto map = kspc::mapping::row_major(5);
     CHECK(map(1, 2) == 7);
     CHECK(map(a, 1, 2) == 7);
-    constexpr auto map2 = kspc::mapping_transpose(map);
+  }
+  { // column_major
+    constexpr auto map = kspc::mapping::column_major(5);
+    CHECK(map(1, 2) == 11);
+    CHECK(map(a, 1, 2) == 11);
+  }
+  { // transpose
+    constexpr auto map = kspc::mapping::row_major(5);
+    constexpr auto map2 = kspc::mapping::transpose(map);
     CHECK(map2(1, 2) == 11);
     CHECK(map2(a, 1, 2) == 11);
   }
-  { // mapping_column_major
-    constexpr auto map = kspc::mapping_column_major(5);
-    CHECK(map(1, 2) == 11);
-    CHECK(map(a, 1, 2) == 11);
+  { // assign
+    constexpr auto map = kspc::mapping::row_major(5);
+    constexpr int c = 42;
+    map(a, 1, 2) = c;
+    CHECK(a[7] == c);
   }
 }
 
@@ -256,7 +265,7 @@ TEST_CASE("linalg", "[math][linalg]") {
       (1.0 + 1.0i) / sqrt3, 1.0 / sqrt3,
     };
     // clang-format on
-    const auto row_major = kspc::mapping_row_major(kspc::dim(A));
+    const auto row_major = kspc::mapping::row_major(kspc::dim(A));
     kspc::unitary_transform(A, U, row_major, row_major);
     CHECK(equal(A, std::vector<std::complex<double>>{-6.0i, 0.0, 0.0, 6.0i}));
   }
@@ -274,7 +283,7 @@ TEST_CASE("linalg", "[math][linalg]") {
       (1.0 + 1.0i) / sqrt3, 1.0 / sqrt3,
     };
     // clang-format on
-    constexpr auto row_major = kspc::mapping_row_major(N);
+    constexpr auto row_major = kspc::mapping::row_major(N);
     kspc::unitary_transform(A, U, row_major, row_major);
     CHECK(equal(A, std::array<std::complex<double>, N * N>{-6.0i, 0.0, 0.0, 6.0i}));
   }
@@ -302,7 +311,7 @@ TEST_CASE("linalg", "[math][linalg]") {
     };
     // clang-format on
     std::vector b{-2.0, -2.0, -5.0};
-    const auto row_major = kspc::mapping_row_major(kspc::dim(A));
+    const auto row_major = kspc::mapping::row_major(kspc::dim(A));
     const auto info = kspc::matrix_vector_solve(A, b, row_major);
     CHECK(info == 0);
     CHECK(equal(b, std::vector{1.0, 2.0, 2.0}));
@@ -317,7 +326,7 @@ TEST_CASE("linalg", "[math][linalg]") {
     // clang-format on
     std::array b{-2.0, -2.0, -5.0};
     constexpr auto N = kspc::fixed_size_matrix_dim_v<std::remove_cv_t<decltype(A)>>;
-    constexpr auto row_major = kspc::mapping_row_major(N);
+    constexpr auto row_major = kspc::mapping::row_major(N);
     const auto info = kspc::matrix_vector_solve(A, b, row_major);
     CHECK(info == 0);
     CHECK(equal(b, std::array{1.0, 2.0, 2.0}));
@@ -350,7 +359,7 @@ TEST_CASE("linalg", "[math][linalg]") {
     // clang-format on
     const auto n = kspc::dim(A);
     std::vector<double> w(n);
-    const auto row_major = kspc::mapping_row_major(n);
+    const auto row_major = kspc::mapping::row_major(n);
     const auto info = kspc::hermitian::eigen_solve(A, w, row_major);
     CHECK(info == 0);
     CHECK(equal_to(w[0], 1.0));
@@ -366,7 +375,7 @@ TEST_CASE("linalg", "[math][linalg]") {
     // clang-format on
     constexpr auto N = kspc::fixed_size_matrix_dim_v<std::remove_cv_t<decltype(A)>>;
     std::array<double, N> w;
-    constexpr auto row_major = kspc::mapping_row_major(N);
+    constexpr auto row_major = kspc::mapping::row_major(N);
     const auto info = kspc::hermitian::eigen_solve(A, w, row_major);
     CHECK(info == 0);
     CHECK(equal_to(w[0], 1.0));

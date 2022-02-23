@@ -103,7 +103,7 @@ double Bz_(const std::vector<double>& k, void* temp_p_params) {
 
   auto H = H_(k, temp_p_params);
   std::array<double, Nsite> E;
-  constexpr auto row_major = kspc::mapping_row_major(Nsite);
+  constexpr auto row_major = kspc::mapping::row_major(Nsite);
   kspc::hermitian::eigen_solve(H, E, row_major);
 
   auto dHdkx = dHdkx_(k, temp_p_params);

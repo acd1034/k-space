@@ -74,19 +74,19 @@ namespace kspc {
 } // namespace kspc
 
 // mapping
-namespace kspc {
+namespace kspc::mapping {
   /// @addtogroup matrix
   /// @{
 
-  /// %mapping_row_major
-  struct mapping_row_major {
+  /// %row_major
+  struct row_major {
   private:
     std::size_t lda_{};
 
   public:
     using size_type = std::size_t;
-    constexpr mapping_row_major() = default;
-    constexpr explicit mapping_row_major(const size_type lda) : lda_(lda) {}
+    constexpr row_major() = default;
+    constexpr explicit row_major(const size_type lda) : lda_(lda) {}
 
     constexpr size_type operator()(const size_type i, const size_type j) const noexcept {
       return lda_ * i + j;
@@ -97,17 +97,17 @@ namespace kspc {
         -> decltype(std::forward<R>(r)[operator()(i, j)]) {
       return std::forward<R>(r)[operator()(i, j)];
     }
-  }; // struct mapping_row_major
+  }; // struct row_major
 
-  /// %mapping_column_major
-  struct mapping_column_major {
+  /// %column_major
+  struct column_major {
   private:
     std::size_t lda_{};
 
   public:
     using size_type = std::size_t;
-    constexpr mapping_column_major() = default;
-    constexpr explicit mapping_column_major(const size_type lda) : lda_(lda) {}
+    constexpr column_major() = default;
+    constexpr explicit column_major(const size_type lda) : lda_(lda) {}
 
     constexpr size_type operator()(const size_type i, const size_type j) const noexcept {
       return i + j * lda_;
@@ -118,19 +118,19 @@ namespace kspc {
         -> decltype(std::forward<R>(r)[operator()(i, j)]) {
       return std::forward<R>(r)[operator()(i, j)];
     }
-  }; // struct mapping_column_major
+  }; // struct column_major
 
-  /// %mapping_transpose
+  /// %transpose
   template <typename Mapping>
-  struct mapping_transpose {
+  struct transpose {
   private:
     Mapping mapping_{};
 
   public:
     using size_type = std::size_t;
-    constexpr mapping_transpose() = default;
-    constexpr explicit mapping_transpose(const Mapping& mapping) : mapping_(mapping) {}
-    constexpr explicit mapping_transpose(Mapping&& mapping) : mapping_(std::move(mapping)) {}
+    constexpr transpose() = default;
+    constexpr explicit transpose(const Mapping& mapping) : mapping_(mapping) {}
+    constexpr explicit transpose(Mapping&& mapping) : mapping_(std::move(mapping)) {}
 
     constexpr size_type operator()(const size_type i, const size_type j) const noexcept {
       return mapping_(j, i);
@@ -141,11 +141,11 @@ namespace kspc {
         -> decltype(std::forward<R>(r)[operator()(i, j)]) {
       return std::forward<R>(r)[operator()(i, j)];
     }
-  }; // struct mapping_transpose
+  }; // struct transpose
 
-  /// deduction guide for @link mapping_transpose mapping_transpose @endlink
+  /// deduction guide for @link transpose transpose @endlink
   template <typename Mapping>
-  mapping_transpose(Mapping) -> mapping_transpose<Mapping>;
+  transpose(Mapping) -> transpose<Mapping>;
 
   /// @}
 } // namespace kspc
@@ -204,7 +204,7 @@ namespace kspc {
   unitary_transform(InOutMat& A, const InMat& B, Work& C, M2&& map2, M3&& map3, P1&& proj1 = {}, P2&& proj2 = {}, P3&& proj3 = {}) {
     using std::begin, std::end; // for ADL
     std::fill(begin(C), end(C), 0);
-    const auto map1 = mapping_transpose(map3);
+    const auto map1 = mapping::transpose(map3);
     matrix_product(B, A, C, map1, map2, map2, proj1, proj2);
     std::fill(begin(A), end(A), 0);
     matrix_product(C, B, A, map2, map3, map2, identity, proj3);
@@ -349,7 +349,7 @@ namespace kspc {
     if constexpr (is_fixed_size_array_v<remove_cvref_t<InMat>>) {
       constexpr std::size_t N = fixed_size_matrix_dim_v<remove_cvref_t<InMat>>;
       static std::array<T, N * N> B;
-      constexpr auto column_major = mapping_column_major(N);
+      constexpr auto column_major = mapping::column_major(N);
       matrix_copy(A, B, map, column_major, proj);
       static std::array<std::size_t, N> ipiv;
 
@@ -357,7 +357,7 @@ namespace kspc {
     } else {
       const std::size_t n = kspc::dim(A);
       std::vector<T> B(n * n);
-      const auto column_major = mapping_column_major(n);
+      const auto column_major = mapping::column_major(n);
       matrix_copy(A, B, map, column_major, proj);
       std::vector<std::size_t> ipiv(n);
 
@@ -457,7 +457,7 @@ namespace kspc::hermitian {
     if constexpr (is_fixed_size_array_v<remove_cvref_t<InOutMat>>) {
       constexpr std::size_t N = fixed_size_matrix_dim_v<remove_cvref_t<InOutMat>>;
       static std::array<T, N * N> B;
-      constexpr auto column_major = mapping_column_major(N);
+      constexpr auto column_major = mapping::column_major(N);
       matrix_copy(A, B, map, column_major, proj);
 
       if constexpr (is_complex_v<T>) {
@@ -473,7 +473,7 @@ namespace kspc::hermitian {
     } else {
       const std::size_t n = kspc::dim(A);
       std::vector<T> B(n * n);
-      const auto column_major = mapping_column_major(n);
+      const auto column_major = mapping::column_major(n);
       matrix_copy(A, B, map, column_major, proj);
 
       if constexpr (is_complex_v<T>) {
@@ -547,7 +547,7 @@ namespace kspc::hermitian {
     if constexpr (is_fixed_size_array_v<remove_cvref_t<InOutMat>>) {
       constexpr std::size_t N = fixed_size_matrix_dim_v<remove_cvref_t<InOutMat>>;
       static std::array<T, N * N> B;
-      constexpr auto column_major = mapping_column_major(N);
+      constexpr auto column_major = mapping::column_major(N);
       matrix_copy(A, B, map, column_major, proj);
 
       if constexpr (is_complex_v<T>) {
@@ -561,7 +561,7 @@ namespace kspc::hermitian {
     } else {
       const std::size_t n = kspc::dim(A);
       std::vector<T> B(n * n);
-      const auto column_major = mapping_column_major(n);
+      const auto column_major = mapping::column_major(n);
       matrix_copy(A, B, map, column_major, proj);
 
       if constexpr (is_complex_v<T>) {
