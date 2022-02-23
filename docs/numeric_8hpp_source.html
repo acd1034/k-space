@@ -156,7 +156,7 @@ $(function() {
 <div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
 <div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    <span class="keyword">auto</span> first = begin(r);</div>
 <div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    <span class="keyword">auto</span> init = <a class="code hl_function" href="group__utility.html#gaaf58d90fe3dcd12e6efb88b4dbd6366c">kspc::invoke</a>(proj, *first++);</div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="group__numeric.html#gaa8b3c40d4799f00bb0762e388184fda5">kspc::detail::sum</a>(first, end(r), init, std::move(op), std::move(proj));</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="group__numeric.html#gaa8b3c40d4799f00bb0762e388184fda5">detail::sum</a>(first, end(r), init, std::move(op), std::move(proj));</div>
 <div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>  }</div>
 <div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
 <div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>} <span class="comment">// namespace kspc</span></div>
@@ -236,7 +236,7 @@ $(function() {
 <div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>                  op2,</div>
 <div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>                  <a class="code hl_function" href="group__utility.html#gaaf58d90fe3dcd12e6efb88b4dbd6366c">kspc::invoke</a>(proj1, *first1++),</div>
 <div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>                  <a class="code hl_function" href="group__utility.html#gaaf58d90fe3dcd12e6efb88b4dbd6366c">kspc::invoke</a>(proj2, *first2++));</div>
-<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="group__numeric.html#ga2b3840c00748bc71e812b25c83683fdd">kspc::detail::innerp</a>(</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="group__numeric.html#ga2b3840c00748bc71e812b25c83683fdd">detail::innerp</a>(</div>
 <div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>             first1, end(r1), first2, end(r2), init,</div>
 <div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>             std::move(op1),</div>
 <div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>             std::move(op2),</div>
