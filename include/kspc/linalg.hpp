@@ -148,7 +148,7 @@ namespace kspc::mapping {
   transpose(Mapping) -> transpose<Mapping>;
 
   /// @}
-} // namespace kspc
+} // namespace kspc::mapping
 
 // clang-format off
 
