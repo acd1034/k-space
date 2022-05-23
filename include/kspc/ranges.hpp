@@ -30,17 +30,8 @@ namespace kspc {
     kappa_view() requires std::default_initializable<T> and std::default_initializable<U>
     = default;
     constexpr kappa_view(T t, U u, std::ptrdiff_t n)
-      : init_(std::move(t)), update_(std::move(u)), bound_(std::move(n)) {}
-
-    // observer
-    constexpr const T& init() const noexcept {
-      return init_;
-    }
-    constexpr const U& update() const noexcept {
-      return update_;
-    }
-    constexpr std::ptrdiff_t count() const noexcept {
-      return bound_;
+      : init_(std::move(t)), update_(std::move(u)), bound_(std::move(n)) {
+      assert(bound_ >= 0);
     }
 
     // range
@@ -87,7 +78,10 @@ namespace kspc {
     // ctor
     iterator() requires std::default_initializable<T>
     = default;
-    constexpr iterator(const kappa_view& p) : parent_(std::addressof(p)), current_(p.init_) {}
+    constexpr iterator(const kappa_view& p)
+      : parent_(std::addressof(p)), current_(p.init_), count_(p.bound_) {
+      assert(count_ >= 0);
+    }
 
     // observer
     constexpr std::ptrdiff_t count() const noexcept {
@@ -96,31 +90,31 @@ namespace kspc {
 
     // iterator
     constexpr const T& operator*() const {
-      assert(count_ < parent_->bound_);
+      assert(count_ >= 0);
       return current_;
     }
 
     constexpr iterator& operator++() {
-      assert(count_ < parent_->bound_);
+      assert(count_ >= 0);
       current_ = std::move(current_) + parent_->update_;
-      ++count_;
+      --count_;
       return *this;
     }
     constexpr iterator operator++(int) {
-      assert(count_ < parent_->bound_);
+      assert(count_ >= 0);
       auto tmp = *this;
       ++*this;
       return tmp;
     }
 
     constexpr iterator& operator--() requires detail::subtractable<T, U> {
-      assert(count_ >= 0);
+      assert(count_ < parent_->bound_);
       current_ = std::move(current_) - parent_->update_;
-      --count_;
+      ++count_;
       return *this;
     }
     constexpr iterator operator--(int) requires detail::subtractable<T, U> {
-      assert(count_ >= 0);
+      assert(count_ < parent_->bound_);
       auto tmp = *this;
       --*this;
       return tmp;
@@ -131,7 +125,7 @@ namespace kspc {
       return x.current_ == y.current_ and x.count_ == y.count_;
     }
     friend constexpr bool operator==(const iterator& x, std::default_sentinel_t) {
-      return x.count_ == x.parent_->count();
+      return x.count_ == 0;
     }
   };
 } // namespace kspc
