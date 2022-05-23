@@ -25,5 +25,6 @@ var searchData=
   ['is_5fsame_5funcvref_22',['is_same_uncvref',['../structkspc_1_1is__same__uncvref.html',1,'kspc']]],
   ['is_5fsentinel_5ffor_23',['is_sentinel_for',['../structkspc_1_1is__sentinel__for.html',1,'kspc']]],
   ['is_5fsized_5frange_24',['is_sized_range',['../structkspc_1_1is__sized__range.html',1,'kspc']]],
-  ['is_5fweakly_5fincrementable_25',['is_weakly_incrementable',['../structkspc_1_1is__weakly__incrementable.html',1,'kspc']]]
+  ['is_5fweakly_5fincrementable_25',['is_weakly_incrementable',['../structkspc_1_1is__weakly__incrementable.html',1,'kspc']]],
+  ['iterator_26',['iterator',['../structkspc_1_1kappa__view_1_1iterator.html',1,'kspc::kappa_view']]]
 ];

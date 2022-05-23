@@ -51,5 +51,6 @@ var searchData=
   ['iter_5freference_5ft_48',['iter_reference_t',['../group__iterator.html#ga7cb2ffb8dd2a5e23587da31cbad10338',1,'kspc']]],
   ['iter_5fvalue_5ft_49',['iter_value_t',['../group__iterator.html#gaf352495531dca3b36f1f7c06c2dfe8dd',1,'kspc']]],
   ['iterator_50',['Iterator',['../group__iterator.html',1,'']]],
-  ['iterator_5ft_51',['iterator_t',['../group__range.html#ga3be24a14599c3f616882c2ca86534d21',1,'kspc']]]
+  ['iterator_51',['iterator',['../structkspc_1_1kappa__view_1_1iterator.html',1,'kspc::kappa_view']]],
+  ['iterator_5ft_52',['iterator_t',['../group__range.html#ga3be24a14599c3f616882c2ca86534d21',1,'kspc']]]
 ];
