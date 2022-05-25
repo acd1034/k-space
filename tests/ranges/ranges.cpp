@@ -2,20 +2,13 @@
 #include <catch2/catch.hpp>
 
 #include <array>
+#include <ranges>
+#include <string>
 #include <kspc/approx.hpp>
 #include <kspc/ranges.hpp>
 
 inline constexpr auto equal_to = [](const auto& x, const auto& y) {
   return kspc::approx::equal_to(x, y, 1e-6);
-};
-
-struct addable {
-  constexpr addable operator+(const addable&) const& {
-    return *this;
-  }
-  constexpr bool operator==(const addable&) const& {
-    return true;
-  }
 };
 
 constexpr auto arrange(double start, double bound, double step) {
@@ -31,7 +24,7 @@ TEST_CASE("ranges", "[ranges][kappa_view]") {
     static_assert(std::ranges::bidirectional_range<KV>);
   }
   {
-    using KV = kspc::kappa_view<addable, addable>;
+    using KV = kspc::kappa_view<std::string, std::string>;
     static_assert(std::ranges::forward_range<KV>);
     static_assert(not std::ranges::bidirectional_range<KV>);
   }
