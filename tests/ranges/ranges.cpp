@@ -18,6 +18,7 @@ constexpr auto arrange(double start, double bound, double step) {
 }
 
 constexpr auto linspace(double start, double bound, std::ptrdiff_t count) {
+  if (count < 2) return kspc::kappa_view(start, 0.0, count);
   auto step = (bound - start) / static_cast<double>(count - 1);
   return kspc::kappa_view(start, step, count);
 }
