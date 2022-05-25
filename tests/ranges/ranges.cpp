@@ -13,8 +13,13 @@ inline constexpr auto equal_to = [](const auto& x, const auto& y) {
 
 constexpr auto arrange(double start, double bound, double step) {
   if ((start < bound) != (step > 0)) step = -step;
-  auto n = static_cast<std::ptrdiff_t>((bound - start) / step) + 1;
-  return kspc::kappa_view(start, step, n);
+  auto count = static_cast<std::ptrdiff_t>((bound - start) / step) + 1;
+  return kspc::kappa_view(start, step, count);
+}
+
+constexpr auto linspace(double start, double bound, std::ptrdiff_t count) {
+  auto step = (bound - start) / static_cast<double>(count - 1);
+  return kspc::kappa_view(start, step, count);
 }
 
 TEST_CASE("ranges", "[ranges][kappa_view]") {
@@ -33,7 +38,7 @@ TEST_CASE("ranges", "[ranges][kappa_view]") {
     std::array a{0.0, 1.5, 3.0, 4.5};
     CHECK(std::ranges::ssize(kv) == std::ranges::ssize(a));
     auto it = std::ranges::begin(kv);
-    for (const auto x : a) CHECK(equal_to(*it++, x));
+    for (const auto& x : a) CHECK(equal_to(*it++, x));
     CHECK(it == std::ranges::end(kv));
   }
   {
@@ -41,7 +46,15 @@ TEST_CASE("ranges", "[ranges][kappa_view]") {
     std::array a{1.2, 2.4, 3.6, 4.8};
     CHECK(std::ranges::ssize(kv) == std::ranges::ssize(a));
     auto it = std::ranges::begin(kv);
-    for (const auto x : a) CHECK(equal_to(*it++, x));
+    for (const auto& x : a) CHECK(equal_to(*it++, x));
+    CHECK(it == std::ranges::end(kv));
+  }
+  {
+    auto kv = linspace(1.2, 4.8, 4);
+    std::array a{1.2, 2.4, 3.6, 4.8};
+    CHECK(std::ranges::ssize(kv) == std::ranges::ssize(a));
+    auto it = std::ranges::begin(kv);
+    for (const auto& x : a) CHECK(equal_to(*it++, x));
     CHECK(it == std::ranges::end(kv));
   }
 }
