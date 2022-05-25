@@ -67,3 +67,4 @@ FetchContent_Declare(Catch2
 FetchContent_MakeAvailable(Catch2)
 
 add_subdirectory(math)
+add_subdirectory(ranges)
