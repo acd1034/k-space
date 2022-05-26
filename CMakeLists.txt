@@ -1,5 +1,15 @@
 cmake_minimum_required(VERSION 3.8)
 project(kspc CXX)
+# Creates a library kspc which is an interface (header files only)
+add_library(kspc INTERFACE)
+# If you want to use kspc prefer to link against kspc using this alias target
+add_library(kspc::kspc ALIAS kspc)
+# Set C++ version
+target_compile_features(kspc INTERFACE cxx_std_20)
+set_target_properties(kspc PROPERTIES
+  CXX_STANDARD_REQUIRED ON
+  CXX_EXTENSIONS OFF
+)
 
 # Specify build type if not
 if(NOT CMAKE_BUILD_TYPE)
