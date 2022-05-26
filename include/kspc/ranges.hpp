@@ -15,6 +15,7 @@ namespace kspc {
     };
   } // namespace detail
 
+  /// `std::ranges::iota_view`-like view for classes with `operator+`
   template <std::copyable T, std::copyable U>
   requires detail::addable<T, U>
   struct kappa_view : std::ranges::view_interface<kappa_view<T, U>> {
@@ -23,6 +24,7 @@ namespace kspc {
     U update_ = U();
     std::ptrdiff_t bound_ = 0;
 
+    /// iterator for `kappa_view`
     struct iterator;
 
   public:
