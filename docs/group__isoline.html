@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>k-space: Physics</title>
+<title>k-space: Isoline</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -65,29 +65,37 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
 <a href="#func-members">Functions</a>  </div>
-  <div class="headertitle"><div class="title">Physics</div></div>
+  <div class="headertitle"><div class="title">Isoline<div class="ingroups"><a class="el" href="group__math.html">Math</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkspc_1_1in__brillouin__zone.html">kspc::in_brillouin_zone&lt; Bs &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">in_brillouin_zone  <a href="structkspc_1_1in__brillouin__zone.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkspc_1_1iso2d_1_1_cartesian_grid.html">kspc::iso2d::CartesianGrid</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkspc_1_1kappa__view.html">kspc::kappa_view&lt; T, U &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>std::ranges::iota_view</code>-like view for classes with <code>operator+</code>  <a href="structkspc_1_1kappa__view.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkspc_1_1iso2d_1_1params__t.html">kspc::iso2d::params_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">helper class to set function to extract isoline  <a href="structkspc_1_1iso2d_1_1params__t.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkspc_1_1kappa__view_1_1iterator.html">kspc::kappa_view&lt; T, U &gt;::iterator</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:gaa495e1de5290ece978877ebcc4c1b7ae"><td class="memItemLeft" align="right" valign="top"><a id="gaa495e1de5290ece978877ebcc4c1b7ae" name="gaa495e1de5290ece978877ebcc4c1b7ae"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>kspc::iso2d::function_t</b> = double(const std::array&lt; double, 2 &gt; &amp;, void *)</td></tr>
+<tr class="memdesc:gaa495e1de5290ece978877ebcc4c1b7ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">type of function to be handled in this library <br /></td></tr>
+<tr class="separator:gaa495e1de5290ece978877ebcc4c1b7ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ga6a923b5cab9583c56f42403b60382eef"><td class="memTemplParams" colspan="2"><a id="ga6a923b5cab9583c56f42403b60382eef" name="ga6a923b5cab9583c56f42403b60382eef"></a>
-template&lt;typename Bs &gt; </td></tr>
-<tr class="memitem:ga6a923b5cab9583c56f42403b60382eef"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::in_brillouin_zone</b> (Bs) -&gt; <a class="el" href="structkspc_1_1in__brillouin__zone.html">in_brillouin_zone</a>&lt; Bs &gt;</td></tr>
-<tr class="memdesc:ga6a923b5cab9583c56f42403b60382eef"><td class="mdescLeft">&#160;</td><td class="mdescRight">deduction guide for <a class="el" href="structkspc_1_1in__brillouin__zone.html">in_brillouin_zone </a> <br /></td></tr>
-<tr class="separator:ga6a923b5cab9583c56f42403b60382eef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5054eadb3d39cf3d11aa0872ecc30588"><td class="memItemLeft" align="right" valign="top"><a id="ga5054eadb3d39cf3d11aa0872ecc30588" name="ga5054eadb3d39cf3d11aa0872ecc30588"></a>
+<a class="el" href="structkspc_1_1iso2d_1_1_cartesian_grid.html">CartesianGrid</a>&#160;</td><td class="memItemRight" valign="bottom"><b>kspc::iso2d::symmetric_grid</b> (double x1, double x2, double y1, double y2, std::size_t n)</td></tr>
+<tr class="memdesc:ga5054eadb3d39cf3d11aa0872ecc30588"><td class="mdescLeft">&#160;</td><td class="mdescRight">generates a grid symmetrical to the center of the given plane <br /></td></tr>
+<tr class="separator:ga5054eadb3d39cf3d11aa0872ecc30588"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4fcc2be89c33f0f49bf2f4b2026fba23"><td class="memItemLeft" align="right" valign="top"><a id="ga4fcc2be89c33f0f49bf2f4b2026fba23" name="ga4fcc2be89c33f0f49bf2f4b2026fba23"></a>
+auto&#160;</td><td class="memItemRight" valign="bottom"><b>kspc::iso2d::isoline_cartesian</b> (<a class="el" href="structkspc_1_1iso2d_1_1_cartesian_grid.html">CartesianGrid</a> grid, <a class="el" href="group__isoline.html#gaa495e1de5290ece978877ebcc4c1b7ae">function_t</a> *fn, void *data, double iso)</td></tr>
+<tr class="memdesc:ga4fcc2be89c33f0f49bf2f4b2026fba23"><td class="mdescLeft">&#160;</td><td class="mdescRight">extract isoline <br /></td></tr>
+<tr class="separator:ga4fcc2be89c33f0f49bf2f4b2026fba23"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 </div><!-- contents -->

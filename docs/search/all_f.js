@@ -10,5 +10,5 @@ var searchData=
   ['sqrt5_5fv_7',['sqrt5_v',['../group__math__constants.html#gabc71a557d06205d0dfebf889277de653',1,'kspc']]],
   ['squared_8',['squared',['../group__math__functions.html#ga7b3b51148ec88ed4105859112b15ea5e',1,'kspc']]],
   ['sum_9',['sum',['../group__numeric.html#gaa8b3c40d4799f00bb0762e388184fda5',1,'kspc']]],
-  ['symmetric_5fgrid_10',['symmetric_grid',['../iso2d_8hpp.html#a5054eadb3d39cf3d11aa0872ecc30588',1,'kspc::iso2d']]]
+  ['symmetric_5fgrid_10',['symmetric_grid',['../group__isoline.html#ga5054eadb3d39cf3d11aa0872ecc30588',1,'kspc::iso2d']]]
 ];
