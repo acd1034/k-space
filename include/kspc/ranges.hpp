@@ -4,6 +4,10 @@
 #include <kspc/core.hpp>
 
 namespace kspc {
+  /// @addtogroup physics
+  /// @{
+
+  /// @cond
   namespace detail {
     template <class T, class U>
     concept addable = requires(T t, const U& u) {
@@ -14,6 +18,7 @@ namespace kspc {
       { t - u } -> std::convertible_to<T>;
     };
   } // namespace detail
+  /// @endcond
 
   /// `std::ranges::iota_view`-like view for classes with `operator+`
   template <std::copyable T, std::copyable U>
@@ -48,6 +53,7 @@ namespace kspc {
     }
   };
 
+  /// @cond
   namespace detail {
     template <class, class>
     struct kappa_iterator_category {};
@@ -60,6 +66,7 @@ namespace kspc {
                            std::forward_iterator_tag>;
     };
   } // namespace detail
+  /// @endcond
 
   template <std::copyable T, std::copyable U>
   requires detail::addable<T, U>
@@ -130,4 +137,6 @@ namespace kspc {
       return x.count_ == 0;
     }
   };
+
+  /// @}
 } // namespace kspc

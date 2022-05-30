@@ -45,6 +45,9 @@
 /// @defgroup integration Quadrature routines
 /// @ingroup math
 
+/// @defgroup isoline Isoline
+/// @ingroup math
+
 /// @defgroup physics Physics
 
 // Utility
