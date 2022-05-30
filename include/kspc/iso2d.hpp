@@ -9,12 +9,16 @@
 #include <kspc/linalg.hpp> // kspc::mapping::row_major
 
 namespace kspc::iso2d {
+  /// @addtogroup isoline
+  /// @{
+
   //// parameters to generate cartesian grid
   struct CartesianGrid {
     std::size_t nx, ny;
     double x, dx, y, dy;
   };
 
+  /// @cond
   namespace detail {
     void symmetric_grid_impl(double y1, double y2, double step, double& y, double& dy,
                              std::size_t& ny) {
@@ -24,6 +28,7 @@ namespace kspc::iso2d {
       y = (y1 + y2 - (ny - 1) * dy) / 2.;
     }
   } // namespace detail
+  /// @endcond
 
   /// generates a grid symmetrical to the center of the given plane
   CartesianGrid symmetric_grid(double x1, double x2, double y1, double y2, std::size_t n) {
@@ -146,4 +151,6 @@ namespace kspc::iso2d {
     params->iso = iso;
     return detail::isoline_cartesian_impl(grid, data);
   }
+
+  /// @}
 } // namespace kspc::iso2d
