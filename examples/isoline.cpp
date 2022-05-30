@@ -6,6 +6,7 @@
 #include <cmath>
 #include <iostream>
 #include <kspc/iso2d.hpp> // isoline_cartesian
+#include <kspc/math.hpp>  // kspc::pi
 namespace iso2d = kspc::iso2d;
 
 // lattice constant
