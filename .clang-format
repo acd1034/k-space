@@ -27,7 +27,7 @@ AllowShortLoopsOnASingleLine: true
 # None, InlineOnly, Empty, Inline, All
 AllowShortFunctionsOnASingleLine: Empty
 # Never, WithoutElse, Always
-AllowShortIfStatementsOnASingleLine: Always
+AllowShortIfStatementsOnASingleLine: WithoutElse
 # None, Empty, Inline, All
 AllowShortLambdasOnASingleLine: All
 

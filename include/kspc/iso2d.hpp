@@ -5,8 +5,8 @@
 #include <iterator> // std::size
 #include <utility>
 #include <vector>
+#include <kspc/core.hpp>   // not used
 #include <kspc/linalg.hpp> // kspc::mapping::row_major
-#include <kspc/core.hpp> // not used
 
 namespace iso2d {
   //// parameters to generate cartesian grid
@@ -14,6 +14,27 @@ namespace iso2d {
     std::size_t nx, ny;
     double x, dx, y, dy;
   };
+
+  namespace detail {
+    void symmetric_grid_impl(double y1, double y2, double step, double& y, double& dy,
+                             std::size_t& ny) {
+      ny = std::size_t((y2 - y1) / step) + 1;
+      if (ny < 2) ny = 2;
+      dy = step;
+      y = (y1 + y2 - (ny - 1) * dy) / 2.;
+    }
+  } // namespace detail
+
+  /// generates a grid symmetrical to the center of the given plane
+  CartesianGrid symmetric_grid(double x1, double x2, double y1, double y2, std::size_t n) {
+    if (n < 2) n = 2;
+    CartesianGrid g;
+    g.x = x1;
+    g.dx = (x2 - x1) / (n - 1);
+    g.nx = n;
+    detail::symmetric_grid_impl(y1, y2, g.dx, g.y, g.dy, g.ny);
+    return g;
+  }
 
   /// type of function to be handled in this library
   using function_t = double(const std::array<double, 2>&, void*);
@@ -58,8 +79,7 @@ namespace iso2d {
       while (x2 - x1 > 1e-6) {
         xmid = (x1 + x2) / 2.; // Optimized for small case
         vmid = fn(xmid);
-        if (have_opposite_signs(vmid, v2))
-          x1 = xmid, v1 = vmid;
+        if (have_opposite_signs(vmid, v2)) x1 = xmid, v1 = vmid;
         else {
           assert(have_opposite_signs(vmid, v1));
           x2 = xmid, v2 = vmid;
