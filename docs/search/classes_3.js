@@ -1,6 +1,30 @@
 var searchData=
 [
-  ['kappa_5fiterator_5fcategory_0',['kappa_iterator_category',['../structkspc_1_1detail_1_1kappa__iterator__category.html',1,'kspc::detail']]],
-  ['kappa_5fiterator_5fcategory_3c_20t_2c_20u_20_3e_1',['kappa_iterator_category&lt; T, U &gt;',['../structkspc_1_1detail_1_1kappa__iterator__category_3_01_t_00_01_u_01_4.html',1,'kspc::detail']]],
-  ['kappa_5fview_2',['kappa_view',['../structkspc_1_1kappa__view.html',1,'kspc']]]
+  ['identity_5ffn_0',['identity_fn',['../structkspc_1_1identity__fn.html',1,'kspc']]],
+  ['in_5fbrillouin_5fzone_1',['in_brillouin_zone',['../structkspc_1_1in__brillouin__zone.html',1,'kspc']]],
+  ['incrementable_5ftraits_2',['incrementable_traits',['../structkspc_1_1incrementable__traits.html',1,'kspc']]],
+  ['incrementable_5ftraits_3c_20const_20t_20_3e_3',['incrementable_traits&lt; const T &gt;',['../structkspc_1_1incrementable__traits_3_01const_01_t_01_4.html',1,'kspc']]],
+  ['incrementable_5ftraits_3c_20t_20_2a_20_3e_4',['incrementable_traits&lt; T * &gt;',['../structkspc_1_1incrementable__traits_3_01_t_01_5_01_4.html',1,'kspc']]],
+  ['incrementable_5ftraits_3c_20t_2c_20std_3a_3avoid_5ft_3c_20typename_20t_3a_3adifference_5ftype_20_3e_20_3e_5',['incrementable_traits&lt; T, std::void_t&lt; typename T::difference_type &gt; &gt;',['../structkspc_1_1incrementable__traits_3_01_t_00_01std_1_1void__t_3_01typename_01_t_1_1difference__type_01_4_01_4.html',1,'kspc']]],
+  ['indirectly_5freadable_5ftraits_6',['indirectly_readable_traits',['../structkspc_1_1indirectly__readable__traits.html',1,'kspc']]],
+  ['indirectly_5freadable_5ftraits_3c_20const_20t_20_3e_7',['indirectly_readable_traits&lt; const T &gt;',['../structkspc_1_1indirectly__readable__traits_3_01const_01_t_01_4.html',1,'kspc']]],
+  ['indirectly_5freadable_5ftraits_3c_20t_20_2a_20_3e_8',['indirectly_readable_traits&lt; T * &gt;',['../structkspc_1_1indirectly__readable__traits_3_01_t_01_5_01_4.html',1,'kspc']]],
+  ['indirectly_5freadable_5ftraits_3c_20t_2c_20std_3a_3avoid_5ft_3c_20typename_20t_3a_3avalue_5ftype_20_3e_20_3e_9',['indirectly_readable_traits&lt; T, std::void_t&lt; typename T::value_type &gt; &gt;',['../structkspc_1_1indirectly__readable__traits_3_01_t_00_01std_1_1void__t_3_01typename_01_t_1_1value__type_01_4_01_4.html',1,'kspc']]],
+  ['indirectly_5freadable_5ftraits_3c_20t_5b_5d_3e_10',['indirectly_readable_traits&lt; T[]&gt;',['../structkspc_1_1indirectly__readable__traits_3_01_t_0f_0e_4.html',1,'kspc']]],
+  ['indirectly_5freadable_5ftraits_3c_20t_5bn_5d_3e_11',['indirectly_readable_traits&lt; T[N]&gt;',['../structkspc_1_1indirectly__readable__traits_3_01_t_0f_n_0e_4.html',1,'kspc']]],
+  ['is_5fcomplex_12',['is_complex',['../structkspc_1_1is__complex.html',1,'kspc']]],
+  ['is_5fcomplex_3c_20std_3a_3acomplex_3c_20t_20_3e_20_3e_13',['is_complex&lt; std::complex&lt; T &gt; &gt;',['../structkspc_1_1is__complex_3_01std_1_1complex_3_01_t_01_4_01_4.html',1,'kspc']]],
+  ['is_5fdetected_14',['is_detected',['../structkspc_1_1is__detected.html',1,'kspc']]],
+  ['is_5ffixed_5fsize_5farray_15',['is_fixed_size_array',['../structkspc_1_1is__fixed__size__array.html',1,'kspc']]],
+  ['is_5ffixed_5fsize_5farray_3c_20t_2c_20std_3a_3avoid_5ft_3c_20decltype_28fixed_5fsize_5farray_5fsize_3c_20t_20_3e_3a_3avalue_29_3e_20_3e_16',['is_fixed_size_array&lt; T, std::void_t&lt; decltype(fixed_size_array_size&lt; T &gt;::value)&gt; &gt;',['../structkspc_1_1is__fixed__size__array_3_01_t_00_01std_1_1void__t_3_01decltype_07fixed__size__arra4dc6dd664bb681c1da3a8a67ce28aebe.html',1,'kspc']]],
+  ['is_5findirectly_5freadable_17',['is_indirectly_readable',['../structkspc_1_1is__indirectly__readable.html',1,'kspc']]],
+  ['is_5finput_5fiterator_18',['is_input_iterator',['../structkspc_1_1is__input__iterator.html',1,'kspc']]],
+  ['is_5finput_5for_5foutput_5fiterator_19',['is_input_or_output_iterator',['../structkspc_1_1is__input__or__output__iterator.html',1,'kspc']]],
+  ['is_5finput_5frange_20',['is_input_range',['../structkspc_1_1is__input__range.html',1,'kspc']]],
+  ['is_5frange_21',['is_range',['../structkspc_1_1is__range.html',1,'kspc']]],
+  ['is_5fsame_5funcvref_22',['is_same_uncvref',['../structkspc_1_1is__same__uncvref.html',1,'kspc']]],
+  ['is_5fsentinel_5ffor_23',['is_sentinel_for',['../structkspc_1_1is__sentinel__for.html',1,'kspc']]],
+  ['is_5fsized_5frange_24',['is_sized_range',['../structkspc_1_1is__sized__range.html',1,'kspc']]],
+  ['is_5fweakly_5fincrementable_25',['is_weakly_incrementable',['../structkspc_1_1is__weakly__incrementable.html',1,'kspc']]],
+  ['iterator_26',['iterator',['../structkspc_1_1kappa__view_1_1iterator.html',1,'kspc::kappa_view']]]
 ];

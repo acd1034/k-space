@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['column_5fmajor_0',['column_major',['../structkspc_1_1mapping_1_1column__major.html',1,'kspc::mapping']]],
-  ['conj_5ffn_1',['conj_fn',['../structkspc_1_1conj__fn.html',1,'kspc']]]
+  ['bsearchforrootfn_0',['BSearchForRootFn',['../structkspc_1_1iso2d_1_1detail_1_1_b_search_for_root_fn.html',1,'kspc::iso2d::detail']]]
 ];

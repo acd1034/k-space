@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['fixed_5fsize_5farray_5fsize_0',['fixed_size_array_size',['../structkspc_1_1fixed__size__array__size.html',1,'kspc']]],
-  ['fixed_5fsize_5farray_5fsize_3c_20std_3a_3aarray_3c_20t_2c_20n_20_3e_20_3e_1',['fixed_size_array_size&lt; std::array&lt; T, N &gt; &gt;',['../structkspc_1_1fixed__size__array__size_3_01std_1_1array_3_01_t_00_01_n_01_4_01_4.html',1,'kspc']]],
-  ['fixed_5fsize_5farray_5fsize_3c_20t_5bn_5d_3e_2',['fixed_size_array_size&lt; T[N]&gt;',['../structkspc_1_1fixed__size__array__size_3_01_t_0f_n_0e_4.html',1,'kspc']]]
+  ['cartesiangrid_0',['CartesianGrid',['../structkspc_1_1iso2d_1_1_cartesian_grid.html',1,'kspc::iso2d']]],
+  ['column_5fmajor_1',['column_major',['../structkspc_1_1mapping_1_1column__major.html',1,'kspc::mapping']]],
+  ['conj_5ffn_2',['conj_fn',['../structkspc_1_1conj__fn.html',1,'kspc']]]
 ];

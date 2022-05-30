@@ -1,11 +1,11 @@
 var searchData=
 [
-  ['fbose_0',['fbose',['../group__math__functions.html#ga01b836935990aaac8e2d2e5ef4881152',1,'kspc']]],
-  ['ffermi_1',['ffermi',['../group__math__functions.html#ga306a288effa93abcc51d68aa39777f05',1,'kspc']]],
-  ['fixed_5fsize_5farray_5fsize_2',['fixed_size_array_size',['../structkspc_1_1fixed__size__array__size.html',1,'kspc']]],
-  ['fixed_5fsize_5farray_5fsize_3c_20std_3a_3aarray_3c_20t_2c_20n_20_3e_20_3e_3',['fixed_size_array_size&lt; std::array&lt; T, N &gt; &gt;',['../structkspc_1_1fixed__size__array__size_3_01std_1_1array_3_01_t_00_01_n_01_4_01_4.html',1,'kspc']]],
-  ['fixed_5fsize_5farray_5fsize_3c_20t_5bn_5d_3e_4',['fixed_size_array_size&lt; T[N]&gt;',['../structkspc_1_1fixed__size__array__size_3_01_t_0f_n_0e_4.html',1,'kspc']]],
-  ['fixed_5fsize_5farray_5fsize_5fv_5',['fixed_size_array_size_v',['../group__matrix.html#gae7f353485d3376ea5593b5550a00c772',1,'kspc']]],
-  ['fixed_5fsize_5fmatrix_5fdim_5fv_6',['fixed_size_matrix_dim_v',['../group__matrix.html#ga23876907d282054775d34cc16b2f3405',1,'kspc']]],
-  ['function_5ft_7',['function_t',['../group__integration.html#ga1467eb11f5f418b30a78c1af6013dbea',1,'kspc']]]
+  ['e_0',['e',['../group__math__constants.html#gab283bf7abbd1672477fa1d0583a0d6f9',1,'kspc']]],
+  ['e_5fv_1',['e_v',['../group__math__constants.html#ga88ff752425133187f83a53562c6f01df',1,'kspc']]],
+  ['egamma_2',['egamma',['../group__math__constants.html#ga12b9efc407d99803680f37d5564825cb',1,'kspc']]],
+  ['egamma_5fv_3',['egamma_v',['../group__math__constants.html#gaca4c7db9eee8148fa9f9a368f7c43fad',1,'kspc']]],
+  ['eigen_5fsolve_4',['eigen_solve',['../group__linalg.html#ga840347ccf0b887c6ab8d86f738d1cd03',1,'kspc::hermitian::eigen_solve(InOutMat &amp;A, OutVec &amp;w, Work &amp;work)'],['../group__linalg.html#ga2b0a13d61dea0dd63008c2a78c031964',1,'kspc::hermitian::eigen_solve(InOutMat &amp;A, OutVec &amp;w, M &amp;&amp;map, P &amp;&amp;proj={})'],['../group__linalg.html#ga35e9037ad0d1410bcd773446c65d54df',1,'kspc::hermitian::no_evec::eigen_solve(InOutMat &amp;A, OutVec &amp;w, Work &amp;work)'],['../group__linalg.html#ga7680b397e1f07e30b28d933a81a43f09',1,'kspc::hermitian::no_evec::eigen_solve(InOutMat &amp;A, OutVec &amp;w, Work &amp;work, RWork &amp;rwork)'],['../group__linalg.html#ga9cc2db5f0825cb0af9cac80e5e5d6527',1,'kspc::hermitian::no_evec::eigen_solve(InOutMat &amp;A, OutVec &amp;w, M &amp;&amp;map, P &amp;&amp;proj={})']]],
+  ['error_5fhandler_5',['error_handler',['../group__integration.html#gaffa71433ad7177bf5c38422b22ff546f',1,'kspc']]],
+  ['exp_5fegamma_6',['exp_egamma',['../group__math__constants.html#ga3774d2b5c3e5379899a1da8eeaf55643',1,'kspc']]],
+  ['exp_5fegamma_5fv_7',['exp_egamma_v',['../group__math__constants.html#gaea990ceb26d0d6139d42ab011c2b4627',1,'kspc']]]
 ];

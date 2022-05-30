@@ -1,14 +1,14 @@
 var searchData=
 [
-  ['make_5fsigned_5fv_0',['make_signed_v',['../group__utility.html#ga0267793d1e6ec842000497ccf05c3dbd',1,'kspc::make_signed_v(T x) noexcept(noexcept(static_cast&lt; std::make_signed_t&lt; T &gt; &gt;(x)))'],['../group__utility.html#ga7ee3e21e1668e9389424e58599038cc9',1,'kspc::make_signed_v(T &amp;&amp;x) noexcept']]],
-  ['make_5funsigned_5fv_1',['make_unsigned_v',['../group__utility.html#ga4aa91f693dba8c6e194c46aeff13c2b6',1,'kspc::make_unsigned_v(T x) noexcept(noexcept(static_cast&lt; std::make_unsigned_t&lt; T &gt; &gt;(x)))'],['../group__utility.html#gab061462b00be6107b566d2749aa77394',1,'kspc::make_unsigned_v(T &amp;&amp;x) noexcept']]],
-  ['math_2',['Math',['../group__math.html',1,'']]],
-  ['math_2ehpp_3',['math.hpp',['../math_8hpp.html',1,'']]],
-  ['mathematical_20constants_4',['Mathematical constants',['../group__math__constants.html',1,'']]],
-  ['mathematical_20functions_5',['Mathematical functions',['../group__math__functions.html',1,'']]],
-  ['matrix_6',['Matrix',['../group__matrix.html',1,'']]],
-  ['matrix_5fcopy_7',['matrix_copy',['../group__linalg.html#ga4b012f86c9d63060537f10b86917d905',1,'kspc']]],
-  ['matrix_5fproduct_8',['matrix_product',['../group__linalg.html#ga13440f6f7cbb11256fb7794331c5d62e',1,'kspc']]],
-  ['matrix_5fvector_5fsolve_9',['matrix_vector_solve',['../group__linalg.html#ga38a92cc455d376ad41ef1747f2260e0a',1,'kspc::matrix_vector_solve(InOutMat &amp;A, OutIPiv &amp;ipiv, InOutVec &amp;b)'],['../group__linalg.html#gad514fb4fa62d4887e09c24136f256202',1,'kspc::matrix_vector_solve(const InMat &amp;A, InOutVec &amp;b, M &amp;&amp;map, P &amp;&amp;proj={})']]],
-  ['matrix_5fvector_5fsolve_5fwith_5flu_5ffactor_10',['matrix_vector_solve_with_lu_factor',['../group__linalg.html#ga82a2b20a5bef9ce0922339ccc71e9fb3',1,'kspc']]]
+  ['linalg_2ehpp_0',['linalg.hpp',['../linalg_8hpp.html',1,'']]],
+  ['linear_20algorithms_1',['Linear algorithms',['../group__linalg.html',1,'']]],
+  ['ln10_2',['ln10',['../group__math__constants.html#ga25a74df4d2bf42d205ed4f8125cd18b6',1,'kspc']]],
+  ['ln10_5fv_3',['ln10_v',['../group__math__constants.html#ga37836cab268d2962f729ceed9df36d6f',1,'kspc']]],
+  ['ln2_4',['ln2',['../group__math__constants.html#ga83c8d4b6d90b4b4665905f45bfcc8c52',1,'kspc']]],
+  ['ln2_5fv_5',['ln2_v',['../group__math__constants.html#ga694cc18fc5ade8311c287323ebc2301c',1,'kspc']]],
+  ['log10e_6',['log10e',['../group__math__constants.html#gac29a890bdb50e859b54b7cb09be04e74',1,'kspc']]],
+  ['log10e_5fv_7',['log10e_v',['../group__math__constants.html#ga0967f35b99ebc363aa1b1388d4341dab',1,'kspc']]],
+  ['log2e_8',['log2e',['../group__math__constants.html#ga04a47448bedcbc18016d5a824ebe7f01',1,'kspc']]],
+  ['log2e_5fv_9',['log2e_v',['../group__math__constants.html#ga0f2359654a43f0939491777d76ff7006',1,'kspc']]],
+  ['lu_5ffactor_10',['lu_factor',['../group__linalg.html#ga8ad83e9fe6d1b5b0b8877268f9441ee8',1,'kspc']]]
 ];

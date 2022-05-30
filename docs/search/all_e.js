@@ -1,13 +1,11 @@
 var searchData=
 [
-  ['sentinel_5ft_0',['sentinel_t',['../group__range.html#gac4d071ef8f90947000e98f35fa370f31',1,'kspc']]],
-  ['set_5ferror_5fhandler_1',['set_error_handler',['../group__integration.html#ga000d6f3d7844359d5f17b96d44610828',1,'kspc']]],
-  ['sqrt2_2',['sqrt2',['../group__math__constants.html#ga40b92fd047ea0344da972a415e2fc57d',1,'kspc']]],
-  ['sqrt2_5fv_3',['sqrt2_v',['../group__math__constants.html#ga13495c68cdf4ee306d82c684a32835d6',1,'kspc']]],
-  ['sqrt3_4',['sqrt3',['../group__math__constants.html#ga9f5eb29f175060f10338ee159422c987',1,'kspc']]],
-  ['sqrt3_5fv_5',['sqrt3_v',['../group__math__constants.html#gaf16e42785ec8af1e4056fc435a2d6b6d',1,'kspc']]],
-  ['sqrt5_6',['sqrt5',['../group__math__constants.html#gad878f4f124754abd263e32d85618f0a8',1,'kspc']]],
-  ['sqrt5_5fv_7',['sqrt5_v',['../group__math__constants.html#gabc71a557d06205d0dfebf889277de653',1,'kspc']]],
-  ['squared_8',['squared',['../group__math__functions.html#ga7b3b51148ec88ed4105859112b15ea5e',1,'kspc']]],
-  ['sum_9',['sum',['../group__numeric.html#gaa8b3c40d4799f00bb0762e388184fda5',1,'kspc']]]
+  ['range_0',['Range',['../group__range.html',1,'']]],
+  ['range_5fdifference_5ft_1',['range_difference_t',['../group__range.html#ga18bd8d28401faa9a1f5e50ffe3a9102d',1,'kspc']]],
+  ['range_5freference_5ft_2',['range_reference_t',['../group__range.html#ga206f6e863c3cf8b6107f81e2f44acb5a',1,'kspc']]],
+  ['range_5fsize_5ft_3',['range_size_t',['../group__range.html#gab2660ef108280595688271dd76ec3daf',1,'kspc']]],
+  ['range_5fvalue_5ft_4',['range_value_t',['../group__range.html#gaa37e5148fdcaf719fe194b676309adc4',1,'kspc']]],
+  ['remove_5fcvref_5',['remove_cvref',['../structkspc_1_1remove__cvref.html',1,'kspc']]],
+  ['remove_5fcvref_5ft_6',['remove_cvref_t',['../group__utility.html#ga84e8e34e5d10ad3ee287dc2ca3e636c5',1,'kspc']]],
+  ['row_5fmajor_7',['row_major',['../structkspc_1_1mapping_1_1row__major.html',1,'kspc::mapping']]]
 ];
