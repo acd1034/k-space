@@ -8,7 +8,7 @@
 #include <kspc/core.hpp>   // not used
 #include <kspc/linalg.hpp> // kspc::mapping::row_major
 
-namespace iso2d {
+namespace kspc::iso2d {
   //// parameters to generate cartesian grid
   struct CartesianGrid {
     std::size_t nx, ny;
@@ -79,7 +79,8 @@ namespace iso2d {
       while (x2 - x1 > 1e-6) {
         xmid = (x1 + x2) / 2.; // Optimized for small case
         vmid = fn(xmid);
-        if (have_opposite_signs(vmid, v2)) x1 = xmid, v1 = vmid;
+        if (have_opposite_signs(vmid, v2))
+          x1 = xmid, v1 = vmid;
         else {
           assert(have_opposite_signs(vmid, v1));
           x2 = xmid, v2 = vmid;
@@ -145,4 +146,4 @@ namespace iso2d {
     params->iso = iso;
     return detail::isoline_cartesian_impl(grid, data);
   }
-} // namespace iso2d
+} // namespace kspc::iso2d
