@@ -75,8 +75,9 @@ namespace kspc::iso2d {
 
     double internal_div(double x1, double x2, double v1, double v2) {
       double c = v1 / (v1 - v2);
-      if (have_opposite_signs(x1, x2)) return c * x2 + (1. - c) * x1;
-      return x1 + c * (x2 - x1);
+      // if (have_opposite_signs(x1, x2)) return c * x2 + (1. - c) * x1;
+      // return x1 + c * (x2 - x1);
+      return c * x2 + (1. - c) * x1; // Optimized for opposite signs
     }
 
     double bsearch_for_root(double x1, double x2, double v1, double v2, BSearchForRootFn&& fn) {
