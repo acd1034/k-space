@@ -140,7 +140,7 @@ namespace kspc::iso2d {
       std::vector<std::array<std::size_t, 2>> lines;
       lines.reserve(16 * std::size(vertices));
       const double d = std::hypot(g.dx, g.dy);
-      for (i = 0; i < std::size(vertices) - 1; ++i)
+      for (i = 0; i < std::size(vertices); ++i)
         for (j = i + 1; j < std::size(vertices); ++j) {
           if (std::hypot(vertices[j][0] - vertices[i][0], vertices[j][1] - vertices[i][1]) < d)
             lines.push_back({i, j});
