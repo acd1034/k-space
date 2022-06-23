@@ -3,6 +3,7 @@
 #include <array>
 #include <cmath>    // std::hypot
 #include <iterator> // std::size
+#include <limits>   // std::numeric_limits
 #include <utility>
 #include <vector>
 #include <kspc/core.hpp>   // not used
@@ -48,6 +49,8 @@ namespace kspc::iso2d {
   struct params_t {
     function_t* function;
     double iso = 0.0;
+    double eps = 1e-6;
+    std::size_t max_iter = std::numeric_limits<std::size_t>::max();
   };
 
   namespace detail {
@@ -75,13 +78,17 @@ namespace kspc::iso2d {
 
     double internal_div(double x1, double x2, double v1, double v2) {
       double c = v1 / (v1 - v2);
-      if (have_opposite_signs(x1, x2)) return c * x2 + (1. - c) * x1;
-      return x1 + c * (x2 - x1);
+      // if (have_opposite_signs(x1, x2)) return c * x2 + (1. - c) * x1;
+      // return x1 + c * (x2 - x1);
+      return c * x2 + (1. - c) * x1; // Optimized for opposite signs
     }
 
     double bsearch_for_root(double x1, double x2, double v1, double v2, BSearchForRootFn&& fn) {
       double xmid, vmid;
-      while (x2 - x1 > 1e-6) {
+      const auto* params = (params_t*)fn.data;
+      const double eps = params->eps;
+      double n = params->max_iter;
+      while (x2 - x1 > eps and n-- > 0) {
         xmid = (x1 + x2) / 2.; // Optimized for small case
         vmid = fn(xmid);
         if (have_opposite_signs(vmid, v2))
