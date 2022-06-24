@@ -138,6 +138,7 @@ namespace kspc::kpts {
   /// @addtogroup physics
   /// @{
 
+  // Primitive hexagonal (HEX)
   namespace hex {
     inline constexpr std::array Gamma{0.0, 0.0, 0.0};
     inline constexpr std::array M{0.5, 0.5, 0.0};
