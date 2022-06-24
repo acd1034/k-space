@@ -133,7 +133,25 @@ namespace kspc {
   /// @}
 } // namespace kspc
 
-// Physics
+// k-points
+namespace kspc::kpts {
+  /// @addtogroup physics
+  /// @{
+
+  // Primitive hexagonal (HEX)
+  namespace hex {
+    inline constexpr std::array Gamma{0.0, 0.0, 0.0};
+    inline constexpr std::array M{0.5, 0.5, 0.0};
+    inline constexpr std::array K{2.0 / 3.0, 1.0 / 3.0, 0.0};
+    inline constexpr std::array A{0.0, 0.0, 0.5};
+    inline constexpr std::array L{0.5, 0.5, 0.5};
+    inline constexpr std::array H{2.0 / 3.0, 1.0 / 3.0, 0.5};
+  } // namespace hex
+
+  /// @}
+} // namespace kspc::kpts
+
+// in_brillouin_zone
 namespace kspc {
   /// @addtogroup physics
   /// @{
