@@ -30,7 +30,8 @@ namespace kspc {
           return ((*std::forward<T1>(t1)).*f)(std::forward<Args>(args)...);
       } else {
         static_assert(std::is_object_v<Pointed> && sizeof...(args) == 0);
-        if constexpr (std::is_base_of_v<C, std::decay_t<T1>>) return std::forward<T1>(t1).*f;
+        if constexpr (std::is_base_of_v<C, std::decay_t<T1>>)
+          return std::forward<T1>(t1).*f;
         else if constexpr (is_reference_wrapper_v<std::decay_t<T1>>)
           return t1.get().*f;
         else
@@ -189,6 +190,21 @@ namespace kspc {
              std::move(op2),
              std::move(proj1),
              std::move(proj2));
+  }
+
+  /// @brief norm
+  template <class R,
+            class P1 = conj_fn,
+            class P2 = identity_fn,
+            class Op1 = std::plus<>,
+            class Op2 = std::multiplies<>,
+            std::enable_if_t<is_input_range_v<R>, std::nullptr_t> = nullptr>
+  constexpr auto norm(R&& r,
+                      P1 proj1 = {},
+                      P2 proj2 = {},
+                      Op1 op1 = {},
+                      Op2 op2 = {}) {
+    return std::sqrt(innerp(r, r, std::move(proj1), std::move(proj2), std::move(op1), std::move(op2)));
   }
 
   /// @}
