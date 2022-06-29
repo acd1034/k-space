@@ -191,6 +191,21 @@ namespace kspc {
              std::move(proj2));
   }
 
+  /// @brief norm
+  template <class R,
+            class P1 = conj_fn,
+            class P2 = identity_fn,
+            class Op1 = std::plus<>,
+            class Op2 = std::multiplies<>,
+            std::enable_if_t<is_input_range_v<R>, std::nullptr_t> = nullptr>
+  constexpr auto norm(R&& r,
+                      P1 proj1 = {},
+                      P2 proj2 = {},
+                      Op1 op1 = {},
+                      Op2 op2 = {}) {
+    return std::sqrt(innerp(r, r, std::move(proj1), std::move(proj2), std::move(op1), std::move(op2)));
+  }
+
   /// @}
 } // namespace kspc
 
