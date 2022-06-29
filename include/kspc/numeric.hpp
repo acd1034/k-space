@@ -30,7 +30,8 @@ namespace kspc {
           return ((*std::forward<T1>(t1)).*f)(std::forward<Args>(args)...);
       } else {
         static_assert(std::is_object_v<Pointed> && sizeof...(args) == 0);
-        if constexpr (std::is_base_of_v<C, std::decay_t<T1>>) return std::forward<T1>(t1).*f;
+        if constexpr (std::is_base_of_v<C, std::decay_t<T1>>)
+          return std::forward<T1>(t1).*f;
         else if constexpr (is_reference_wrapper_v<std::decay_t<T1>>)
           return t1.get().*f;
         else
