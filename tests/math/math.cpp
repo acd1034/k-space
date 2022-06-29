@@ -170,7 +170,8 @@ TEST_CASE("numeric", "[numeric]") {
     constexpr std::array a{1.0, 2.0, 3.0};
     constexpr std::array ca{1.0i, 2.0i, 3.0i};
     static_assert(equal_to(kspc::innerp(a, a), 14.0));
-    CHECK(equal_to(kspc::innerp(ca, ca), 14.0)); // because `operator*(std::complex, std::complex)` is constexpr after C++20
+    // because `operator*(std::complex, std::complex)` is constexpr after C++20
+    CHECK(equal_to(kspc::innerp(ca, ca), 14.0));
   }
   // { // innerp with op
   //   CHECK(kspc::innerp(std::vector{1, 2}, std::vector{1, 0, 0, 1}, std::vector{1, 2}) == 5);
@@ -178,6 +179,13 @@ TEST_CASE("numeric", "[numeric]") {
   //   CHECK(kspc::innerp(std::vector{1, 2}, std::array{1, 0, 0, 1}, std::vector{1, 2}) == 5);
   //   CHECK(kspc::innerp(std::vector{1, 2}, std::array{0, 1, 1, 0}, std::vector{1, 2}) == 4);
   // }
+  { // norm
+    using namespace std::complex_literals;
+    const std::vector v{2.0, 4.0, 4.0};
+    const std::vector cv{2.0i, 4.0i, 4.0i};
+    CHECK(equal_to(kspc::norm(v), 6.0));
+    CHECK(equal_to(kspc::norm(cv), 6.0));
+  }
   { // arithmetic operators for std::array
     using namespace kspc::arithmetic_ops;
     constexpr std::array a1{1, 2, 3};
