@@ -94,6 +94,11 @@ template&lt;class F , class... Args&gt; </td></tr>
 <tr class="memitem:ga2b3840c00748bc71e812b25c83683fdd"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__numeric.html#ga2b3840c00748bc71e812b25c83683fdd">kspc::innerp</a> (R1 &amp;&amp;r1, R2 &amp;&amp;r2, P1 proj1={}, P2 proj2={}, Op1 op1={}, Op2 op2={})</td></tr>
 <tr class="memdesc:ga2b3840c00748bc71e812b25c83683fdd"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>std::inner_product</code> without the initial value  <a href="group__numeric.html#ga2b3840c00748bc71e812b25c83683fdd">More...</a><br /></td></tr>
 <tr class="separator:ga2b3840c00748bc71e812b25c83683fdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6193ba408d5249abe1a983258697bb7f"><td class="memTemplParams" colspan="2">
+template&lt;class R , class P1  = conj_fn, class P2  = identity_fn, class Op1  = std::plus&lt;&gt;, class Op2  = std::multiplies&lt;&gt;, std::enable_if_t&lt; is_input_range_v&lt; R &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
+<tr class="memitem:ga6193ba408d5249abe1a983258697bb7f"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::norm</b> (R &amp;&amp;r, P1 proj1={}, P2 proj2={}, Op1 op1={}, Op2 op2={})</td></tr>
+<tr class="memdesc:ga6193ba408d5249abe1a983258697bb7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">norm <br /></td></tr>
+<tr class="separator:ga6193ba408d5249abe1a983258697bb7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad2947ca35f78722264745dcd49346154"><td class="memTemplParams" colspan="2"><a id="ad2947ca35f78722264745dcd49346154" name="ad2947ca35f78722264745dcd49346154"></a>
 template&lt;class T , std::size_t N, std::enable_if_t&lt; std::is_arithmetic_v&lt; T &gt;, std::nullptr_t &gt;  = nullptr&gt; </td></tr>
 <tr class="memitem:ad2947ca35f78722264745dcd49346154"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>kspc::operator+</b> (const std::array&lt; T, N &gt; &amp;x)</td></tr>
